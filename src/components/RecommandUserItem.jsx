@@ -4,17 +4,15 @@ import { useSelector } from "../context";
 import Avatar from "./Avatar";
 
 /**
- * * 추천 사용자 컴포넌트
+ * 추천 사용자 컴포넌트
  *
- * @Component
- * @author frisk
  * @param props.id        사용자 ID
  * @param props.avatar    사용자 프로필 사진
  * @param props.nickname  사용자 별칭
- * @param props.postCount 사용자 포스트 수
+ * @param props.Posts     사용자 포스트 목록
  *
  */
-const RecommandUserItem = ({ id, avatar, nickname, postCount }) => {
+const RecommandUserItem = ({ id, avatar, nickname, Posts }) => {
     const displayName = "fr-user";
     /**
      * 로컬 상태 감시 모듈 활성화
@@ -53,12 +51,12 @@ const RecommandUserItem = ({ id, avatar, nickname, postCount }) => {
                 onMouseEnter={handleEnterAvatar}
                 onMouseLeave={handleLeaveAvatar}
             >
-                <Avatar size="45" src={avatar.url} userId={id} />
+                <Avatar size="45" src={avatar} userId={id} />
             </div>
             {isCollapseNav === "expand" && (
                 <div className={`${displayName}__name-wrapper`}>
                     <p className={`${displayName}__name`}>{nickname}</p>
-                    <em>{postCount} posts</em>
+                    <em>{Posts.length} posts</em>
                 </div>
             )}
             <Overlay target={$avatar.current} show={show} placement="right">
@@ -78,7 +76,7 @@ const RecommandUserItem = ({ id, avatar, nickname, postCount }) => {
                     >
                         <div>
                             <p className={`${displayName}__name`}>{nickname}</p>
-                            <em>{postCount} posts</em>
+                            <em>{Posts.length} posts</em>
                         </div>
                     </div>
                 )}

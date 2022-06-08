@@ -1,36 +1,35 @@
-import { gql } from '@apollo/client'
+import { gql } from "@apollo/client";
 
 /**
- * * 사용자 검색
+ * 사용자 검색
  *
- * @query
- * @author frisk
- * @param $skip 건너뛸 목록의 수
- * @param $first 요청 목록의 수
- * @param $orderBy 정렬
- * @param $query 검색어
+ * @param $offset 건너뛸 목록의 수
+ * @param $limit  요청 목록의 수
+ * @param $order  정렬
  */
 export const GET_USERS = gql`
-    query GetUsers($skip: Int, $first: Int, $orderBy: String) {
-        users(skip: $skip, first: $first, orderBy: $orderBy) {
-            id
-            nickname
-            isMaster
-            createdAt
-            updatedAt
-            postCount
-            avatar {
-                url
+    query GetUsers($offset: Int, $limit: Int, $order: String) {
+        users(offset: $offset, limit: $limit, order: $order) {
+            rows {
+                id
+                nickname
+                email
+                avatar
+                isMaster
+                Posts {
+                    id
+                }
+                createdAt
+                updatedAt
             }
+            count
         }
     }
-`
+`;
 
 /**
- * * 사용자 상세 조회
+ * 사용자 상세 조회
  *
- * @query
- * @author frisk
  * @param $id 사용자 ID
  */
 export const GET_USER = gql`
@@ -38,19 +37,20 @@ export const GET_USER = gql`
         user(id: $id) {
             id
             nickname
+            email
+            avatar
             isMaster
+            Posts {
+                id
+            }
             createdAt
             updatedAt
-            postCount
-            avatar {
-                url
-            }
         }
     }
-`
+`;
 
 /**
- * * 내 정보
+ * 내 정보
  *
  * @query
  * @author frisk
@@ -61,10 +61,13 @@ export const ME = gql`
             id
             nickname
             email
-            avatar {
-                url
-            }
+            avatar
             isMaster
+            Posts {
+                id
+            }
+            createdAt
+            updatedAt
         }
     }
-`
+`;

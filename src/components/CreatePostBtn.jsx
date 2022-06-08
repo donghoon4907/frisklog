@@ -3,7 +3,7 @@ import { useHistory } from "react-router-dom";
 import { Add } from "../assets/icon";
 import { useDispatch } from "../context";
 import { SHOW_LOGIN_MODAL } from "../context/action";
-import { TOKEN_KEY, getStorage } from "../lib/state";
+import { TOKEN_KEY, getStorage } from "../lib/cookie";
 
 /**
  * 헤더 게시물 추가 컴포넌트

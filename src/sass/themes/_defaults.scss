@@ -23,6 +23,11 @@ html {
     height: 100%;
     width: 100%;
     font-size: 14px;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-text-size-adjust: 100%;
+    tab-size: 4;
+    -o-tab-size: 4;
 }
 
 hr {

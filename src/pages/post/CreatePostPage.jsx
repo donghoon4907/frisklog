@@ -9,7 +9,7 @@ import Button from "../../components/Button";
 import { useInput } from "../../hooks";
 import Meta from "../../components/Meta";
 import Loader from "../../components/Loader";
-import { TOKEN_KEY, getStorage } from "../../lib/state";
+import { TOKEN_KEY, getStorage } from "../../lib/cookie";
 
 /**
  * 게시물 등록 화면 컴포넌트

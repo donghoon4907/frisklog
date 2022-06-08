@@ -1,72 +1,64 @@
-import { gql } from '@apollo/client'
+import { gql } from "@apollo/client";
 
 /**
- * * 게시물 검색
+ * 게시물 검색
  *
- * @query
- * @author frisk
- * @param $skip           건너뛸 목록의 수
- * @param $first          요청 목록의 수
- * @param $orderBy        정렬
- * @param $query          검색어
+ * @param $offset         건너뛸 목록의 수
+ * @param $limit          요청 목록의 수
+ * @param $order          정렬
+ * @param $searchKeyword  검색어
  * @param $category       카테고리
  * @param $userId         사용자 ID
- * @param $notNullThumb   썸네일 있는 것만 요청할 지
+ * @param $isThereThumb   썸네일 있는지 여부
  */
 export const GET_POSTS = gql`
     query GetPosts(
-        $skip: Int
-        $first: Int
-        $orderBy: String
-        $query: String
+        $offset: Int
+        $limit: Int
+        $order: String
+        $searchKeyword: String
         $category: String
         $userId: String
-        $notNullThumb: Boolean
+        $isThereThumb: Boolean
     ) {
         posts(
-            skip: $skip
-            first: $first
-            orderBy: $orderBy
-            query: $query
+            offset: $offset
+            limit: $limit
+            order: $order
+            searchKeyword: $searchKeyword
             category: $category
             userId: $userId
-            notNullThumb: $notNullThumb
+            isThereThumb: $isThereThumb
         ) {
-            data {
+            rows {
                 id
                 title
                 description
-                user {
+                viewCount
+                category
+                thumbnail
+                User {
                     id
                     nickname
-                    avatar {
-                        url
-                    }
+                    avatar
                 }
-                likeCount
-                likes {
+                Likers {
                     id
-                    user {
-                        id
-                    }
+                }
+                PostComments {
+                    id
                 }
                 createdAt
                 updatedAt
-                viewCount
-                commentCount
-                category
-                thumbnail
             }
-            total
+            count
         }
     }
-`
+`;
 
 /**
- * * 게시물 상세 로드
+ * 게시물 상세 로드
  *
- * @query
- * @author frisk
  * @param $id 건너뛸 목록의 수
  */
 export const GET_POST = gql`
@@ -75,25 +67,28 @@ export const GET_POST = gql`
             id
             title
             description
-            content
-            user {
+            viewCount
+            category
+            thumbnail
+            User {
                 id
                 nickname
-                avatar {
-                    url
-                }
+                avatar
             }
-            likeCount
-            likes {
+            Likers {
                 id
-                user {
+            }
+            PostComments {
+                id
+                content
+                User {
                     id
+                    nickname
+                    avatar
                 }
             }
             createdAt
             updatedAt
-            viewCount
-            category
         }
     }
-`
+`;

@@ -8,10 +8,11 @@ import { getDataFromTree } from "@apollo/client/react/ssr";
 import { Helmet } from "react-helmet";
 import cookieParser from "cookie-parser";
 import { ChunkExtractor, ChunkExtractorManager } from "@loadable/server";
+import jwt from "jsonwebtoken";
 import { ContextProvider } from "./context";
 import { initializeApollo } from "./lib/apollo";
 import App from "./App";
-import { COLLAPSE_KEY } from "./lib/state";
+import { COLLAPSE_KEY, TOKEN_KEY } from "./lib/cookie";
 
 // const assets = require(process.env.RAZZLE_ASSETS_MANIFEST);
 /** init express */
@@ -25,7 +26,30 @@ server
     .get("/*", async (req, res) => {
         const location = req.url;
 
+        const context = {};
+
         const collapse = req.cookies[COLLAPSE_KEY];
+
+        context.isCollapseNav = collapse ? JSON.parse(collapse) : "contract";
+
+        const token = req.cookies[TOKEN_KEY];
+
+        if (token) {
+            const { id, email, nickname, avatar, isMaster } = jwt.verify(
+                JSON.parse(token),
+                process.env.RAZZLE_JWT_SECRET
+            );
+
+            context.id = id;
+
+            context.email = email;
+
+            context.nickname = nickname;
+
+            context.avatar = avatar;
+
+            context.isMaster = isMaster;
+        }
 
         const extractor = new ChunkExtractor({
             statsFile: path.resolve("build/loadable-stats.json"),
@@ -37,13 +61,7 @@ server
         const Root = () => (
             <ChunkExtractorManager extractor={extractor}>
                 <ApolloProvider client={client}>
-                    <ContextProvider
-                        context={{
-                            isCollapseNav: collapse
-                                ? JSON.parse(collapse)
-                                : "contract"
-                        }}
-                    >
+                    <ContextProvider context={context}>
                         <StaticRouter location={location} context={{}}>
                             <App />
                         </StaticRouter>
@@ -60,6 +78,7 @@ server
         }
         /** Get apollo cache */
         const initialApolloState = client.extract();
+
         /** When the app is rendered collect the styles that are used inside it */
         const markup = renderToString(extractor.collectChunks(<Root />));
 
@@ -87,6 +106,9 @@ server
                             window.__APOLLO_STATE__ = ${JSON.stringify(
                                 initialApolloState
                             ).replace(/</g, "\\u003c")};
+                            window.__CONTEXT_STATE__ = ${JSON.stringify(
+                                context
+                            )}
                         </script>
                     </body>
                 </html>

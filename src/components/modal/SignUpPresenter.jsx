@@ -5,10 +5,8 @@ import Loader from "../Loader";
 import { Thumbnail } from "../../assets/icon";
 
 /**
- * * 회원가입 프레젠터 컴포넌트
+ * 회원가입 프레젠터 컴포넌트
  *
- * @Presenter
- * @author frisk
  * @param props.uploadLoading 업로드 요청 진행 여부
  * @param props.signUpLoading 회원가입 요청 진행 여부
  * @param props.nickname 별칭 입력을 위한 Hooks

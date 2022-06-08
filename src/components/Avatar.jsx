@@ -12,7 +12,15 @@ import { Link } from "react-router-dom";
  */
 const Avatar = ({ userId, size, src }) => (
     <Link className="fr-avatar" to={`/user/${userId}`}>
-        <img src={src} alt="avatar" width={size} height={size} />
+        <img
+            src={
+                process.env.RAZZLE_BACKEND_ROOT +
+                (src || process.env.RAZZLE_DEFAULT_AVATAR)
+            }
+            alt="avatar"
+            width={size}
+            height={size}
+        />
     </Link>
 );
 

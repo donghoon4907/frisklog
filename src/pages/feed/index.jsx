@@ -19,20 +19,19 @@ const Feed = () => (
             <Query
                 query={GET_POSTS}
                 variables={{
-                    first: 5,
-                    orderBy: "viewCount_DESC",
-                    notNullThumb: true
+                    limit: 9,
+                    order: "viewCount_DESC"
                 }}
             >
                 {({ data: { posts } }) =>
-                    posts.data.map((post) => (
+                    posts.rows.map((post) => (
                         <PostCardTypeItem key={post.id} {...post} />
                     ))
                 }
             </Query>
         </div>
         <hr />
-        <Subject>인기 게시물</Subject>
+        {/* <Subject>인기 게시물</Subject>
         <div className="fr-card-wrapper">
             <Query
                 query={GET_POSTS}
@@ -48,7 +47,7 @@ const Feed = () => (
                     ))
                 }
             </Query>
-        </div>
+        </div> */}
     </div>
 );
 

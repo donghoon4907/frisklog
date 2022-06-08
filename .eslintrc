@@ -6,7 +6,11 @@
         "react/react-in-jsx-scope": 0,
         "react/prop-types": 0,
         "react/display-name": 0,
-        "space-before-function-paren": 0
+        "space-before-function-paren": 0,
+        "quotes": ["off", "single"],
+        "semi": [2, "always"],
+        "no-undef": 0,
+        "eqeqeq": 0
     },
     "settings": {
         "react": {

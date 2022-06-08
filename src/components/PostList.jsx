@@ -10,20 +10,18 @@ import { useSelector } from "../context";
 /**
  * * 페이지 게시물 렌더링 컴포넌트
  *
- * @Component
- * @author frisk
- * @param {string}            renderType    렌더링 타입 설정
- * @param {number|undefined}  first         요청 목록 수
- * @param {string|undefined}  orderBy       정렬
- * @param {string|undefined}  query         검색어
- * @param {string|undefined}  category      카테고리
- * @param {string|undefined}  userId        사용자 ID
+ * @param {string}   renderType    렌더링 타입 설정
+ * @param {number?}  limit         요청 목록 수
+ * @param {string?}  order         정렬
+ * @param {string?}  searchKeyword 검색어
+ * @param {string?}  category      카테고리
+ * @param {string?}  userId        사용자 ID
  */
 const PostList = ({
     renderType,
-    first = 30,
-    orderBy = "createdAt_DESC",
-    query,
+    limit = 30,
+    order = "createdAt_DESC",
+    searchKeyword,
     category,
     userId,
     children
@@ -37,9 +35,9 @@ const PostList = ({
         <Query
             query={GET_POSTS}
             variables={{
-                first,
-                orderBy,
-                query,
+                limit,
+                order,
+                searchKeyword,
                 category,
                 userId
             }}
@@ -47,12 +45,12 @@ const PostList = ({
         >
             {({ data: { posts }, loading, fetchMore }) =>
                 children({
-                    total: posts.total,
+                    count: posts.count,
                     posts: (
                         <div className="fr-grid-wrapper">
-                            {posts.data.length > 0 ? (
+                            {posts.rows.length > 0 ? (
                                 <>
-                                    {posts.data.map((post) => {
+                                    {posts.rows.map((post) => {
                                         if (isMobile) {
                                             return (
                                                 <PostCardTypeItem
@@ -74,21 +72,20 @@ const PostList = ({
                                         loading={loading}
                                         onBottom={() => {
                                             if (
-                                                posts.data.length > 0 &&
-                                                posts.data.length % first !== 0
+                                                posts.rows.length > 0 &&
+                                                posts.rows.length % offset !== 0
                                             ) {
                                                 return;
                                             }
 
                                             fetchMore({
                                                 variables: {
-                                                    first,
-                                                    orderBy,
-                                                    query,
+                                                    limit,
+                                                    order,
+                                                    searchKeyword,
                                                     category,
                                                     userId,
-                                                    notNullThumb,
-                                                    skip: posts.data.length
+                                                    offset: posts.rows.length
                                                 },
                                                 updateQuery: (
                                                     prev,
@@ -100,13 +97,13 @@ const PostList = ({
 
                                                     return {
                                                         posts: {
-                                                            data: [
+                                                            rows: [
                                                                 ...prev.posts
-                                                                    .data,
+                                                                    .rows,
                                                                 ...fetchMoreResult
-                                                                    .posts.data
+                                                                    .posts.rows
                                                             ],
-                                                            total: posts.total
+                                                            count: posts.count
                                                         }
                                                     };
                                                 }

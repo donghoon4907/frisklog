@@ -14,12 +14,11 @@ const RecommandUserList = () => (
         <Query
             query={GET_USERS}
             variables={{
-                first: 5,
-                orderBy: "postCount_DESC"
+                limit: 5
             }}
         >
             {({ data: { users } }) =>
-                users.map((user) => (
+                users.rows.map((user) => (
                     <RecommandUserItem key={user.id} {...user} />
                 ))
             }

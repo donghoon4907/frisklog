@@ -8,7 +8,7 @@ import { SHOW_LOGIN_MODAL } from "../../context/action";
 import Avatar from "../../components/Avatar";
 import BtnLink from "../../components/BtnLink";
 import { HeartEmpty, HeartFull } from "../../assets/icon";
-import { TOKEN_KEY, getStorage } from "../../lib/state";
+import { TOKEN_KEY, getStorage } from "../../lib/cookie";
 import CommentList from "../../components/CommentList";
 import Loader from "../../components/Loader";
 import Meta from "../../components/Meta";

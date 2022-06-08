@@ -4,10 +4,8 @@ import Button from "../Button";
 import Loader from "../Loader";
 
 /**
- * * 로그인 프레젠터 컴포넌트
+ * 로그인 프레젠터 컴포넌트
  *
- * @Presenter
- * @author frisk
  * @param props.loading 로그인 요청 진행 여부
  * @param props.email 이메일 입력을 위한 Hooks
  * @param props.onSubmit 로그인 요청 핸들러

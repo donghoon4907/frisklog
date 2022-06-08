@@ -1,57 +1,38 @@
-import React, { useCallback, useEffect } from "react";
+import React, { useCallback } from "react";
 import { useSelector, useDispatch } from "../context";
 import { EXPAND_NAVIGATION, CONTRACT_NAVIGATION } from "../context/action";
-import { COLLAPSE_KEY, getStorage, setStorage } from "../lib/state";
+import { COLLAPSE_KEY, setStorage } from "../lib/cookie";
 import { Collapse } from "../assets/icon";
 import RecommandUserList from "./RecommandUserList";
-import RecommandCategoryList from "./RecommandCategoryList";
+// import RecommandCategoryList from "./RecommandCategoryList";
 
 /**
  * 공통 네비게이션 컴포넌트
  *
- * @Component
- * @author frisk
  */
 const Nav = () => {
     const displayName = "fr-nav";
-    /**
-     * 로컬 상태 변경 모듈 활성화
-     */
+
     const dispatch = useDispatch();
-    /**
-     * 로컬 상태 감시 모듈 활성화
-     */
+
     const { isCollapseNav } = useSelector();
-    /**
-     * 확장 아이콘 클릭 이벤트
-     */
+
+    // 확장 아이콘 클릭 이벤트
     const handleClickCollapse = useCallback(() => {
         if (isCollapseNav === "expand") {
             setStorage(COLLAPSE_KEY, "contract");
+
             dispatch({
                 type: CONTRACT_NAVIGATION
             });
         } else {
             setStorage(COLLAPSE_KEY, "expand");
+
             dispatch({
                 type: EXPAND_NAVIGATION
             });
         }
     }, [isCollapseNav]);
-    /**
-     * 라이프 사이클 모듈 활성화
-     */
-    useEffect(() => {
-        const isCollapse = getStorage(COLLAPSE_KEY);
-        /**
-         * 로컬 상태 업데이트
-         */
-        if (isCollapse === "expand") {
-            dispatch({
-                type: EXPAND_NAVIGATION
-            });
-        }
-    }, []);
 
     return (
         <nav
@@ -75,11 +56,11 @@ const Nav = () => {
             </div>
             <div className={`${displayName}__body`}>
                 <RecommandUserList />
-                <hr />
+                {/* <hr />
                 {isCollapseNav === "expand" && (
                     <h5 className="mt-3 mb-1">추천 카테고리</h5>
                 )}
-                <RecommandCategoryList />
+                <RecommandCategoryList /> */}
             </div>
         </nav>
     );

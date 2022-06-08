@@ -38,21 +38,17 @@ const User = ({
             }}
         >
             {({ data: { user } }) => {
-                const { avatar, nickname, postCount } = user;
+                const { avatar, nickname, Posts } = user;
                 return (
                     <>
                         <Meta title={`Frisklog - ${nickname}`} />
                         <div className={`${displayName}__info`}>
-                            <Avatar
-                                src={avatar.url}
-                                size="200"
-                                userId={user.id}
-                            />
+                            <Avatar src={avatar} size="200" userId={user.id} />
                             <div
                                 className={`${displayName}__info__description`}
                             >
                                 <h2>{nickname}</h2>
-                                <em>{postCount} posts</em>
+                                <em>{Posts.length} posts</em>
                             </div>
                         </div>
                         <Subject>
@@ -75,8 +71,8 @@ const User = ({
                             </div>
                         </Subject>
                         <PostList
-                            orderBy={orderBy}
-                            userId={id}
+                            order={orderBy}
+                            userId={user.id}
                             renderType="timeline"
                         >
                             {({ posts }) => posts}

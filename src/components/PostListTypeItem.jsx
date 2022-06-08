@@ -8,10 +8,8 @@ import BtnLink from "./BtnLink";
 import { timeForToday } from "../lib/date";
 
 /**
- * * 게시물 리스트형 렌더링 컴포넌트
+ * 게시물 리스트형 렌더링 컴포넌트
  *
- * @Component
- * @author frisk
  * @param {string} props.id           게시물 ID
  * @param {string} props.title        게시물 제목
  * @param {string} props.description  게시물 설명
@@ -21,17 +19,17 @@ import { timeForToday } from "../lib/date";
  * @param {number} props.viewCount    게시물 조회 수
  * @param {string} props.category     게시물 카테고리
  * @param {number} props.commentCount 게시물 댓글 수
- * @param {string|undefined} props.renderType   렌더링 타입
+ * @param {string?} props.renderType   렌더링 타입
  */
 const PostListTypeItem = ({
     id,
     title,
     description,
-    user,
+    User,
     createdAt,
-    likeCount,
+    Likers,
     category,
-    commentCount,
+    PostComments,
     renderType
 }) => {
     const displayName = "fr-grid";
@@ -78,12 +76,8 @@ const PostListTypeItem = ({
                 </p>
                 <div className={`${displayName}__meta__footer`}>
                     <div className={`${displayName}__meta__footer__column`}>
-                        <Avatar
-                            src={user.avatar.url}
-                            size="30"
-                            userId={user.id}
-                        />
-                        <span>{user.nickname}</span>
+                        <Avatar src={User.avatar} size="30" userId={User.id} />
+                        <span>{User.nickname}</span>
                         {renderType !== "timeline" && (
                             <>
                                 <span>·</span>
@@ -94,11 +88,11 @@ const PostListTypeItem = ({
                     <div className={`${displayName}__meta__footer__column`}>
                         <div>
                             <HeartFull />
-                            <span>{likeCount}</span>
+                            <span>{Likers.length}</span>
                         </div>
                         <div>
                             <Comment />
-                            <span>{commentCount}</span>
+                            <span>{PostComments.length}</span>
                         </div>
                     </div>
                 </div>

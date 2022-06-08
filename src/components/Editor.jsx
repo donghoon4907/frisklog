@@ -76,7 +76,7 @@ const PostEditor = (props) => {
 
                             const { data, error } = await call({
                                 method: "post",
-                                url: `${process.env.RAZZLE_BACKEND_API_PATH}/api/upload`,
+                                url: `${process.env.RAZZLE_BACKEND_API}/upload`,
                                 data: formData,
                                 headers: {
                                     "content-type": "multipart/form-data"

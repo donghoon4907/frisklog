@@ -1,8 +1,10 @@
 @import "../utilities/variables";
 
 .fr-avatar {
-    display: block;
-    border: $fr-box-border;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    // border: $fr-box-border;
     border-radius: 50%;
     overflow: hidden;
     cursor: pointer;

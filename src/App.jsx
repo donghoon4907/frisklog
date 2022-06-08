@@ -1,15 +1,13 @@
 import React, { useCallback, useEffect } from "react";
 import { Route, Switch } from "react-router-dom";
-import { useQuery } from "@apollo/client";
 import loadable from "@loadable/component";
 import Header from "./components/Header";
 import Nav from "./components/Nav";
 import AuthModal from "./components/modal/Auth";
-import SetNoticeModal from "./components/modal/SetNoticeContainer";
+// import SetNoticeModal from "./components/modal/SetNoticeContainer";
 import { useDispatch, useSelector } from "./context";
-import { CONTRACT_NAVIGATION, SET_ME, SET_IS_MOBILE } from "./context/action";
-import { ME } from "./graphql/query/user";
-import { COLLAPSE_KEY, setStorage } from "./lib/state";
+import { CONTRACT_NAVIGATION, SET_IS_MOBILE } from "./context/action";
+import { COLLAPSE_KEY, setStorage } from "./lib/cookie";
 
 import "./sass/main.scss";
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
@@ -31,61 +29,31 @@ const NoMatch = loadable(() => import("./pages/404"));
 
 const App = () => {
     const displayName = "fr-app";
-    /**
-     * 로컬 상태 변경 모듈 활성화
-     */
+
     const dispatch = useDispatch();
-    /**
-     * 로컬 상태 감시 모듈 활성화
-     */
+
     const {
         isShowLoginModal,
         isShowNoticeModal,
         isCollapseNav
     } = useSelector();
-    /**
-     * 사용자 정보 로드
-     */
-    useQuery(ME, {
-        ssr: false,
-        onCompleted: ({ me }) => {
-            if (me) {
-                const { id, nickname, email, avatar, isMaster } = me;
-                dispatch({
-                    type: SET_ME,
-                    id,
-                    nickname,
-                    email,
-                    avatar,
-                    isMaster
-                });
-            }
-        }
-    });
-    /**
-     * 리사이징 핸들러
-     */
+
+    // 리사이징 핸들러
     const handleResize = useCallback(
         (e) => {
             const { innerWidth } = e.target;
 
             if (innerWidth <= 922) {
-                /**
-                 * 네비게이션이 축소된 경우
-                 */
+                // 네비게이션이 확장된 경우
                 if (isCollapseNav !== "contract") {
-                    /**
-                     * 네비게이션 축소
-                     */
+                    // 네비게이션 축소
                     dispatch({
                         type: CONTRACT_NAVIGATION
                     });
                     setStorage(COLLAPSE_KEY, "contract");
                 }
             }
-            /**
-             * 모바일 여부 설정
-             */
+            // 모바일 설정
             if (innerWidth <= 576) {
                 dispatch({
                     type: SET_IS_MOBILE,
@@ -100,28 +68,20 @@ const App = () => {
         },
         [isCollapseNav]
     );
-    /**
-     * 라이프 사이클 모듈 활성화
-     */
+
     useEffect(() => {
-        /**
-         * 리사이징 이벤트 바인딩
-         */
+        // 리사이징 이벤트 바인딩
         window.addEventListener("resize", handleResize);
 
         const { innerWidth } = window;
-        /**
-         * 모바일 여부 설정
-         */
+        // 모바일 설정
         if (innerWidth <= 576) {
             dispatch({
                 type: SET_IS_MOBILE,
                 payload: true
             });
         }
-        /**
-         * 리사이징 이벤트 언바인딩
-         */
+        // 리사이징 이벤트 언바인딩
         return () => window.removeEventListener("resize", handleResize);
     }, []);
 
@@ -159,7 +119,7 @@ const App = () => {
                     </Switch>
                 </main>
                 {isShowLoginModal && <AuthModal />}
-                {isShowNoticeModal && <SetNoticeModal />}
+                {/* {isShowNoticeModal && <SetNoticeModal />} */}
             </section>
         </div>
     );

@@ -9,7 +9,7 @@ import Button from "../../components/Button";
 import Meta from "../../components/Meta";
 import { useInput } from "../../hooks";
 import Loader from "../../components/Loader";
-import { TOKEN_KEY, getStorage } from "../../lib/state";
+import { TOKEN_KEY, getStorage } from "../../lib/cookie";
 import { FormInput } from "../../components/Form";
 
 /**
