@@ -11,75 +11,111 @@ import { useDispatch } from "../context";
 import { SHOW_LOGIN_MODAL } from "../context/action";
 import CommentItem from "./CommentItem";
 import Loader from "./Loader";
-import { graphqlError } from "../lib/error";
 
 /**
- * 댓글 목록 컴포넌트
+ * * 댓글 목록 렌더링 컴포넌트
  *
+ * @Component
+ * @author frisk
  */
 const CommentList = () => {
+    /**
+     * route match 모듈 활성화
+     */
     const {
         params: { id }
     } = useRouteMatch("/post/:id");
-
+    /**
+     * 로컬 상태 변경 모듈 활성화
+     */
     const dispatch = useDispatch();
-
+    /**
+     * 댓글 목록 로드
+     */
     const { data, loading, fetchMore, refetch } = useQuery(GET_COMMENTS, {
         variables: {
-            limit: 30,
+            first: 30,
             postId: id
         },
         notifyOnNetworkStatusChange: true
     });
-    // 댓글
+    /**
+     * 댓글 입력을 위한 useInput 활성화
+     */
     const comment = useInput("");
-
+    /**
+     * 댓글 추가 mutation 활성화
+     */
     const [create, { loading: createLoading }] = useMutation(CREATE_COMMENT);
 
-    // 댓글 추가 핸들러
+    /**
+     * 댓글 추가 핸들러
+     */
     const handleSubmit = useCallback(
         async (e) => {
             e.preventDefault();
-
+            /**
+             * 요청 중인 경우
+             */
             if (createLoading) {
                 return alert("요청 중입니다. 잠시만 기다려주세요.");
             }
-
+            /**
+             * 토큰 로드
+             */
             const token = getStorage(TOKEN_KEY);
 
-            if (!token) {
-                // 로그인 팝업 보이기
-                return dispatch({
+            if (token) {
+                if (comment.value.length > 100) {
+                    return alert("댓글은 100자 미만으로 입력 해주세요.");
+                }
+
+                try {
+                    await create({
+                        variables: {
+                            postId: id,
+                            content: comment.value
+                        }
+                    });
+
+                    /**
+                     * 댓글 초기화
+                     */
+                    refetch();
+                    comment.setValue("");
+                } catch (error) {
+                    const { message, status } = JSON.parse(error.message);
+                    if (status === 401) {
+                        /**
+                         * 로그인 팝업 보이기
+                         */
+                        dispatch({
+                            type: SHOW_LOGIN_MODAL
+                        });
+                    } else {
+                        alert(message);
+                    }
+                }
+            } else {
+                /**
+                 * 로그인 팝업 보이기
+                 */
+                dispatch({
                     type: SHOW_LOGIN_MODAL
                 });
-            }
-
-            if (comment.value.length > 100) {
-                return alert("댓글은 100자 미만으로 입력 해주세요.");
-            }
-
-            try {
-                await create({
-                    variables: {
-                        postId: id,
-                        content: comment.value
-                    }
-                });
-
-                // 댓글 초기화
-                refetch();
-                // 입력창 초기화
-                comment.setValue("");
-            } catch (error) {
-                graphqlError({ error, dispatch });
             }
         },
         [comment.value, createLoading]
     );
 
-    // 스크롤 이벤트 핸들러
+    /**
+     * 스크롤 이벤트 핸들러
+     */
     const handleFetchMore = () => {
         if (data && data.comments) {
+            /**
+             * 요청 중인 경우
+             */
             if (loading) {
                 return;
             }
@@ -91,25 +127,27 @@ const CommentList = () => {
 
             if (scrollTop + clientHeight === scrollHeight) {
                 if (
-                    comments.rows.length > 0 &&
-                    comments.rows.length % 30 === 0
+                    comments.data.length > 0 &&
+                    comments.data.length % 30 === 0
                 ) {
-                    // 추가 게시물 요청
+                    /**
+                     * 추가 게시물 요청
+                     */
                     fetchMore({
                         variables: {
-                            offset: comments.rows.length,
-                            limit: 30,
+                            skip: comments.data.length,
+                            first: 30,
                             postId: id
                         },
                         updateQuery: (prev, { fetchMoreResult }) => {
                             if (fetchMoreResult) {
                                 return {
                                     comments: {
-                                        rows: [
-                                            ...prev.comments.rows,
-                                            ...fetchMoreResult.comments.rows
+                                        data: [
+                                            ...prev.comments.data,
+                                            ...fetchMoreResult.comments.data
                                         ],
-                                        count: comments.count
+                                        total: comments.total
                                     }
                                 };
                             } else {
@@ -122,11 +160,18 @@ const CommentList = () => {
         }
     };
 
+    /**
+     * 라이프 사이클 모듈 활성화
+     */
     useEffect(() => {
         const $main = document.querySelector("#main");
-        // 스크롤 이벤트 바인딩
+        /**
+         * 스크롤 이벤트 바인딩
+         */
         $main.addEventListener("scroll", handleFetchMore);
-        // 스크롤 이벤트 언바인딩
+        /**
+         * 스크롤 이벤트 언바인딩
+         */
         return () => $main.removeEventListener("scroll", handleFetchMore);
     }, [data && data.comments, loading]);
 
@@ -145,7 +190,7 @@ const CommentList = () => {
             <Button type="submit">댓글 작성</Button>
             <ul>
                 {data &&
-                    data.comments.rows.map((comment) => (
+                    data.comments.data.map((comment) => (
                         <CommentItem key={comment.id} {...comment} />
                     ))}
             </ul>

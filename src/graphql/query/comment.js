@@ -1,46 +1,38 @@
-import { gql } from '@apollo/client'
+import { gql } from "@apollo/client";
 
 /**
- * * 댓글 검색
+ * 댓글 검색
  *
- * @query
- * @author frisk
- * @param $skip 건너뛸 목록의 수
- * @param $first 요청 목록의 수
- * @param $orderBy 정렬
+ * @param $offset 건너뛸 목록의 수
+ * @param $limit  요청 목록의 수
+ * @param $order  정렬
  * @param $postId 게시물 ID
  */
 export const GET_COMMENTS = gql`
     query GetComments(
-        $skip: Int
-        $first: Int
-        $orderBy: String
+        $offset: Int
+        $limit: Int
+        $order: String
         $postId: String
     ) {
         comments(
-            skip: $skip
-            first: $first
-            orderBy: $orderBy
+            offset: $offset
+            limit: $limit
+            order: $order
             postId: $postId
         ) {
-            data {
+            rows {
                 id
-                user {
-                    id
-                    nickname
-                    avatar {
-                        url
-                    }
-                }
-                post {
-                    id
-                    commentCount
-                }
                 content
                 createdAt
                 updatedAt
+                User {
+                    id
+                    nickname
+                    avatar
+                }
             }
-            total
+            count
         }
     }
-`
+`;

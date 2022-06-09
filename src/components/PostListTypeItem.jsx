@@ -29,7 +29,7 @@ const PostListTypeItem = ({
     createdAt,
     Likers,
     category,
-    PostComments,
+    // PostComments,
     renderType
 }) => {
     const displayName = "fr-grid";
@@ -90,10 +90,10 @@ const PostListTypeItem = ({
                             <HeartFull />
                             <span>{Likers.length}</span>
                         </div>
-                        <div>
+                        {/* <div>
                             <Comment />
                             <span>{PostComments.length}</span>
-                        </div>
+                        </div> */}
                     </div>
                 </div>
             </div>

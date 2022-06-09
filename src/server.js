@@ -35,20 +35,24 @@ server
         const token = req.cookies[TOKEN_KEY];
 
         if (token) {
-            const { id, email, nickname, avatar, isMaster } = jwt.verify(
-                JSON.parse(token),
-                process.env.RAZZLE_JWT_SECRET
-            );
+            try {
+                const { id, email, nickname, avatar, isMaster } = jwt.verify(
+                    JSON.parse(token),
+                    process.env.RAZZLE_JWT_SECRET
+                );
 
-            context.id = id;
+                context.id = id;
 
-            context.email = email;
+                context.email = email;
 
-            context.nickname = nickname;
+                context.nickname = nickname;
 
-            context.avatar = avatar;
+                context.avatar = avatar;
 
-            context.isMaster = isMaster;
+                context.isMaster = isMaster;
+            } catch (err) {
+                res.clearCookie(TOKEN_KEY);
+            }
         }
 
         const extractor = new ChunkExtractor({

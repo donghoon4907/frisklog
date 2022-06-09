@@ -34,7 +34,7 @@ const App = () => {
 
     const {
         isShowLoginModal,
-        isShowNoticeModal,
+        // isShowNoticeModal,
         isCollapseNav
     } = useSelector();
 
@@ -42,6 +42,8 @@ const App = () => {
     const handleResize = useCallback(
         (e) => {
             const { innerWidth } = e.target;
+
+            console.log("test");
 
             if (innerWidth <= 922) {
                 // 네비게이션이 확장된 경우
@@ -81,6 +83,7 @@ const App = () => {
                 payload: true
             });
         }
+
         // 리사이징 이벤트 언바인딩
         return () => window.removeEventListener("resize", handleResize);
     }, []);

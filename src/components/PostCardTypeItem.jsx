@@ -1,18 +1,12 @@
-import React, { useState, useCallback, useEffect } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
-import { useMutation } from "@apollo/client";
 import Avatar from "./Avatar";
 import { timeForToday } from "../lib/date";
-import { HeartFull, HeartEmpty } from "../assets/icon";
 import BtnLink from "./BtnLink";
-import { LIKE_POST, UNLIKE_POST } from "../graphql/mutation/post";
-import { graphqlError } from "../lib/error";
-import { useDispatch, useSelector } from "../context";
-import { getStorage, TOKEN_KEY } from "../lib/cookie";
-import { SHOW_LOGIN_MODAL } from "../context/action";
+import PostLike from "./PostLike";
 
 /**
- * 게시물 카드형 렌더링 컴포넌트
+ * 게시물 카드형 컴포넌트
  *
  * @param {string} props.id           게시물 ID
  * @param {string} props.title        게시물 제목
@@ -31,67 +25,11 @@ const PostCardTypeItem = ({
     description,
     User,
     createdAt,
-    // viewCount,
     category,
     thumbnail,
     Likers
-    // PostComments
 }) => {
     const displayName = "fr-card";
-    // dispatch
-    const dispatch = useDispatch();
-    // selector
-    const { id: userId } = useSelector();
-    // 좋아요 mutation
-    const [like] = useMutation(LIKE_POST);
-    // 좋아요 취소 mutation
-    const [unlike] = useMutation(UNLIKE_POST);
-    // 좋아요 여부 상태
-    const [isLike, setIsLike] = useState(
-        Likers.some((liker) => liker.id == userId)
-    );
-    // 좋아요 수 상태
-    const [likeCount, setLikeCount] = useState(Likers.length);
-    // 좋아요 핸들러
-    const handleLike = useCallback(async () => {
-        const token = getStorage(TOKEN_KEY);
-
-        if (token === null) {
-            return dispatch({
-                type: SHOW_LOGIN_MODAL
-            });
-        }
-
-        if (isLike) {
-            try {
-                await unlike({
-                    variables: { id }
-                });
-                // 좋아요 여부 업데이트
-                setIsLike(false);
-                // 좋아요 수 업데이트
-                setLikeCount(likeCount - 1);
-            } catch (error) {
-                graphqlError({ error, dispatch });
-            }
-        } else {
-            try {
-                await like({
-                    variables: { id }
-                });
-                // 좋아요 여부 업데이트
-                setIsLike(true);
-                // 좋아요 수 업데이트
-                setLikeCount(likeCount + 1);
-            } catch (error) {
-                graphqlError({ error, dispatch });
-            }
-        }
-    }, [isLike, likeCount]);
-
-    useEffect(() => {
-        setIsLike(Likers.some((liker) => liker.id == userId));
-    }, [userId]);
 
     return (
         <div className={displayName}>
@@ -140,14 +78,7 @@ const PostCardTypeItem = ({
                 </Link>
                 <div className={`${displayName}__body__meta`}>
                     <div>
-                        <button onClick={handleLike}>
-                            {isLike ? <HeartFull /> : <HeartEmpty />}
-                            <span>{likeCount}</span>
-                        </button>
-                        {/* <span>
-                            <Comment />
-                            <span>{PostComments.length}</span>
-                        </span> */}
+                        <PostLike id={id} likers={Likers} isShowCount={true} />
                     </div>
                     <div>{timeForToday(createdAt)}</div>
                 </div>

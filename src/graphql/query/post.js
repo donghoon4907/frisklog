@@ -45,9 +45,6 @@ export const GET_POSTS = gql`
                 Likers {
                     id
                 }
-                PostComments {
-                    id
-                }
                 createdAt
                 updatedAt
             }
@@ -67,6 +64,7 @@ export const GET_POST = gql`
             id
             title
             description
+            content
             viewCount
             category
             thumbnail
@@ -77,15 +75,6 @@ export const GET_POST = gql`
             }
             Likers {
                 id
-            }
-            PostComments {
-                id
-                content
-                User {
-                    id
-                    nickname
-                    avatar
-                }
             }
             createdAt
             updatedAt

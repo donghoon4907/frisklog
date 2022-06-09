@@ -40,12 +40,14 @@ function createApolloClient() {
     const errorLink = onError(({ graphQLErrors, networkError }) => {
         if (graphQLErrors) {
             graphQLErrors.map(({ message, path, extensions }) => {
-                const { status } = extensions;
-
                 console.log(`[GraphQL error] Query: ${path}, ${message}`);
 
-                if (status === 401) {
-                    deleteStorage(TOKEN_KEY);
+                if (extensions) {
+                    const { status } = extensions;
+
+                    if (status === 401) {
+                        deleteStorage(TOKEN_KEY);
+                    }
                 }
             });
         }
