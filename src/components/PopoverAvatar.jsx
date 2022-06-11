@@ -1,5 +1,7 @@
 import React from "react";
 import { OverlayTrigger, Popover } from "react-bootstrap";
+import LogoutBtn from "./LogoutBtn";
+import { Link } from "react-router-dom";
 
 /**
  * popover 프로필 사진 컴포넌트
@@ -17,29 +19,24 @@ const PopoverAvatar = ({ userId, size, src }) => (
             overlay={
                 <Popover id={`popover${userId}`}>
                     <Popover.Header>
-                        <div style={{ width: 200, height: 120 }}></div>
-                        <img
-                            src={
-                                process.env.RAZZLE_BACKEND_ROOT +
-                                (src || process.env.RAZZLE_DEFAULT_AVATAR)
-                            }
-                            alt="avatar"
-                            style={{
-                                position: "absolute",
-                                top: 0,
-                                left: 0,
-                                width: "100%",
-                                height: 120
-                            }}
-                        />
+                        <div className="fr-popover-header__container"></div>
+                        <Link to={`/user/${userId}`}>
+                            <img
+                                className="fr-popover-header__bg"
+                                src={
+                                    process.env.RAZZLE_BACKEND_ROOT +
+                                    (src || process.env.RAZZLE_DEFAULT_AVATAR)
+                                }
+                                alt="avatar"
+                            />
+                        </Link>
                     </Popover.Header>
                     <Popover.Body>
-                        <div
-                            className="d-flex justify-content-between align-items-center"
-                            style={{ width: 200, height: 40 }}
-                        >
-                            <div style={{ marginRight: 70 }}>username</div>
-                            <button className="fr-btn fr-link">로그아웃</button>
+                        <div className="fr-popover-body__container">
+                            <div className="fr-popover-body__username">
+                                username
+                            </div>
+                            <LogoutBtn />
                         </div>
                     </Popover.Body>
                 </Popover>

@@ -4806,6 +4806,11 @@ fragment-cache@^0.2.1:
   dependencies:
     map-cache "^0.2.2"
 
+framesync@^3.0.1:
+  version "3.1.9"
+  resolved "https://registry.yarnpkg.com/framesync/-/framesync-3.1.9.tgz#f65f815c711cf876f343b1f63da6e18b1384172f"
+  integrity sha512-avNik/k8Wy0r+A2LkoS+4mBb9PoamhBni2u64gRgs5kc1YrApshw6vDL0tqWxdqcUOXSSg6gI9oN0l0GN/FFjA==
+
 fresh@0.5.2:
   version "0.5.2"
   resolved "https://registry.yarnpkg.com/fresh/-/fresh-0.5.2.tgz#3d8cadd90d976569fa835ab1f8e4b23a105605a7"
@@ -8013,6 +8018,13 @@ pnp-webpack-plugin@^1.6.4:
   integrity sha512-7Wjy+9E3WwLOEL30D+m8TSTF7qJJUJLONBnwQp0518siuMxUQUbgZwssaFX+QKlZkjHZcw/IpZCt/H0srrntSg==
   dependencies:
     ts-pnp "^1.1.6"
+
+popmotion@7.8.1:
+  version "7.8.1"
+  resolved "https://registry.yarnpkg.com/popmotion/-/popmotion-7.8.1.tgz#3451634d0bab7ad86bf0cb02eae600d3b23e869c"
+  integrity sha512-cS8JJCKpx6DhOzwfB1QWiid/OGW0otVKBp8u+6HsPtOA2aLWIjWOty5BO3Bvc33VVVVU0tEnm33tug/0pAJ0og==
+  dependencies:
+    framesync "^3.0.1"
 
 portfinder@^1.0.25:
   version "1.0.28"

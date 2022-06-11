@@ -2,7 +2,7 @@ import React, { useCallback, useEffect } from "react";
 import { Route, Switch } from "react-router-dom";
 import loadable from "@loadable/component";
 import Header from "./components/Header";
-import Nav from "./components/Nav";
+// import Nav from "./components/Nav";
 import AuthModal from "./components/modal/Auth";
 // import SetNoticeModal from "./components/modal/SetNoticeContainer";
 import { useDispatch, useSelector } from "./context";
@@ -42,8 +42,6 @@ const App = () => {
     const handleResize = useCallback(
         (e) => {
             const { innerWidth } = e.target;
-
-            console.log("test");
 
             if (innerWidth <= 922) {
                 // 네비게이션이 확장된 경우
@@ -92,7 +90,7 @@ const App = () => {
         <div className={`${displayName}__container`}>
             <Header />
             <section className={`${displayName}__section`}>
-                <Nav />
+                {/* <Nav /> */}
                 <main className={`${displayName}`} id="main">
                     <Switch>
                         <Route exact path="/" component={Feed} />

@@ -24,6 +24,24 @@ export const Thumbnail = ({ style }) => (
 );
 
 /**
+ * Thumbnail icon component
+ *
+ * @Svg
+ * @param props.style Svg style
+ */
+export const Arrow = ({ style }) => (
+    <svg
+        xmlns="http://www.w3.org/2000/svg"
+        style={style}
+        width={size}
+        height={size}
+        viewBox="0 0 24 24"
+    >
+        <path d="M5 3l3.057-3 11.943 12-11.943 12-3.057-3 9-9z" />
+    </svg>
+);
+
+/**
  * Heart empty icon component
  *
  * @Img
