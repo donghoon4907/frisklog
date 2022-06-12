@@ -11,7 +11,7 @@ import { gql } from "@apollo/client";
 export const GET_COMMENTS = gql`
     query GetComments(
         $offset: Int
-        $limit: Int
+        $limit: Int!
         $order: String
         $postId: String
     ) {

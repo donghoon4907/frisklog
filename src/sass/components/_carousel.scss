@@ -1,24 +1,25 @@
 @import "../utilities/variables";
+@import "../utilities/mixins";
 
 .fr-carousel {
-    position: relative;
-    width: 100%;
-    overflow: hidden;
-    display: flex;
-    align-items: center;
-    flex-wrap: wrap;
-
-    &__slider {
-        display: flex;
-        list-style: none;
-        padding: 0;
+    &__item {
+        height: 150px;
+        padding: 1rem 2rem;
     }
 
-    &__item {
-        border-radius: 4px;
-        width: 150px;
-        height: 215px;
-        // background-color: black;
-        margin-right: 10px;
+    &__prev {
+        position: absolute;
+        top: 50%;
+        left: 5px;
+        z-index: 1000;
+        transform: translateY(-50%) rotate(180deg);
+    }
+
+    &__next {
+        position: absolute;
+        top: 50%;
+        right: 5px;
+        z-index: 1000;
+        transform: translateY(-50%);
     }
 }

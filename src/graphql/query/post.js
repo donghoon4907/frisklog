@@ -14,7 +14,7 @@ import { gql } from "@apollo/client";
 export const GET_POSTS = gql`
     query GetPosts(
         $offset: Int
-        $limit: Int
+        $limit: Int!
         $order: String
         $searchKeyword: String
         $category: String

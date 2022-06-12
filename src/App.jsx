@@ -6,8 +6,13 @@ import Header from "./components/Header";
 import AuthModal from "./components/modal/Auth";
 // import SetNoticeModal from "./components/modal/SetNoticeContainer";
 import { useDispatch, useSelector } from "./context";
-import { CONTRACT_NAVIGATION, SET_IS_MOBILE } from "./context/action";
-import { COLLAPSE_KEY, setStorage } from "./lib/cookie";
+import {
+    // CONTRACT_NAVIGATION,
+    // SET_IS_MOBILE,
+    SET_BREAKPOINT
+} from "./context/action";
+// import { COLLAPSE_KEY, setStorage } from "./lib/cookie";
+import { getBreakpoint } from "./lib/responsive";
 
 import "./sass/main.scss";
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
@@ -15,6 +20,8 @@ import "codemirror/lib/codemirror.css";
 import "@toast-ui/editor/dist/toastui-editor.css";
 import "@toast-ui/editor/dist/toastui-editor-viewer.css";
 import "highlight.js/styles/atom-one-dark.css";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
 const Feed = loadable(() => import("./pages/feed"));
 const SearchPostPage = loadable(() => import("./pages/search/SearchPostPage"));
@@ -43,28 +50,36 @@ const App = () => {
         (e) => {
             const { innerWidth } = e.target;
 
-            if (innerWidth <= 922) {
-                // 네비게이션이 확장된 경우
-                if (isCollapseNav !== "contract") {
-                    // 네비게이션 축소
-                    dispatch({
-                        type: CONTRACT_NAVIGATION
-                    });
-                    setStorage(COLLAPSE_KEY, "contract");
-                }
-            }
+            const { breakpoint, slidesToShow } = getBreakpoint(innerWidth);
+            // breakpoint 설정
+            dispatch({
+                type: SET_BREAKPOINT,
+                breakpoint,
+                slidesToShow
+            });
+
+            // if (innerWidth <= 922) {
+            //     // 네비게이션이 확장된 경우
+            //     if (isCollapseNav !== "contract") {
+            //         // 네비게이션 축소
+            //         dispatch({
+            //             type: CONTRACT_NAVIGATION
+            //         });
+            //         setStorage(COLLAPSE_KEY, "contract");
+            //     }
+            // }
             // 모바일 설정
-            if (innerWidth <= 576) {
-                dispatch({
-                    type: SET_IS_MOBILE,
-                    payload: true
-                });
-            } else {
-                dispatch({
-                    type: SET_IS_MOBILE,
-                    payload: false
-                });
-            }
+            // if (innerWidth <= 576) {
+            //     dispatch({
+            //         type: SET_IS_MOBILE,
+            //         payload: true
+            //     });
+            // } else {
+            //     dispatch({
+            //         type: SET_IS_MOBILE,
+            //         payload: false
+            //     });
+            // }
         },
         [isCollapseNav]
     );
@@ -74,13 +89,23 @@ const App = () => {
         window.addEventListener("resize", handleResize);
 
         const { innerWidth } = window;
+
+        const { breakpoint, slidesToShow } = getBreakpoint(innerWidth);
+        // breakpoint 설정
+        dispatch({
+            type: SET_BREAKPOINT,
+            breakpoint,
+            slidesToShow
+        });
+
+        // getPlatformState(innerWidth);
         // 모바일 설정
-        if (innerWidth <= 576) {
-            dispatch({
-                type: SET_IS_MOBILE,
-                payload: true
-            });
-        }
+        // if (innerWidth <= 576) {
+        //     dispatch({
+        //         type: SET_IS_MOBILE,
+        //         payload: true
+        //     });
+        // }
 
         // 리사이징 이벤트 언바인딩
         return () => window.removeEventListener("resize", handleResize);

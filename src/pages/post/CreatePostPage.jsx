@@ -66,7 +66,7 @@ const CreatePostPage = () => {
                  * 설명
                  * @type {string}
                  */
-                const description = _content.description;
+                const description = _content.description.substring(0, 255);
                 /**
                  * 내용
                  * @type {string}

@@ -39,7 +39,7 @@ function createApolloClient() {
      */
     const errorLink = onError(({ graphQLErrors, networkError }) => {
         if (graphQLErrors) {
-            graphQLErrors.map(({ message, path, extensions }) => {
+            graphQLErrors.map(({ message, path, extensions, ...props }) => {
                 console.log(`[GraphQL error] Query: ${path}, ${message}`);
 
                 if (extensions) {

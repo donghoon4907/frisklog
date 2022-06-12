@@ -1,6 +1,6 @@
 @import "../utilities/mixins";
 
-.fr-card {
+.fr-postcard {
     margin-bottom: 1rem;
     flex-basis: 20%;
     max-width: 20%;
@@ -43,6 +43,7 @@
         width: 100%;
         height: 100%;
         top: 0px;
+        object-fit: cover;
 
         &-wrapper {
             position: relative;

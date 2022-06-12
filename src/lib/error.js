@@ -7,17 +7,19 @@ export const graphqlError = ({ error, dispatch }) => {
     const token = getStorage(TOKEN_KEY);
 
     if (token === null) {
-        dispatch({
-            type: SET_ME,
-            id: null,
-            nickname: null,
-            email: null,
-            avatar: null,
-            isMaster: false
-        });
+        if (dispatch) {
+            dispatch({
+                type: SET_ME,
+                id: null,
+                nickname: null,
+                email: null,
+                avatar: null,
+                isMaster: false
+            });
 
-        dispatch({
-            type: SHOW_LOGIN_MODAL
-        });
+            dispatch({
+                type: SHOW_LOGIN_MODAL
+            });
+        }
     }
 };

@@ -1,12 +1,31 @@
 @import "../utilities/variables";
 
 .fr-avatar {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    // border: $fr-box-border;
-    border-radius: $fr-border-radius;
+    width: 100%;
+    height: 100%;
     overflow: hidden;
-    cursor: pointer;
-    position: relative;
+    border-radius: $fr-border-radius;
+
+    &__body {
+        padding-bottom: 100%;
+        line-height: 0;
+        position: relative;
+    }
+
+    &__image {
+        display: block;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: fill;
+    }
+
+    &__name {
+        font-family: "Favorit", "Helvetica Neue", "HelveticaNeue", Helvetica,
+            Arial, sans-serif;
+        font-weight: 700;
+        line-height: 18px;
+    }
 }

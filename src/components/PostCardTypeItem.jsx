@@ -29,14 +29,14 @@ const PostCardTypeItem = ({
     thumbnail,
     Likers
 }) => {
-    const displayName = "fr-card";
+    const displayName = "fr-postcard";
 
     return (
         <div className={displayName}>
             <article className={`${displayName}-selector`}>
                 <div className={`${displayName}__header`}>
                     <div className={`${displayName}__header__avatar`}>
-                        <Avatar src={User.avatar} size="30" userId={User.id} />
+                        <Avatar src={User.avatar} size={30} userId={User.id} />
 
                         <span>{User.nickname}</span>
                     </div>
@@ -67,7 +67,7 @@ const PostCardTypeItem = ({
                     </div>
 
                     <div className={`${displayName}__body__title-wrapper`}>
-                        <h4 className="fr-card__body__title">{title}</h4>
+                        <h4 className="fr-postcard__body__title">{title}</h4>
                     </div>
                     <p
                         className={`${displayName}__body__description`}

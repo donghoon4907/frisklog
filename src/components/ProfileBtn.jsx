@@ -1,5 +1,5 @@
 import React, { useState, useCallback, useEffect } from "react";
-import { Profile, Logout } from "../assets/icon";
+import { Profile } from "../assets/icon";
 import { useDispatch, useSelector } from "../context";
 import { SHOW_LOGIN_MODAL, SET_ME } from "../context/action";
 import { TOKEN_KEY, getStorage, deleteStorage } from "../lib/cookie";
@@ -10,11 +10,10 @@ import PopoverAvatar from "./PopoverAvatar";
  *
  */
 const ProfileBtn = () => {
-    // Dispatch hooks
     const dispatch = useDispatch();
-    // Selector hooks
-    const { id, avatar } = useSelector();
 
+    const { id, nickname, avatar } = useSelector();
+    // 로그인 여부
     const [isLoggedIn, setIsLoggedIn] = useState(id !== null);
     // 클릭 핸들러
     const handleClick = useCallback(() => {
@@ -52,14 +51,12 @@ const ProfileBtn = () => {
 
     return isLoggedIn ? (
         <div className="d-flex justify-content-start">
-            <PopoverAvatar src={avatar} size="30" userId={id} />
-            {/* <button
-                onClick={handleClick}
-                className="d-flex justify-content-start align-items-center"
-            >
-                <Logout />
-                <span className="a11y-hidden">로그아웃</span>
-            </button> */}
+            <PopoverAvatar
+                src={avatar}
+                size={30}
+                userId={id}
+                nickname={nickname}
+            />
         </div>
     ) : (
         <button onClick={handleClick}>

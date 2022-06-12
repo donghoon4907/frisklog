@@ -8,7 +8,7 @@ import { gql } from "@apollo/client";
  * @param $order  정렬
  */
 export const GET_USERS = gql`
-    query GetUsers($offset: Int, $limit: Int, $order: String) {
+    query GetUsers($offset: Int, $limit: Int!, $order: String) {
         users(offset: $offset, limit: $limit, order: $order) {
             rows {
                 id
@@ -23,6 +23,24 @@ export const GET_USERS = gql`
                 updatedAt
             }
             count
+        }
+    }
+`;
+
+/**
+ * 추천인 검색
+ *
+ * @param $offset 건너뛸 목록의 수
+ * @param $limit  요청 목록의 수
+ * @param $order  정렬
+ */
+export const GET_RECOMMENDERS = gql`
+    query GetRecommenders($offset: Int, $limit: Int!) {
+        recommenders(offset: $offset, limit: $limit) {
+            id
+            nickname
+            avatar
+            PostCount
         }
     }
 `;

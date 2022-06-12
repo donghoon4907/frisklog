@@ -38,6 +38,8 @@ const initialState = {
     isShowLoginModal: false,
     isCollapseNav: "contract",
     isMobile: false,
+    breakpoint: "wd",
+    slidesToShow: 3,
     activePost: {
         id: "",
         title: "",
