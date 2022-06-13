@@ -10,7 +10,8 @@
         "quotes": ["off", "single"],
         "semi": [2, "always"],
         "no-undef": 0,
-        "eqeqeq": 0
+        "eqeqeq": 0,
+        "lines-between-class-members": 0
     },
     "settings": {
         "react": {

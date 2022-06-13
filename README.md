@@ -12,6 +12,10 @@
 <li>가장 최근의 공지사항만 확인할 수 있습니다.</li>
 </ul>
 
+## Task
+
+trello<a href="https://trello.com/b/Z34VUGK0/frisklog">@frisklog</a>
+
 ## Author
 
 donghoon lee(<a href="https://github.com/donghoon4907">@frisk</a>) – frisklog

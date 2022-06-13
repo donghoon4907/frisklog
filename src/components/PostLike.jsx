@@ -72,7 +72,7 @@ const PostLike = ({ id, likers, isShowCount }) => {
     return (
         <button onClick={handleClick}>
             {isLike ? <HeartFull /> : <HeartEmpty />}
-            {isShowCount && <span>{likeCount}</span>}
+            {isShowCount && <span>{likeCount.toLocaleString()}</span>}
             <span className="a11y-hidden">
                 {isLike ? "좋아요 취소하기" : "좋아요 하기"}
             </span>

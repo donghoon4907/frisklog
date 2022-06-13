@@ -32,7 +32,7 @@ const SearchPostPage = ({
             <Meta title={`Frisklog - ${query}`} />
             <div>
                 <Subject>
-                    <span>"{query}" 검색결과</span>
+                    <span>&quot;{query}&quot; 검색결과</span>
                     <div>
                         <Select
                             value={orderBy}
@@ -48,7 +48,7 @@ const SearchPostPage = ({
                     </div>
                 </Subject>
             </div>
-            <PostList orderBy={orderBy} query={query}>
+            <PostList order={orderBy} searchKeyword={query} limit={30}>
                 {({ posts }) => posts}
             </PostList>
         </div>

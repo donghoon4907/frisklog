@@ -1,4 +1,4 @@
-import { gql } from '@apollo/client'
+import { gql } from "@apollo/client";
 
 /**
  * * 공지사항 검색
@@ -19,4 +19,4 @@ export const GET_NOTICES = gql`
             updatedAt
         }
     }
-`
+`;

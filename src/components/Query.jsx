@@ -12,10 +12,14 @@ const CommonQuery = ({ children, ...props }) => {
     return (
         <Query {...props}>
             {({ loading, error, data, fetchMore, client }) => {
-                if (error) return `Error!: ${error}`;
+                if (error) {
+                    return `Error!: ${error}`;
+                }
+
                 if (!data) {
                     return <Loader />;
                 }
+
                 return children({
                     data,
                     loading,

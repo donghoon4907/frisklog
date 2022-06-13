@@ -1,4 +1,4 @@
-import { gql } from '@apollo/client'
+import { gql } from "@apollo/client";
 
 /**
  * * 카테고리 검색
@@ -17,4 +17,4 @@ export const GET_CATEGORIES = gql`
             useCount
         }
     }
-`
+`;

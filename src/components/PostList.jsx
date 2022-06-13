@@ -11,16 +11,16 @@ import { useSelector } from "../context";
  * * 페이지 게시물 렌더링 컴포넌트
  *
  * @param {string}   renderType    렌더링 타입 설정
- * @param {number?}  limit         요청 목록 수
- * @param {string?}  order         정렬
+ * @param {number}   limit         요청 목록 수
+ * @param {string}   order         정렬
  * @param {string?}  searchKeyword 검색어
  * @param {string?}  category      카테고리
  * @param {string?}  userId        사용자 ID
  */
 const PostList = ({
     renderType,
-    limit = 30,
-    order = "createdAt_DESC",
+    limit,
+    order,
     searchKeyword,
     category,
     userId,
@@ -29,7 +29,7 @@ const PostList = ({
     /**
      * 로컬 상태 감시 모듈 활성화
      */
-    const { isMobile } = useSelector();
+    const { breakpoint } = useSelector();
 
     return (
         <Query
@@ -51,7 +51,7 @@ const PostList = ({
                             {posts.rows.length > 0 ? (
                                 <>
                                     {posts.rows.map((post) => {
-                                        if (isMobile) {
+                                        if (breakpoint === "xs") {
                                             return (
                                                 <PostCardTypeItem
                                                     key={post.id}
@@ -73,7 +73,7 @@ const PostList = ({
                                         onBottom={() => {
                                             if (
                                                 posts.rows.length > 0 &&
-                                                posts.rows.length % offset !== 0
+                                                posts.rows.length % limit !== 0
                                             ) {
                                                 return;
                                             }

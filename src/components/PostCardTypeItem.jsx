@@ -38,7 +38,9 @@ const PostCardTypeItem = ({
                     <div className={`${displayName}__header__avatar`}>
                         <Avatar src={User.avatar} size={30} userId={User.id} />
 
-                        <span>{User.nickname}</span>
+                        <span className="fr-avatar__name ">
+                            {User.nickname}
+                        </span>
                     </div>
                     <div>
                         {category && (
@@ -72,6 +74,7 @@ const PostCardTypeItem = ({
                     <p
                         className={`${displayName}__body__description`}
                         style={{ WebkitBoxOrient: "vertical" }}
+                        title={description}
                     >
                         {description}
                     </p>

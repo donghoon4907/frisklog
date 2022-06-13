@@ -1,4 +1,4 @@
-import { gql } from '@apollo/client'
+import { gql } from "@apollo/client";
 
 /**
  * * 공지사항 추가
@@ -12,7 +12,7 @@ export const CREATE_NOTICE = gql`
     mutation createNotice($title: String!, $description: String!) {
         createNotice(title: $title, description: $description)
     }
-`
+`;
 
 /**
  * * 공지사항 수정
@@ -31,7 +31,7 @@ export const UPDATE_NOTICE = gql`
     ) {
         updateNotice(id: $id, title: $title, description: $description)
     }
-`
+`;
 
 /**
  * * 공지사항 삭제
@@ -44,4 +44,4 @@ export const DELETE_NOTICE = gql`
     mutation deleteNotice($id: String!) {
         deleteNotice(id: $id)
     }
-`
+`;
