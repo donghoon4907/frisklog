@@ -1,44 +1,47 @@
-import React, { Component } from "react";
-import Loader from "./Loader";
+import { Component } from "react";
 
 /**
  * 스크롤 이벤트 컴포넌트
  *
- * @param {boolean}  props.loading   요청 중 여부
  * @param {function} props.onBottom  조건부 실행 함수
  */
 class Scroll extends Component {
-    // 스크롤 핸들러
     handleScroll = () => {
-        const { loading, onBottom } = this.props;
+        const { onBottom } = this.props;
 
-        if (!loading) {
-            const $main = document.querySelector("#main");
+        const $main = document.querySelector("#main");
 
-            const { scrollHeight, clientHeight, scrollTop } = $main;
+        const { scrollHeight, clientHeight, scrollTop } = $main;
 
-            if (scrollTop + clientHeight === scrollHeight) {
-                onBottom();
-            }
+        if (scrollTop + clientHeight > scrollHeight - 600) {
+            this.disabledEvent();
+
+            onBottom(this.activeEvent);
         }
     };
 
-    componentDidMount() {
+    activeEvent = () => {
         const $main = document.querySelector("#main");
 
         $main.addEventListener("scroll", this.handleScroll);
-    }
+    };
 
-    componentWillUnmount() {
+    disabledEvent = () => {
         const $main = document.querySelector("#main");
 
         $main.removeEventListener("scroll", this.handleScroll);
+    };
+
+    componentDidMount() {
+        this.activeEvent();
+    }
+
+    componentWillUnmount() {
+        this.disabledEvent();
     }
 
     render() {
-        const { loading } = this.props;
-
-        return loading ? <Loader /> : null;
+        return null;
     }
 }
 

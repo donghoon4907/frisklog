@@ -6,7 +6,8 @@ import { GET_RECOMMENDERS } from "../../graphql/query/user";
 import { GET_POSTS } from "../../graphql/query/post";
 import PostCardTypeItem from "../../components/PostCardTypeItem";
 import Carousel from "../../components/Carousel";
-import Avatar from "../../components/Avatar";
+import UserCardTypeItem from "../../components/UserCardTypeItem";
+import List from "../../components/List";
 
 /**
  * 메인 화면 컴포넌트
@@ -15,56 +16,44 @@ import Avatar from "../../components/Avatar";
 const Feed = () => (
     <div>
         <Meta />
-        <Subject>추천 블로거</Subject>
-        <div style={{ marginBottom: 24, width: "100%" }}>
-            <Query
-                query={GET_RECOMMENDERS}
-                variables={{
-                    limit: 10
-                }}
-            >
-                {({ data: { recommenders } }) => (
-                    <Carousel>
-                        {recommenders.map((user) => (
-                            <div className="fr-carousel__item" key={user.id}>
-                                <div className="fr-usercard">
-                                    <div className="fr-usercard__header">
-                                        <span className="fr-avatar__name">
-                                            {user.nickname}
-                                        </span>
-                                        <span>{user.PostCount} Posts</span>
-                                    </div>
-                                    <div className="fr-usercard__body">
-                                        <Avatar
-                                            userId={user.id}
-                                            size={100}
-                                            src={user.avatar}
-                                        />
-                                    </div>
-                                </div>
-                            </div>
-                        ))}
-                    </Carousel>
-                )}
-            </Query>
-        </div>
+        <Query
+            query={GET_RECOMMENDERS}
+            variables={{
+                limit: 10
+            }}
+        >
+            {({ data: { recommenders } }) => {
+                if (recommenders.length === 0) {
+                    return null;
+                }
+
+                return (
+                    <>
+                        <Subject>추천 블로거</Subject>
+                        <Carousel>
+                            {recommenders.map((user) => (
+                                <UserCardTypeItem
+                                    key={`user${user.id}`}
+                                    {...user}
+                                />
+                            ))}
+                        </Carousel>
+                    </>
+                );
+            }}
+        </Query>
         <Subject>신규 게시물</Subject>
         <div className="fr-postcard-wrapper">
-            <Query
+            <List
+                type="posts"
                 query={GET_POSTS}
                 variables={{
-                    limit: 9,
+                    limit: 12,
                     order: "createdAt_DESC"
                 }}
-            >
-                {({ data: { posts } }) =>
-                    posts.rows.map((post) => (
-                        <PostCardTypeItem key={post.id} {...post} />
-                    ))
-                }
-            </Query>
+                Item={PostCardTypeItem}
+            />
         </div>
-        <hr />
     </div>
 );
 

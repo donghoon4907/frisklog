@@ -3,12 +3,12 @@ import moment from "moment";
 import Avatar from "./Avatar";
 import Timestamp from "./Timestamp";
 import StyledLink from "./StyledLink";
-import { HeartFull, Comment } from "../assets/icon";
+import { HeartFull } from "../assets/icon";
 import BtnLink from "./BtnLink";
 import { timeForToday } from "../lib/date";
 
 /**
- * 게시물 리스트형 렌더링 컴포넌트
+ * 게시물 리스트형 컴포넌트
  *
  * @param {string} props.id           게시물 ID
  * @param {string} props.title        게시물 제목
