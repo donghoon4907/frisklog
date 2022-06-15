@@ -84,7 +84,10 @@ const PostEditor = (props) => {
                             });
 
                             if (data) {
-                                callback(data, "");
+                                const path =
+                                    process.env.RAZZLE_BACKEND_ROOT + data;
+
+                                callback(path, "");
                             }
 
                             if (error) {

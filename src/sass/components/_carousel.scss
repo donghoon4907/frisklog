@@ -1,7 +1,6 @@
-@import "../utilities/variables";
-@import "../utilities/mixins";
-
 .fr-carousel {
+    width: 540px;
+
     &__item {
         height: 150px;
         padding: 1rem 2rem;

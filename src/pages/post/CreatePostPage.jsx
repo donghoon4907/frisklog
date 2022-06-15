@@ -82,7 +82,7 @@ const CreatePostPage = () => {
                  */
                 const reg = /\!\[([^\]]+)\]\(([^\)]+)\)/g;
 
-                let foundThumbnails = content.match(reg);
+                const foundThumbnails = content.match(reg);
 
                 if (foundThumbnails) {
                     thumbnail = foundThumbnails[0].substring(

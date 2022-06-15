@@ -1,33 +1,25 @@
-@import "../utilities/variables";
-
 .fr-app {
     display: flex;
     flex-direction: column;
-    flex-grow: 1;
-    z-index: 0;
-    position: relative;
-    height: 100%;
-    width: 100%;
-    padding: 1rem;
-    overflow: auto;
-
-    &__container {
-        display: flex;
-        flex-direction: column;
-        flex-wrap: nowrap;
-        position: absolute;
-        top: 0;
-        right: 0;
-        bottom: 0;
-        left: 0;
-        overflow: hidden;
-    }
+    flex-wrap: nowrap;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    overflow: hidden;
 
     &__section {
         display: flex;
-        flex-wrap: nowrap;
-        position: relative;
-        height: 100%;
-        overflow: hidden;
+        padding: 0 8px;
+        width: 100%;
+        overflow: auto;
+    }
+
+    &__feed {
+        margin: 0 auto;
+        max-width: 990px;
+        padding: 0 8px;
+        width: 100%;
     }
 }

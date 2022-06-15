@@ -1,0 +1,9 @@
+.fr-like {
+    @include btnWithText;
+
+    &__count {
+        font-size: 1.3rem;
+        margin-left: 5px;
+        line-height: 1.3;
+    }
+}

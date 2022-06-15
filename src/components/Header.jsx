@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { useDispatch, useSelector } from "../context";
+import { useSelector } from "../context";
 import ProfileBtn from "./ProfileBtn";
 import SearchBtn from "./SearchBtn";
 import HeaderSearchBar from "./HeaderSearchBar";
@@ -18,15 +18,15 @@ const Header = () => {
     const { isShowSearchBar } = useSelector();
 
     return (
-        <div className={`${displayName}-wrapper`}>
+        <div className={`${displayName}__wrapper`}>
             <header className={`${displayName}`}>
-                <div className={`${displayName}-column`}>
+                <div className={`${displayName}__column`}>
                     <Link to="/">
                         <Home />
                     </Link>
                     {/* <HeaderNotice /> */}
                 </div>
-                <div className={`${displayName}-column`}>
+                <div className={`${displayName}__column`}>
                     <SearchBtn />
                     <CreatePostBtn />
                     <ProfileBtn />

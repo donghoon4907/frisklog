@@ -2,16 +2,9 @@ import React, { useCallback, useEffect } from "react";
 import { Route, Switch } from "react-router-dom";
 import loadable from "@loadable/component";
 import Header from "./components/Header";
-// import Nav from "./components/Nav";
 import AuthModal from "./components/modal/Auth";
-// import SetNoticeModal from "./components/modal/SetNoticeContainer";
 import { useDispatch, useSelector } from "./context";
-import {
-    // CONTRACT_NAVIGATION,
-    // SET_IS_MOBILE,
-    SET_BREAKPOINT
-} from "./context/action";
-// import { COLLAPSE_KEY, setStorage } from "./lib/cookie";
+import { SET_BREAKPOINT } from "./context/action";
 import { getBreakpoint } from "./lib/responsive";
 
 import "./sass/main.scss";
@@ -22,6 +15,7 @@ import "@toast-ui/editor/dist/toastui-editor-viewer.css";
 import "highlight.js/styles/atom-one-dark.css";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import "github-markdown-css/github-markdown.css";
 
 const Feed = loadable(() => import("./pages/feed"));
 const SearchPostPage = loadable(() => import("./pages/search/SearchPostPage"));
@@ -39,56 +33,11 @@ const App = () => {
 
     const dispatch = useDispatch();
 
-    const {
-        isShowLoginModal,
-        // isShowNoticeModal,
-        isCollapseNav
-    } = useSelector();
+    const { isShowLoginModal } = useSelector();
 
     // 리사이징 핸들러
-    const handleResize = useCallback(
-        (e) => {
-            const { innerWidth } = e.target;
-
-            const { breakpoint, slidesToShow } = getBreakpoint(innerWidth);
-            // breakpoint 설정
-            dispatch({
-                type: SET_BREAKPOINT,
-                breakpoint,
-                slidesToShow
-            });
-
-            // if (innerWidth <= 922) {
-            //     // 네비게이션이 확장된 경우
-            //     if (isCollapseNav !== "contract") {
-            //         // 네비게이션 축소
-            //         dispatch({
-            //             type: CONTRACT_NAVIGATION
-            //         });
-            //         setStorage(COLLAPSE_KEY, "contract");
-            //     }
-            // }
-            // 모바일 설정
-            // if (innerWidth <= 576) {
-            //     dispatch({
-            //         type: SET_IS_MOBILE,
-            //         payload: true
-            //     });
-            // } else {
-            //     dispatch({
-            //         type: SET_IS_MOBILE,
-            //         payload: false
-            //     });
-            // }
-        },
-        [isCollapseNav]
-    );
-
-    useEffect(() => {
-        // 리사이징 이벤트 바인딩
-        window.addEventListener("resize", handleResize);
-
-        const { innerWidth } = window;
+    const handleResize = useCallback((e) => {
+        const { innerWidth } = e.target;
 
         const { breakpoint, slidesToShow } = getBreakpoint(innerWidth);
         // breakpoint 설정
@@ -97,56 +46,49 @@ const App = () => {
             breakpoint,
             slidesToShow
         });
+    }, []);
 
-        // getPlatformState(innerWidth);
-        // 모바일 설정
-        // if (innerWidth <= 576) {
-        //     dispatch({
-        //         type: SET_IS_MOBILE,
-        //         payload: true
-        //     });
-        // }
-
+    useEffect(() => {
+        // 리사이징 이벤트 바인딩
+        window.addEventListener("resize", handleResize);
+        // 리사이징 이벤트 실행
+        window.dispatchEvent(new Event("resize"));
         // 리사이징 이벤트 언바인딩
         return () => window.removeEventListener("resize", handleResize);
     }, []);
 
     return (
-        <div className={`${displayName}__container`}>
+        <div className={`${displayName}`}>
             <Header />
-            <section className={`${displayName}__section`}>
-                {/* <Nav /> */}
-                <main className={`${displayName}`} id="main">
-                    <Switch>
-                        <Route exact path="/" component={Feed} />
-                        <Route
-                            exact
-                            path="/create_post"
-                            component={CreatePostPage}
-                        />
-                        <Route
-                            exact
-                            path="/update_post/:id"
-                            component={UpdatePostPage}
-                        />
-                        <Route exact path="/post/:id" component={Post} />
-                        <Route exact path="/user/:id" component={User} />
-                        <Route
-                            exact
-                            path="/search/:query"
-                            component={SearchPostPage}
-                        />
-                        <Route
-                            exact
-                            path="/category/:content"
-                            component={SearchCategoryPage}
-                        />
-                        <Route component={NoMatch} />
-                    </Switch>
-                </main>
-                {isShowLoginModal && <AuthModal />}
-                {/* {isShowNoticeModal && <SetNoticeModal />} */}
+            <section className={`${displayName}__section`} id="main">
+                <Switch>
+                    <Route exact path="/" component={Feed} />
+                    <Route
+                        exact
+                        path="/create_post"
+                        component={CreatePostPage}
+                    />
+                    <Route
+                        exact
+                        path="/update_post/:id"
+                        component={UpdatePostPage}
+                    />
+                    <Route exact path="/post/:id" component={Post} />
+                    <Route exact path="/user/:id" component={User} />
+                    <Route
+                        exact
+                        path="/search/:query"
+                        component={SearchPostPage}
+                    />
+                    <Route
+                        exact
+                        path="/category/:content"
+                        component={SearchCategoryPage}
+                    />
+                    <Route component={NoMatch} />
+                </Switch>
             </section>
+            {isShowLoginModal && <AuthModal />}
         </div>
     );
 };

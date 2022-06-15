@@ -1,24 +1,22 @@
-@import "../utilities/mixins";
-
 @include mq(wd) {
-    .fr-postcard {
-        flex-basis: 25%;
-        max-width: 25%;
-    }
+    // .fr-postcard {
+    //     flex-basis: 25%;
+    //     max-width: 25%;
+    // }
 }
 
 @include mq(lg) {
-    .fr-postcard {
-        flex-basis: 33.3%;
-        max-width: 33.3%;
-    }
+    // .fr-postcard {
+    //     flex-basis: 33.3%;
+    //     max-width: 33.3%;
+    // }
 }
 
 @include mq(md) {
-    .fr-postcard {
-        flex-basis: 50%;
-        max-width: 50%;
-    }
+    // .fr-postcard {
+    //     flex-basis: 50%;
+    //     max-width: 50%;
+    // }
 
     .fr-app__section {
         flex-direction: column;
@@ -53,15 +51,15 @@
 }
 
 @include mq(sm) {
-    .fr-postcard {
-        flex-basis: 100%;
-        max-width: 100%;
-        padding: 0;
+    // .fr-postcard {
+    //     flex-basis: 100%;
+    //     max-width: 100%;
+    //     padding: 0;
 
-        &-wrapper {
-            margin: 0;
-        }
-    }
+    //     &-wrapper {
+    //         margin: 0;
+    //     }
+    // }
     .fr-header__search__form {
         width: calc(100% - 2rem);
     }

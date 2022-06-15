@@ -26,7 +26,7 @@ const Carousel = ({ children }) => {
     const { slidesToShow } = useSelector();
 
     const settings = {
-        className: "fr-carousel__slider",
+        className: "fr-carousel",
         infinite: true,
         speed: 500,
         slidesToShow,

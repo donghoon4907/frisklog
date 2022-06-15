@@ -11,7 +11,8 @@
         "semi": [2, "always"],
         "no-undef": 0,
         "eqeqeq": 0,
-        "lines-between-class-members": 0
+        "lines-between-class-members": 0,
+        "no-useless-escape": 0
     },
     "settings": {
         "react": {

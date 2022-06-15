@@ -59,9 +59,8 @@ const PostCardTypeItem = ({
                             <img
                                 className={`${displayName}__img`}
                                 src={
-                                    process.env.RAZZLE_BACKEND_ROOT +
-                                    (thumbnail ||
-                                        process.env.RAZZLE_DEFAULT_THUMBNAIL)
+                                    thumbnail ||
+                                    process.env.RAZZLE_DEFAULT_THUMBNAIL
                                 }
                                 alt="post thumbnail"
                             />

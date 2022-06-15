@@ -1,6 +1,6 @@
 export const getBreakpoint = (innerWidth) => {
     let breakpoint = "wd";
-    let slidesToShow = 3;
+    const slidesToShow = 1;
 
     if (innerWidth <= 1200) {
         breakpoint = "lg";
@@ -8,12 +8,13 @@ export const getBreakpoint = (innerWidth) => {
 
     if (innerWidth <= 992) {
         breakpoint = "md";
-        slidesToShow = 2;
+        // slidesToShow = 2;
+        // slidesToShow = 1;
     }
 
     if (innerWidth <= 768) {
         breakpoint = "sm";
-        slidesToShow = 1;
+        // slidesToShow = 1;
     }
 
     if (innerWidth <= 576) {

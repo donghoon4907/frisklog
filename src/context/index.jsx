@@ -6,9 +6,8 @@ const Context = createContext(null);
 const DispatchContext = createContext(null);
 
 /**
- * * 로컬 상태
+ * 로컬 상태
  *
- * @author frisk
  * @property id                 - 사용자 ID
  * @property nickname           - 사용자 별칭
  * @property email              - 사용자 이메일
@@ -23,7 +22,9 @@ const DispatchContext = createContext(null);
  * @property activeNotice       - 선택한 공지사항 정보
  * @property searchPostOption   - 검색 옵션
  * @property isCollapseNav      - 네비게이션 확장상태 (expand, contract)
- * @property isMobile          - 모바일 환경 여부
+ * @property isMobile           - 모바일 환경 여부
+ * @property breakpoint         - 브레이크 포인트
+ * @property slidesToShow       - 캐러셀 노출 아이템 수
  */
 const initialState = {
     id: null,
@@ -37,9 +38,9 @@ const initialState = {
     isShowFilterBar: false,
     isShowLoginModal: false,
     isCollapseNav: "contract",
-    isMobile: false,
+    // isMobile: false, deprecated
     breakpoint: "wd",
-    slidesToShow: 3,
+    slidesToShow: 1,
     activePost: {
         id: "",
         title: "",
