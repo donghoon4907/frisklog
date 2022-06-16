@@ -6,7 +6,7 @@ import { Arrow } from "../assets/icon";
 const PrevArrow = ({ onClick }) => {
     return (
         <button className="fr-carousel__prev" onClick={onClick}>
-            <Arrow style={{ opacity: 0.5 }} />
+            <Arrow />
         </button>
     );
 };
@@ -14,7 +14,7 @@ const PrevArrow = ({ onClick }) => {
 const NextArrow = ({ onClick }) => {
     return (
         <button className="fr-carousel__next" onClick={onClick}>
-            <Arrow style={{ opacity: 0.5 }} />
+            <Arrow />
         </button>
     );
 };

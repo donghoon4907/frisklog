@@ -30,17 +30,26 @@ const Feed = () => (
                         }
 
                         return (
-                            <Carousel>
-                                {recommenders.map((user) => (
-                                    <UserCardTypeItem
-                                        key={`user${user.id}`}
-                                        {...user}
-                                    />
-                                ))}
-                            </Carousel>
+                            <>
+                                <div className="fr-main__title">
+                                    <span>추천인</span>
+                                </div>
+                                <Carousel>
+                                    {recommenders.map((user) => (
+                                        <UserCardTypeItem
+                                            key={`user${user.id}`}
+                                            {...user}
+                                        />
+                                    ))}
+                                </Carousel>
+                            </>
                         );
                     }}
                 </Query>
+                <br />
+                <div className="fr-main__title">
+                    <span>최근 게시물</span>
+                </div>
                 <List
                     type="posts"
                     query={GET_POSTS}
@@ -53,7 +62,15 @@ const Feed = () => (
             </main>
         </div>
         <div className="fr-aside__wrapper">
-            <aside className="fr-aside"></aside>
+            <aside className="fr-aside">
+                <div className="fr-recommend__wrapper">
+                    <div className="fr-recommend__title">추천 카테고리</div>
+                    <ul
+                        className="fr-recommend"
+                        aria-label="추천 카테고리"
+                    ></ul>
+                </div>
+            </aside>
         </div>
     </div>
 );

@@ -1,7 +1,12 @@
 .fr-aside {
+    flex: 1;
+
     &__wrapper {
+        position: sticky;
+        top: 0;
         padding-left: 15px;
-        padding-top: 20px;
+        padding-top: 24px;
         width: 320px;
+        height: 500px;
     }
 }

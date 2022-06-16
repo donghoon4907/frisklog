@@ -9,7 +9,7 @@
     &__prev {
         position: absolute;
         top: 50%;
-        left: 5px;
+        left: 37px;
         z-index: 1000;
         transform: translateY(-50%) rotate(180deg);
     }
@@ -17,7 +17,7 @@
     &__next {
         position: absolute;
         top: 50%;
-        right: 5px;
+        right: 37px;
         z-index: 1000;
         transform: translateY(-50%);
     }
