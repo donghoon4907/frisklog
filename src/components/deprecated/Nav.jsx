@@ -1,9 +1,9 @@
 import React, { useCallback } from "react";
-import { useSelector, useDispatch } from "../context";
-import { EXPAND_NAVIGATION, CONTRACT_NAVIGATION } from "../context/action";
-import { COLLAPSE_KEY, setStorage } from "../lib/cookie";
-import { Collapse } from "../assets/icon";
-import RecommandUserList from "./RecommandUserList";
+import { useSelector, useDispatch } from "../../context";
+import { EXPAND_NAVIGATION, CONTRACT_NAVIGATION } from "../../context/action";
+import { COLLAPSE_KEY, setStorage } from "../../lib/cookie";
+import { Collapse } from "../../assets/icon";
+import RecommandUserList from "../RecommandUserList";
 // import RecommandCategoryList from "./RecommandCategoryList";
 
 /**

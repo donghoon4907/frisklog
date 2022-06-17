@@ -1,16 +1,16 @@
 import React, { memo, useCallback, useEffect } from "react";
 import { useRouteMatch } from "react-router-dom";
 import { useQuery, useMutation } from "@apollo/client";
-import { GET_COMMENTS } from "../graphql/query/comment";
-import { CREATE_COMMENT } from "../graphql/mutation/comment";
-import { useInput } from "../hooks";
-import { FormTextArea } from "./Form";
-import Button from "./Button";
-import { TOKEN_KEY, getStorage } from "../lib/cookie";
-import { useDispatch } from "../context";
-import { SHOW_LOGIN_MODAL } from "../context/action";
-import CommentItem from "./CommentItem";
-import Loader from "./Loader";
+import { GET_COMMENTS } from "../../graphql/query/comment";
+import { CREATE_COMMENT } from "../../graphql/mutation/comment";
+import { useInput } from "../../hooks";
+import { FormTextArea } from "../Form";
+import Button from "../button";
+import { TOKEN_KEY, getStorage } from "../../lib/cookie";
+import { useDispatch } from "../../context";
+import { SHOW_LOGIN_MODAL } from "../../context/action";
+import CommentItem from "../CommentItem";
+import Loader from "../Loader";
 
 /**
  * * 댓글 목록 렌더링 컴포넌트

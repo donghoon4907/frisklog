@@ -3,7 +3,7 @@ import { SHOW_LOGIN_MODAL, SET_ME } from "../context/action";
 
 export const graphqlError = ({ error, dispatch }) => {
     alert(error.message);
-
+    // 로그인 체크
     const token = getStorage(TOKEN_KEY);
 
     if (token === null) {

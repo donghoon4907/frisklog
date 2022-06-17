@@ -13,9 +13,9 @@ import { SHOW_LOGIN_MODAL } from "../context/action";
  * @param {string}   props.id          게시물 ID
  * @param {object[]} props.likers      좋아요 누른 명단
  * @param {object[]} props.isShowCount 좋아요 수 보여줄 지 여부
- * @param {object}   props.style       아이콘 스타일
+ * @deprecated {object}   props.style       아이콘 스타일
  */
-const PostLike = ({ id, likers, isShowCount, style }) => {
+const PostLike = ({ id, likers, isShowCount }) => {
     const dispatch = useDispatch();
 
     const { id: userId } = useSelector();
@@ -29,6 +29,7 @@ const PostLike = ({ id, likers, isShowCount, style }) => {
     const [likeCount, setLikeCount] = useState(likers.length);
     // 클릭 핸들러
     const handleClick = useCallback(async () => {
+        // 로그인 체크
         const token = getStorage(TOKEN_KEY);
 
         if (token === null) {
@@ -73,11 +74,10 @@ const PostLike = ({ id, likers, isShowCount, style }) => {
     return (
         <div className="fr-like">
             <button onClick={handleClick} aria-label="좋아요">
-                {isLike ? (
-                    <HeartFull style={style} />
-                ) : (
-                    <HeartEmpty style={style} />
-                )}
+                <span tabIndex="-1">
+                    {isLike ? <HeartFull /> : <HeartEmpty />}
+                </span>
+
                 <span className="a11y-hidden">
                     {isLike ? "좋아요 취소하기" : "좋아요 하기"}
                 </span>

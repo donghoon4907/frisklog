@@ -1,6 +1,6 @@
 import React from "react";
 import Meta from "../../components/Meta";
-import BtnLink from "../../components/BtnLink";
+import BtnLink from "../../components/button/BtnLink";
 
 /**
  * * 404 화면 컴포넌트

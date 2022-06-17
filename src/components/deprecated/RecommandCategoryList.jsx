@@ -1,6 +1,6 @@
 import React, { memo } from "react";
-import { GET_CATEGORIES } from "../graphql/query/category";
-import Query from "./Query";
+import { GET_CATEGORIES } from "../../graphql/query/category";
+import Query from "../Query";
 import RecommandCategoryItem from "./RecommandCategoryItem";
 
 /**

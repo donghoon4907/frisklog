@@ -2,6 +2,8 @@ import {
     SET_ME,
     SHOW_NOTICE_MODAL,
     HIDE_NOTICE_MODAL,
+    SHOW_POST_MODAL,
+    HIDE_POST_MODAL,
     SHOW_LOGIN_MODAL,
     HIDE_LOGIN_MODAL,
     SHOW_SEARCH_BAR,
@@ -11,7 +13,7 @@ import {
     SEARCH_POST,
     EXPAND_NAVIGATION,
     CONTRACT_NAVIGATION,
-    SET_IS_MOBILE,
+    // SET_IS_MOBILE,
     SET_BREAKPOINT
 } from "./action";
 
@@ -87,6 +89,16 @@ export default function reducer(state, action) {
                 ...state,
                 isShowLoginModal: false
             };
+        case SHOW_POST_MODAL:
+            return {
+                ...state,
+                isShowAddPostModal: true
+            };
+        case HIDE_POST_MODAL:
+            return {
+                ...state,
+                isShowAddPostModal: false
+            };
         case SEARCH_POST:
             return {
                 ...state,
@@ -115,11 +127,11 @@ export default function reducer(state, action) {
                 ...state,
                 isCollapseNav: "contract"
             };
-        case SET_IS_MOBILE:
-            return {
-                ...state,
-                isMobile: action.payload
-            };
+        // case SET_IS_MOBILE:
+        //     return {
+        //         ...state,
+        //         isMobile: action.payload
+        //     };
         case SET_BREAKPOINT:
             return {
                 ...state,

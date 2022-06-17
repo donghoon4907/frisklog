@@ -4,7 +4,7 @@ import Avatar from "./Avatar";
 import Timestamp from "./Timestamp";
 import StyledLink from "./StyledLink";
 import { HeartFull } from "../assets/icon";
-import BtnLink from "./BtnLink";
+import BtnLink from "./button/BtnLink";
 import { timeForToday } from "../lib/date";
 
 /**

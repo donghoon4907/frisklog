@@ -1,3 +1,8 @@
+/**
+ * Date => Str
+ *
+ * @param {Date} value
+ */
 export const timeForToday = (value) => {
     const today = new Date();
     const timeValue = new Date(value);

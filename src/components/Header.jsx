@@ -1,10 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { useSelector } from "../context";
-import ProfileBtn from "./ProfileBtn";
-import SearchBtn from "./SearchBtn";
+import ProfileBtn from "./button/ProfileBtn";
+import SearchBtn from "./button/SearchBtn";
 import HeaderSearchBar from "./HeaderSearchBar";
-import CreatePostBtn from "./CreatePostBtn";
+import CreatePostBtn from "./button/CreatePostBtn";
 // import HeaderNotice from "./HeaderNotice";
 import { Home } from "../assets/icon";
 

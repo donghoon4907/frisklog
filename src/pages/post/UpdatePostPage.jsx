@@ -5,7 +5,7 @@ import { GET_POST } from "../../graphql/query/post";
 import { useDispatch } from "../../context";
 import { SHOW_LOGIN_MODAL } from "../../context/action";
 import Editor from "../../components/Editor";
-import Button from "../../components/Button";
+import Button from "../../components/button";
 import Meta from "../../components/Meta";
 import { useInput } from "../../hooks";
 import Loader from "../../components/Loader";

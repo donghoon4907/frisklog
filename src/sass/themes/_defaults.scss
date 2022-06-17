@@ -90,3 +90,11 @@ button:focus {
 .popover-header {
     padding: 0;
 }
+
+svg:not(.activeEscape) {
+    fill: $fr-btn-color;
+
+    &:hover {
+        fill: $fr-hover-color;
+    }
+}

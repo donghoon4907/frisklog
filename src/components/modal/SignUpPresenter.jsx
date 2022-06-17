@@ -1,6 +1,6 @@
 import React from "react";
 import { FormInput } from "../Form";
-import Button from "../Button";
+import Button from "../button";
 import Loader from "../Loader";
 import { Thumbnail } from "../../assets/icon";
 

@@ -5,7 +5,7 @@ import { GET_COMMENTS } from "../graphql/query/comment";
 import { CREATE_COMMENT } from "../graphql/mutation/comment";
 import { useInput } from "../hooks";
 import { FormTextArea } from "./Form";
-import Button from "./Button";
+import Button from "./button";
 import { TOKEN_KEY, getStorage } from "../lib/cookie";
 import { useDispatch } from "../context";
 import { SHOW_LOGIN_MODAL } from "../context/action";

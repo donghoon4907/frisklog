@@ -17,15 +17,27 @@
     //     flex-basis: 50%;
     //     max-width: 50%;
     // }
-
-    .fr-app__section {
-        flex-direction: column;
+    // main wide
+    .fr-app__feed {
+        justify-content: center;
     }
-    .fr-header {
-        &-wrapper {
-            box-shadow: none !important;
-        }
+    .fr-main__wrapper {
+        max-width: 540px;
+        border-right: none !important;
     }
+    // asdie hide
+    .fr-aside__wrapper {
+        display: none !important;
+    }
+    // carousel wide {
+    // .fr-carousel {
+    //     width: 990px !important;
+    // }
+    // .fr-header {
+    //     &-wrapper {
+    //         box-shadow: none !important;
+    //     }
+    // }
 
     .fr-nav {
         &__header {
@@ -74,6 +86,12 @@
 }
 
 @include mq(xs) {
+    // carousel hide
+    .fr-main__title:not(.activeEscape),
+    .fr-carousel {
+        display: none !important;
+    }
+
     .fr-header__notice {
         display: none !important;
     }

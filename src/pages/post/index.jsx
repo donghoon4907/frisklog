@@ -5,7 +5,7 @@ import { GET_POST } from "../../graphql/query/post";
 import { DELETE_POST } from "../../graphql/mutation/post";
 import { useDispatch, useSelector } from "../../context";
 import Avatar from "../../components/Avatar";
-import BtnLink from "../../components/BtnLink";
+import BtnLink from "../../components/button/BtnLink";
 import CommentList from "../../components/CommentList";
 import Loader from "../../components/Loader";
 import Meta from "../../components/Meta";

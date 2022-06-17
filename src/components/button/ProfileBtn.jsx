@@ -1,9 +1,9 @@
 import React, { useState, useCallback, useEffect } from "react";
-import { Profile } from "../assets/icon";
-import { useDispatch, useSelector } from "../context";
-import { SHOW_LOGIN_MODAL, SET_ME } from "../context/action";
-import { TOKEN_KEY, getStorage, deleteStorage } from "../lib/cookie";
-import PopoverAvatar from "./PopoverAvatar";
+import { Profile } from "../../assets/icon";
+import { useDispatch, useSelector } from "../../context";
+import { SHOW_LOGIN_MODAL, SET_ME } from "../../context/action";
+import { TOKEN_KEY, getStorage, deleteStorage } from "../../lib/cookie";
+import PopoverAvatar from "../PopoverAvatar";
 
 /**
  * 내 정보 아이콘 컴포넌트

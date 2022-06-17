@@ -1,7 +1,7 @@
 import React, { useState, useRef, useCallback, memo } from "react";
 import { Overlay } from "react-bootstrap";
-import { useSelector } from "../context";
-import Avatar from "./Avatar";
+import { useSelector } from "../../context";
+import Avatar from "../Avatar";
 
 /**
  * 추천 사용자 컴포넌트

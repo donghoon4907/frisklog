@@ -1,20 +1,56 @@
 .fr-category {
-    width: 150px;
-    font-weight: 500;
-    height: 40px;
-    font-size: 20px;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    margin-bottom: 0;
-    display: flex;
-    align-items: center;
+    background: $fr-btn-color;
+    border-radius: $fr-border-radius;
+    color: white;
+    display: inline-block;
+    padding: 0 20px 0 23px;
+    position: relative;
+    transition: color 0.2s;
+    text-decoration: none;
+    font-size: 1.2rem;
+    line-height: 30px;
+    height: 30px;
 
-    &-wrapper {
-        width: 100%;
-        height: 40px;
+    &--multiple {
+        margin: 0 10px 10px 0;
+    }
+
+    &:before {
+        background: #eee;
+        border-radius: 10px;
+        box-shadow: inset 0 1px rgba(0, 0, 0, 0.25);
+        content: "";
+        position: absolute;
+        left: 10px;
+        width: 6px;
+        height: 6px;
+        top: 11px;
+    }
+
+    // &:after {
+    //     background: $fr-bg-color;
+    //     border-bottom: 13px solid transparent;
+    //     border-left: 10px solid #eee;
+    //     border-top: 13px solid transparent;
+    //     content: "";
+    //     position: absolute;
+    //     right: 0;
+    //     top: 0;
+    // }
+
+    &:hover {
+        background-color: $fr-hover-color;
+        color: gray;
+    }
+
+    &:hover::after {
+        border-left-color: $fr-btn-color;
+    }
+
+    &__wrapper {
         position: relative;
-        margin-bottom: 10px;
         overflow: hidden;
+        float: left;
+        list-style: none;
     }
 }

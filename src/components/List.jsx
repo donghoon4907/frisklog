@@ -1,16 +1,18 @@
 import React from "react";
 import Query from "./Query";
 import Scroll from "./Scroll";
+import { handleFetchMore } from "../lib/fetch";
 
 /**
  * 공통 리스트 렌더링 컴포넌트
  *
- * @param {string}          type      데이터 키
- * @param {string}          query     요청 쿼리
- * @param {object}          variables 요청 쿼리 파라미터
- * @param {React.Component} Item      렌더링 컴포넌트
+ * @param {string}          type          데이터 키
+ * @param {string}          query         요청 쿼리
+ * @param {object}          variables     요청 쿼리 파라미터
+ * @param {string}          fetchMoreType @enum scroll | button
+ * @param {React.Component} Item          렌더링 컴포넌트
  */
-const List = ({ type, query, variables, Item }) => (
+const List = ({ type, query, variables, fetchMoreType, Item }) => (
     <Query query={query} variables={variables}>
         {({ data, fetchMore }) => {
             const { rows, count } = data[type];
@@ -27,38 +29,20 @@ const List = ({ type, query, variables, Item }) => (
                         <Item key={type + row.id} {...row} />
                     ))}
 
-                    {len < count && (
-                        <Scroll
-                            onBottom={(activeEvent) => {
-                                fetchMore({
+                    {len < count &&
+                        ((fetchMoreType === "scroll" && (
+                            <Scroll
+                                onBottom={handleFetchMore({
+                                    fetchMore,
                                     variables: {
                                         ...variables,
                                         offset: len
                                     },
-                                    updateQuery: (prev, next) => {
-                                        const { fetchMoreResult } = next;
-
-                                        if (!fetchMoreResult) {
-                                            return prev;
-                                        }
-
-                                        activeEvent();
-
-                                        return {
-                                            [type]: {
-                                                rows: [
-                                                    ...prev[type].rows,
-                                                    ...fetchMoreResult[type]
-                                                        .rows
-                                                ],
-                                                count
-                                            }
-                                        };
-                                    }
-                                });
-                            }}
-                        />
-                    )}
+                                    type
+                                })}
+                            />
+                        )) ||
+                            (fetchMoreType === "button" && null))}
                 </>
             );
         }}

@@ -1,7 +1,7 @@
 import React, { memo } from "react";
 import RecommandUserItem from "./RecommandUserItem";
-import { GET_USERS } from "../graphql/query/user";
-import Query from "./Query";
+import { GET_USERS } from "../../graphql/query/user";
+import Query from "../Query";
 
 /**
  * 추천 사용자 목록 컴포넌트

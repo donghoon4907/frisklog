@@ -51,7 +51,10 @@
 
         &-wrapper {
             position: relative;
-            margin-bottom: 10px;
+            justify-content: space-between;
+            align-items: center;
+            display: flex;
+            margin: 10px 0;
         }
     }
 

@@ -3,6 +3,7 @@ import { Route, Switch } from "react-router-dom";
 import loadable from "@loadable/component";
 import Header from "./components/Header";
 import AuthModal from "./components/modal/Auth";
+import PostModal from "./components/modal/SetPostContainer";
 import { useDispatch, useSelector } from "./context";
 import { SET_BREAKPOINT } from "./context/action";
 import { getBreakpoint } from "./lib/responsive";
@@ -33,7 +34,7 @@ const App = () => {
 
     const dispatch = useDispatch();
 
-    const { isShowLoginModal } = useSelector();
+    const { isShowLoginModal, isShowAddPostModal } = useSelector();
 
     // 리사이징 핸들러
     const handleResize = useCallback((e) => {
@@ -89,6 +90,7 @@ const App = () => {
                 </Switch>
             </section>
             {isShowLoginModal && <AuthModal />}
+            {isShowAddPostModal && <PostModal />}
         </div>
     );
 };

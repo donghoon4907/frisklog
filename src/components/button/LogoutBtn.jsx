@@ -1,8 +1,8 @@
 import React, { useCallback } from "react";
-import { useDispatch } from "../context";
-import { SHOW_LOGIN_MODAL, SET_ME } from "../context/action";
-import { TOKEN_KEY, getStorage, deleteStorage } from "../lib/cookie";
-import Button from "./Button";
+import { useDispatch } from "../../context";
+import { SHOW_LOGIN_MODAL, SET_ME } from "../../context/action";
+import { TOKEN_KEY, getStorage, deleteStorage } from "../../lib/cookie";
+import Button from ".";
 
 /**
  * 로그아웃 버튼 컴포넌트

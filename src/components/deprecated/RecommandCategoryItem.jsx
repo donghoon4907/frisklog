@@ -1,7 +1,7 @@
 import React, { useState, useRef, useCallback, memo } from "react";
 import { Overlay } from "react-bootstrap";
-import { useSelector } from "../context";
-import BtnLink from "./BtnLink";
+import { useSelector } from "../../context";
+import BtnLink from "../button/BtnLink";
 
 /**
  * * 추천 카테고리 랜더링 컴포넌트

@@ -26,3 +26,7 @@ export const CONTRACT_NAVIGATION = "CONTRACT_NAVIGATION";
 export const SET_IS_MOBILE = "SET_IS_MOBILE";
 // breakpoint 설정
 export const SET_BREAKPOINT = "SET_BREAKPOINT";
+// 게시물 등록 팝업 보이기
+export const SHOW_POST_MODAL = "SHOW_POST_MODAL";
+// 게시물 등록 팝업 숨기기
+export const HIDE_POST_MODAL = "HIDE_POST_MODAL";

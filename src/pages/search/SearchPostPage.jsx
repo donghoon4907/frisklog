@@ -2,29 +2,25 @@ import React, { useState, useCallback } from "react";
 import Meta from "../../components/Meta";
 import Subject from "../../components/Subject";
 import { Select } from "../../components/Form";
-import PostList from "../../components/PostList";
 import searchOptions from "../../json/search_options.json";
+import List from "../../components/List";
+import { GET_POSTS } from "../../graphql/query/post";
+import PostItem from "../../components/PostItem";
 
 /**
  * 포스트 검색 화면 컴포넌트
  *
- * @Page
- * @author frist
  */
 const SearchPostPage = ({
     match: {
         params: { query }
     }
 }) => {
-    /**
-     * 로컬 상태 변경 모듈 활성화
-     */
-    const [orderBy, setOrderBy] = useState("createdAt_DESC");
-    /**
-     * 정렬 변경 핸들러
-     */
-    const handleChangeOrderBy = useCallback((e) => {
-        setOrderBy(e.target.value);
+    // 정렬
+    const [order, setOrder] = useState("createdAt_DESC");
+    // 정렬 변경 핸들러
+    const handleChangeOrder = useCallback((e) => {
+        setOrder(e.target.value);
     }, []);
 
     return (
@@ -35,8 +31,8 @@ const SearchPostPage = ({
                     <span>&quot;{query}&quot; 검색결과</span>
                     <div>
                         <Select
-                            value={orderBy}
-                            onChange={handleChangeOrderBy}
+                            value={order}
+                            onChange={handleChangeOrder}
                             title="정렬"
                         >
                             {searchOptions.sort.map(({ text, value, id }) => (
@@ -48,9 +44,17 @@ const SearchPostPage = ({
                     </div>
                 </Subject>
             </div>
-            <PostList order={orderBy} searchKeyword={query} limit={30}>
-                {({ posts }) => posts}
-            </PostList>
+            <List
+                type="posts"
+                query={GET_POSTS}
+                variables={{
+                    limit: 12,
+                    order,
+                    searchKeyword: query
+                }}
+                fetchMoreType="scroll"
+                Item={PostItem}
+            />
         </div>
     );
 };

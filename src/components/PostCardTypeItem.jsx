@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import Avatar from "./Avatar";
 import { timeForToday } from "../lib/date";
-import BtnLink from "./BtnLink";
+import BtnLink from "./button/BtnLink";
 import PostLike from "./PostLike";
 
 /**
