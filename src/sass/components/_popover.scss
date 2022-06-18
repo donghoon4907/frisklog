@@ -22,10 +22,13 @@
             align-items: center;
             width: 16rem;
             height: 2.6rem;
+            overflow: hidden;
         }
 
         &__username {
             margin-right: 5rem;
+
+            @include ellipsisText;
         }
     }
 }

@@ -16,37 +16,37 @@
             "id": "viewCountDesc",
             "value": "viewCount_DESC",
             "text": "조회수 순",
-            "enable": true
+            "enable": false
         },
         {
             "id": "viewCountAsc",
             "value": "viewCount_ASC",
             "text": "조회수 역순",
-            "enable": true
+            "enable": false
         },
         {
             "id": "likeCountDesc",
             "value": "likeCount_DESC",
             "text": "좋아요 순",
-            "enable": true
+            "enable": false
         },
         {
             "id": "likeCountAsc",
             "value": "likeCount_ASC",
             "text": "좋아요 역순",
-            "enable": true
+            "enable": false
         },
         {
             "id": "commentCountDesc",
             "value": "commentCount_DESC",
             "text": "댓글수 순",
-            "enable": true
+            "enable": false
         },
         {
             "id": "commentCountAsc",
             "value": "commentCount_ASC",
             "text": "댓글수 역순",
-            "enable": true
+            "enable": false
         }
     ],
     "filter": []

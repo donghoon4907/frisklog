@@ -7,6 +7,9 @@ import PostModal from "./components/modal/SetPostContainer";
 import { useDispatch, useSelector } from "./context";
 import { SET_BREAKPOINT } from "./context/action";
 import { getBreakpoint } from "./lib/responsive";
+import Query from "./components/Query";
+import { GET_RECOMMEND_CATEGORIES } from "./graphql/query/history";
+import CategoryBtn from "./components/button/CategoryBtn";
 
 import "./sass/main.scss";
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
@@ -59,35 +62,81 @@ const App = () => {
     }, []);
 
     return (
-        <div className={`${displayName}`}>
+        <div className={`${displayName}__wrapper`}>
             <Header />
-            <section className={`${displayName}__section`} id="main">
-                <Switch>
-                    <Route exact path="/" component={Feed} />
-                    <Route
-                        exact
-                        path="/create_post"
-                        component={CreatePostPage}
-                    />
-                    <Route
-                        exact
-                        path="/update_post/:id"
-                        component={UpdatePostPage}
-                    />
-                    <Route exact path="/post/:id" component={Post} />
-                    <Route exact path="/user/:id" component={User} />
-                    <Route
-                        exact
-                        path="/search/:query"
-                        component={SearchPostPage}
-                    />
-                    <Route
-                        exact
-                        path="/category/:content"
-                        component={SearchCategoryPage}
-                    />
-                    <Route component={NoMatch} />
-                </Switch>
+            <section className={`${displayName}`} id="main">
+                <div className={`${displayName}__body`}>
+                    <div className="fr-main__wrapper">
+                        <main className="fr-main">
+                            <Switch>
+                                <Route exact path="/" component={Feed} />
+                                <Route
+                                    exact
+                                    path="/create_post"
+                                    component={CreatePostPage}
+                                />
+                                <Route
+                                    exact
+                                    path="/update_post/:id"
+                                    component={UpdatePostPage}
+                                />
+                                <Route
+                                    exact
+                                    path="/post/:id"
+                                    component={Post}
+                                />
+                                <Route
+                                    exact
+                                    path="/user/:id"
+                                    component={User}
+                                />
+                                <Route
+                                    exact
+                                    path="/search/:query"
+                                    component={SearchPostPage}
+                                />
+                                <Route
+                                    exact
+                                    path="/category/:content"
+                                    component={SearchCategoryPage}
+                                />
+                                <Route component={NoMatch} />
+                            </Switch>
+                        </main>
+                    </div>
+                    <div className="fr-aside__wrapper">
+                        <aside className="fr-aside">
+                            <div className="fr-recommend__wrapper">
+                                <div className="fr-recommend__title">
+                                    추천 카테고리
+                                </div>
+                                <ul
+                                    className="fr-recommend"
+                                    aria-label="추천 카테고리"
+                                >
+                                    <Query
+                                        query={GET_RECOMMEND_CATEGORIES}
+                                        variables={{
+                                            limit: 5
+                                        }}
+                                    >
+                                        {({ data: { recommendCategories } }) =>
+                                            recommendCategories.map(
+                                                ({ category }) => (
+                                                    <CategoryBtn
+                                                        key={`recCat${category}`}
+                                                        content={category}
+                                                        isGap={true}
+                                                    />
+                                                )
+                                            )
+                                        }
+                                    </Query>
+                                </ul>
+                            </div>
+                        </aside>
+                    </div>
+                </div>
             </section>
             {isShowLoginModal && <AuthModal />}
             {isShowAddPostModal && <PostModal />}

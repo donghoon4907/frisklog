@@ -12,7 +12,7 @@ import jwt from "jsonwebtoken";
 import { ContextProvider } from "./context";
 import { initializeApollo } from "./lib/apollo";
 import App from "./App";
-import { COLLAPSE_KEY, TOKEN_KEY } from "./lib/cookie";
+import { TOKEN_KEY } from "./lib/cookie";
 
 // const assets = require(process.env.RAZZLE_ASSETS_MANIFEST);
 /** init express */
@@ -28,9 +28,9 @@ server
 
         const context = {};
 
-        const collapse = req.cookies[COLLAPSE_KEY];
+        // const collapse = req.cookies[COLLAPSE_KEY];
 
-        context.isCollapseNav = collapse ? JSON.parse(collapse) : "contract";
+        // context.isCollapseNav = collapse ? JSON.parse(collapse) : "contract";
 
         const token = req.cookies[TOKEN_KEY];
 

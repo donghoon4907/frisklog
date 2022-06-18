@@ -18,7 +18,7 @@
     border-radius: $fr-border-radius !important;
     background: white !important;
 }
-
+/* button and text in one line */
 @mixin btnWithText {
     display: flex;
     justify-content: center;
@@ -30,4 +30,10 @@
         justify-content: flex-start;
         flex-grow: 1;
     }
+}
+/* ellipsis */
+@mixin ellipsisText {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }

@@ -13,12 +13,13 @@ import { graphqlError } from "../../lib/error";
  *
  */
 const SignInContainer = () => {
-    // Dispatch hooks
     const dispatch = useDispatch();
-    // 로그인 mutation
+
     const [login, { loading }] = useMutation(SIGN_IN);
-    // 이메일 상태
+    // 이메일
     const email = useInput("");
+    // 암호
+    const password = useInput("");
     // 로그인 요청 핸들러
     const handleSubmit = useCallback(
         async (e) => {
@@ -32,7 +33,10 @@ const SignInContainer = () => {
                 const {
                     data: { logIn }
                 } = await login({
-                    variables: { email: email.value }
+                    variables: {
+                        email: email.value,
+                        password: password.value
+                    }
                 });
                 if (logIn) {
                     const {
@@ -63,13 +67,14 @@ const SignInContainer = () => {
                 graphqlError({ error });
             }
         },
-        [email.value, loading]
+        [email.value, password.value, loading]
     );
 
     return (
         <SignInPresenter
             loading={loading}
             email={email}
+            password={password}
             onSubmit={handleSubmit}
         />
     );

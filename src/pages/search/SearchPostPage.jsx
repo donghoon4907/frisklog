@@ -1,6 +1,5 @@
 import React, { useState, useCallback } from "react";
 import Meta from "../../components/Meta";
-import Subject from "../../components/Subject";
 import { Select } from "../../components/Form";
 import searchOptions from "../../json/search_options.json";
 import List from "../../components/List";
@@ -24,25 +23,25 @@ const SearchPostPage = ({
     }, []);
 
     return (
-        <div>
+        <>
             <Meta title={`Frisklog - ${query}`} />
-            <div>
-                <Subject>
-                    <span>&quot;{query}&quot; 검색결과</span>
-                    <div>
-                        <Select
-                            value={order}
-                            onChange={handleChangeOrder}
-                            title="정렬"
-                        >
-                            {searchOptions.sort.map(({ text, value, id }) => (
+            <div className="fr-main__title">
+                <span>&quot;{query}&quot; 검색결과</span>
+                <div>
+                    <Select
+                        value={order}
+                        onChange={handleChangeOrder}
+                        title="정렬"
+                    >
+                        {searchOptions.sort
+                            .filter(({ enable }) => enable === true)
+                            .map(({ text, value, id }) => (
                                 <option value={value} key={id}>
                                     {text}
                                 </option>
                             ))}
-                        </Select>
-                    </div>
-                </Subject>
+                    </Select>
+                </div>
             </div>
             <List
                 type="posts"
@@ -55,7 +54,7 @@ const SearchPostPage = ({
                 fetchMoreType="scroll"
                 Item={PostItem}
             />
-        </div>
+        </>
     );
 };
 

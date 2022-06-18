@@ -32,7 +32,9 @@ const Carousel = ({ children }) => {
         slidesToShow,
         centerMode: true,
         prevArrow: <PrevArrow />,
-        nextArrow: <NextArrow />
+        nextArrow: <NextArrow />,
+        autoplay: true,
+        autoplaySpeed: 5000
     };
 
     return <Slider {...settings}>{children}</Slider>;

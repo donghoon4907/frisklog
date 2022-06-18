@@ -1,23 +1,23 @@
 .fr-app {
     display: flex;
     flex-direction: column;
-    flex-wrap: nowrap;
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    overflow: hidden;
+    padding: 0 8px;
+    width: 100%;
+    overflow: auto;
 
-    &__section {
+    &__wrapper {
         display: flex;
         flex-direction: column;
-        padding: 0 8px;
-        width: 100%;
-        overflow: auto;
+        flex-wrap: nowrap;
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        overflow: hidden;
     }
 
-    &__feed {
+    &__body {
         display: flex;
         margin: 0 auto;
         max-width: 990px;

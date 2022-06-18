@@ -22,7 +22,10 @@ const PopoverAvatar = ({ userId, nickname, size, src }) => (
                     <Link to={`/user/${userId}`}>
                         <img
                             className="fr-popover-header__bg"
-                            src={src || process.env.RAZZLE_DEFAULT_AVATAR}
+                            src={
+                                process.env.RAZZLE_BACKEND_ROOT +
+                                (src || process.env.RAZZLE_DEFAULT_AVATAR)
+                            }
                             alt="avatar"
                         />
                     </Link>
@@ -32,7 +35,9 @@ const PopoverAvatar = ({ userId, nickname, size, src }) => (
                         <span className="fr-popover-body__username">
                             {nickname}
                         </span>
-                        <LogoutBtn />
+                        <div style={{ width: 200 }}>
+                            <LogoutBtn />
+                        </div>
                     </div>
                 </Popover.Body>
             </Popover>
@@ -43,7 +48,10 @@ const PopoverAvatar = ({ userId, nickname, size, src }) => (
                 <div className="fr-avatar__body">
                     <img
                         className="fr-avatar__image"
-                        src={src || process.env.RAZZLE_DEFAULT_AVATAR}
+                        src={
+                            process.env.RAZZLE_BACKEND_ROOT +
+                            (src || process.env.RAZZLE_DEFAULT_AVATAR)
+                        }
                         alt="avatar"
                     />
                 </div>

@@ -14,14 +14,18 @@
         padding-top: 24px;
         width: 100%;
         max-width: 540px;
-        border-right: $fr-box-border;
+        // border-right: $fr-box-border;
     }
 
     &__title {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
         width: 100%;
         font-size: 1.5rem;
         font-weight: 700;
         line-height: 1.5;
         margin-bottom: 5px;
+        overflow: hidden;
     }
 }

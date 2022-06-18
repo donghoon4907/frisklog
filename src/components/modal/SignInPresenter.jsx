@@ -6,22 +6,31 @@ import Loader from "../Loader";
 /**
  * 로그인 프레젠터 컴포넌트
  *
- * @param props.loading 로그인 요청 진행 여부
- * @param props.email 이메일 입력을 위한 Hooks
- * @param props.onSubmit 로그인 요청 핸들러
+ * @param {boolean}  props.loading  로그인 요청 여부
+ * @param {object}   props.email    이메일
+ * @param {object}   props.password 암호
+ * @param {function} props.onSubmit 요청 핸들러
  */
-const SignInPresenter = ({ loading, email, onSubmit }) => (
+const SignInPresenter = ({ loading, email, password, onSubmit }) => (
     <>
         {loading && <Loader />}
         <form onSubmit={onSubmit}>
             <FormInput
                 type="email"
-                placeholder="이메일을 입력하세요."
+                placeholder="이메일을 입력하세요"
                 id="email"
                 autoComplete="off"
                 required
                 label="이메일"
                 {...email}
+            />
+            <FormInput
+                type="password"
+                placeholder="암호를 입력하세요"
+                id="password"
+                autoComplete="off"
+                label="암호"
+                {...password}
             />
             <Button type="submit">로그인</Button>
         </form>

@@ -15,15 +15,17 @@ const SignUpContainer = ({ setAction }) => {
     const { loading: uploadLoading, call } = useLazyAxios();
 
     const $file = useRef(null);
-    // 별명 상태
+    // 별명
     const nickname = useInput("");
-    // 이메일 상태
+    // 이메일
     const email = useInput("");
-    // 미리보기 상태
+    // 암호
+    const password = useInput("");
+    // 프로필사진 미리보기
     const [preview, setPreview] = useState("");
-    // 프로필사진 상태
+    // 프로필사진 URL
     const [avatar, setAvatar] = useState("");
-    // 회원가입 mutation
+    // 사용자 추가
     const [signUp, { loading: signUpLoading }] = useMutation(SIGN_UP);
     // 파일 업로드 핸들러
     const handleChangeFile = useCallback(
@@ -99,15 +101,16 @@ const SignUpContainer = ({ setAction }) => {
                     } = await signUp({
                         variables: {
                             email: email.value,
+                            password: password.value,
                             nickname: nickname.value,
                             avatar
                         }
                     });
                     if (addUser) {
+                        alert("회원가입이 정상처리되었습니다.");
+
                         // 로그인 화면 전환
                         setAction("login");
-
-                        alert("회원가입이 정상처리되었습니다.");
                     }
                 } catch (error) {
                     graphqlError({ error });
@@ -123,6 +126,7 @@ const SignUpContainer = ({ setAction }) => {
             signUpLoading={signUpLoading}
             nickname={nickname}
             email={email}
+            password={password}
             preview={preview}
             $file={$file}
             onChangeFile={handleChangeFile}

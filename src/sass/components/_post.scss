@@ -20,6 +20,7 @@
         align-items: center;
         width: 100%;
         padding: 12px;
+        overflow: hidden;
     }
 
     &__avatar {
@@ -35,11 +36,13 @@
         font-size: 1.5rem;
         font-weight: 700;
         height: 100%;
+        overflow: hidden;
     }
 
     &__username {
         margin-right: 5px;
-        word-break: break-all;
+
+        @include ellipsisText;
     }
 
     &__body {
@@ -100,6 +103,7 @@
 
     &__footer {
         padding: 12px;
+        overflow: hidden;
     }
 
     &__tag {
