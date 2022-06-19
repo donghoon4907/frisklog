@@ -1,0 +1,923 @@
+{
+  "errors": [],
+  "warnings": [],
+  "version": "4.44.2",
+  "hash": "75f233780edae0a43720",
+  "publicPath": "/",
+  "outputPath": "/Users/idonghun/Desktop/history/frisklog/razzle_version/build/public",
+  "assetsByChunkName": {
+    "vendors": [
+      "static/css/vendors.9919e1fa.chunk.css",
+      "static/js/vendors.9919e1fa.chunk.js",
+      "static/js/vendors.9919e1fa.chunk.js.map"
+    ],
+    "pages-user": [
+      "static/js/pages-user.ce248f86.chunk.js",
+      "static/js/pages-user.ce248f86.chunk.js.map"
+    ],
+    "pages-404": [
+      "static/js/pages-404.c84a9d72.chunk.js",
+      "static/js/pages-404.c84a9d72.chunk.js.map"
+    ],
+    "client": [
+      "static/css/client.79b57677.chunk.css",
+      "static/js/client.79b57677.chunk.js",
+      "static/js/client.79b57677.chunk.js.map"
+    ],
+    "components-aside-RecommandCategory": [
+      "static/js/components-aside-RecommandCategory.c8dd6519.chunk.js",
+      "static/js/components-aside-RecommandCategory.c8dd6519.chunk.js.map"
+    ],
+    "pages-feed": [
+      "static/js/pages-feed.aec6baa7.chunk.js",
+      "static/js/pages-feed.aec6baa7.chunk.js.map"
+    ],
+    "runtime~client": [
+      "static/js/runtime~client.c4693849.js",
+      "static/js/runtime~client.c4693849.js.map"
+    ]
+  },
+  "assets": [
+    {
+      "name": "favicon.ico",
+      "size": 195622,
+      "chunks": [],
+      "chunkNames": [],
+      "info": {},
+      "emitted": false
+    },
+    {
+      "name": "robots.txt",
+      "size": 15,
+      "chunks": [],
+      "chunkNames": [],
+      "info": {},
+      "emitted": false
+    },
+    {
+      "name": "static/css/client.79b57677.chunk.css",
+      "size": 178965,
+      "chunks": [
+        3
+      ],
+      "chunkNames": [
+        "client"
+      ],
+      "info": {
+        "immutable": true
+      },
+      "emitted": false
+    },
+    {
+      "name": "static/css/client.79b57677.chunk.css.map",
+      "size": 517652,
+      "chunks": [],
+      "chunkNames": [],
+      "info": {},
+      "emitted": false
+    },
+    {
+      "name": "static/css/vendors.9919e1fa.chunk.css",
+      "size": 113051,
+      "chunks": [
+        0
+      ],
+      "chunkNames": [
+        "vendors"
+      ],
+      "info": {
+        "immutable": true
+      },
+      "emitted": false
+    },
+    {
+      "name": "static/css/vendors.9919e1fa.chunk.css.map",
+      "size": 165061,
+      "chunks": [],
+      "chunkNames": [],
+      "info": {},
+      "emitted": false
+    },
+    {
+      "name": "static/js/client.79b57677.chunk.js",
+      "size": 35737,
+      "chunks": [
+        3
+      ],
+      "chunkNames": [
+        "client"
+      ],
+      "info": {
+        "immutable": true
+      },
+      "emitted": false
+    },
+    {
+      "name": "static/js/client.79b57677.chunk.js.map",
+      "size": 94779,
+      "chunks": [
+        3
+      ],
+      "chunkNames": [
+        "client"
+      ],
+      "info": {
+        "development": true
+      },
+      "emitted": false
+    },
+    {
+      "name": "static/js/components-aside-RecommandCategory.c8dd6519.chunk.js",
+      "size": 1483,
+      "chunks": [
+        4
+      ],
+      "chunkNames": [
+        "components-aside-RecommandCategory"
+      ],
+      "info": {
+        "immutable": true
+      },
+      "emitted": false
+    },
+    {
+      "name": "static/js/components-aside-RecommandCategory.c8dd6519.chunk.js.map",
+      "size": 3631,
+      "chunks": [
+        4
+      ],
+      "chunkNames": [
+        "components-aside-RecommandCategory"
+      ],
+      "info": {
+        "development": true
+      },
+      "emitted": false
+    },
+    {
+      "name": "static/js/pages-404.c84a9d72.chunk.js",
+      "size": 5075,
+      "chunks": [
+        2
+      ],
+      "chunkNames": [
+        "pages-404"
+      ],
+      "info": {
+        "immutable": true
+      },
+      "emitted": false
+    },
+    {
+      "name": "static/js/pages-404.c84a9d72.chunk.js.map",
+      "size": 11051,
+      "chunks": [
+        2
+      ],
+      "chunkNames": [
+        "pages-404"
+      ],
+      "info": {
+        "development": true
+      },
+      "emitted": false
+    },
+    {
+      "name": "static/js/pages-feed.aec6baa7.chunk.js",
+      "size": 13087,
+      "chunks": [
+        5
+      ],
+      "chunkNames": [
+        "pages-feed"
+      ],
+      "info": {
+        "immutable": true
+      },
+      "emitted": false
+    },
+    {
+      "name": "static/js/pages-feed.aec6baa7.chunk.js.map",
+      "size": 30157,
+      "chunks": [
+        5
+      ],
+      "chunkNames": [
+        "pages-feed"
+      ],
+      "info": {
+        "development": true
+      },
+      "emitted": false
+    },
+    {
+      "name": "static/js/pages-user.ce248f86.chunk.js",
+      "size": 13068,
+      "chunks": [
+        1
+      ],
+      "chunkNames": [
+        "pages-user"
+      ],
+      "info": {
+        "immutable": true
+      },
+      "emitted": false
+    },
+    {
+      "name": "static/js/pages-user.ce248f86.chunk.js.map",
+      "size": 30623,
+      "chunks": [
+        1
+      ],
+      "chunkNames": [
+        "pages-user"
+      ],
+      "info": {
+        "development": true
+      },
+      "emitted": false
+    },
+    {
+      "name": "static/js/runtime~client.c4693849.js",
+      "size": 2497,
+      "chunks": [
+        6
+      ],
+      "chunkNames": [
+        "runtime~client"
+      ],
+      "info": {
+        "immutable": true
+      },
+      "emitted": false
+    },
+    {
+      "name": "static/js/runtime~client.c4693849.js.map",
+      "size": 12740,
+      "chunks": [
+        6
+      ],
+      "chunkNames": [
+        "runtime~client"
+      ],
+      "info": {
+        "development": true
+      },
+      "emitted": false
+    },
+    {
+      "name": "static/js/vendors.9919e1fa.chunk.js",
+      "size": 2282461,
+      "chunks": [
+        0
+      ],
+      "chunkNames": [
+        "vendors"
+      ],
+      "info": {
+        "immutable": true
+      },
+      "emitted": false
+    },
+    {
+      "name": "static/js/vendors.9919e1fa.chunk.js.LICENSE.txt",
+      "size": 2966,
+      "chunks": [],
+      "chunkNames": [],
+      "info": {},
+      "emitted": false
+    },
+    {
+      "name": "static/js/vendors.9919e1fa.chunk.js.map",
+      "size": 6283718,
+      "chunks": [
+        0
+      ],
+      "chunkNames": [
+        "vendors"
+      ],
+      "info": {
+        "development": true
+      },
+      "emitted": false
+    },
+    {
+      "name": "static/media/comment.a93a5733.svg",
+      "size": 940,
+      "chunks": [],
+      "chunkNames": [],
+      "info": {},
+      "emitted": false
+    },
+    {
+      "name": "static/media/eye.043f9099.svg",
+      "size": 1089,
+      "chunks": [],
+      "chunkNames": [],
+      "info": {},
+      "emitted": false
+    },
+    {
+      "name": "static/media/logout.25537bfc.svg",
+      "size": 1104,
+      "chunks": [],
+      "chunkNames": [],
+      "info": {},
+      "emitted": false
+    },
+    {
+      "name": "static/media/modify.50e0186d.svg",
+      "size": 2203,
+      "chunks": [],
+      "chunkNames": [],
+      "info": {},
+      "emitted": false
+    },
+    {
+      "name": "static/media/slick.b7c9e1e4.woff",
+      "size": 1380,
+      "chunks": [],
+      "chunkNames": [],
+      "info": {},
+      "emitted": false
+    },
+    {
+      "name": "static/media/slick.ced611da.eot",
+      "size": 2048,
+      "chunks": [],
+      "chunkNames": [],
+      "info": {},
+      "emitted": false
+    },
+    {
+      "name": "static/media/slick.d41f55a7.ttf",
+      "size": 1892,
+      "chunks": [],
+      "chunkNames": [],
+      "info": {},
+      "emitted": false
+    },
+    {
+      "name": "static/media/slick.f97e3bbf.svg",
+      "size": 2152,
+      "chunks": [],
+      "chunkNames": [],
+      "info": {},
+      "emitted": false
+    },
+    {
+      "name": "static/media/speaker.ba8cfb3e.svg",
+      "size": 1540,
+      "chunks": [],
+      "chunkNames": [],
+      "info": {},
+      "emitted": false
+    },
+    {
+      "name": "static/media/trash.0d10f8f1.svg",
+      "size": 1086,
+      "chunks": [],
+      "chunkNames": [],
+      "info": {},
+      "emitted": false
+    }
+  ],
+  "filteredAssets": 0,
+  "entrypoints": {
+    "client": {
+      "chunks": [
+        6,
+        0,
+        3
+      ],
+      "assets": [
+        "static/js/runtime~client.c4693849.js",
+        "static/js/runtime~client.c4693849.js.map",
+        "static/css/vendors.9919e1fa.chunk.css",
+        "static/js/vendors.9919e1fa.chunk.js",
+        "static/js/vendors.9919e1fa.chunk.js.map",
+        "static/css/client.79b57677.chunk.css",
+        "static/js/client.79b57677.chunk.js",
+        "static/js/client.79b57677.chunk.js.map"
+      ],
+      "children": {},
+      "childAssets": {}
+    }
+  },
+  "namedChunkGroups": {
+    "client": {
+      "chunks": [
+        6,
+        0,
+        3
+      ],
+      "assets": [
+        "static/js/runtime~client.c4693849.js",
+        "static/js/runtime~client.c4693849.js.map",
+        "static/css/vendors.9919e1fa.chunk.css",
+        "static/js/vendors.9919e1fa.chunk.js",
+        "static/js/vendors.9919e1fa.chunk.js.map",
+        "static/css/client.79b57677.chunk.css",
+        "static/js/client.79b57677.chunk.js",
+        "static/js/client.79b57677.chunk.js.map"
+      ],
+      "children": {},
+      "childAssets": {}
+    },
+    "pages-feed": {
+      "chunks": [
+        0,
+        5
+      ],
+      "assets": [
+        "static/css/vendors.9919e1fa.chunk.css",
+        "static/js/vendors.9919e1fa.chunk.js",
+        "static/js/vendors.9919e1fa.chunk.js.map",
+        "static/js/pages-feed.aec6baa7.chunk.js",
+        "static/js/pages-feed.aec6baa7.chunk.js.map"
+      ],
+      "children": {},
+      "childAssets": {}
+    },
+    "pages-search-SearchPostPage": {
+      "chunks": [
+        0,
+        1
+      ],
+      "assets": [
+        "static/css/vendors.9919e1fa.chunk.css",
+        "static/js/vendors.9919e1fa.chunk.js",
+        "static/js/vendors.9919e1fa.chunk.js.map",
+        "static/js/pages-user.ce248f86.chunk.js",
+        "static/js/pages-user.ce248f86.chunk.js.map"
+      ],
+      "children": {},
+      "childAssets": {}
+    },
+    "pages-search-SearchCategoryPage": {
+      "chunks": [
+        0,
+        1
+      ],
+      "assets": [
+        "static/css/vendors.9919e1fa.chunk.css",
+        "static/js/vendors.9919e1fa.chunk.js",
+        "static/js/vendors.9919e1fa.chunk.js.map",
+        "static/js/pages-user.ce248f86.chunk.js",
+        "static/js/pages-user.ce248f86.chunk.js.map"
+      ],
+      "children": {},
+      "childAssets": {}
+    },
+    "pages-user": {
+      "chunks": [
+        0,
+        1
+      ],
+      "assets": [
+        "static/css/vendors.9919e1fa.chunk.css",
+        "static/js/vendors.9919e1fa.chunk.js",
+        "static/js/vendors.9919e1fa.chunk.js.map",
+        "static/js/pages-user.ce248f86.chunk.js",
+        "static/js/pages-user.ce248f86.chunk.js.map"
+      ],
+      "children": {},
+      "childAssets": {}
+    },
+    "pages-404": {
+      "chunks": [
+        0,
+        2
+      ],
+      "assets": [
+        "static/css/vendors.9919e1fa.chunk.css",
+        "static/js/vendors.9919e1fa.chunk.js",
+        "static/js/vendors.9919e1fa.chunk.js.map",
+        "static/js/pages-404.c84a9d72.chunk.js",
+        "static/js/pages-404.c84a9d72.chunk.js.map"
+      ],
+      "children": {},
+      "childAssets": {}
+    },
+    "components-aside-Mypage": {
+      "chunks": [
+        0,
+        2
+      ],
+      "assets": [
+        "static/css/vendors.9919e1fa.chunk.css",
+        "static/js/vendors.9919e1fa.chunk.js",
+        "static/js/vendors.9919e1fa.chunk.js.map",
+        "static/js/pages-404.c84a9d72.chunk.js",
+        "static/js/pages-404.c84a9d72.chunk.js.map"
+      ],
+      "children": {},
+      "childAssets": {}
+    },
+    "components-aside-RecommandCategory": {
+      "chunks": [
+        0,
+        4
+      ],
+      "assets": [
+        "static/css/vendors.9919e1fa.chunk.css",
+        "static/js/vendors.9919e1fa.chunk.js",
+        "static/js/vendors.9919e1fa.chunk.js.map",
+        "static/js/components-aside-RecommandCategory.c8dd6519.chunk.js",
+        "static/js/components-aside-RecommandCategory.c8dd6519.chunk.js.map"
+      ],
+      "children": {},
+      "childAssets": {}
+    }
+  },
+  "logging": {
+    "webpack.buildChunkGraph.visitModules": {
+      "entries": [],
+      "filteredEntries": 5,
+      "debug": false
+    }
+  },
+  "children": [
+    {
+      "errors": [],
+      "warnings": [],
+      "publicPath": "/",
+      "outputPath": "/Users/idonghun/Desktop/history/frisklog/razzle_version/build/public",
+      "assetsByChunkName": {},
+      "assets": [],
+      "filteredAssets": 0,
+      "entrypoints": {
+        "mini-css-extract-plugin": {
+          "chunks": [
+            0
+          ],
+          "assets": [
+            "*"
+          ],
+          "children": {},
+          "childAssets": {}
+        }
+      },
+      "namedChunkGroups": {
+        "mini-css-extract-plugin": {
+          "chunks": [
+            0
+          ],
+          "assets": [
+            "*"
+          ],
+          "children": {},
+          "childAssets": {}
+        }
+      },
+      "logging": {
+        "webpack.buildChunkGraph.visitModules": {
+          "entries": [],
+          "filteredEntries": 2,
+          "debug": false
+        }
+      },
+      "children": [],
+      "name": "mini-css-extract-plugin node_modules/css-loader/dist/cjs.js??ref--8-1!node_modules/postcss-loader/src/index.js??postcss!node_modules/@toast-ui/editor/dist/toastui-editor-viewer.css"
+    },
+    {
+      "errors": [],
+      "warnings": [],
+      "publicPath": "/",
+      "outputPath": "/Users/idonghun/Desktop/history/frisklog/razzle_version/build/public",
+      "assetsByChunkName": {},
+      "assets": [],
+      "filteredAssets": 0,
+      "entrypoints": {
+        "mini-css-extract-plugin": {
+          "chunks": [
+            0
+          ],
+          "assets": [
+            "*"
+          ],
+          "children": {},
+          "childAssets": {}
+        }
+      },
+      "namedChunkGroups": {
+        "mini-css-extract-plugin": {
+          "chunks": [
+            0
+          ],
+          "assets": [
+            "*"
+          ],
+          "children": {},
+          "childAssets": {}
+        }
+      },
+      "logging": {
+        "webpack.buildChunkGraph.visitModules": {
+          "entries": [],
+          "filteredEntries": 2,
+          "debug": false
+        }
+      },
+      "children": [],
+      "name": "mini-css-extract-plugin node_modules/css-loader/dist/cjs.js??ref--8-1!node_modules/postcss-loader/src/index.js??postcss!node_modules/@toast-ui/editor/dist/toastui-editor.css"
+    },
+    {
+      "errors": [],
+      "warnings": [],
+      "publicPath": "/",
+      "outputPath": "/Users/idonghun/Desktop/history/frisklog/razzle_version/build/public",
+      "assetsByChunkName": {},
+      "assets": [],
+      "filteredAssets": 0,
+      "entrypoints": {
+        "mini-css-extract-plugin": {
+          "chunks": [
+            0
+          ],
+          "assets": [
+            "*"
+          ],
+          "children": {},
+          "childAssets": {}
+        }
+      },
+      "namedChunkGroups": {
+        "mini-css-extract-plugin": {
+          "chunks": [
+            0
+          ],
+          "assets": [
+            "*"
+          ],
+          "children": {},
+          "childAssets": {}
+        }
+      },
+      "logging": {
+        "webpack.buildChunkGraph.visitModules": {
+          "entries": [],
+          "filteredEntries": 2,
+          "debug": false
+        }
+      },
+      "children": [],
+      "name": "mini-css-extract-plugin node_modules/css-loader/dist/cjs.js??ref--8-1!node_modules/postcss-loader/src/index.js??postcss!node_modules/codemirror/lib/codemirror.css"
+    },
+    {
+      "errors": [],
+      "warnings": [],
+      "publicPath": "/",
+      "outputPath": "/Users/idonghun/Desktop/history/frisklog/razzle_version/build/public",
+      "assetsByChunkName": {},
+      "assets": [],
+      "filteredAssets": 0,
+      "entrypoints": {
+        "mini-css-extract-plugin": {
+          "chunks": [
+            0
+          ],
+          "assets": [
+            "*"
+          ],
+          "children": {},
+          "childAssets": {}
+        }
+      },
+      "namedChunkGroups": {
+        "mini-css-extract-plugin": {
+          "chunks": [
+            0
+          ],
+          "assets": [
+            "*"
+          ],
+          "children": {},
+          "childAssets": {}
+        }
+      },
+      "logging": {
+        "webpack.buildChunkGraph.visitModules": {
+          "entries": [],
+          "filteredEntries": 2,
+          "debug": false
+        }
+      },
+      "children": [],
+      "name": "mini-css-extract-plugin node_modules/css-loader/dist/cjs.js??ref--8-1!node_modules/postcss-loader/src/index.js??postcss!node_modules/github-markdown-css/github-markdown.css"
+    },
+    {
+      "errors": [],
+      "warnings": [],
+      "publicPath": "/",
+      "outputPath": "/Users/idonghun/Desktop/history/frisklog/razzle_version/build/public",
+      "assetsByChunkName": {},
+      "assets": [],
+      "filteredAssets": 0,
+      "entrypoints": {
+        "mini-css-extract-plugin": {
+          "chunks": [
+            0
+          ],
+          "assets": [
+            "*"
+          ],
+          "children": {},
+          "childAssets": {}
+        }
+      },
+      "namedChunkGroups": {
+        "mini-css-extract-plugin": {
+          "chunks": [
+            0
+          ],
+          "assets": [
+            "*"
+          ],
+          "children": {},
+          "childAssets": {}
+        }
+      },
+      "logging": {
+        "webpack.buildChunkGraph.visitModules": {
+          "entries": [],
+          "filteredEntries": 2,
+          "debug": false
+        }
+      },
+      "children": [],
+      "name": "mini-css-extract-plugin node_modules/css-loader/dist/cjs.js??ref--8-1!node_modules/postcss-loader/src/index.js??postcss!node_modules/highlight.js/styles/atom-one-dark.css"
+    },
+    {
+      "errors": [],
+      "warnings": [],
+      "publicPath": "/",
+      "outputPath": "/Users/idonghun/Desktop/history/frisklog/razzle_version/build/public",
+      "assetsByChunkName": {},
+      "assets": [],
+      "filteredAssets": 0,
+      "entrypoints": {
+        "mini-css-extract-plugin": {
+          "chunks": [
+            0
+          ],
+          "assets": [
+            "*"
+          ],
+          "children": {},
+          "childAssets": {}
+        }
+      },
+      "namedChunkGroups": {
+        "mini-css-extract-plugin": {
+          "chunks": [
+            0
+          ],
+          "assets": [
+            "*"
+          ],
+          "children": {},
+          "childAssets": {}
+        }
+      },
+      "logging": {
+        "webpack.buildChunkGraph.visitModules": {
+          "entries": [],
+          "filteredEntries": 2,
+          "debug": false
+        }
+      },
+      "children": [],
+      "name": "mini-css-extract-plugin node_modules/css-loader/dist/cjs.js??ref--8-1!node_modules/postcss-loader/src/index.js??postcss!node_modules/react-loader-spinner/dist/loader/css/react-spinner-loader.css"
+    },
+    {
+      "errors": [],
+      "warnings": [],
+      "publicPath": "/",
+      "outputPath": "/Users/idonghun/Desktop/history/frisklog/razzle_version/build/public",
+      "assetsByChunkName": {},
+      "assets": [],
+      "filteredAssets": 0,
+      "entrypoints": {
+        "mini-css-extract-plugin": {
+          "chunks": [
+            0
+          ],
+          "assets": [
+            "*"
+          ],
+          "children": {},
+          "childAssets": {}
+        }
+      },
+      "namedChunkGroups": {
+        "mini-css-extract-plugin": {
+          "chunks": [
+            0
+          ],
+          "assets": [
+            "*"
+          ],
+          "children": {},
+          "childAssets": {}
+        }
+      },
+      "logging": {
+        "webpack.buildChunkGraph.visitModules": {
+          "entries": [],
+          "filteredEntries": 2,
+          "debug": false
+        }
+      },
+      "children": [],
+      "name": "mini-css-extract-plugin node_modules/css-loader/dist/cjs.js??ref--8-1!node_modules/postcss-loader/src/index.js??postcss!node_modules/slick-carousel/slick/slick-theme.css"
+    },
+    {
+      "errors": [],
+      "warnings": [],
+      "publicPath": "/",
+      "outputPath": "/Users/idonghun/Desktop/history/frisklog/razzle_version/build/public",
+      "assetsByChunkName": {},
+      "assets": [],
+      "filteredAssets": 0,
+      "entrypoints": {
+        "mini-css-extract-plugin": {
+          "chunks": [
+            0
+          ],
+          "assets": [
+            "*"
+          ],
+          "children": {},
+          "childAssets": {}
+        }
+      },
+      "namedChunkGroups": {
+        "mini-css-extract-plugin": {
+          "chunks": [
+            0
+          ],
+          "assets": [
+            "*"
+          ],
+          "children": {},
+          "childAssets": {}
+        }
+      },
+      "logging": {
+        "webpack.buildChunkGraph.visitModules": {
+          "entries": [],
+          "filteredEntries": 2,
+          "debug": false
+        }
+      },
+      "children": [],
+      "name": "mini-css-extract-plugin node_modules/css-loader/dist/cjs.js??ref--8-1!node_modules/postcss-loader/src/index.js??postcss!node_modules/slick-carousel/slick/slick.css"
+    },
+    {
+      "errors": [],
+      "warnings": [
+        "./src/sass/main.scss (./node_modules/razzle-plugin-scss/node_modules/css-loader/dist/cjs.js??ref--9-1!./node_modules/razzle-plugin-scss/node_modules/postcss-loader/dist/cjs.js??ref--9-2!./node_modules/resolve-url-loader??ref--9-3!./node_modules/sass-loader/dist/cjs.js??ref--9-4!./src/sass/main.scss)\nModule Warning (from ./node_modules/razzle-plugin-scss/node_modules/postcss-loader/dist/cjs.js):\nWarning\n\n(6:28151) autoprefixer: Replace color-adjust to print-color-adjust. The color-adjust shorthand is currently deprecated."
+      ],
+      "publicPath": "/",
+      "outputPath": "/Users/idonghun/Desktop/history/frisklog/razzle_version/build/public",
+      "assetsByChunkName": {},
+      "assets": [],
+      "filteredAssets": 0,
+      "entrypoints": {
+        "mini-css-extract-plugin": {
+          "chunks": [
+            0
+          ],
+          "assets": [
+            "*"
+          ],
+          "children": {},
+          "childAssets": {}
+        }
+      },
+      "namedChunkGroups": {
+        "mini-css-extract-plugin": {
+          "chunks": [
+            0
+          ],
+          "assets": [
+            "*"
+          ],
+          "children": {},
+          "childAssets": {}
+        }
+      },
+      "logging": {
+        "webpack.buildChunkGraph.visitModules": {
+          "entries": [],
+          "filteredEntries": 2,
+          "debug": false
+        }
+      },
+      "children": [],
+      "name": "mini-css-extract-plugin node_modules/razzle-plugin-scss/node_modules/css-loader/dist/cjs.js??ref--9-1!node_modules/razzle-plugin-scss/node_modules/postcss-loader/dist/cjs.js??ref--9-2!node_modules/resolve-url-loader/index.js??ref--9-3!node_modules/sass-loader/dist/cjs.js??ref--9-4!src/sass/main.scss"
+    }
+  ]
+}

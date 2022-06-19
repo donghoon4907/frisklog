@@ -5,7 +5,7 @@ npm-debug.log*
 
 coverage
 node_modules
-build
+# build
 # dotenv environment variables file
 .env.*
 
