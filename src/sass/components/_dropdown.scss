@@ -1,28 +1,44 @@
 .fr-dropdown {
-    position: relative;
+    position: absolute;
+    width: 200px;
+    z-index: 10000;
+    display: flex;
+    flex-direction: column;
+    visibility: visible;
 
-    & button {
-        position: absolute;
-        top: -10px;
-        right: 0;
-        opacity: 0;
-        z-index: 1;
-        padding: 0;
+    @include wb;
+
+    &--hide {
+        visibility: hidden;
     }
 
-    .dropdown-menu {
-        padding: 0;
+    &__wrapper {
+        // position: relative;
     }
 
-    .dropdown-divider {
-        margin: 0;
-    }
-
-    & svg {
-        fill: gray;
+    &__icon {
         cursor: pointer;
-        position: absolute;
-        top: -10px;
-        right: -5px;
+        right: 5px;
+
+        @include alignIconCenter;
+    }
+
+    &__item {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex: 1;
+
+        &:hover {
+            background-color: $fr-hover-color;
+        }
+    }
+
+    &__button {
+        flex: 1;
+        padding: 10px;
+        font-size: 1rem;
+        line-height: 1.5;
+        font-weight: 400;
     }
 }

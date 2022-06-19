@@ -3,7 +3,7 @@ import { Profile } from "../../assets/icon";
 import { useDispatch, useSelector } from "../../context";
 import { SHOW_LOGIN_MODAL, SET_ME } from "../../context/action";
 import { TOKEN_KEY, getStorage, deleteStorage } from "../../lib/cookie";
-import PopoverAvatar from "../PopoverAvatar";
+import Avatar from "../Avatar";
 
 /**
  * 내 정보 아이콘 컴포넌트
@@ -12,7 +12,7 @@ import PopoverAvatar from "../PopoverAvatar";
 const ProfileBtn = () => {
     const dispatch = useDispatch();
 
-    const { id, nickname, avatar } = useSelector();
+    const { id, avatar } = useSelector();
     // 로그인 여부
     const [isLoggedIn, setIsLoggedIn] = useState(id !== null);
     // 클릭 핸들러
@@ -51,12 +51,7 @@ const ProfileBtn = () => {
 
     return isLoggedIn ? (
         <div className="d-flex justify-content-start">
-            <PopoverAvatar
-                src={avatar}
-                size={30}
-                userId={id}
-                nickname={nickname}
-            />
+            <Avatar src={avatar} size={30} userId={id} />
         </div>
     ) : (
         <button onClick={handleClick}>

@@ -63,6 +63,7 @@ const SignUpPresenter = ({
                     id="email"
                     autoComplete="off"
                     required
+                    isAlone={true}
                     {...email}
                     label="이메일"
                 />
@@ -72,6 +73,7 @@ const SignUpPresenter = ({
                     id="password"
                     autoComplete="off"
                     required
+                    isAlone={true}
                     {...password}
                     label="암호"
                 />
@@ -79,6 +81,7 @@ const SignUpPresenter = ({
                     placeholder="닉네임을 입력하세요"
                     required
                     id="nickname"
+                    isAlone={true}
                     {...nickname}
                     autoComplete="off"
                     label="닉네임"

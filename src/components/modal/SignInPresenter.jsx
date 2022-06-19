@@ -22,6 +22,7 @@ const SignInPresenter = ({ loading, email, password, onSubmit }) => (
                 autoComplete="off"
                 required
                 label="이메일"
+                isAlone={true}
                 {...email}
             />
             <FormInput
@@ -30,6 +31,7 @@ const SignInPresenter = ({ loading, email, password, onSubmit }) => (
                 id="password"
                 autoComplete="off"
                 label="암호"
+                isAlone={true}
                 {...password}
             />
             <Button type="submit">로그인</Button>

@@ -31,7 +31,12 @@ const Auth = () => {
     }, []);
 
     return (
-        <Modal onHide={handleClose} show animation={false}>
+        <Modal
+            onHide={handleClose}
+            show
+            animation={false}
+            contentClassName="fr-modal-auth"
+        >
             <Modal.Header closeButton>
                 <Modal.Title>
                     {action === "login" ? "로그인" : "회원가입"}

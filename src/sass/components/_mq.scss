@@ -20,15 +20,28 @@
     // main wide
     .fr-app__body {
         justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
+    .fr-main__wrapper {
+        // display: none !important;
+        padding: 0 !important;
+        order: 2;
     }
     .fr-main__body {
         max-width: 540px;
         // border-right: none !important;
     }
-    // asdie hide
     .fr-aside__wrapper {
-        display: none !important;
+        // display: none !important;
+        position: relative !important;
+        padding-left: 0 !important;
+        order: 1;
+        max-width: 540px;
+        width: 100% !important;
+        height: auto !important;
     }
+
     // carousel wide {
     // .fr-carousel {
     //     width: 990px !important;

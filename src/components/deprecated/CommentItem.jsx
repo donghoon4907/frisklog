@@ -1,15 +1,15 @@
 import React, { useState, useCallback, memo } from "react";
 import { useMutation } from "@apollo/client";
-import { UPDATE_COMMENT, DELETE_COMMENT } from "../graphql/mutation/comment";
-import { useInput } from "../hooks";
-import { FormTextArea } from "./Form";
-import Avatar from "./Avatar";
-import Button from "./button";
-import { TOKEN_KEY, getStorage } from "../lib/cookie";
-import { useDispatch, useSelector } from "../context";
-import { SHOW_LOGIN_MODAL } from "../context/action";
-import Loader from "./Loader";
-import { timeForToday } from "../lib/date";
+import { UPDATE_COMMENT, DELETE_COMMENT } from "../../graphql/mutation/comment";
+import { useInput } from "../../hooks";
+import { FormTextArea } from "../Form";
+import Avatar from "../Avatar";
+import Button from "../button";
+import { TOKEN_KEY, getStorage } from "../../lib/cookie";
+import { useDispatch, useSelector } from "../../context";
+import { SHOW_LOGIN_MODAL } from "../../context/action";
+import Loader from "../Loader";
+import { timeForToday } from "../../lib/date";
 import Dropdown from "./Dropdown";
 
 /**

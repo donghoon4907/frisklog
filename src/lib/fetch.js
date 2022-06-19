@@ -12,7 +12,7 @@ export const handleFetchMore = ({ fetchMore, variables, type }) => (callback) =>
         updateQuery: (prev, next) => {
             const { fetchMoreResult } = next;
 
-            if (!fetchMoreResult) {
+            if (!fetchMoreResult || fetchMoreResult[type].rows.length === 0) {
                 return prev;
             }
 

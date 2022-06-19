@@ -1,5 +1,6 @@
 import { useState, useCallback, useEffect } from "react";
 import axios from "axios";
+import { getBreakpoint } from "../lib/responsive";
 
 export const useInput = (defaultValue, where) => {
     const [value, setValue] = useState(defaultValue);
@@ -49,4 +50,26 @@ export const useLazyAxios = () => {
     );
 
     return { loading, call };
+};
+
+export const useResize = () => {
+    const [breakpoint, setBreakpoint] = useState(false);
+
+    const handleResize = useCallback((e) => {
+        const { innerWidth } = e.target;
+
+        const { breakpoint } = getBreakpoint(innerWidth);
+
+        setBreakpoint(breakpoint);
+    }, []);
+
+    useEffect(() => {
+        window.addEventListener("resize", handleResize);
+
+        window.dispatchEvent(new Event("resize"));
+
+        return () => window.removeEventListener("resize", handleResize);
+    }, []);
+
+    return [breakpoint];
 };

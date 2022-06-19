@@ -13,18 +13,19 @@ const DispatchContext = createContext(null);
  * @property email              - 사용자 이메일
  * @property avatar             - 사용자 프로필 사진
  * @property isMaster           - 운영자 여부
- * @property isShowNoticeModal  - 공지사항 팝업 보이기 여부
+ * @deprecated isShowNoticeModal  - 공지사항 팝업 보이기 여부
  * @property isShowAddPostModal - 게시물 추가 팝업 보이기 여부
  * @property isShowSearchBar    - 검색바 보이기 여부
- * @property isShowFilterBar    - 검색 필터 보이기 여부
+ * @deprecated isShowFilterBar    - 검색 필터 보이기 여부
  * @property isShowLoginModal   - 로그인 팝업 보이기 여부
  * @property activePost         - 선택한 게시물 정보
- * @property activeNotice       - 선택한 공지사항 정보
- * @property searchPostOption   - 검색 옵션
- * @property isCollapseNav      - 네비게이션 확장상태 (expand, contract)
- * @property isMobile           - 모바일 환경 여부
+ * @deprecated activeNotice       - 선택한 공지사항 정보
+ * @deprecated searchPostOption   - 검색 옵션
+ * @deprecated isCollapseNav      - 네비게이션 확장상태 (expand, contract)
+ * @deprecated isMobile           - 모바일 환경 여부
  * @property breakpoint         - 브레이크 포인트
  * @property slidesToShow       - 캐러셀 노출 아이템 수
+ * @property isShowPostDropdown   - 포스트 드롭다운 보이기 여부
  */
 const initialState = {
     id: null,
@@ -32,39 +33,45 @@ const initialState = {
     email: null,
     avatar: null,
     isMaster: false,
-    isShowNoticeModal: false,
+    // isShowNoticeModal: false,
     isShowAddPostModal: false,
     isShowSearchBar: false,
-    isShowFilterBar: false,
+    // isShowFilterBar: false,
     isShowLoginModal: false,
-    isCollapseNav: "contract",
+    isShowPostDropdown: false,
+    // isCollapseNav: "contract",
     // isMobile: false, deprecated
     breakpoint: "wd",
     slidesToShow: 1,
     activePost: {
         id: "",
-        title: "",
-        description: ""
+        content: "",
+        category: ""
     },
-    activeNotice: {
-        id: "",
-        action: "wait",
-        actionText: "비활성화",
-        title: "",
-        description: ""
-    },
-    feedPostOption: {},
-    searchPostOption: {
-        first: 30,
-        orderBy: "createdAt_DESC",
-        query: undefined,
-        category: undefined,
-        userId: undefined
+    activeDropdown: {
+        offsetX: -1,
+        offsetY: -1
     }
+    // activeNotice: {
+    //     id: "",
+    //     action: "wait",
+    //     actionText: "비활성화",
+    //     title: "",
+    //     description: ""
+    // },
+    // feedPostOption: {},
+    // searchPostOption: {
+    //     first: 30,
+    //     orderBy: "createdAt_DESC",
+    //     query: undefined,
+    //     category: undefined,
+    //     userId: undefined
+    // }
 };
 
 /**
- * * 로컬 상태 제공 컴포넌트
+ * 로컬 상태 제공 컴포넌트
+ *
  */
 export function ContextProvider({ children, context }) {
     const [state, dispatch] = useReducer(reducer, {
@@ -82,7 +89,8 @@ export function ContextProvider({ children, context }) {
 }
 
 /**
- * * Hooks - 로컬 상태 감시 모듈
+ * Hooks - 로컬 상태 감시
+ *
  */
 export function useSelector() {
     const state = useContext(Context);
@@ -95,7 +103,8 @@ export function useSelector() {
 }
 
 /**
- * * Hooks - 로컬 상태 변경 모듈
+ * Hooks - 로컬 상태 변경
+ *
  */
 export function useDispatch() {
     const dispatch = useContext(DispatchContext);

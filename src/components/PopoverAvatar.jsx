@@ -1,6 +1,6 @@
 import React from "react";
 import { OverlayTrigger, Popover } from "react-bootstrap";
-import LogoutBtn from "./button/LogoutBtn";
+import LogoutBtn from "./button/Logout";
 import { Link } from "react-router-dom";
 
 /**

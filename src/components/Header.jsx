@@ -1,10 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { useSelector } from "../context";
-import ProfileBtn from "./button/ProfileBtn";
-import SearchBtn from "./button/SearchBtn";
+import ProfileBtn from "./button/Profile";
+import SearchBtn from "./button/Search";
 import HeaderSearchBar from "./HeaderSearchBar";
-import CreatePostBtn from "./button/CreatePostBtn";
+import CreatePostBtn from "./button/CreatePost";
 // import HeaderNotice from "./HeaderNotice";
 import { Home } from "../assets/icon";
 
@@ -14,7 +14,7 @@ import { Home } from "../assets/icon";
  */
 const Header = () => {
     const displayName = "fr-header";
-    // selector
+
     const { isShowSearchBar } = useSelector();
 
     return (

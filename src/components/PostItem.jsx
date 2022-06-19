@@ -5,6 +5,8 @@ import { timeForToday } from "../lib/date";
 import PostLike from "./PostLike";
 import { marked } from "marked";
 import Spinner from "react-loader-spinner";
+// import { DropdownBtn } from "./Dropdown";
+// import { useSelector } from "../context";
 
 /**
  * 게시물 컴포넌트
@@ -22,6 +24,8 @@ import Spinner from "react-loader-spinner";
  */
 const PostItem = ({ id, User, createdAt, category, content, Likers }) => {
     const displayName = "fr-post";
+
+    // const { id: userId } = useSelector();
 
     const mdBodyEl = useRef(null);
     // 이미지 로딩 여부
@@ -74,8 +78,11 @@ const PostItem = ({ id, User, createdAt, category, content, Likers }) => {
                             {User.nickname}
                         </span>
                     </div>
+                    {/* {userId == User.id && <DropdownBtn />} */}
                 </header>
-                <div className={`${displayName}__body expended`}>
+                <div
+                    className={`${displayName}__body ${displayName}__body--expended`}
+                >
                     {loading && (
                         <div className={`${displayName}__skeleton`}>
                             <Spinner

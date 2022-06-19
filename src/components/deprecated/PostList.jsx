@@ -1,11 +1,11 @@
 import React from "react";
-import { GET_POSTS } from "../graphql/query/post";
-import Query from "./Query";
-import Scroll from "./Scroll";
-import PostListTypeItem from "./PostListTypeItem";
-import PostCardTypeItem from "./PostCardTypeItem";
-import NoData from "./NoData";
-import { useSelector } from "../context";
+import { GET_POSTS } from "../../graphql/query/post";
+import Query from "../Query";
+import Scroll from "../Scroll";
+import PostListTypeItem from "../PostListTypeItem";
+import PostCardTypeItem from "../PostCardTypeItem";
+import NoData from "../NoData";
+import { useSelector } from "../../context";
 
 /**
  * * 페이지 게시물 렌더링 컴포넌트

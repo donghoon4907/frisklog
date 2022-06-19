@@ -1,20 +1,22 @@
 import {
     SET_ME,
-    SHOW_NOTICE_MODAL,
-    HIDE_NOTICE_MODAL,
+    // SHOW_NOTICE_MODAL,
+    // HIDE_NOTICE_MODAL,
     SHOW_POST_MODAL,
     HIDE_POST_MODAL,
     SHOW_LOGIN_MODAL,
     HIDE_LOGIN_MODAL,
     SHOW_SEARCH_BAR,
     HIDE_SEARCH_BAR,
-    SHOW_FILTER_BAR,
-    HIDE_FILTER_BAR,
-    SEARCH_POST,
-    EXPAND_NAVIGATION,
-    CONTRACT_NAVIGATION,
+    // SHOW_FILTER_BAR,
+    // HIDE_FILTER_BAR,
+    // SEARCH_POST,
+    // EXPAND_NAVIGATION,
+    // CONTRACT_NAVIGATION,
     // SET_IS_MOBILE,
-    SET_BREAKPOINT
+    SET_BREAKPOINT,
+    SHOW_POST_DROPDOWN,
+    HIDE_POST_DROPDOWN
 } from "./action";
 
 /**
@@ -34,30 +36,30 @@ export default function reducer(state, action) {
                 avatar: action.avatar,
                 isMaster: action.isMaster
             };
-        case SHOW_NOTICE_MODAL:
-            return {
-                ...state,
-                isShowNoticeModal: true,
-                activeNotice: {
-                    id: action.id,
-                    action: action.action,
-                    actionText: action.actionText,
-                    title: action.title,
-                    description: action.description
-                }
-            };
-        case HIDE_NOTICE_MODAL:
-            return {
-                ...state,
-                isShowNoticeModal: false,
-                activeNotice: {
-                    id: "",
-                    action: "wait",
-                    actionText: "비활성화",
-                    title: "",
-                    description: ""
-                }
-            };
+        // case SHOW_NOTICE_MODAL:
+        //     return {
+        //         ...state,
+        //         isShowNoticeModal: true,
+        //         activeNotice: {
+        //             id: action.id,
+        //             action: action.action,
+        //             actionText: action.actionText,
+        //             title: action.title,
+        //             description: action.description
+        //         }
+        //     };
+        // case HIDE_NOTICE_MODAL:
+        //     return {
+        //         ...state,
+        //         isShowNoticeModal: false,
+        //         activeNotice: {
+        //             id: "",
+        //             action: "wait",
+        //             actionText: "비활성화",
+        //             title: "",
+        //             description: ""
+        //         }
+        //     };
 
         case SHOW_SEARCH_BAR:
             return {
@@ -69,16 +71,16 @@ export default function reducer(state, action) {
                 ...state,
                 isShowSearchBar: false
             };
-        case SHOW_FILTER_BAR:
-            return {
-                ...state,
-                isShowFilterBar: true
-            };
-        case HIDE_FILTER_BAR:
-            return {
-                ...state,
-                isShowFilterBar: false
-            };
+        // case SHOW_FILTER_BAR:
+        //     return {
+        //         ...state,
+        //         isShowFilterBar: true
+        //     };
+        // case HIDE_FILTER_BAR:
+        //     return {
+        //         ...state,
+        //         isShowFilterBar: false
+        //     };
         case SHOW_LOGIN_MODAL:
             return {
                 ...state,
@@ -92,41 +94,51 @@ export default function reducer(state, action) {
         case SHOW_POST_MODAL:
             return {
                 ...state,
-                isShowAddPostModal: true
+                isShowAddPostModal: true,
+                activePost: {
+                    id: action.id ? action.id : "",
+                    content: action.content ? action.content : "",
+                    category: action.category ? action.category : ""
+                }
             };
         case HIDE_POST_MODAL:
             return {
                 ...state,
-                isShowAddPostModal: false
-            };
-        case SEARCH_POST:
-            return {
-                ...state,
-                searchPostOption: {
-                    orderBy:
-                        "orderBy" in action
-                            ? action.orderBy
-                            : state.searchPostOption.orderBy,
-                    query:
-                        "query" in action
-                            ? action.query
-                            : state.searchPostOption.query,
-                    filter:
-                        "filter" in action
-                            ? action.filter
-                            : state.searchPostOption.filter
+                isShowAddPostModal: false,
+                activePost: {
+                    id: "",
+                    content: "",
+                    category: ""
                 }
             };
-        case EXPAND_NAVIGATION:
-            return {
-                ...state,
-                isCollapseNav: "expand"
-            };
-        case CONTRACT_NAVIGATION:
-            return {
-                ...state,
-                isCollapseNav: "contract"
-            };
+        // case SEARCH_POST:
+        //     return {
+        //         ...state,
+        //         searchPostOption: {
+        //             orderBy:
+        //                 "orderBy" in action
+        //                     ? action.orderBy
+        //                     : state.searchPostOption.orderBy,
+        //             query:
+        //                 "query" in action
+        //                     ? action.query
+        //                     : state.searchPostOption.query,
+        //             filter:
+        //                 "filter" in action
+        //                     ? action.filter
+        //                     : state.searchPostOption.filter
+        //         }
+        //     };
+        // case EXPAND_NAVIGATION:
+        //     return {
+        //         ...state,
+        //         isCollapseNav: "expand"
+        //     };
+        // case CONTRACT_NAVIGATION:
+        //     return {
+        //         ...state,
+        //         isCollapseNav: "contract"
+        //     };
         // case SET_IS_MOBILE:
         //     return {
         //         ...state,
@@ -135,8 +147,26 @@ export default function reducer(state, action) {
         case SET_BREAKPOINT:
             return {
                 ...state,
-                breakpoint: action.breakpoint,
-                slidesToShow: action.slidesToShow
+                breakpoint: action.breakpoint
+                // slidesToShow: action.slidesToShow
+            };
+        case SHOW_POST_DROPDOWN:
+            return {
+                ...state,
+                isShowPostDropdown: true,
+                activeDropdown: {
+                    offsetX: action.offsetX,
+                    offsetY: action.offsetY
+                }
+            };
+        case HIDE_POST_DROPDOWN:
+            return {
+                ...state,
+                isShowPostDropdown: false,
+                activeDropdown: {
+                    offsetX: -1,
+                    offsetY: -1
+                }
             };
         default:
             return { ...state };

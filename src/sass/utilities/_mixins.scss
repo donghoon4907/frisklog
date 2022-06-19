@@ -17,6 +17,7 @@
     border: $fr-box-border !important;
     border-radius: $fr-border-radius !important;
     background: white !important;
+    overflow: hidden;
 }
 /* button and text in one line */
 @mixin btnWithText {
@@ -36,4 +37,20 @@
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
+}
+/* banner */
+@mixin bannerImage {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: 50%;
+}
+/* icon position center */
+@mixin alignIconCenter {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
 }

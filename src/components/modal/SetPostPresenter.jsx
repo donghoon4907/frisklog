@@ -3,7 +3,7 @@ import { Modal, Button } from "react-bootstrap";
 import { FormInput } from "../Form";
 import Loader from "../Loader";
 import Editor from "../Editor";
-import CategoryBtn from "../button/CategoryBtn";
+import CategoryBtn from "../button/Category";
 
 /**
  * 게시물 등록 모달 컨테이너 컴포넌트
@@ -43,7 +43,7 @@ const SetPostPresenter = ({
                     label="카테고리"
                     onChange={onChange}
                 >
-                    <ul style={{ width: 1300, marginLeft: 10 }}>
+                    <ul style={{ marginLeft: 10, flex: 1 }}>
                         {category.value.length > 0 && (
                             <CategoryBtn content={category.value} />
                         )}

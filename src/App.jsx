@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect } from "react";
+import React, { useEffect } from "react";
 import { Route, Switch } from "react-router-dom";
 import loadable from "@loadable/component";
 import Header from "./components/Header";
@@ -6,10 +6,9 @@ import AuthModal from "./components/modal/Auth";
 import PostModal from "./components/modal/SetPostContainer";
 import { useDispatch, useSelector } from "./context";
 import { SET_BREAKPOINT } from "./context/action";
-import { getBreakpoint } from "./lib/responsive";
-import Query from "./components/Query";
-import { GET_RECOMMEND_CATEGORIES } from "./graphql/query/history";
-import CategoryBtn from "./components/button/CategoryBtn";
+import { useResize } from "./hooks";
+// import { Dropdown, DropdownItem } from "./components/Dropdown";
+// import UpdatePostBtn from "./components/button/UpdatePost";
 
 import "./sass/main.scss";
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
@@ -20,17 +19,22 @@ import "highlight.js/styles/atom-one-dark.css";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import "github-markdown-css/github-markdown.css";
-
+// page
 const Feed = loadable(() => import("./pages/feed"));
 const SearchPostPage = loadable(() => import("./pages/search/SearchPostPage"));
 const SearchCategoryPage = loadable(() =>
     import("./pages/search/SearchCategoryPage")
 );
-const Post = loadable(() => import("./pages/post"));
-const CreatePostPage = loadable(() => import("./pages/post/CreatePostPage"));
-const UpdatePostPage = loadable(() => import("./pages/post/UpdatePostPage"));
+// const Post = loadable(() => import("./pages/post"));
+// const CreatePostPage = loadable(() => import("./pages/post/CreatePostPage"));
+// const UpdatePostPage = loadable(() => import("./pages/post/UpdatePostPage"));
 const User = loadable(() => import("./pages/user"));
 const NoMatch = loadable(() => import("./pages/404"));
+// aside
+const AsideMypage = loadable(() => import("./components/aside/Mypage"));
+const AsideRecommandCategory = loadable(() =>
+    import("./components/aside/RecommandCategory")
+);
 
 const App = () => {
     const displayName = "fr-app";
@@ -39,27 +43,14 @@ const App = () => {
 
     const { isShowLoginModal, isShowAddPostModal } = useSelector();
 
-    // 리사이징 핸들러
-    const handleResize = useCallback((e) => {
-        const { innerWidth } = e.target;
-
-        const { breakpoint, slidesToShow } = getBreakpoint(innerWidth);
-        // breakpoint 설정
-        dispatch({
-            type: SET_BREAKPOINT,
-            breakpoint,
-            slidesToShow
-        });
-    }, []);
+    const [breakpoint] = useResize();
 
     useEffect(() => {
-        // 리사이징 이벤트 바인딩
-        window.addEventListener("resize", handleResize);
-        // 리사이징 이벤트 실행
-        window.dispatchEvent(new Event("resize"));
-        // 리사이징 이벤트 언바인딩
-        return () => window.removeEventListener("resize", handleResize);
-    }, []);
+        dispatch({
+            type: SET_BREAKPOINT,
+            breakpoint
+        });
+    }, [breakpoint]);
 
     return (
         <div className={`${displayName}__wrapper`}>
@@ -68,9 +59,15 @@ const App = () => {
                 <div className={`${displayName}__body`}>
                     <div className="fr-main__wrapper">
                         <main className="fr-main">
+                            {/* <Dropdown>
+                                <DropdownItem>
+                                    <UpdatePostBtn />
+                                </DropdownItem>
+                                <DropdownItem>삭제</DropdownItem>
+                            </Dropdown> */}
                             <Switch>
                                 <Route exact path="/" component={Feed} />
-                                <Route
+                                {/* <Route
                                     exact
                                     path="/create_post"
                                     component={CreatePostPage}
@@ -84,7 +81,7 @@ const App = () => {
                                     exact
                                     path="/post/:id"
                                     component={Post}
-                                />
+                                /> */}
                                 <Route
                                     exact
                                     path="/user/:id"
@@ -106,34 +103,14 @@ const App = () => {
                     </div>
                     <div className="fr-aside__wrapper">
                         <aside className="fr-aside">
-                            <div className="fr-recommend__wrapper">
-                                <div className="fr-recommend__title">
-                                    추천 카테고리
-                                </div>
-                                <ul
-                                    className="fr-recommend"
-                                    aria-label="추천 카테고리"
-                                >
-                                    <Query
-                                        query={GET_RECOMMEND_CATEGORIES}
-                                        variables={{
-                                            limit: 5
-                                        }}
-                                    >
-                                        {({ data: { recommendCategories } }) =>
-                                            recommendCategories.map(
-                                                ({ category }) => (
-                                                    <CategoryBtn
-                                                        key={`recCat${category}`}
-                                                        content={category}
-                                                        isGap={true}
-                                                    />
-                                                )
-                                            )
-                                        }
-                                    </Query>
-                                </ul>
-                            </div>
+                            <Switch>
+                                <Route
+                                    exact
+                                    path="/user/:id"
+                                    component={AsideMypage}
+                                />
+                                <Route component={AsideRecommandCategory} />
+                            </Switch>
                         </aside>
                     </div>
                 </div>

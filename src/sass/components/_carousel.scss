@@ -15,10 +15,9 @@
     }
 
     &__next {
-        position: absolute;
-        top: 50%;
         right: 37px;
         z-index: 1000;
-        transform: translateY(-50%);
+
+        @include alignIconCenter;
     }
 }

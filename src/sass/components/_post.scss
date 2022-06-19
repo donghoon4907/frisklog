@@ -20,7 +20,6 @@
         align-items: center;
         width: 100%;
         padding: 12px;
-        overflow: hidden;
     }
 
     &__avatar {
@@ -50,12 +49,16 @@
         height: 300px;
         overflow: hidden;
 
-        &.expended {
+        &--expended {
             height: auto;
         }
 
         .markdown-body *:not(.fr-thumbnail, .fr-thumbnail__image, a, code) {
             margin: 12px !important;
+        }
+
+        ul {
+            list-style: disc;
         }
     }
 
