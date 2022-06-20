@@ -31,6 +31,6 @@ export const SHOW_POST_MODAL = "SHOW_POST_MODAL";
 // 게시물 등록 팝업 숨기기
 export const HIDE_POST_MODAL = "HIDE_POST_MODAL";
 // 게시물 드롭다운 팝업 보이기
-export const SHOW_POST_DROPDOWN = "SHOW_POST_DROPDOWN";
+// export const SHOW_POST_DROPDOWN = "SHOW_POST_DROPDOWN";
 // 게시물 드롭다운 팝업 숨기기
-export const HIDE_POST_DROPDOWN = "HIDE_POST_DROPDOWN";
+// export const HIDE_POST_DROPDOWN = "HIDE_POST_DROPDOWN";

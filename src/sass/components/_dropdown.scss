@@ -1,5 +1,7 @@
 .fr-dropdown {
     position: absolute;
+    top: 15px;
+    right: 15px;
     width: 200px;
     z-index: 10000;
     display: flex;
@@ -13,7 +15,7 @@
     }
 
     &__wrapper {
-        // position: relative;
+        position: relative;
     }
 
     &__icon {
@@ -34,11 +36,10 @@
         }
     }
 
-    &__button {
-        flex: 1;
-        padding: 10px;
-        font-size: 1rem;
-        line-height: 1.5;
-        font-weight: 400;
+    &__text {
+        display: block;
+        line-height: 2;
+        text-align: center;
+        width: 100%;
     }
 }

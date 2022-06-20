@@ -7,8 +7,6 @@ import PostModal from "./components/modal/SetPostContainer";
 import { useDispatch, useSelector } from "./context";
 import { SET_BREAKPOINT } from "./context/action";
 import { useResize } from "./hooks";
-// import { Dropdown, DropdownItem } from "./components/Dropdown";
-// import UpdatePostBtn from "./components/button/UpdatePost";
 
 import "./sass/main.scss";
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
@@ -59,12 +57,6 @@ const App = () => {
                 <div className={`${displayName}__body`}>
                     <div className="fr-main__wrapper">
                         <main className="fr-main">
-                            {/* <Dropdown>
-                                <DropdownItem>
-                                    <UpdatePostBtn />
-                                </DropdownItem>
-                                <DropdownItem>삭제</DropdownItem>
-                            </Dropdown> */}
                             <Switch>
                                 <Route exact path="/" component={Feed} />
                                 {/* <Route

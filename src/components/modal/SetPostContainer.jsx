@@ -1,9 +1,9 @@
 import React, { useCallback, useState } from "react";
 import { useMutation } from "@apollo/client";
-import { CREATE_POST } from "../../graphql/mutation/post";
+import { CREATE_POST, UPDATE_POST } from "../../graphql/mutation/post";
 import SetPostPresenter from "./SetPostPresenter";
 import { useInput } from "../../hooks";
-import { useDispatch } from "../../context";
+import { useDispatch, useSelector } from "../../context";
 import { HIDE_POST_MODAL } from "../../context/action";
 import { TOKEN_KEY, getStorage } from "../../lib/cookie";
 import { graphqlError } from "../../lib/error";
@@ -14,12 +14,16 @@ import { graphqlError } from "../../lib/error";
  */
 const SetPostContainer = () => {
     const dispatch = useDispatch();
+
+    const { activePost } = useSelector();
     // 카테고리
-    const category = useInput("", "no_space");
+    const category = useInput(activePost.category, "no_space");
     // 내용
-    const [_content, setContent] = useState("");
-    // 게시물 추가
-    const [create, { loading }] = useMutation(CREATE_POST);
+    const [_content, setContent] = useState(activePost.content);
+    // 게시물 추가 및 수정
+    const [set, { loading }] = useMutation(
+        activePost.id ? UPDATE_POST : CREATE_POST
+    );
     // 팝업 닫기 핸들러
     const handleClose = useCallback(() => {
         // 팝업 숨기기
@@ -39,7 +43,7 @@ const SetPostContainer = () => {
         },
         [category.value]
     );
-    // 공지사항 등록 및 수정 핸들러
+    // 등록 및 수정 핸들러
     const handleSubmit = useCallback(
         async (e) => {
             e.preventDefault();
@@ -58,36 +62,47 @@ const SetPostContainer = () => {
 
             const content = _content.markdown;
 
-            const tf = confirm("입력한 내용으로 게시물을 등록하시겠어요?");
+            const tf = confirm(
+                `입력한 내용으로 게시물을 ${
+                    activePost.id ? "수정" : "등록"
+                }하시겠어요?`
+            );
 
             if (tf) {
                 try {
                     const {
-                        data: { addPost }
-                    } = await create({
+                        data: { addPost, updatePost }
+                    } = await set({
                         variables: {
                             content,
-                            category: category.value
+                            category: category.value,
+                            id: activePost.id || undefined
                         }
                     });
 
                     if (addPost) {
                         alert("게시물이 등록되었습니다.");
+                    } else if (updatePost) {
+                        alert("게시물이 수정되었습니다.");
+                    } else {
+                        throw new Exception("check SetPostContainer");
                     }
 
-                    handleClose();
+                    window.location.reload();
                 } catch (error) {
                     graphqlError({ error, dispatch });
                 }
             }
         },
-        [loading, _content, category.value]
+        [loading, _content, category.value, activePost.id]
     );
 
     return (
         <SetPostPresenter
+            id={activePost.id}
             loading={loading}
             category={category}
+            content={_content}
             setContent={setContent}
             onClose={handleClose}
             onSubmit={handleSubmit}

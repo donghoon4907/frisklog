@@ -14,9 +14,7 @@ import {
     // EXPAND_NAVIGATION,
     // CONTRACT_NAVIGATION,
     // SET_IS_MOBILE,
-    SET_BREAKPOINT,
-    SHOW_POST_DROPDOWN,
-    HIDE_POST_DROPDOWN
+    SET_BREAKPOINT
 } from "./action";
 
 /**
@@ -150,24 +148,24 @@ export default function reducer(state, action) {
                 breakpoint: action.breakpoint
                 // slidesToShow: action.slidesToShow
             };
-        case SHOW_POST_DROPDOWN:
-            return {
-                ...state,
-                isShowPostDropdown: true,
-                activeDropdown: {
-                    offsetX: action.offsetX,
-                    offsetY: action.offsetY
-                }
-            };
-        case HIDE_POST_DROPDOWN:
-            return {
-                ...state,
-                isShowPostDropdown: false,
-                activeDropdown: {
-                    offsetX: -1,
-                    offsetY: -1
-                }
-            };
+        // case SHOW_POST_DROPDOWN:
+        //     return {
+        //         ...state,
+        //         isShowPostDropdown: true,
+        //         activeDropdown: {
+        //             offsetX: action.offsetX,
+        //             offsetY: action.offsetY
+        //         }
+        //     };
+        // case HIDE_POST_DROPDOWN:
+        //     return {
+        //         ...state,
+        //         isShowPostDropdown: false,
+        //         activeDropdown: {
+        //             offsetX: -1,
+        //             offsetY: -1
+        //         }
+        //     };
         default:
             return { ...state };
     }

@@ -1,87 +1,73 @@
-import React, { useCallback, memo } from "react";
-import { useDispatch, useSelector } from "../context";
-import { More } from "../assets/icon";
-import { SHOW_POST_DROPDOWN, HIDE_POST_DROPDOWN } from "../context/action";
+import React, { useState, forwardRef, Children } from "react";
+import { Dropdown, Form } from "react-bootstrap";
 
-const displayName = "fr-dropdown";
+const CustomToggle = forwardRef(({ children, onClick }, ref) => (
+    <button
+        ref={ref}
+        onClick={(e) => {
+            e.preventDefault();
 
-/**
- * 드롭다운 컴포넌트
- *
- */
-export const DropdownBtn = () => {
-    const dispatch = useDispatch();
-
-    const { isShowPostDropdown, activeDropdown } = useSelector();
-
-    const handleClick = useCallback(
-        (e) => {
-            const $btn = e.target.closest("button");
-
-            const { x, y } = $btn.getBoundingClientRect();
-
-            console.log(x);
-            console.log(y);
-
-            let type, offsetX, offsetY;
-            // 동일한 포스트의 열려있는 드롭다운 클릭 시
-            if (activeDropdown.offsetX === x && activeDropdown.offsetY === y) {
-                type = HIDE_POST_DROPDOWN;
-                offsetX = -1;
-                offsetY = -1;
-            } else {
-                type = SHOW_POST_DROPDOWN;
-                offsetX = x;
-                offsetY = y;
-            }
-
-            dispatch({
-                type,
-                offsetX,
-                offsetY
-            });
-        },
-        [isShowPostDropdown, activeDropdown.offsetX, activeDropdown.offsetY]
-    );
-
-    return (
-        <div className={`${displayName}__wrapper`}>
-            <div className={`${displayName}__icon`}>
-                <button onClick={handleClick}>
-                    <More />
-                    <span className="a11y-hidden">드롭다운</span>
-                </button>
-            </div>
-        </div>
-    );
-};
-/**
- * 드롭다운 아이템 컴포넌트
- *
- */
-export const Dropdown = ({ children }) => {
-    const { isShowPostDropdown, activeDropdown } = useSelector();
-
-    return (
-        <ul
-            style={{
-                transform: `translate(${activeDropdown.offsetX - 490}px, ${
-                    activeDropdown.offsetY + 30
-                }px)`
-            }}
-            className={`${displayName}${
-                isShowPostDropdown ? "" : ` ${displayName}--hide`
-            }`}
-        >
-            {children}
-        </ul>
-    );
-};
-
-/**
- * 드롭다운 아이템 컴포넌트
- *
- */
-export const DropdownItem = memo(({ children }) => (
-    <li className={`${displayName}__item`}>{children}</li>
+            onClick(e);
+        }}
+    >
+        {children}
+    </button>
 ));
+
+const CustomMenu = forwardRef(
+    (
+        {
+            children,
+            style,
+            className,
+            placeholder,
+            "aria-labelledby": labeledBy
+        },
+        ref
+    ) => {
+        const [value, setValue] = useState("");
+
+        return (
+            <div
+                ref={ref}
+                style={style}
+                className={className}
+                aria-labelledby={labeledBy}
+            >
+                <Form.Control
+                    autoFocus
+                    className="mx-3 my-2 w-auto"
+                    placeholder={placeholder}
+                    onChange={(e) => setValue(e.target.value)}
+                    value={value}
+                />
+                <ul className="list-unstyled">
+                    {Children.toArray(children).filter(
+                        (child) =>
+                            !value ||
+                            child.props.children.toLowerCase().startsWith(value)
+                    )}
+                </ul>
+            </div>
+        );
+    }
+);
+
+/**
+ * 공통 버튼 컴포넌트
+ *
+ */
+const CustomDropdown = ({ children, id, icon, isFilter }) => {
+    return (
+        <Dropdown>
+            <Dropdown.Toggle as={CustomToggle} id={`dropdown-custom${id}`}>
+                {icon}
+            </Dropdown.Toggle>
+            <Dropdown.Menu as={isFilter && CustomMenu}>
+                {children}
+            </Dropdown.Menu>
+        </Dropdown>
+    );
+};
+
+export default CustomDropdown;

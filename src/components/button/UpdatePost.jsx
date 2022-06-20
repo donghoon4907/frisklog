@@ -1,6 +1,6 @@
 import React, { useCallback } from "react";
 import { useDispatch } from "../../context";
-import { SHOW_POST_MODAL, HIDE_POST_DROPDOWN } from "../../context/action";
+import { SHOW_POST_MODAL } from "../../context/action";
 
 /**
  * 포스트 수정 버튼 컴포넌트
@@ -21,16 +21,12 @@ const UpdatePostBtn = ({ id, content, category }) => {
             content,
             category
         });
-        // 드롭다운 닫기
-        dispatch({
-            type: HIDE_POST_DROPDOWN
-        });
     }, []);
 
     return (
-        <button className="fr-dropdown__button" onClick={handleClick}>
-            <span>수정</span>
-        </button>
+        <span className="fr-dropdown__text" onClick={handleClick}>
+            수정
+        </span>
     );
 };
 

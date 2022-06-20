@@ -5,8 +5,12 @@ import { timeForToday } from "../lib/date";
 import PostLike from "./PostLike";
 import { marked } from "marked";
 import Spinner from "react-loader-spinner";
-// import { DropdownBtn } from "./Dropdown";
-// import { useSelector } from "../context";
+import { useSelector } from "../context";
+import UpdatePostBtn from "./button/UpdatePost";
+import DeletePostBtn from "./button/DeletePost";
+import { Dropdown } from "react-bootstrap";
+import CustomDropdown from "./Dropdown";
+import { More } from "../assets/icon";
 
 /**
  * 게시물 컴포넌트
@@ -25,7 +29,7 @@ import Spinner from "react-loader-spinner";
 const PostItem = ({ id, User, createdAt, category, content, Likers }) => {
     const displayName = "fr-post";
 
-    // const { id: userId } = useSelector();
+    const { id: userId } = useSelector();
 
     const mdBodyEl = useRef(null);
     // 이미지 로딩 여부
@@ -78,7 +82,20 @@ const PostItem = ({ id, User, createdAt, category, content, Likers }) => {
                             {User.nickname}
                         </span>
                     </div>
-                    {/* {userId == User.id && <DropdownBtn />} */}
+                    {userId == User.id && (
+                        <CustomDropdown id={id} icon={<More />}>
+                            <Dropdown.Item eventKey="1">
+                                <UpdatePostBtn
+                                    id={id}
+                                    category={category}
+                                    content={content}
+                                />
+                            </Dropdown.Item>
+                            <Dropdown.Item eventKey="2">
+                                <DeletePostBtn id={id} />
+                            </Dropdown.Item>
+                        </CustomDropdown>
+                    )}
                 </header>
                 <div
                     className={`${displayName}__body ${displayName}__body--expended`}

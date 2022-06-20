@@ -86,6 +86,10 @@ button:focus {
 .popover-header {
     padding: 0;
 }
+// bootstrap dropdown
+.dropdown-item {
+    padding: 0 !important;
+}
 
 svg:not(.activeEscape) {
     fill: $fr-btn-color;

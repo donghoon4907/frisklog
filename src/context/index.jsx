@@ -47,11 +47,11 @@ const initialState = {
         id: "",
         content: "",
         category: ""
-    },
-    activeDropdown: {
-        offsetX: -1,
-        offsetY: -1
     }
+    // activeDropdown: {
+    //     offsetX: -1,
+    //     offsetY: -1
+    // }
     // activeNotice: {
     //     id: "",
     //     action: "wait",

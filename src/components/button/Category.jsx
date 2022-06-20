@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 import { Link } from "react-router-dom";
 
 /**
@@ -25,4 +25,4 @@ const CategoryBtn = ({ content, isGap }) => {
     );
 };
 
-export default CategoryBtn;
+export default memo(CategoryBtn);
