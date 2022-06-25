@@ -17,7 +17,7 @@ export const HIDE_SEARCH_BAR = "HIDE_SEARCH_BAR";
 // 검색 필터 숨기기
 // export const HIDE_FILTER_BAR = "HIDE_FILTER_BAR";
 // 게시물 검색
-// export const SEARCH_POST = "SEARCH_POST";
+export const SEARCH_POST = "SEARCH_POST";
 // 네비게이션 확장
 // export const EXPAND_NAVIGATION = "EXPAND_NAVIGATION";
 // 네비게이션 수축

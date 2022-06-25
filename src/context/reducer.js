@@ -10,7 +10,7 @@ import {
     HIDE_SEARCH_BAR,
     // SHOW_FILTER_BAR,
     // HIDE_FILTER_BAR,
-    // SEARCH_POST,
+    SEARCH_POST,
     // EXPAND_NAVIGATION,
     // CONTRACT_NAVIGATION,
     // SET_IS_MOBILE,
@@ -107,6 +107,14 @@ export default function reducer(state, action) {
                     id: "",
                     content: "",
                     category: ""
+                }
+            };
+        case SEARCH_POST:
+            return {
+                ...state,
+                searchPostOption: {
+                    activeId: action.activeId,
+                    isLike: action.isLike
                 }
             };
         // case SEARCH_POST:

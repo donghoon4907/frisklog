@@ -47,6 +47,10 @@ const initialState = {
         id: "",
         content: "",
         category: ""
+    },
+    searchPostOption: {
+        activeId: 1,
+        isLike: false
     }
     // activeDropdown: {
     //     offsetX: -1,
@@ -60,13 +64,6 @@ const initialState = {
     //     description: ""
     // },
     // feedPostOption: {},
-    // searchPostOption: {
-    //     first: 30,
-    //     orderBy: "createdAt_DESC",
-    //     query: undefined,
-    //     category: undefined,
-    //     userId: undefined
-    // }
 };
 
 /**

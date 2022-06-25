@@ -1,10 +1,12 @@
 import React from "react";
-// import Button from "../button";
+
 import Meta from "../Meta";
 import Query from "../Query";
 import { GET_USER } from "../../graphql/query/user";
 import LogoutBtn from "../button/Logout";
 import { useSelector } from "../../context";
+import MypageOrderItem from "./MypageOrderItem";
+import mypageOptions from "../../json/mypage_options.json";
 
 /**
  * 사용자정보 컴포넌트
@@ -58,6 +60,21 @@ const AsideMypage = ({
                                 </div>
                             </div>
                         </div>
+
+                        {userId == id && (
+                            <div className={`${displayName}__extension`}>
+                                <ul>
+                                    {mypageOptions
+                                        .filter((option) => option.enable)
+                                        .map((option) => (
+                                            <MypageOrderItem
+                                                key={`order_item${option.id}`}
+                                                {...option}
+                                            />
+                                        ))}
+                                </ul>
+                            </div>
+                        )}
                     </div>
                 </>
             )}

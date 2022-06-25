@@ -9,7 +9,8 @@ import { gql } from "@apollo/client";
  * @param $searchKeyword  검색어
  * @param $category       카테고리
  * @param $userId         사용자 ID
- * @deprecated $isThereThumb   썸네일 있는지 여부
+ * @deprecated {Boolean} $isThereThumb   썸네일 있는지 여부
+ * @param $isLike         내가 좋아요한 포스트 여부(마이페이지에서 사용, userId 필요)
  */
 export const GET_POSTS = gql`
     query GetPosts(
@@ -19,8 +20,8 @@ export const GET_POSTS = gql`
         $searchKeyword: String
         $category: String
         $userId: String
-    ) # $isThereThumb: Boolean
-    {
+        $isLike: Boolean
+    ) {
         posts(
             offset: $offset
             limit: $limit
@@ -28,8 +29,8 @@ export const GET_POSTS = gql`
             searchKeyword: $searchKeyword
             category: $category
             userId: $userId
-        ) # isThereThumb: $isThereThumb
-        {
+            isLike: $isLike
+        ) {
             rows {
                 id
                 # title
