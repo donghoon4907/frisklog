@@ -1,5 +1,5 @@
 import React, { useState, forwardRef, Children } from "react";
-import { Dropdown, Form } from "react-bootstrap";
+import { Dropdown as BootstrapDropdown, Form } from "react-bootstrap";
 
 const CustomToggle = forwardRef(({ children, onClick }, ref) => (
     <button
@@ -54,20 +54,36 @@ const CustomMenu = forwardRef(
 );
 
 /**
- * 공통 버튼 컴포넌트
+ * 드롭다운 컴포넌트
+ *
+ * @param           props.children
+ * @param {string}  props.id       아이디
+ * @param {svg}     props.icon     드롭다운 아이콘
+ * @param {boolean} props.isFilter 필터 사용 여부
  *
  */
-const CustomDropdown = ({ children, id, icon, isFilter }) => {
+export const Dropdown = ({ children, id, icon, isFilter }) => {
     return (
-        <Dropdown>
-            <Dropdown.Toggle as={CustomToggle} id={`dropdown-custom${id}`}>
+        <BootstrapDropdown>
+            <BootstrapDropdown.Toggle
+                as={CustomToggle}
+                id={`dropdown-custom${id}`}
+            >
                 {icon}
-            </Dropdown.Toggle>
-            <Dropdown.Menu as={isFilter && CustomMenu}>
+            </BootstrapDropdown.Toggle>
+            <BootstrapDropdown.Menu as={isFilter && CustomMenu}>
                 {children}
-            </Dropdown.Menu>
-        </Dropdown>
+            </BootstrapDropdown.Menu>
+        </BootstrapDropdown>
     );
 };
 
-export default CustomDropdown;
+/**
+ * 드롭다운 아이템 컴포넌트
+ *
+ */
+export const DropdownItem = ({ children, ...props }) => (
+    <BootstrapDropdown.Item {...props}>
+        <span className="fr-dropdown__text">{children}</span>
+    </BootstrapDropdown.Item>
+);

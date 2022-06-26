@@ -20,7 +20,7 @@ const List = ({ type, query, variables, fetchMoreType, Item }) => (
             const len = rows.length;
 
             if (len === 0) {
-                return "no data";
+                return null;
             }
 
             return (

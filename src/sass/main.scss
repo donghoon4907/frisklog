@@ -1,7 +1,7 @@
 @charset "UTF-8";
 
 @import "node_modules/bootstrap/scss/bootstrap";
-@import "base/reset";
+@import "themes/reset";
 @import "utilities/variables";
 @import "utilities/functions";
 @import "utilities/mixins";
@@ -18,19 +18,19 @@
 @import "components/search";
 @import "components/dropdown";
 @import "components/modal";
-@import "components/mq";
+@import "themes/mq";
 @import "components/popover";
 @import "components/carousel";
 @import "components/like";
 @import "components/recommend";
-@import "layout/form";
+@import "components/category";
+@import "components/form";
 @import "layout/app";
 @import "layout/nav";
-@import "layout/category";
 @import "layout/header";
 @import "layout/main";
 @import "layout/aside";
-@import "layout/comment";
+@import "components/comment";
 // @import "pages/user";
 // @import "pages/createPost";
 @import "pages/404";

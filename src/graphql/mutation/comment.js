@@ -9,7 +9,12 @@ import { gql } from "@apollo/client";
  */
 export const CREATE_COMMENT = gql`
     mutation addComment($postId: String!, $content: String!, $isDev: Boolean) {
-        addComment(postId: $postId, content: $content, isDev: $isDev)
+        addComment(postId: $postId, content: $content, isDev: $isDev) {
+            id
+            content
+            createdAt
+            updatedAt
+        }
     }
 `;
 
@@ -33,7 +38,7 @@ export const UPDATE_COMMENT = gql`
  * @param $isDev 개발중 여부
  */
 export const DELETE_COMMENT = gql`
-    mutation deleteComment($id: String!) {
+    mutation deleteComment($id: String!, $isDev: Boolean) {
         deleteComment(id: $id, isDev: $isDev)
     }
 `;

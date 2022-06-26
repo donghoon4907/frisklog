@@ -1,0 +1,63 @@
+.fr-comment {
+    position: relative;
+    padding: 12px 23px 10px 0;
+
+    &__wrapper {
+        border-top: $fr-box-border;
+    }
+
+    &__avatar {
+        position: absolute;
+        top: 12px;
+        left: 0;
+    }
+
+    &__box {
+        padding-left: 46px;
+    }
+
+    &__name {
+        margin-bottom: 4px;
+        line-height: 1;
+        font-weight: 700;
+        height: 100%;
+        overflow: hidden;
+    }
+
+    &__content {
+        position: relative;
+        line-height: 1;
+        font-size: 13px;
+
+        @include ellipsisText;
+    }
+
+    &__date {
+        margin-top: 7px;
+        font-size: 12px;
+        line-height: 1;
+        color: #979797;
+    }
+
+    &__extension {
+        position: absolute;
+        top: 50%;
+        right: 0;
+        transform: translate3d(0, -50%, 0);
+    }
+
+    &__submit {
+        display: flex;
+        justify-content: space-between;
+        gap: 10px;
+
+        & > button {
+            flex: 1;
+        }
+
+        & > button:nth-child(1) {
+            background: $fr-info-color;
+            border: 1px solid $fr-info-color;
+        }
+    }
+}
