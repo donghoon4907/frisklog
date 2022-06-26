@@ -1,155 +1,129 @@
-import React, { memo, useCallback, useEffect } from "react";
-import { useRouteMatch } from "react-router-dom";
-import { useQuery, useMutation } from "@apollo/client";
+import React, { memo, useState, useCallback } from "react";
+import { useMutation } from "@apollo/client";
 import { GET_COMMENTS } from "../graphql/query/comment";
 import { CREATE_COMMENT } from "../graphql/mutation/comment";
 import { useInput } from "../hooks";
 import { FormTextArea } from "./Form";
 import Button from "./button";
 import { TOKEN_KEY, getStorage } from "../lib/cookie";
-import { useDispatch } from "../context";
+import { useDispatch, useSelector } from "../context";
 import { SHOW_LOGIN_MODAL } from "../context/action";
 import CommentItem from "./CommentItem";
 import Loader from "./Loader";
 import { graphqlError } from "../lib/error";
+import List from "./List";
 
 /**
  * 댓글 목록 컴포넌트
  *
+ * @param {string} props.postId 게시물 ID
+ *
  */
-const CommentList = () => {
-    const {
-        params: { id }
-    } = useRouteMatch("/post/:id");
-
+const CommentList = ({ postId }) => {
     const dispatch = useDispatch();
 
-    const { data, loading, fetchMore, refetch } = useQuery(GET_COMMENTS, {
-        variables: {
-            limit: 30,
-            postId: id
-        },
-        notifyOnNetworkStatusChange: true
-    });
+    const { id, nickname, avatar } = useSelector();
     // 댓글
     const comment = useInput("");
+    // 생성한 댓글 목록
+    const [comments, setComments] = useState([]);
 
-    const [create, { loading: createLoading }] = useMutation(CREATE_COMMENT);
+    const [create, { loading }] = useMutation(CREATE_COMMENT);
 
     // 댓글 추가 핸들러
     const handleSubmit = useCallback(
         async (e) => {
             e.preventDefault();
 
-            if (createLoading) {
-                return alert("요청 중입니다. 잠시만 기다려주세요.");
-            }
-
+            // 로그인 체크
             const token = getStorage(TOKEN_KEY);
 
-            if (!token) {
-                // 로그인 팝업 보이기
+            if (token === null) {
                 return dispatch({
                     type: SHOW_LOGIN_MODAL
                 });
+            }
+
+            if (loading) {
+                return alert("요청 중입니다. 잠시만 기다려주세요.");
             }
 
             if (comment.value.length > 100) {
                 return alert("댓글은 100자 미만으로 입력 해주세요.");
             }
 
-            try {
-                await create({
-                    variables: {
-                        postId: id,
-                        content: comment.value
-                    }
-                });
+            const tf = confirm("댓글을 등록하시겠어요?");
 
-                // 댓글 초기화
-                refetch();
-                // 입력창 초기화
-                comment.setValue("");
-            } catch (error) {
-                graphqlError({ error, dispatch });
-            }
-        },
-        [comment.value, createLoading]
-    );
-
-    // 스크롤 이벤트 핸들러
-    const handleFetchMore = () => {
-        if (data && data.comments) {
-            if (loading) {
-                return;
-            }
-            const $main = document.querySelector("#main");
-
-            const { scrollHeight, clientHeight, scrollTop } = $main;
-
-            const { comments } = data;
-
-            if (scrollTop + clientHeight === scrollHeight) {
-                if (
-                    comments.rows.length > 0 &&
-                    comments.rows.length % 30 === 0
-                ) {
-                    // 추가 게시물 요청
-                    fetchMore({
+            if (tf) {
+                try {
+                    const { data } = await create({
                         variables: {
-                            offset: comments.rows.length,
-                            limit: 30,
-                            postId: id
-                        },
-                        updateQuery: (prev, { fetchMoreResult }) => {
-                            if (fetchMoreResult) {
-                                return {
-                                    comments: {
-                                        rows: [
-                                            ...prev.comments.rows,
-                                            ...fetchMoreResult.comments.rows
-                                        ],
-                                        count: comments.count
-                                    }
-                                };
-                            } else {
-                                return prev;
-                            }
+                            postId,
+                            content: comment.value
                         }
                     });
+
+                    // 입력창 초기화
+                    comment.setValue("");
+
+                    const { addComment } = data;
+                    // 상태 댓글 목록에 추가
+                    setComments([
+                        {
+                            User: {
+                                id,
+                                nickname,
+                                avatar
+                            },
+                            ...addComment
+                        },
+                        ...comments
+                    ]);
+
+                    alert("댓글이 등록되었습니다.");
+                } catch (error) {
+                    graphqlError({ error, dispatch });
                 }
             }
-        }
-    };
-
-    useEffect(() => {
-        const $main = document.querySelector("#main");
-        // 스크롤 이벤트 바인딩
-        $main.addEventListener("scroll", handleFetchMore);
-        // 스크롤 이벤트 언바인딩
-        return () => $main.removeEventListener("scroll", handleFetchMore);
-    }, [data && data.comments, loading]);
+        },
+        [comment.value, loading, comments]
+    );
 
     return (
-        <form className="d-flex flex-column mt-4" onSubmit={handleSubmit}>
-            {(loading || createLoading) && <Loader />}
-            <FormTextArea
-                placeholder="댓글을 입력하세요."
-                id="comment"
-                autoComplete="off"
-                height={100}
-                {...comment}
-                required
-                label="댓글"
-            />
-            <Button type="submit">댓글 작성</Button>
+        <div>
+            <form className="d-flex flex-column" onSubmit={handleSubmit}>
+                {loading && <Loader />}
+                <FormTextArea
+                    placeholder="댓글을 입력하세요."
+                    id="comment"
+                    autoComplete="off"
+                    height={100}
+                    {...comment}
+                    required
+                    label="댓글"
+                />
+                <Button type="submit">댓글 작성</Button>
+            </form>
             <ul>
-                {data &&
-                    data.comments.rows.map((comment) => (
-                        <CommentItem key={comment.id} {...comment} />
-                    ))}
+                {comments.map((comment) => (
+                    <CommentItem
+                        key={`comment_${id}_${comment.id}`}
+                        {...comment}
+                    />
+                ))}
+                <List
+                    type="comments"
+                    query={GET_COMMENTS}
+                    variables={{
+                        limit: 10,
+                        postId,
+                        order: "createdAt_DESC"
+                    }}
+                    fetchMoreType="scroll"
+                    Item={CommentItem}
+                />
             </ul>
-        </form>
+        </div>
     );
 };
 

@@ -40,7 +40,11 @@ const LogoutBtn = () => {
         }
     }, []);
 
-    return <Button onClick={handleClick}>로그아웃</Button>;
+    return (
+        <Button onClick={handleClick}>
+            <span>로그아웃</span>
+        </Button>
+    );
 };
 
 export default LogoutBtn;

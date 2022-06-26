@@ -19,6 +19,7 @@
 
     &__label {
         position: absolute;
+        line-height: 12px;
         top: 2px;
         left: 5px;
         font-size: 0.1rem;
@@ -76,6 +77,7 @@
 
     &__textarea {
         width: 100%;
+        line-height: 10px;
         resize: none;
         font-size: 0.8rem;
         overflow: auto;

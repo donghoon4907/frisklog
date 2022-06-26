@@ -1,16 +1,18 @@
-import React, { useEffect, useRef, useState, memo } from "react";
+import React, { useRef, useState, memo, useCallback } from "react";
 import { Link } from "react-router-dom";
+import { useMutation } from "@apollo/client";
 import Avatar from "./Avatar";
 import { timeForToday } from "../lib/date";
 import PostLike from "./PostLike";
 import { marked } from "marked";
 import Spinner from "react-loader-spinner";
-import { useSelector } from "../context";
-import UpdatePostBtn from "./button/UpdatePost";
-import DeletePostBtn from "./button/DeletePost";
-import { Dropdown } from "react-bootstrap";
-import CustomDropdown from "./Dropdown";
-import { More } from "../assets/icon";
+import { useDispatch, useSelector } from "../context";
+import { Dropdown, DropdownItem } from "./Dropdown";
+import { More, Comment } from "../assets/icon";
+import CommentList from "./CommentList";
+import { SHOW_POST_MODAL } from "../context/action";
+import { DELETE_POST } from "../graphql/mutation/post";
+import { useOrientation } from "../hooks";
 
 /**
  * 게시물 컴포넌트
@@ -29,43 +31,60 @@ import { More } from "../assets/icon";
 const PostItem = ({ id, User, createdAt, category, content, Likers }) => {
     const displayName = "fr-post";
 
+    const dispatch = useDispatch();
+
     const { id: userId } = useSelector();
 
     const mdBodyEl = useRef(null);
-    // 이미지 로딩 여부
-    const [loading, setLoading] = useState(true);
+    // ori 작업 완료 여부
+    const [ready] = useOrientation(mdBodyEl);
+    // 댓글 보기 여부
+    const [activeComment, setActiveComment] = useState(false);
 
-    useEffect(() => {
-        const imgs = mdBodyEl.current.querySelectorAll("img");
-        // 이미지가 없는 게시물인 경우
-        if (imgs.length === 0) {
-            setLoading(false);
-        }
-        // 이미지 리사이징
-        imgs.forEach((img, idx) => {
-            const obj = new Image();
+    // 댓글 클릭 핸들러
+    const handleShowComment = useCallback(() => {
+        setActiveComment(!activeComment);
+    }, [activeComment]);
 
-            obj.src = img.src;
-
-            obj.onload = function () {
-                const width = this.width;
-
-                const height = this.height;
-
-                const wrapper = img.parentNode;
-
-                wrapper.classList.add("fr-thumbnail");
-
-                wrapper.style.paddingBottom = `calc(${height / width} * 100%)`;
-
-                img.classList.add("fr-thumbnail__image");
-
-                if (idx === imgs.length - 1) {
-                    setLoading(false);
-                }
-            };
+    // 수정 핸들러
+    const handleUpdate = useCallback(() => {
+        // 게시물 수정 모달 열기
+        dispatch({
+            type: SHOW_POST_MODAL,
+            id,
+            content,
+            category
         });
     }, []);
+
+    const [del, { loading }] = useMutation(DELETE_POST);
+    // 삭제 핸들러
+    const handleDelete = useCallback(async () => {
+        if (loading) {
+            return alert("요청 중입니다");
+        }
+
+        const tf = confirm("게시물을 삭제하시겠어요?");
+
+        if (tf) {
+            try {
+                const {
+                    data: { deletePost }
+                } = await del({
+                    variables: {
+                        id
+                    }
+                });
+                if (deletePost) {
+                    alert("삭제되었습니다.");
+
+                    window.location.reload();
+                }
+            } catch (error) {
+                graphqlError({ error, dispatch });
+            }
+        }
+    }, [loading]);
 
     return (
         <div className={`${displayName}__wrapper`}>
@@ -83,24 +102,20 @@ const PostItem = ({ id, User, createdAt, category, content, Likers }) => {
                         </span>
                     </div>
                     {userId == User.id && (
-                        <CustomDropdown id={id} icon={<More />}>
-                            <Dropdown.Item eventKey="1">
-                                <UpdatePostBtn
-                                    id={id}
-                                    category={category}
-                                    content={content}
-                                />
-                            </Dropdown.Item>
-                            <Dropdown.Item eventKey="2">
-                                <DeletePostBtn id={id} />
-                            </Dropdown.Item>
-                        </CustomDropdown>
+                        <Dropdown id={id} icon={<More />}>
+                            <DropdownItem eventKey="1" onClick={handleUpdate}>
+                                수정
+                            </DropdownItem>
+                            <DropdownItem eventKey="2" onClick={handleDelete}>
+                                삭제
+                            </DropdownItem>
+                        </Dropdown>
                     )}
                 </header>
                 <div
                     className={`${displayName}__body ${displayName}__body--expended`}
                 >
-                    {loading && (
+                    {ready && (
                         <div className={`${displayName}__skeleton`}>
                             <Spinner
                                 type="ThreeDots"
@@ -142,8 +157,15 @@ const PostItem = ({ id, User, createdAt, category, content, Likers }) => {
                                 isShowCount={true}
                             />
                         </div>
-                        <div>{timeForToday(createdAt)}</div>
+                        <div onClick={handleShowComment} role="button">
+                            <Comment />
+                            <span className="a11y-hidden">댓글 보기</span>
+                        </div>
+                        <div className={`${displayName}__date`}>
+                            {timeForToday(createdAt)}
+                        </div>
                     </div>
+                    <div>{activeComment && <CommentList postId={id} />}</div>
                 </footer>
             </article>
         </div>

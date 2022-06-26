@@ -56,6 +56,9 @@ const SignUpPresenter = ({
                         hidden
                         accept="image/jpg, image/jpeg, image/png, .gif"
                     />
+                    <span className="a11y-hidden">
+                        {preview ? "재업로드" : "업로드"}
+                    </span>
                 </div>
                 <FormInput
                     type="email"

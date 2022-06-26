@@ -10,7 +10,7 @@ import { useDispatch, useSelector } from "../../context";
 import { SHOW_LOGIN_MODAL } from "../../context/action";
 import Loader from "../Loader";
 import { timeForToday } from "../../lib/date";
-import Dropdown from "./Dropdown";
+// import Dropdown from "./deprecated/Dropdown";
 
 /**
  * 댓글 렌더링 컴포넌트
@@ -172,7 +172,7 @@ const CommentItem = ({ id, content, user, createdAt }) => {
                 <span>{timeForToday(createdAt)}</span>
                 {isMyComment && (
                     <div className={`${displayName}__extension`}>
-                        <Dropdown
+                        {/* <Dropdown
                             id={`dropdown_${id}`}
                             disabled={disabled}
                             list={[
@@ -190,7 +190,7 @@ const CommentItem = ({ id, content, user, createdAt }) => {
                                     handler: handleDelete
                                 }
                             ]}
-                        />
+                        /> */}
                     </div>
                 )}
             </div>
