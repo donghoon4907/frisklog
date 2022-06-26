@@ -10,8 +10,8 @@ import { useDispatch, useSelector } from "../context";
 import { SHOW_LOGIN_MODAL } from "../context/action";
 import CommentItem from "./CommentItem";
 import Loader from "./Loader";
-import { graphqlError } from "../lib/error";
 import List from "./List";
+import { graphqlError } from "../lib/error";
 
 /**
  * 댓글 목록 컴포넌트
