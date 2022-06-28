@@ -21,6 +21,7 @@ const Meta = ({ title, description }) => (
             content={description || "Blog made by frisk"}
         />
         <meta name="twitter:image:alt" content="frisklog" />
+        <script src="https://accounts.google.com/gsi/client" async defer />
     </Helmet>
 );
 

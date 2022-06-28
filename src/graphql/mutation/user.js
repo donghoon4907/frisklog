@@ -20,6 +20,24 @@ export const SIGN_IN = gql`
 `;
 
 /**
+ * 구글 로그인
+ *
+ * @param $email   이메일
+ */
+export const SIGN_IN_GOOGLE = gql`
+    mutation logInWithGoogle($email: String!, $nickname: String!) {
+        logInWithGoogle(email: $email, nickname: $nickname) {
+            token
+            id
+            nickname
+            email
+            avatar
+            isMaster
+        }
+    }
+`;
+
+/**
  * 회원가입
  *
  * @param $email    이메일

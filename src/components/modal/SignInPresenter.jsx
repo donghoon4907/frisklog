@@ -2,6 +2,7 @@ import React from "react";
 import { FormInput } from "../Form";
 import Button from "../button";
 import Loader from "../Loader";
+import GoogleLoginButton from "../button/GoogleLogin";
 
 /**
  * 로그인 프레젠터 컴포넌트
@@ -12,7 +13,7 @@ import Loader from "../Loader";
  * @param {function} props.onSubmit 요청 핸들러
  */
 const SignInPresenter = ({ loading, email, password, onSubmit }) => (
-    <>
+    <div>
         {loading && <Loader />}
         <form onSubmit={onSubmit}>
             <FormInput
@@ -36,7 +37,8 @@ const SignInPresenter = ({ loading, email, password, onSubmit }) => (
             />
             <Button type="submit">로그인</Button>
         </form>
-    </>
+        <GoogleLoginButton />
+    </div>
 );
 
 export default SignInPresenter;
