@@ -13,6 +13,7 @@ import CommentList from "./CommentList";
 import { SHOW_POST_MODAL } from "../context/action";
 import { DELETE_POST } from "../graphql/mutation/post";
 import { useOrientation } from "../hooks";
+import { graphqlError } from "../lib/error";
 
 /**
  * 게시물 컴포넌트
