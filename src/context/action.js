@@ -34,3 +34,5 @@ export const HIDE_POST_MODAL = "HIDE_POST_MODAL";
 // export const SHOW_POST_DROPDOWN = "SHOW_POST_DROPDOWN";
 // 게시물 드롭다운 팝업 숨기기
 // export const HIDE_POST_DROPDOWN = "HIDE_POST_DROPDOWN";
+// 업로드 이미지 설정
+export const SET_UPLOADED_URL = "SET_UPLOADED_URL";

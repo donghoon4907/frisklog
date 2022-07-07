@@ -12,7 +12,7 @@ import { More, Comment } from "../assets/icon";
 import CommentList from "./CommentList";
 import { SHOW_POST_MODAL } from "../context/action";
 import { DELETE_POST } from "../graphql/mutation/post";
-import { useOrientation } from "../hooks";
+import { useResizeImage } from "../hooks";
 import { graphqlError } from "../lib/error";
 
 /**
@@ -38,7 +38,7 @@ const PostItem = ({ id, User, createdAt, category, content, Likers }) => {
 
     const mdBodyEl = useRef(null);
     // ori 작업 완료 여부
-    const [ready] = useOrientation(mdBodyEl);
+    const [ready] = useResizeImage(mdBodyEl);
     // 댓글 보기 여부
     const [activeComment, setActiveComment] = useState(false);
 

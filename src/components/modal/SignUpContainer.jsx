@@ -1,9 +1,10 @@
-import React, { useState, useCallback, useRef } from "react";
+import React, { useCallback, memo } from "react";
 import { useMutation } from "@apollo/client";
-import { useInput, useLazyAxios } from "../../hooks";
+import { useInput } from "../../hooks";
 import SignUpPresenter from "./SignUpPresenter";
 import { SIGN_UP } from "../../graphql/mutation/user";
 import { graphqlError } from "../../lib/error";
+import { useSelector } from "../../context";
 
 /**
  * 회원가입 컨테이너 컴포넌트
@@ -11,80 +12,21 @@ import { graphqlError } from "../../lib/error";
  * @param props.setAction 인증 화면 전환 모드 (로그인, 회원가입)
  */
 const SignUpContainer = ({ setAction }) => {
-    // Axios hooks
-    const { loading: uploadLoading, call } = useLazyAxios();
-
-    const $file = useRef(null);
+    const { uploadedUrl } = useSelector();
     // 별명
     const nickname = useInput("");
     // 이메일
     const email = useInput("");
     // 암호
     const password = useInput("");
-    // 프로필사진 미리보기
-    const [preview, setPreview] = useState("");
-    // 프로필사진 URL
-    const [avatar, setAvatar] = useState("");
     // 사용자 추가
-    const [signUp, { loading: signUpLoading }] = useMutation(SIGN_UP);
-    // 파일 업로드 핸들러
-    const handleChangeFile = useCallback(
-        async (e) => {
-            const { value, files } = e.target;
-            // 취소 버튼을 누른 경우
-            if (!value) {
-                return;
-            }
-            // 요청 중인 경우
-            if (uploadLoading) {
-                return;
-            }
-
-            const [file] = files;
-
-            const formData = new FormData();
-
-            formData.append("file", file);
-
-            const { data, error } = await call({
-                method: "post",
-                url: `${process.env.RAZZLE_BACKEND_API}/upload`,
-                data: formData,
-                headers: { "content-type": "multipart/form-data" }
-            });
-
-            if (data) {
-                const reader = new FileReader();
-
-                reader.onloadend = () => {
-                    // 미리보기 상태 변경
-                    setPreview(reader.result);
-                    // 프로필사진 상태 변경
-                    setAvatar(data);
-                };
-
-                reader.readAsDataURL(file);
-            }
-
-            if (error) {
-                alert(error.response.data);
-            }
-        },
-        [uploadLoading]
-    );
-    // 업로드 클릭 핸들러
-    const handleClickFile = useCallback(() => {
-        const node = $file.current;
-        if (node) {
-            node.click();
-        }
-    }, []);
+    const [signUp, { loading }] = useMutation(SIGN_UP);
     // 회원가입 요청 핸들러
     const handleSubmit = useCallback(
         async (e) => {
             e.preventDefault();
             // 회원가입 요청 중인 경우
-            if (signUpLoading) {
+            if (loading) {
                 return alert("요청 중입니다. 잠시만 기다려주세요.");
             }
 
@@ -103,7 +45,7 @@ const SignUpContainer = ({ setAction }) => {
                             email: email.value,
                             password: password.value,
                             nickname: nickname.value,
-                            avatar
+                            avatar: uploadedUrl
                         }
                     });
                     if (addUser) {
@@ -117,23 +59,18 @@ const SignUpContainer = ({ setAction }) => {
                 }
             }
         },
-        [email.value, nickname.value, avatar, signUpLoading]
+        [email.value, nickname.value, loading, uploadedUrl]
     );
 
     return (
         <SignUpPresenter
-            uploadLoading={uploadLoading}
-            signUpLoading={signUpLoading}
+            loading={loading}
             nickname={nickname}
             email={email}
             password={password}
-            preview={preview}
-            $file={$file}
-            onChangeFile={handleChangeFile}
-            onClickFile={handleClickFile}
             onSubmit={handleSubmit}
         />
     );
 };
 
-export default SignUpContainer;
+export default memo(SignUpContainer);

@@ -7,7 +7,9 @@ class GoogleAccounts {
         this.sdk.initialize({
             client_id,
             callback,
-            ux_mode: "popup"
+            ux_mode: "popup",
+            context: "signin",
+            auto_select: true
         });
 
         this.sdk.prompt();
