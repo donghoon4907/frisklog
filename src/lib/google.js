@@ -6,8 +6,11 @@ class GoogleAccounts {
 
         this.sdk.initialize({
             client_id,
-            callback
+            callback,
+            ux_mode: "popup"
         });
+
+        this.sdk.prompt();
     }
 
     renderButton(el, { theme, size, text, width, type = "standard" }) {
