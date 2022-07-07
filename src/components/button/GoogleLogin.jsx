@@ -74,7 +74,7 @@ const GoogleLogin = () => {
             theme: "filled_white",
             size: "large",
             text: "Google 계정으로 로그인",
-            width: "200",
+            width: "470",
             type: "standard"
         });
     }, []);

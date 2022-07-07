@@ -8,6 +8,7 @@ import { getDataFromTree } from "@apollo/client/react/ssr";
 import { Helmet } from "react-helmet";
 import cookieParser from "cookie-parser";
 import { ChunkExtractor, ChunkExtractorManager } from "@loadable/server";
+import SSRProvider from "react-bootstrap/SSRProvider";
 import jwt from "jsonwebtoken";
 import { ContextProvider } from "./context";
 import { initializeApollo } from "./lib/apollo";
@@ -67,7 +68,9 @@ server
                 <ApolloProvider client={client}>
                     <ContextProvider context={context}>
                         <StaticRouter location={location} context={{}}>
-                            <App />
+                            <SSRProvider>
+                                <App />
+                            </SSRProvider>
                         </StaticRouter>
                     </ContextProvider>
                 </ApolloProvider>

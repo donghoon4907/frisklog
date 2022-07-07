@@ -3,6 +3,7 @@ import { hydrate } from "react-dom";
 import { BrowserRouter } from "react-router-dom";
 import { ApolloProvider } from "@apollo/client";
 import { loadableReady } from "@loadable/component";
+import SSRProvider from "react-bootstrap/SSRProvider";
 import { ContextProvider } from "./context";
 import App from "./App";
 import { initializeApollo } from "./lib/apollo";
@@ -23,7 +24,9 @@ loadableReady(() => {
                 context={window !== "undefined" ? window.__CONTEXT_STATE__ : {}}
             >
                 <BrowserRouter>
-                    <App />
+                    <SSRProvider>
+                        <App />
+                    </SSRProvider>
                 </BrowserRouter>
             </ContextProvider>
         </ApolloProvider>,
