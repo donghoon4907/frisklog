@@ -92,12 +92,11 @@ export const useResize = () => {
 
     return [breakpoint];
 };
-
 /**
  * Convert image to landscape or portrait
  *
  */
-export const useOrientation = (wrapperRef) => {
+export const useResizeImage = (wrapperRef) => {
     // 이미지 로딩 여부
     const [ready, setReady] = useState(true);
 

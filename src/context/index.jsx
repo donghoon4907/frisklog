@@ -26,6 +26,7 @@ const DispatchContext = createContext(null);
  * @property breakpoint         - 브레이크 포인트
  * @property slidesToShow       - 캐러셀 노출 아이템 수
  * @property isShowPostDropdown   - 포스트 드롭다운 보이기 여부
+ * @property uploadedUrl          - 업로드된 이미지 url
  */
 const initialState = {
     id: null,
@@ -42,6 +43,7 @@ const initialState = {
     // isCollapseNav: "contract",
     // isMobile: false, deprecated
     breakpoint: "wd",
+    uploadedUrl: "",
     slidesToShow: 1,
     activePost: {
         id: "",

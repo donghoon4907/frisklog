@@ -2,63 +2,23 @@ import React from "react";
 import { FormInput } from "../Form";
 import Button from "../button";
 import Loader from "../Loader";
-import { Thumbnail } from "../../assets/icon";
+import UploadImage from "../UploadImage";
 
 /**
  * 회원가입 프레젠터 컴포넌트
  *
- * @param {boolean}      props.uploadLoading 업로드 요청 진행 여부
- * @param {boolean}      props.signUpLoading 회원가입 요청 진행 여부
- * @param {object}       props.nickname      별칭
- * @param {object}       props.email         이메일
- * @param {string}       props.preview       이미지 미리보기
- * @param {React.useRef} props.$file         file element
- * @param {function}     props.onChangeFile  파일 변경 핸들러
- * @param {function}     props.onClickFile   파일 클릭 핸들러
- * @param {function}     props.onSubmit      회원가입 요청 핸들러
+ * @param {boolean}  props.loading  회원가입 요청 진행 여부
+ * @param {object}   props.nickname 별칭
+ * @param {object}   props.email    이메일
+ * @param {function} props.onSubmit 회원가입 요청 핸들러
  */
-const SignUpPresenter = ({
-    uploadLoading,
-    signUpLoading,
-    nickname,
-    email,
-    password,
-    preview,
-    $file,
-    onChangeFile,
-    onClickFile,
-    onSubmit
-}) => {
+const SignUpPresenter = ({ loading, nickname, email, password, onSubmit }) => {
     return (
         <>
-            {(uploadLoading || signUpLoading) && <Loader />}
+            {loading && <Loader />}
             <form onSubmit={onSubmit}>
-                <div
-                    className="fr-modal-auth__upload"
-                    onClick={onClickFile}
-                    role="button"
-                    tabIndex="0"
-                >
-                    {preview ? (
-                        <img
-                            src={preview}
-                            alt="avatar"
-                            title="변경하려면 클릭하세요."
-                        />
-                    ) : (
-                        <Thumbnail style={{ width: 100, height: 50 }} />
-                    )}
-
-                    <input
-                        type="file"
-                        onChange={onChangeFile}
-                        ref={$file}
-                        hidden
-                        accept="image/jpg, image/jpeg, image/png, .gif"
-                    />
-                    <span className="a11y-hidden">
-                        {preview ? "재업로드" : "업로드"}
-                    </span>
+                <div className="fr-modal-auth__upload">
+                    <UploadImage isActiveUpload={true} />
                 </div>
                 <FormInput
                     type="email"

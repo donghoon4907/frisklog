@@ -14,7 +14,8 @@ import {
     // EXPAND_NAVIGATION,
     // CONTRACT_NAVIGATION,
     // SET_IS_MOBILE,
-    SET_BREAKPOINT
+    SET_BREAKPOINT,
+    SET_UPLOADED_URL
 } from "./action";
 
 /**
@@ -154,6 +155,12 @@ export default function reducer(state, action) {
             return {
                 ...state,
                 breakpoint: action.breakpoint
+                // slidesToShow: action.slidesToShow
+            };
+        case SET_UPLOADED_URL:
+            return {
+                ...state,
+                uploadedUrl: action.uploadedUrl
                 // slidesToShow: action.slidesToShow
             };
         // case SHOW_POST_DROPDOWN:

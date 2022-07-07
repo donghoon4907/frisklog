@@ -7,6 +7,7 @@ import LogoutBtn from "../button/Logout";
 import { useSelector } from "../../context";
 import MypageOrderItem from "./MypageOrderItem";
 import mypageOptions from "../../json/mypage_options.json";
+import UploadImage from "../UploadImage";
 
 /**
  * 사용자정보 컴포넌트
@@ -35,21 +36,14 @@ const AsideMypage = ({
                     <div className={`${displayName}__wrapper`}>
                         <div className={displayName}>
                             <div className={`${displayName}__header`}>
-                                <div
-                                    className={`${displayName}__avatar`}
-                                    style={{
-                                        backgroundImage: `
-                                        linear-gradient(
-                                            rgba(0, 0, 0, 0), 
-                                            rgba(0, 0, 0, 0.15)
-                                        ), url(${
-                                            process.env.RAZZLE_BACKEND_ROOT +
-                                            (user.avatar ||
-                                                process.env
-                                                    .RAZZLE_DEFAULT_AVATAR)
-                                        })`
-                                    }}
-                                ></div>
+                                <UploadImage
+                                    src={
+                                        process.env.RAZZLE_BACKEND_ROOT +
+                                        (user.avatar ||
+                                            process.env.RAZZLE_DEFAULT_AVATAR)
+                                    }
+                                    isActiveUpload={id == userId}
+                                />
                             </div>
                             <div className={`${displayName}__body`}>
                                 <div className="fr-avatar__name">
