@@ -13,6 +13,12 @@
         height: 0;
     }
 
+    &__upt {
+        padding: 10px;
+
+        @include cancelAndSubmit;
+    }
+
     &__upload {
         position: absolute;
         top: 0;

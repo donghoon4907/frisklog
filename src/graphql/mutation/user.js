@@ -60,3 +60,16 @@ export const SIGN_UP = gql`
         )
     }
 `;
+
+/**
+ * 사용자 정보 업데이트
+ *
+ * @param $password 암호
+ * @param $nickname 별칭
+ * @param $avatar   프로필 사진
+ */
+export const UPDATE_USER = gql`
+    mutation updateUser($password: String, $nickname: String, $avatar: String) {
+        updateUser(password: $password, nickname: $nickname, avatar: $avatar)
+    }
+`;
