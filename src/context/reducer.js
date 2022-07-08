@@ -29,11 +29,11 @@ export default function reducer(state, action) {
         case SET_ME:
             return {
                 ...state,
-                id: action.id,
-                nickname: action.nickname,
-                email: action.email,
-                avatar: action.avatar,
-                isMaster: action.isMaster
+                id: action.id ? action.id : state.id,
+                nickname: action.nickname ? action.nickname : state.nickname,
+                email: action.email ? action.email : state.email,
+                avatar: action.avatar ? action.avatar : state.avatar,
+                isMaster: action.isMaster ? action.isMaster : state.isMaster
             };
         // case SHOW_NOTICE_MODAL:
         //     return {

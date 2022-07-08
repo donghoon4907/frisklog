@@ -9,8 +9,12 @@ import { useSelector } from "../../context";
 =======
 import MypageOrderItem from "./MypageOrderItem";
 import mypageOptions from "../../json/mypage_options.json";
+<<<<<<< HEAD
 import UploadImage from "../UploadImage";
 >>>>>>> c964737 ([User] Mypage, 업로드 이미지 컴포넌트 추가)
+=======
+import AsideMypageHeader from "./MypageHeader";
+>>>>>>> fd96b1d ([User] Mypage - add update btn)
 
 /**
  * 사용자정보 컴포넌트
@@ -38,16 +42,12 @@ const AsideMypage = ({
                     <Meta title={`Frisklog - ${user.nickname}`} />
                     <div className={`${displayName}__wrapper`}>
                         <div className={displayName}>
-                            <div className={`${displayName}__header`}>
-                                <UploadImage
-                                    src={
-                                        process.env.RAZZLE_BACKEND_ROOT +
-                                        (user.avatar ||
-                                            process.env.RAZZLE_DEFAULT_AVATAR)
-                                    }
-                                    isActiveUpload={id == userId}
-                                />
-                            </div>
+                            <AsideMypageHeader
+                                isActiveUpload={id == userId}
+                                avatar={user.avatar}
+                                displayName={displayName}
+                            />
+
                             <div className={`${displayName}__body`}>
                                 <div className="fr-avatar__name">
                                     {user.nickname}
