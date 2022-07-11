@@ -1,9 +1,11 @@
 import React, { useEffect } from "react";
 import { Route, Switch } from "react-router-dom";
 import loadable from "@loadable/component";
+
 import Header from "./components/Header";
 import AuthModal from "./components/modal/Auth";
 import PostModal from "./components/modal/SetPostContainer";
+import UserModal from "./components/modal/SetUserContainer";
 import { useDispatch, useSelector } from "./context";
 import { SET_BREAKPOINT } from "./context/action";
 import { useResize } from "./hooks";
@@ -39,7 +41,11 @@ const App = () => {
 
     const dispatch = useDispatch();
 
-    const { isShowLoginModal, isShowAddPostModal } = useSelector();
+    const {
+        isShowLoginModal,
+        isShowPostModal,
+        isShowUserModal
+    } = useSelector();
 
     const [breakpoint] = useResize();
 
@@ -108,7 +114,8 @@ const App = () => {
                 </div>
             </section>
             {isShowLoginModal && <AuthModal />}
-            {isShowAddPostModal && <PostModal />}
+            {isShowPostModal && <PostModal />}
+            {isShowUserModal && <UserModal />}
         </div>
     );
 };

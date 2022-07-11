@@ -35,7 +35,7 @@ const Auth = () => {
             onHide={handleClose}
             show
             animation={false}
-            contentClassName="fr-modal-auth"
+            contentClassName="fr-modal--middle"
         >
             <Modal.Header closeButton>
                 <Modal.Title>

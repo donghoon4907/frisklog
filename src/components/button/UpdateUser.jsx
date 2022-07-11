@@ -1,6 +1,6 @@
 import React, { useCallback } from "react";
 import { useDispatch } from "../../context";
-import { SHOW_LOGIN_MODAL, SHOW_UPTUSER_MODAL } from "../../context/action";
+import { SHOW_LOGIN_MODAL, SHOW_USER_MODAL } from "../../context/action";
 import { TOKEN_KEY, getStorage } from "../../lib/cookie";
 import Button from ".";
 
@@ -18,7 +18,7 @@ const UpdateUserBtn = () => {
         if (token) {
             // 내 정보 수정 모달 보이기
             dispatch({
-                type: SHOW_UPTUSER_MODAL
+                type: SHOW_USER_MODAL
             });
         } else {
             // 로그인 모달 보이기
@@ -29,7 +29,7 @@ const UpdateUserBtn = () => {
     }, []);
 
     return (
-        <Button onClick={handleClick}>
+        <Button onClick={handleClick} className="fr-btn--info">
             <span>내 정보 수정</span>
         </Button>
     );

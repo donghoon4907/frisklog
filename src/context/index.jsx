@@ -14,7 +14,7 @@ const DispatchContext = createContext(null);
  * @property avatar             - 사용자 프로필 사진
  * @property isMaster           - 운영자 여부
  * @deprecated isShowNoticeModal  - 공지사항 팝업 보이기 여부
- * @property isShowAddPostModal - 게시물 추가 팝업 보이기 여부
+ * @property isShowPostModal - 게시물 추가 팝업 보이기 여부
  * @property isShowSearchBar    - 검색바 보이기 여부
  * @deprecated isShowFilterBar    - 검색 필터 보이기 여부
  * @property isShowLoginModal   - 로그인 팝업 보이기 여부
@@ -27,7 +27,7 @@ const DispatchContext = createContext(null);
  * @property slidesToShow       - 캐러셀 노출 아이템 수
  * @property isShowPostDropdown   - 포스트 드롭다운 보이기 여부
  * @property uploadedUrl          - 업로드된 이미지 url
- * @property isShowUptUserModal   - 내 정보 수정 팝업 보이기 여부
+ * @property isShowUserModal   - 내 정보 수정 팝업 보이기 여부
  */
 const initialState = {
     id: null,
@@ -36,7 +36,7 @@ const initialState = {
     avatar: null,
     isMaster: false,
     // isShowNoticeModal: false,
-    isShowAddPostModal: false,
+    isShowPostModal: false,
     isShowSearchBar: false,
     // isShowFilterBar: false,
     isShowLoginModal: false,
@@ -55,7 +55,7 @@ const initialState = {
         activeId: 1,
         isLike: false
     },
-    isShowUptUserModal: false
+    isShowUserModal: false
     // activeDropdown: {
     //     offsetX: -1,
     //     offsetY: -1

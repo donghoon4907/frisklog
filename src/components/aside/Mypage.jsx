@@ -8,6 +8,7 @@ import { useSelector } from "../../context";
 import MypageOrderItem from "./MypageOrderItem";
 import mypageOptions from "../../json/mypage_options.json";
 import AsideMypageHeader from "./MypageHeader";
+import UpdateUserBtn from "../button/UpdateUser";
 
 /**
  * 사용자정보 컴포넌트
@@ -21,7 +22,9 @@ const AsideMypage = ({
 }) => {
     const displayName = "fr-mypage";
 
-    const { id: userId } = useSelector();
+    const { id: userId, nickname } = useSelector();
+
+    const isMe = id == userId;
 
     return (
         <Query
@@ -36,17 +39,22 @@ const AsideMypage = ({
                     <div className={`${displayName}__wrapper`}>
                         <div className={displayName}>
                             <AsideMypageHeader
-                                isActiveUpload={id == userId}
+                                isActiveUpload={isMe}
                                 avatar={user.avatar}
                                 displayName={displayName}
                             />
 
                             <div className={`${displayName}__body`}>
                                 <div className="fr-avatar__name">
-                                    {user.nickname}
+                                    {isMe ? nickname : user.nickname}
                                 </div>
                                 <div className={`${displayName}__helper`}>
-                                    {userId == id && <LogoutBtn />}
+                                    {userId == id && (
+                                        <>
+                                            <UpdateUserBtn />
+                                            <LogoutBtn />
+                                        </>
+                                    )}
                                 </div>
                             </div>
                         </div>

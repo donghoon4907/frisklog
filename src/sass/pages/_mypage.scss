@@ -14,9 +14,9 @@
     }
 
     &__upt {
-        padding: 10px;
+        padding: 16px;
 
-        @include cancelAndSubmit;
+        @include cancelAndSubmit(16px);
     }
 
     &__upload {
