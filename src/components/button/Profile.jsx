@@ -1,8 +1,8 @@
-import React, { useState, useCallback, useEffect } from "react";
+import React, { useCallback } from "react";
 import { Profile } from "../../assets/icon";
 import { useDispatch, useSelector } from "../../context";
-import { SHOW_LOGIN_MODAL, SET_ME } from "../../context/action";
-import { TOKEN_KEY, getStorage, deleteStorage } from "../../lib/cookie";
+import { SHOW_LOGIN_MODAL } from "../../context/action";
+import { TOKEN_KEY, getStorage } from "../../lib/cookie";
 import Avatar from "../Avatar";
 
 /**
@@ -13,30 +13,12 @@ const ProfileBtn = () => {
     const dispatch = useDispatch();
 
     const { id, avatar } = useSelector();
-    // 로그인 여부
-    const [isLoggedIn, setIsLoggedIn] = useState(id !== null);
     // 클릭 핸들러
     const handleClick = useCallback(() => {
         // 토큰 가져오기
         const token = getStorage(TOKEN_KEY);
 
-        if (token) {
-            const tf = window.confirm("로그아웃 하시겠어요?");
-
-            if (tf) {
-                // 토큰 삭제
-                deleteStorage(TOKEN_KEY);
-                // 로컬 상태 갱신
-                dispatch({
-                    type: SET_ME,
-                    id: null,
-                    nickname: null,
-                    email: null,
-                    avatar: null,
-                    isMaster: false
-                });
-            }
-        } else {
+        if (!token) {
             // 로그인 모달 보이기
             dispatch({
                 type: SHOW_LOGIN_MODAL
@@ -44,12 +26,7 @@ const ProfileBtn = () => {
         }
     }, []);
 
-    useEffect(() => {
-        // 로그인 여부 변경
-        setIsLoggedIn(id !== null);
-    }, [id]);
-
-    return isLoggedIn ? (
+    return id ? (
         <div className="d-flex justify-content-start">
             <Avatar src={avatar} size={30} userId={id} />
         </div>

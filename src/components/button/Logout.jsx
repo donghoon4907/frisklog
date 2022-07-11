@@ -1,6 +1,6 @@
 import React, { useCallback } from "react";
 import { useDispatch } from "../../context";
-import { SHOW_LOGIN_MODAL, SET_ME } from "../../context/action";
+import { SHOW_LOGIN_MODAL, LOGOUT_USER } from "../../context/action";
 import { TOKEN_KEY, getStorage, deleteStorage } from "../../lib/cookie";
 import Button from ".";
 
@@ -24,12 +24,7 @@ const LogoutBtn = () => {
                 deleteStorage(TOKEN_KEY);
                 // 로컬 상태 갱신
                 dispatch({
-                    type: SET_ME,
-                    id: null,
-                    nickname: null,
-                    email: null,
-                    avatar: null,
-                    isMaster: false
+                    type: LOGOUT_USER
                 });
             }
         } else {

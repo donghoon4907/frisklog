@@ -1,5 +1,7 @@
 import {
     SET_ME,
+    LOGIN_USER,
+    LOGOUT_USER,
     // SHOW_NOTICE_MODAL,
     // HIDE_NOTICE_MODAL,
     SHOW_POST_MODAL,
@@ -31,11 +33,27 @@ export default function reducer(state, action) {
         case SET_ME:
             return {
                 ...state,
-                id: action.id ? action.id : state.id,
-                nickname: action.nickname ? action.nickname : state.nickname,
-                email: action.email ? action.email : state.email,
-                avatar: action.avatar ? action.avatar : state.avatar,
-                isMaster: action.isMaster ? action.isMaster : state.isMaster
+                id: action.id !== undefined ? action.id : state.id,
+                nickname:
+                    action.nickname !== undefined
+                        ? action.nickname
+                        : state.nickname,
+                email: action.email !== undefined ? action.email : state.email,
+                avatar:
+                    action.avatar !== undefined ? action.avatar : state.avatar,
+                isMaster:
+                    action.isMaster !== undefined
+                        ? action.isMaster
+                        : state.isMaster
+            };
+        case LOGOUT_USER:
+            return {
+                ...state,
+                id: null,
+                nickname: null,
+                email: null,
+                avatar: null,
+                isMaster: false
             };
         // case SHOW_NOTICE_MODAL:
         //     return {
