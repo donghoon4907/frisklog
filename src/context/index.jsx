@@ -27,6 +27,7 @@ const DispatchContext = createContext(null);
  * @property slidesToShow       - 캐러셀 노출 아이템 수
  * @property isShowPostDropdown   - 포스트 드롭다운 보이기 여부
  * @property uploadedUrl          - 업로드된 이미지 url
+ * @property isShowUptUserModal   - 내 정보 수정 팝업 보이기 여부
  */
 const initialState = {
     id: null,
@@ -53,7 +54,8 @@ const initialState = {
     searchPostOption: {
         activeId: 1,
         isLike: false
-    }
+    },
+    isShowUptUserModal: false
     // activeDropdown: {
     //     offsetX: -1,
     //     offsetY: -1

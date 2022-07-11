@@ -70,6 +70,13 @@ export const SIGN_UP = gql`
  */
 export const UPDATE_USER = gql`
     mutation updateUser($password: String, $nickname: String, $avatar: String) {
-        updateUser(password: $password, nickname: $nickname, avatar: $avatar)
+        updateUser(password: $password, nickname: $nickname, avatar: $avatar) {
+            token
+            id
+            nickname
+            email
+            avatar
+            isMaster
+        }
     }
 `;

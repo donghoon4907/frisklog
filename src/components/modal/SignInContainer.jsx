@@ -39,24 +39,13 @@ const SignInContainer = () => {
                     }
                 });
                 if (logIn) {
-                    const {
-                        token,
-                        id,
-                        nickname,
-                        email,
-                        avatar,
-                        isMaster
-                    } = logIn;
+                    const { token, ...user } = logIn;
                     // 토큰 설정
                     setStorage(TOKEN_KEY, token);
                     // 로컬 상태에 내 정보 저장
                     dispatch({
                         type: SET_ME,
-                        id,
-                        nickname,
-                        email,
-                        avatar,
-                        isMaster
+                        ...user
                     });
                     // 로그인 모달 숨기기
                     dispatch({
