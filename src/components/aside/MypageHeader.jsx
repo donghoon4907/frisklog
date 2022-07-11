@@ -6,6 +6,8 @@ import UploadImage from "../UploadImage";
 import Button from "../button";
 import { SET_UPLOADED_URL, SET_ME } from "../../context/action";
 import { UPDATE_USER } from "../../graphql/mutation/user";
+import { TOKEN_KEY, setStorage } from "../../lib/cookie";
+import { graphqlError } from "../../lib/error";
 
 /**
  * 사용자정보 컴포넌트
@@ -44,15 +46,20 @@ const AsideMypageHeader = ({ isActiveUpload, avatar, displayName }) => {
                     });
 
                     if (updateUser) {
-                        alert("변경되었습니다.");
+                        const { token, avatar } = updateUser;
+                        // 토큰 설정
+                        setStorage(TOKEN_KEY, token);
+
                         // 상태 동기화
                         dispatch({
                             type: SET_ME,
-                            avatar: uploadedUrl
+                            avatar
                         });
 
                         // 업로드 상태 초기화
                         handleCancelUptAvatar();
+
+                        alert("변경되었습니다.");
                     }
                 } catch (error) {
                     graphqlError({ error, dispatch });

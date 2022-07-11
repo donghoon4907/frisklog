@@ -36,3 +36,7 @@ export const HIDE_POST_MODAL = "HIDE_POST_MODAL";
 // export const HIDE_POST_DROPDOWN = "HIDE_POST_DROPDOWN";
 // 업로드 이미지 설정
 export const SET_UPLOADED_URL = "SET_UPLOADED_URL";
+// 내 정보 수정 팝업 보이기
+export const SHOW_UPTUSER_MODAL = "SHOW_UPTUSER_MODAL";
+// 내 정보 수정 팝업 숨기기
+export const HIDE_UPTUSER_MODAL = "HIDE_UPTUSER_MODAL";

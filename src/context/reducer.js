@@ -15,7 +15,9 @@ import {
     // CONTRACT_NAVIGATION,
     // SET_IS_MOBILE,
     SET_BREAKPOINT,
-    SET_UPLOADED_URL
+    SET_UPLOADED_URL,
+    SHOW_UPTUSER_MODAL,
+    HIDE_UPTUSER_MODAL
 } from "./action";
 
 /**
@@ -154,6 +156,16 @@ export default function reducer(state, action) {
                 ...state,
                 uploadedUrl: action.uploadedUrl
                 // slidesToShow: action.slidesToShow
+            };
+        case SHOW_UPTUSER_MODAL:
+            return {
+                ...state,
+                isShowUptUserModal: true
+            };
+        case HIDE_UPTUSER_MODAL:
+            return {
+                ...state,
+                isShowUptUserModal: false
             };
         // case SHOW_POST_DROPDOWN:
         //     return {
