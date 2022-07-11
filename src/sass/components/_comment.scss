@@ -47,6 +47,6 @@
     }
 
     &__submit {
-        @include cancelAndSubmit;
+        @include cancelAndSubmit(10px);
     }
 }

@@ -16,8 +16,8 @@ import {
     // SET_IS_MOBILE,
     SET_BREAKPOINT,
     SET_UPLOADED_URL,
-    SHOW_UPTUSER_MODAL,
-    HIDE_UPTUSER_MODAL
+    SHOW_USER_MODAL,
+    HIDE_USER_MODAL
 } from "./action";
 
 /**
@@ -95,7 +95,7 @@ export default function reducer(state, action) {
         case SHOW_POST_MODAL:
             return {
                 ...state,
-                isShowAddPostModal: true,
+                isShowPostModal: true,
                 activePost: {
                     id: action.id ? action.id : "",
                     content: action.content ? action.content : "",
@@ -105,7 +105,7 @@ export default function reducer(state, action) {
         case HIDE_POST_MODAL:
             return {
                 ...state,
-                isShowAddPostModal: false,
+                isShowPostModal: false,
                 activePost: {
                     id: "",
                     content: "",
@@ -157,15 +157,15 @@ export default function reducer(state, action) {
                 uploadedUrl: action.uploadedUrl
                 // slidesToShow: action.slidesToShow
             };
-        case SHOW_UPTUSER_MODAL:
+        case SHOW_USER_MODAL:
             return {
                 ...state,
-                isShowUptUserModal: true
+                isShowUserModal: true
             };
-        case HIDE_UPTUSER_MODAL:
+        case HIDE_USER_MODAL:
             return {
                 ...state,
-                isShowUptUserModal: false
+                isShowUserModal: false
             };
         // case SHOW_POST_DROPDOWN:
         //     return {

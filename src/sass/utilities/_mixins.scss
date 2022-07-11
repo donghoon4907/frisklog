@@ -55,10 +55,10 @@
     transform: translateY(-50%);
 }
 /* cancel and submit btn */
-@mixin cancelAndSubmit {
+@mixin cancelAndSubmit($gap) {
     display: flex;
     justify-content: space-between;
-    gap: 10px;
+    gap: $gap;
 
     & > button {
         flex: 1;

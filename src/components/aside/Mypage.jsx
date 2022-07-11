@@ -14,7 +14,11 @@ import UploadImage from "../UploadImage";
 >>>>>>> c964737 ([User] Mypage, 업로드 이미지 컴포넌트 추가)
 =======
 import AsideMypageHeader from "./MypageHeader";
+<<<<<<< HEAD
 >>>>>>> fd96b1d ([User] Mypage - add update btn)
+=======
+import UpdateUserBtn from "../button/UpdateUser";
+>>>>>>> 62669b3 ([User] Mypage - fin)
 
 /**
  * 사용자정보 컴포넌트
@@ -28,7 +32,9 @@ const AsideMypage = ({
 }) => {
     const displayName = "fr-mypage";
 
-    const { id: userId } = useSelector();
+    const { id: userId, nickname } = useSelector();
+
+    const isMe = id == userId;
 
     return (
         <Query
@@ -43,17 +49,22 @@ const AsideMypage = ({
                     <div className={`${displayName}__wrapper`}>
                         <div className={displayName}>
                             <AsideMypageHeader
-                                isActiveUpload={id == userId}
+                                isActiveUpload={isMe}
                                 avatar={user.avatar}
                                 displayName={displayName}
                             />
 
                             <div className={`${displayName}__body`}>
                                 <div className="fr-avatar__name">
-                                    {user.nickname}
+                                    {isMe ? nickname : user.nickname}
                                 </div>
                                 <div className={`${displayName}__helper`}>
-                                    {userId == id && <LogoutBtn />}
+                                    {userId == id && (
+                                        <>
+                                            <UpdateUserBtn />
+                                            <LogoutBtn />
+                                        </>
+                                    )}
                                 </div>
                             </div>
                         </div>

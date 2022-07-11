@@ -17,7 +17,7 @@ const SignUpPresenter = ({ loading, nickname, email, password, onSubmit }) => {
         <>
             {loading && <Loader />}
             <form onSubmit={onSubmit}>
-                <div className="fr-modal-auth__upload">
+                <div className="fr-modal__upload">
                     <UploadImage isActiveUpload={true} />
                 </div>
                 <FormInput

@@ -1,11 +1,11 @@
 import React from "react";
 import moment from "moment";
-import Avatar from "./Avatar";
-import Timestamp from "./Timestamp";
-import StyledLink from "./StyledLink";
-import { HeartFull } from "../assets/icon";
-import BtnLink from "./button/BtnLink";
-import { timeForToday } from "../lib/date";
+import Avatar from "../Avatar";
+import Timestamp from "../Timestamp";
+import StyledLink from "../StyledLink";
+import { HeartFull } from "../../assets/icon";
+import BtnLink from "../button/BtnLink";
+import { timeForToday } from "../../lib/date";
 
 /**
  * 게시물 리스트형 컴포넌트
