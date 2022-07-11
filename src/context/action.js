@@ -1,5 +1,7 @@
-// 내 정보 설정
+// 내 정보 업데이트
 export const SET_ME = "SET_ME";
+// 로그아웃
+export const LOGOUT_USER = "LOGOUT_USER";
 // 공지사항 팝업 보이기
 // export const SHOW_NOTICE_MODAL = "SHOW_NOTICE_MODAL";
 // 공지사항 팝업 숨기기

@@ -50,20 +50,13 @@ const initialState = {
         id: "",
         content: "",
         category: ""
-<<<<<<< HEAD
-    }
-=======
     },
     searchPostOption: {
         activeId: 1,
         isLike: false
     },
-<<<<<<< HEAD
-    isShowUptUserModal: false
->>>>>>> 95f90f4 ([User] Refresh token)
-=======
+    isShowUptUserModal: false,
     isShowUserModal: false
->>>>>>> 62669b3 ([User] Mypage - fin)
     // activeDropdown: {
     //     offsetX: -1,
     //     offsetY: -1
