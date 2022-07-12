@@ -31,11 +31,7 @@ $ cd frisklog
 
 2. 패키지 설치
 
--   Using npm
-
-```
-$ npm install
-```
+> yarn을 사용하는 경우에만 패키지 잠금이 적용됩니다.
 
 -   Using yarn
 
@@ -43,14 +39,16 @@ $ npm install
 $ yarn install
 ```
 
-3. 환경 변수 설정하기 `.env` 파일을 구성하여 환경 변수를 설정하세요. `.env.example`를 통해 예시를 확인할 수 있습니다.
+3. 환경 변수 설정하기
 
--   `.env.development` - 개발 시 필요한 설정
--   `.env.production` - 배포 시 필요한 설정
+`.env` 파일을 구성하여 환경 변수를 설정하세요. `.env.example`를 통해 예시를 확인할 수 있습니다.
+
+-   `.env.development` 개발 시 필요한 설정
+-   `.env.production` 배포 시 필요한 설정
 
 4. GraphQL 서버 설치 가이드
 
--   [frisklog-server](https://github.com/donghoon4907/frisklog-server)
+-   [Frisklog-Server](https://github.com/donghoon4907/frisklog-server)
 
 ## Task Manage
 
