@@ -1,9 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import Avatar from "./Avatar";
-import { timeForToday } from "../lib/date";
-import BtnLink from "./button/BtnLink";
-import PostLike from "./PostLike";
+import Avatar from "../Avatar";
+import { timeForToday } from "../../lib/date";
+import BtnLink from "../button/BtnLink";
+import PostLike from "../PostLike";
 
 /**
  * 게시물 카드형 컴포넌트
