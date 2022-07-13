@@ -52,7 +52,7 @@ button:focus {
     overflow: hidden;
     clip-path: polygon(0 0, 0 0, 0 0);
 }
-
+// modal custom style
 .modal {
     display: flex !important;
 }
@@ -64,6 +64,10 @@ button:focus {
     justify-content: center;
     align-items: center;
     max-width: 100% !important;
+}
+
+.modal-content {
+    margin: 0 20px;
 }
 
 .te-mode-switch-section {
