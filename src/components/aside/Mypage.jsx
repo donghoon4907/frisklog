@@ -23,7 +23,7 @@ const AsideMypage = ({
     const displayName = "fr-mypage";
 
     const { id: userId, nickname } = useSelector();
-
+    // 마이페이지 여부
     const isMe = id == userId;
 
     return (
@@ -39,7 +39,7 @@ const AsideMypage = ({
                     <div className={`${displayName}__wrapper`}>
                         <div className={displayName}>
                             <AsideMypageHeader
-                                isActiveUpload={isMe}
+                                isMe={isMe}
                                 avatar={user.avatar}
                                 displayName={displayName}
                             />
@@ -48,18 +48,17 @@ const AsideMypage = ({
                                 <div className="fr-avatar__name">
                                     {isMe ? nickname : user.nickname}
                                 </div>
-                                <div className={`${displayName}__helper`}>
-                                    {userId == id && (
-                                        <>
-                                            <UpdateUserBtn />
-                                            <LogoutBtn />
-                                        </>
-                                    )}
-                                </div>
+
+                                {isMe && (
+                                    <div className={`${displayName}__helper`}>
+                                        <UpdateUserBtn />
+                                        <LogoutBtn />
+                                    </div>
+                                )}
                             </div>
                         </div>
 
-                        {userId == id && (
+                        {isMe && (
                             <div className={`${displayName}__extension`}>
                                 <ul>
                                     {mypageOptions

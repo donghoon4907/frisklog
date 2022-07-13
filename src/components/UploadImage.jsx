@@ -23,12 +23,17 @@ const UploadImage = ({ src, isActiveUpload }) => {
     const [preview, setPreview] = useState(src);
     // 파일 클릭 핸들러
     const handleClick = useCallback(() => {
+        // upload 비활성화 시
+        if (!isActiveUpload) {
+            return;
+        }
+
         const node = $file.current;
 
         if (node) {
             node.click();
         }
-    }, []);
+    }, [isActiveUpload]);
     // 파일 변경 핸들러
     const handleChange = useCallback(
         async (e) => {
@@ -84,6 +89,10 @@ const UploadImage = ({ src, isActiveUpload }) => {
             uploadedUrl: ""
         });
     }, []);
+
+    useEffect(() => {
+        setPreview(src);
+    }, [src]);
 
     return (
         <div className={displayName} onClick={handleClick} role="button">

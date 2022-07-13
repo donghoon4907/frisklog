@@ -12,13 +12,14 @@ import { graphqlError } from "../../lib/error";
 /**
  * 사용자정보 컴포넌트
  *
- * @param {string} props.isActiveUpload
- * @param {string} props.displayName
+ * @param {boolean} props.isMe
+ * @param {string}  props.avatar
+ * @param {string}  props.displayName
  */
-const AsideMypageHeader = ({ isActiveUpload, avatar, displayName }) => {
+const AsideMypageHeader = ({ isMe, avatar, displayName }) => {
     const dispatch = useDispatch();
 
-    const { uploadedUrl } = useSelector();
+    const { uploadedUrl, avatar: myAvatar } = useSelector();
     // 프로필 사진 변경
     const [uptAvatar, { loading }] = useMutation(UPDATE_USER);
     // 프로필 사진 변경 취소 핸들러
@@ -75,12 +76,14 @@ const AsideMypageHeader = ({ isActiveUpload, avatar, displayName }) => {
                 <UploadImage
                     src={
                         process.env.RAZZLE_BACKEND_ROOT +
-                        (avatar || process.env.RAZZLE_DEFAULT_AVATAR)
+                            (isMe ? myAvatar : avatar) ||
+                        process.env.RAZZLE_DEFAULT_AVATAR
                     }
-                    isActiveUpload={isActiveUpload}
+                    isActiveUpload={isMe}
                 />
             </div>
-            {uploadedUrl && (
+
+            {isMe && uploadedUrl && (
                 <form className={`${displayName}__upt`}>
                     <Button onClick={handleCancelUptAvatar}>취소</Button>
                     <Button type="submit" onClick={handleUptAvatar}>
