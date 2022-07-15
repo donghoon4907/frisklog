@@ -104,3 +104,8 @@ svg:not(.activeEscape) {
         fill: $fr-hover-color;
     }
 }
+// custom markdown
+.markdown-body ol,
+.markdown-body ul {
+    padding-left: 10px !important;
+}
