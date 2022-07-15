@@ -76,8 +76,8 @@ const AsideMypageHeader = ({ isMe, avatar, displayName }) => {
                 <UploadImage
                     src={
                         process.env.RAZZLE_BACKEND_ROOT +
-                            (isMe ? myAvatar : avatar) ||
-                        process.env.RAZZLE_DEFAULT_AVATAR
+                        ((isMe ? myAvatar : avatar) ||
+                            process.env.RAZZLE_DEFAULT_AVATAR)
                     }
                     isActiveUpload={isMe}
                 />
