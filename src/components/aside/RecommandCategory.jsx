@@ -1,6 +1,6 @@
 import React from "react";
 import Query from "../Query";
-import { GET_RECOMMEND_CATEGORIES } from "../../graphql/query/history";
+import { GET_RECOMMEND_CATEGORIES } from "../../graphql/query/post";
 import CategoryBtn from "../button/Category";
 
 /**
@@ -21,10 +21,11 @@ const AsideRecommandCategory = () => {
                     }}
                 >
                     {({ data: { recommendCategories } }) =>
-                        recommendCategories.map(({ category }) => (
+                        recommendCategories.map(({ category, searchCount }) => (
                             <CategoryBtn
                                 key={`recCat${category}`}
                                 content={category}
+                                count={searchCount}
                                 isGap={true}
                             />
                         ))

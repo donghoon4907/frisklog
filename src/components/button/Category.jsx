@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
  * @param {string}  props.content 카테고리명
  * @param {boolean} props.isGap   간격 사용 여부
  */
-const CategoryBtn = ({ content, isGap }) => {
+const CategoryBtn = ({ content, count, isGap }) => {
     const displayName = "fr-category";
 
     return (
@@ -19,7 +19,7 @@ const CategoryBtn = ({ content, isGap }) => {
                 to={`/category/${content}`}
                 aria-label={content}
             >
-                <span tabIndex="-1">{content}</span>
+                <span tabIndex="-1">{`${content}(${count})`}</span>
             </Link>
         </li>
     );
