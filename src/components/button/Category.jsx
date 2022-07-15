@@ -20,7 +20,9 @@ const CategoryBtn = ({ content, count, isGap }) => {
                 to={`/category/${content}`}
                 aria-label={content}
             >
-                <span tabIndex="-1">{`${content}(${count})`}</span>
+                <span tabIndex="-1">{`${content}${
+                    count ? `(${count})` : ""
+                }`}</span>
             </Link>
         </li>
     );
