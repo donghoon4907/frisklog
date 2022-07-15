@@ -94,7 +94,9 @@ button:focus {
 .dropdown-item {
     padding: 0 !important;
 }
-
+/** svg 공통 설정
+.activeEscape 공통 스타일 비활성화
+*/
 svg:not(.activeEscape) {
     fill: $fr-btn-color;
 
