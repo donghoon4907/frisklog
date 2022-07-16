@@ -4,6 +4,7 @@
     @include wb;
 
     &__wrapper {
+        position: relative;
     }
 
     &__header {
@@ -52,6 +53,33 @@
 
         & > button {
             flex: 1;
+        }
+    }
+
+    &__extension {
+        position: relative;
+        width: 100%;
+        font-size: 1.125rem;
+        font-weight: 400;
+        line-height: 1.3;
+
+        @include wb;
+    }
+
+    &__item {
+        padding: 5px 10px;
+        cursor: pointer;
+
+        &--active {
+            background-color: $fr-active-color;
+        }
+
+        &:hover {
+            background-color: $fr-hover-color;
+        }
+
+        & + & {
+            border-top: $fr-box-border;
         }
     }
 }

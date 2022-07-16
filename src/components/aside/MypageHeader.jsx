@@ -20,6 +20,7 @@ const AsideMypageHeader = ({ isMe, avatar, displayName }) => {
     const dispatch = useDispatch();
 
     const { uploadedUrl, avatar: myAvatar } = useSelector();
+
     // 프로필 사진 변경
     const [uptAvatar, { loading }] = useMutation(UPDATE_USER);
     // 프로필 사진 변경 취소 핸들러

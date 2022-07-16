@@ -1,5 +1,5 @@
 import React from "react";
-// import Button from "../button";
+
 import Meta from "../Meta";
 import Query from "../Query";
 import { GET_USER } from "../../graphql/query/user";

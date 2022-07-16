@@ -4,6 +4,7 @@ import { Select } from "../../components/Form";
 import searchOptions from "../../json/search_options.json";
 import List from "../../components/List";
 import PostItem from "../../components/PostItem";
+import { useSelector } from "../../context";
 
 /**
  * 사용자 화면 컴포넌트
@@ -14,6 +15,7 @@ const User = ({
         params: { id }
     }
 }) => {
+    const { searchPostOption } = useSelector();
     // 정렬
     const [order, setOrder] = useState("createdAt_DESC");
     // 정렬 변경 핸들러
@@ -47,7 +49,8 @@ const User = ({
                 variables={{
                     limit: 12,
                     order,
-                    userId: id
+                    userId: id,
+                    isLike: searchPostOption.isLike
                 }}
                 fetchMoreType="scroll"
                 Item={PostItem}

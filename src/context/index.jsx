@@ -55,7 +55,6 @@ const initialState = {
         activeId: 1,
         isLike: false
     },
-    isShowUptUserModal: false,
     isShowUserModal: false
     // activeDropdown: {
     //     offsetX: -1,
@@ -69,13 +68,6 @@ const initialState = {
     //     description: ""
     // },
     // feedPostOption: {},
-    // searchPostOption: {
-    //     first: 30,
-    //     orderBy: "createdAt_DESC",
-    //     query: undefined,
-    //     category: undefined,
-    //     userId: undefined
-    // }
 };
 
 /**

@@ -14,7 +14,7 @@ const AsideRecommandCategory = () => {
         <div className={`${displayName}__wrapper`}>
             <div className={`${displayName}__title`}>추천 카테고리</div>
             <ul className={displayName} aria-label="추천 카테고리">
-                <Query
+                {/* <Query
                     query={GET_RECOMMEND_CATEGORIES}
                     variables={{
                         limit: 5
@@ -30,7 +30,7 @@ const AsideRecommandCategory = () => {
                             />
                         ))
                     }
-                </Query>
+                </Query> */}
             </ul>
         </div>
     );
