@@ -2,7 +2,7 @@ import React, { memo } from "react";
 import { Link } from "react-router-dom";
 
 /**
- * 카테고리 랜더링 컴포넌트 #test
+ * 카테고리 랜더링 컴포넌트
  *
  * @param {string}  props.content 카테고리명
  * @param {string}  props.count   카테고리가 사용된 수
