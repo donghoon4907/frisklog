@@ -1,18 +1,14 @@
 import { gql } from "@apollo/client";
 
 /**
- * * 카테고리 검색
+ * 추천카테고리 검색
  *
- * @query
- * @author frisk
- * @param $skip 건너뛸 목록의 수
- * @param $first 요청 목록의 수
- * @param $orderBy 정렬
+ * @param $offset 건너뛸 목록의 수
+ * @param $limit  요청 목록의 수
  */
-export const GET_CATEGORIES = gql`
-    query GetCategories($skip: Int, $first: Int, $orderBy: String) {
-        categories(skip: $skip, first: $first, orderBy: $orderBy) {
-            id
+export const GET_RECOMMEND_CATEGORIES = gql`
+    query GetRecommendCategories($offset: Int, $limit: Int!) {
+        recommendCategories(offset: $offset, limit: $limit) {
             content
             useCount
         }

@@ -1,6 +1,6 @@
 import React from "react";
 import Query from "../Query";
-import { GET_RECOMMEND_CATEGORIES } from "../../graphql/query/post";
+import { GET_RECOMMEND_CATEGORIES } from "../../graphql/query/category";
 import CategoryBtn from "../button/Category";
 
 /**
@@ -14,23 +14,25 @@ const AsideRecommandCategory = () => {
         <div className={`${displayName}__wrapper`}>
             <div className={`${displayName}__title`}>추천 카테고리</div>
             <ul className={displayName} aria-label="추천 카테고리">
-                {/* <Query
+                <Query
                     query={GET_RECOMMEND_CATEGORIES}
                     variables={{
                         limit: 5
                     }}
                 >
                     {({ data: { recommendCategories } }) =>
-                        recommendCategories.map(({ category, searchCount }) => (
-                            <CategoryBtn
-                                key={`recCat${category}`}
-                                content={category}
-                                count={searchCount}
-                                isGap={true}
-                            />
-                        ))
+                        recommendCategories.map(
+                            ({ content, useCount }, index) => (
+                                <CategoryBtn
+                                    key={`recommendCategory${index}`}
+                                    content={content}
+                                    count={useCount}
+                                    isGap={true}
+                                />
+                            )
+                        )
                     }
-                </Query> */}
+                </Query>
             </ul>
         </div>
     );

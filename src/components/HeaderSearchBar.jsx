@@ -77,7 +77,7 @@ const HeaderSearchBar = () => {
             />
             <div className="fr-header__search__input-wrapper">
                 <input
-                    className="fr-form__input fr-form__input--alone fr-header__search__input"
+                    className="fr-input fr-input--alone fr-header__search__input"
                     placeholder="검색어를 입력하세요."
                     id="search"
                     value={searchKeyword}

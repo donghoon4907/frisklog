@@ -43,14 +43,24 @@
         color: gray;
     }
 
-    &:hover::after {
-        border-left-color: $fr-btn-color;
-    }
+    // &:hover::after {
+    //     border-left-color: $fr-btn-color;
+    // }
 
     &__wrapper {
         position: relative;
         overflow: hidden;
         float: left;
         list-style: none;
+    }
+
+    &__container {
+        padding: 10px 0 0 10px;
+        margin-left: 10px;
+        flex: 1;
+        overflow-y: auto !important;
+        height: 100px;
+
+        @include wb;
     }
 }

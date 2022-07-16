@@ -49,7 +49,7 @@ const initialState = {
     activePost: {
         id: "",
         content: "",
-        category: ""
+        categories: []
     },
     searchPostOption: {
         activeId: 1,

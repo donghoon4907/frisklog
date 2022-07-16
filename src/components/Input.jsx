@@ -8,7 +8,7 @@ import React, { forwardRef } from "react";
  */
 const Input = forwardRef(({ setValue, isAlone, ...props }, ref) => (
     <input
-        className={`fr-form__input ${isAlone ? "fr-form__input--alone" : ""}`}
+        className={`fr-input ${isAlone ? "fr-input--alone" : ""}`}
         ref={ref}
         {...props}
     />

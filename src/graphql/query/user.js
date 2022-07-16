@@ -41,6 +41,7 @@ export const GET_RECOMMENDERS = gql`
             nickname
             avatar
             PostCount
+            link
         }
     }
 `;

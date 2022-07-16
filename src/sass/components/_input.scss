@@ -1,0 +1,21 @@
+.fr-input {
+    border: 0;
+    border: $fr-box-border;
+    border-radius: $fr-border-radius;
+    background: $fr-bg-color;
+    height: 2.3rem;
+    padding: 0px 1rem;
+    font-size: 0.8rem;
+
+    &--alone {
+        width: 100%;
+    }
+
+    &:focus {
+        outline: none;
+    }
+
+    &__wrapper {
+        position: relative;
+    }
+}

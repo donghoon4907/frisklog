@@ -117,7 +117,7 @@ export default function reducer(state, action) {
                 activePost: {
                     id: action.id ? action.id : "",
                     content: action.content ? action.content : "",
-                    category: action.category ? action.category : ""
+                    categories: action.categories ? action.categories : []
                 }
             };
         case HIDE_POST_MODAL:
@@ -127,7 +127,7 @@ export default function reducer(state, action) {
                 activePost: {
                     id: "",
                     content: "",
-                    category: ""
+                    categories: []
                 }
             };
         case SEARCH_POST:

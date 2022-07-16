@@ -26,16 +26,21 @@ export const Select = ({ children, setValue, ...props }) => (
     </select>
 );
 
-export const FormInput = ({ children, ...props }) => (
-    <div className={`${displayName}__input-wrapper`}>
-        <Label {...props} />
-        <Input {...props} />
+export const FormInput = ({ children, isAlone, ...props }) => (
+    <div className={`${displayName}__input`}>
+        <div
+            className={`fr-input__wrapper ${isAlone ? "fr-input--alone" : ""}`}
+        >
+            <Label {...props} />
+            <Input {...props} isAlone={isAlone} />
+        </div>
+
         {children}
     </div>
 );
 
 export const FormTextArea = ({ children, ...props }) => (
-    <div className={`${displayName}__input-wrapper`}>
+    <div className={`${displayName}__input`}>
         <Label {...props} />
         <TextArea {...props} />
         {children}

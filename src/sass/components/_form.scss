@@ -37,29 +37,11 @@
     }
 
     &__input {
-        border: 0;
-        border: $fr-box-border;
-        border-radius: $fr-border-radius;
-        background: $fr-bg-color;
-        height: 2.3rem;
-        padding: 0px 1rem;
-        font-size: 0.8rem;
-
-        &--alone {
-            width: 100%;
-        }
-
-        &:focus {
-            outline: none;
-        }
-
-        &-wrapper {
-            position: relative;
-            justify-content: space-between;
-            align-items: center;
-            display: flex;
-            margin: 10px 0;
-        }
+        position: relative;
+        justify-content: space-between;
+        align-items: flex-start;
+        display: flex;
+        margin: 10px 0;
     }
 
     &__select {

@@ -13,11 +13,13 @@ export const useInput = (defaultValue, where) => {
     const [value, setValue] = useState(defaultValue);
 
     const onChange = useCallback((e) => {
+        let nextVal = e.target.value;
+
         if (where === "no_space") {
-            setValue(e.target.value.replace(/(^\s*)|(\s*$)/g, ""));
-        } else {
-            setValue(e.target.value);
+            nextVal = nextVal.replace(/(^\s*)|(\s*$)/g, "");
         }
+
+        setValue(nextVal);
     }, []);
 
     return { value, onChange, setValue };

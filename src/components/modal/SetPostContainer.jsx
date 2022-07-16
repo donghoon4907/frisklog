@@ -16,14 +16,17 @@ const SetPostContainer = () => {
     const dispatch = useDispatch();
 
     const { activePost } = useSelector();
-    // 카테고리
-    const category = useInput(activePost.category, "no_space");
+    // 카테고리 입력
+    const category = useInput("", "no_space");
+    // 추가된 카테고리
+    const [categories, setCategories] = useState(activePost.categories);
     // 내용
     const [_content, setContent] = useState(activePost.content);
     // 게시물 추가 및 수정
     const [set, { loading }] = useMutation(
         activePost.id ? UPDATE_POST : CREATE_POST
     );
+
     // 팝업 닫기 핸들러
     const handleClose = useCallback(() => {
         // 팝업 숨기기
@@ -31,22 +34,36 @@ const SetPostContainer = () => {
             type: HIDE_POST_MODAL
         });
     }, []);
-    const handleChange = useCallback(
+    // 카테고리 추가 핸들러
+    const handleAddCategory = useCallback(
         (e) => {
-            const { value } = e.target;
+            e.preventDefault();
 
-            if (value.length > 10) {
+            if (category.value.length > 10) {
                 return alert("카테고리는 10자 미만으로 입력하세요.");
             }
 
-            category.setValue(value);
+            const findIndex = categories.findIndex(
+                (cat) => cat === category.value
+            );
+
+            if (findIndex !== -1) {
+                return alert("이미 추가된 카테고리입니다.");
+            }
+
+            setCategories((categories) => [...categories, category.value]);
         },
-        [category.value]
+        [category.value, categories]
     );
+    // 카테고리 삭제 핸들러
+    const handleRemoveCategory = useCallback((removeCategory) => {
+        setCategories((categories) =>
+            categories.filter((category) => category !== removeCategory)
+        );
+    }, []);
     // 등록 및 수정 핸들러
     const handleSubmit = useCallback(
         async (e) => {
-            e.preventDefault();
             // 로그인 체크
             const token = getStorage(TOKEN_KEY);
 
@@ -75,7 +92,7 @@ const SetPostContainer = () => {
                     } = await set({
                         variables: {
                             content,
-                            category: category.value,
+                            categories,
                             id: activePost.id || undefined
                         }
                     });
@@ -94,7 +111,7 @@ const SetPostContainer = () => {
                 }
             }
         },
-        [loading, _content, category.value, activePost.id]
+        [loading, _content, categories, activePost.id]
     );
 
     return (
@@ -102,11 +119,13 @@ const SetPostContainer = () => {
             id={activePost.id}
             loading={loading}
             category={category}
+            categories={categories}
             content={_content}
             setContent={setContent}
             onClose={handleClose}
+            onAddCategory={handleAddCategory}
+            onRemoveCategory={handleRemoveCategory}
             onSubmit={handleSubmit}
-            onChange={handleChange}
         />
     );
 };

@@ -18,18 +18,18 @@ import { graphqlError } from "../lib/error";
 /**
  * 게시물 컴포넌트
  *
- * @param {string} props.id           게시물 ID
- * @param {string} props.title        게시물 제목
- * @param {string} props.description  게시물 설명
- * @param {object} props.User         게시물 작성자
- * @param {string} props.createdAt    게시물 작성일
- * @param {number} props.viewCount    게시물 조회수
- * @param {string} props.category     게시물 카테고리
- * @param {string} props.thumbnail    게시물 썸네일
- * @param {string} props.Likers       게시물 좋아요 목록
- * @param {string} props.PostComments 게시물 댓글
+ * @param {string}   props.id           게시물 ID
+ * @param {string}   props.title        게시물 제목
+ * @param {string}   props.description  게시물 설명
+ * @param {object}   props.User         게시물 작성자
+ * @param {string}   props.createdAt    게시물 작성일
+ * @param {number}   props.viewCount    게시물 조회수
+ * @param {object[]} props.Categories   게시물 카테고리
+ * @param {string}   props.thumbnail    게시물 썸네일
+ * @param {string}   props.Likers       게시물 좋아요 목록
+ * @param {string}   props.PostComments 게시물 댓글
  */
-const PostItem = ({ id, User, createdAt, category, content, Likers }) => {
+const PostItem = ({ id, User, createdAt, Categories, content, Likers }) => {
     const displayName = "fr-post";
 
     const dispatch = useDispatch();
@@ -54,9 +54,9 @@ const PostItem = ({ id, User, createdAt, category, content, Likers }) => {
             type: SHOW_POST_MODAL,
             id,
             content,
-            category
+            categories: Categories.map(({ content }) => content)
         });
-    }, []);
+    }, [id, content, Categories]);
 
     const [del, { loading }] = useMutation(DELETE_POST);
     // 삭제 핸들러
@@ -142,13 +142,16 @@ const PostItem = ({ id, User, createdAt, category, content, Likers }) => {
                     )} */}
                 </div>
                 <footer className={`${displayName}__footer`}>
-                    {category && (
-                        <div className={`${displayName}__tag`}>
-                            <Link to={`/category/${category}`}>
-                                #{category}
+                    <div className={`${displayName}__tag`}>
+                        {Categories.map(({ content }, index) => (
+                            <Link
+                                key={`post${id}Category${index}`}
+                                to={`/category/${content}`}
+                            >
+                                #{content}
                             </Link>
-                        </div>
-                    )}
+                        ))}
+                    </div>
 
                     <div className={`${displayName}__more`}>
                         <div>
