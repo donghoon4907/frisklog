@@ -58,6 +58,7 @@ const SetPostPresenter = ({
                             >
                                 <button
                                     type="button"
+                                    aria-label="Remove category"
                                     onClick={() => onRemoveCategory(category)}
                                 >
                                     <Close
@@ -68,9 +69,6 @@ const SetPostPresenter = ({
                                             height: 20
                                         }}
                                     />
-                                    <span className="a11y-hidden">
-                                        카테고리 삭제
-                                    </span>
                                 </button>
                             </Category>
                         ))}

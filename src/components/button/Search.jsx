@@ -20,12 +20,11 @@ const SearchBtn = () => {
     }, [isShowSearchBar]);
 
     return (
-        <button onClick={handleClick} type="button" title="검색">
-            <Search />
-            <span className="a11y-hidden">
-                {isShowSearchBar ? "검색바 닫기" : "검색바 열기"}
-            </span>
-        </button>
+        <div title="Search">
+            <button onClick={handleClick} aria-label="Search">
+                <Search />
+            </button>
+        </div>
     );
 };
 

@@ -37,10 +37,13 @@ export const GET_POSTS = gql`
                     id
                     nickname
                     avatar
+                    link
                     Platform {
                         id
                         platformName
                         logoUrl
+                        domainUrl
+                        storageUrl
                     }
                 }
                 Categories {

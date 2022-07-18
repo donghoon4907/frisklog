@@ -1,16 +1,16 @@
 import React, { useState, useCallback } from "react";
 import { useMutation } from "@apollo/client";
-import { CREATE_POST } from "../../graphql/mutation/post";
-import { useDispatch } from "../../context";
-import { SHOW_LOGIN_MODAL } from "../../context/action";
-import Editor from "../../components/Editor";
-import { FormInput } from "../../components/Form";
-import Button from "../../components/button";
-import { useInput } from "../../hooks";
-import Meta from "../../components/Meta";
-import Loader from "../../components/Loader";
-import { TOKEN_KEY, getStorage } from "../../lib/cookie";
-import { graphqlError } from "../../lib/error";
+import { CREATE_POST } from "../../../../graphql/mutation/post";
+import { useDispatch } from "../../../../context";
+import { SHOW_LOGIN_MODAL } from "../../../../context/action";
+import Editor from "../../../Editor";
+import { FormInput } from "../../../Form";
+import Button from "../../../button";
+import { useInput } from "../../../../hooks";
+import Meta from "../../../Meta";
+import Loader from "../../../Loader";
+import { TOKEN_KEY, getStorage } from "../../../../lib/cookie";
+import { graphqlError } from "../../../../lib/error";
 
 /**
  * 게시물 등록 화면 컴포넌트

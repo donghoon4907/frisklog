@@ -31,14 +31,11 @@ const CreatePostBtn = () => {
     }, []);
 
     return (
-        <button
-            className="fr-header__post"
-            onClick={handleClick}
-            title="포스트 등록"
-        >
-            <Add />
-            <span className="a11y-hidden">포스트 등록</span>
-        </button>
+        <div className="fr-header__post" title="Create post">
+            <button aria-label="Create post" onClick={handleClick}>
+                <Add />
+            </button>
+        </div>
     );
 };
 

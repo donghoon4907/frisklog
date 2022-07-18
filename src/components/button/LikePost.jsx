@@ -1,24 +1,23 @@
-import React, { useState, useCallback, useEffect } from "react";
+import React, { useState, useCallback, useEffect, memo } from "react";
 import { useMutation } from "@apollo/client";
-import { HeartFull, HeartEmpty } from "../assets/icon";
-import { LIKE_POST, UNLIKE_POST } from "../graphql/mutation/post";
-import { graphqlError } from "../lib/error";
-import { useDispatch, useSelector } from "../context";
-import { getStorage, TOKEN_KEY } from "../lib/cookie";
-import { SHOW_LOGIN_MODAL } from "../context/action";
+import { HeartFull, HeartEmpty } from "../../assets/icon";
+import { LIKE_POST, UNLIKE_POST } from "../../graphql/mutation/post";
+import { graphqlError } from "../../lib/error";
+import { useDispatch, useSelector } from "../../context";
+import { getStorage, TOKEN_KEY } from "../../lib/cookie";
+import { SHOW_LOGIN_MODAL } from "../../context/action";
 
 /**
  * 좋아요 버튼 컴포넌트
  *
- * @param {string}   props.id          게시물 ID
+ * @param {string}   props.postId      게시물 ID
  * @param {object[]} props.likers      좋아요 누른 명단
  * @param {object[]} props.isShowCount 좋아요 수 보여줄 지 여부
- * @deprecated {object}   props.style       아이콘 스타일
  */
-const PostLike = ({ id, likers, isShowCount }) => {
+const LikePostBtn = ({ postId, likers, isShowCount }) => {
     const dispatch = useDispatch();
 
-    const { id: userId } = useSelector();
+    const { id } = useSelector();
     // 좋아요 mutation
     const [like] = useMutation(LIKE_POST);
     // 좋아요 취소 mutation
@@ -44,14 +43,14 @@ const PostLike = ({ id, likers, isShowCount }) => {
 
             if (isLike) {
                 await unlike({
-                    variables: { id }
+                    variables: { id: postId }
                 });
                 willIsLike = false;
 
                 willLikeCount = likeCount - 1;
             } else {
                 await like({
-                    variables: { id }
+                    variables: { id: postId }
                 });
 
                 willIsLike = true;
@@ -65,28 +64,25 @@ const PostLike = ({ id, likers, isShowCount }) => {
         } catch (error) {
             graphqlError({ error, dispatch });
         }
-    }, [isLike, likeCount]);
+    }, [postId, isLike, likeCount]);
 
     useEffect(() => {
-        setIsLike(likers.some((liker) => liker.id == userId));
-    }, [userId]);
+        setIsLike(likers.some((liker) => liker.id == id));
+    }, [id]);
 
     return (
-        <div className="fr-like">
-            <button onClick={handleClick} aria-label="좋아요">
-                <span tabIndex="-1">
-                    {isLike ? <HeartFull /> : <HeartEmpty />}
-                </span>
-
-                <span className="a11y-hidden">
-                    {isLike ? "좋아요 취소하기" : "좋아요 하기"}
-                </span>
+        <div className="fr-like" title={isLike ? "Unlike post" : "Like post"}>
+            <button
+                onClick={handleClick}
+                aria-label={isLike ? "Unlike post" : "Like post"}
+            >
+                {isLike ? <HeartFull /> : <HeartEmpty />}
             </button>
-            <div className="fr-like__count">
+            <span className="fr-like__count">
                 {isShowCount && <span>{likeCount.toLocaleString()}</span>}
-            </div>
+            </span>
         </div>
     );
 };
 
-export default PostLike;
+export default memo(LikePostBtn);

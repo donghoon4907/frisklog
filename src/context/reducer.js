@@ -1,6 +1,5 @@
 import {
     SET_ME,
-    LOGIN_USER,
     LOGOUT_USER,
     // SHOW_NOTICE_MODAL,
     // HIDE_NOTICE_MODAL,

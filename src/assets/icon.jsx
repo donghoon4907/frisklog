@@ -337,35 +337,37 @@ export const View = ({ style }) => (
 );
 
 /**
- * Trash icon component
+ * Remove icon component
  *
- * @Img
  * @param props.style style
  */
-export const Trash = ({ style }) => (
-    <img
-        src={require("./img/trash.svg")}
-        alt="trash icon"
+export const Remove = ({ style }) => (
+    <svg
+        xmlns="http://www.w3.org/2000/svg"
         style={style}
         width={size}
         height={size}
-    />
+        viewBox="0 0 24 24"
+    >
+        <path d="M3 6v18h18v-18h-18zm5 14c0 .552-.448 1-1 1s-1-.448-1-1v-10c0-.552.448-1 1-1s1 .448 1 1v10zm5 0c0 .552-.448 1-1 1s-1-.448-1-1v-10c0-.552.448-1 1-1s1 .448 1 1v10zm5 0c0 .552-.448 1-1 1s-1-.448-1-1v-10c0-.552.448-1 1-1s1 .448 1 1v10zm4-18v2h-20v-2h5.711c.9 0 1.631-1.099 1.631-2h5.315c0 .901.73 2 1.631 2h5.712z" />
+    </svg>
 );
 
 /**
  * Modify icon component
  *
- * @Img
  * @param props.style style
  */
 export const Modify = ({ style }) => (
-    <img
-        src={require("./img/modify.svg")}
-        alt="modify icon"
+    <svg
+        xmlns="http://www.w3.org/2000/svg"
         style={style}
         width={size}
         height={size}
-    />
+        viewBox="0 0 24 24"
+    >
+        <path d="M4.5.257l3.771 3.771c.409 1.889-2.33 4.66-4.242 4.242l-3.771-3.77c-.172.584-.258 1.188-.258 1.792 0 1.602.607 3.202 1.83 4.426 1.351 1.351 3.164 1.958 4.931 1.821.933-.072 1.852.269 2.514.931l9.662 9.662c.578.578 1.337.868 2.097.868 1.661 0 3.001-1.364 2.966-3.03-.016-.737-.306-1.47-.868-2.033l-9.662-9.663c-.662-.661-1.002-1.581-.931-2.514.137-1.767-.471-3.58-1.82-4.93-1.225-1.224-2.825-1.83-4.428-1.83-.603 0-1.207.086-1.791.257zm17.5 20.743c0 .553-.447 1-1 1-.553 0-1-.448-1-1s.447-1 1-1 1 .447 1 1z" />
+    </svg>
 );
 
 /**

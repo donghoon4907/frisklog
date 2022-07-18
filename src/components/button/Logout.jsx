@@ -36,9 +36,11 @@ const LogoutBtn = () => {
     }, []);
 
     return (
-        <Button onClick={handleClick}>
-            <span>로그아웃</span>
-        </Button>
+        <div style={{ flex: 1 }} title="Logout">
+            <Button onClick={handleClick}>
+                <span>로그아웃</span>
+            </Button>
+        </div>
     );
 };
 

@@ -20,8 +20,8 @@ const Header = () => {
     return (
         <div className={`${displayName}__wrapper`}>
             <header className={`${displayName}`}>
-                <div className={`${displayName}__column`}>
-                    <Link to="/">
+                <div className={`${displayName}__column`} title="Home">
+                    <Link to="/" aria-label="Home">
                         <Home />
                     </Link>
                     {/* <HeaderNotice /> */}

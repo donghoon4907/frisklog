@@ -4,21 +4,37 @@ import Avatar from "./Avatar";
 /**
  * 사용자 카드형 컴포넌트
  *
- * @param {string} props.userId  사용자 ID
- * @param {number} props.size    프로필 사진 크기
- * @param {string} props.src     이미지 자원
+ * @param {string} props.nickname   사용자 별명
+ * @param {number} props.avatar     프로필 사진 파일명
+ * @param {string} props.storageUrl 저장소 경로
+ * @param {string} props.link       링크 주소
+ * @param {number} props.postCount  작성한 포스트 수
  */
-const UserCardTypeItem = ({ id, nickname, avatar, PostCount }) => {
+const UserCardTypeItem = ({
+    nickname,
+    avatar,
+    storageUrl,
+    link,
+    postCount
+}) => {
     const displayName = "fr-usercard";
 
     return (
         <div className={displayName}>
             <div className={`${displayName}__header`}>
                 <span className="fr-avatar__name">{nickname}</span>
-                <span>{PostCount} Posts</span>
+                <span>{postCount} Posts</span>
             </div>
-            <div className={`${displayName}__body`}>
-                <Avatar userId={id} size={120} src={avatar} />
+            <div className={`${displayName}__body`} title="Avatar">
+                <Avatar
+                    ariaLabel="Avatar"
+                    path={link}
+                    size={120}
+                    domainUrl={""}
+                    storageUrl={storageUrl}
+                    src={avatar}
+                    isInternal={true}
+                />
             </div>
         </div>
     );

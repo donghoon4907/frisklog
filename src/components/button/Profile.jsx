@@ -15,7 +15,6 @@ const ProfileBtn = () => {
     const { id, avatar } = useSelector();
     // 클릭 핸들러
     const handleClick = useCallback(() => {
-        // 토큰 가져오기
         const token = getStorage(TOKEN_KEY);
 
         if (!token) {
@@ -27,14 +26,23 @@ const ProfileBtn = () => {
     }, []);
 
     return id ? (
-        <div className="d-flex justify-content-start">
-            <Avatar src={avatar} size={30} userId={id} />
+        <div className="d-flex justify-content-start" title="Go mypage">
+            <Avatar
+                ariaLabel="Go mypage"
+                domainUrl="/"
+                path={`/user/${id}`}
+                storageUrl={process.env.RAZZLE_BACKEND_ROOT}
+                src={avatar}
+                size={30}
+                isInternal={true}
+            />
         </div>
     ) : (
-        <button onClick={handleClick}>
-            <Profile />
-            <span className="a11y-hidden">로그인 하기</span>
-        </button>
+        <div title="Login">
+            <button onClick={handleClick} aria-label="Login">
+                <Profile />
+            </button>
+        </div>
     );
 };
 

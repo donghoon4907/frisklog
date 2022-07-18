@@ -18,11 +18,9 @@ const CategoryBtn = ({ content, count, isGap }) => {
                     isGap ? `${displayName}--multiple` : `${displayName}--alone`
                 }`}
                 to={`/category/${content}`}
-                aria-label={content}
+                aria-label="Category button"
             >
-                <span tabIndex="-1">{`${content}${
-                    count ? `(${count})` : ""
-                }`}</span>
+                <span>{`${content}${count ? `(${count})` : ""}`}</span>
             </Link>
         </li>
     );

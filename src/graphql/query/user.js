@@ -40,8 +40,10 @@ export const GET_RECOMMENDERS = gql`
             id
             nickname
             avatar
-            PostCount
+            PlatformId
             link
+            storageUrl
+            postCount
         }
     }
 `;

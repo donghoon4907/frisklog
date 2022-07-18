@@ -1,23 +1,25 @@
 import React, { useCallback } from "react";
 import { useHistory } from "react-router-dom";
 import { useMutation } from "@apollo/client";
-import { GET_POST } from "../../graphql/query/post";
-import { DELETE_POST } from "../../graphql/mutation/post";
-import { useDispatch, useSelector } from "../../context";
-import Avatar from "../../components/Avatar";
-import BtnLink from "../../components/button/BtnLink";
-import CommentList from "../../components/CommentList";
-import Loader from "../../components/Loader";
-import Meta from "../../components/Meta";
+import { GET_POST } from "../../../../graphql/query/post";
+import { DELETE_POST } from "../../../../graphql/mutation/post";
+import { useDispatch, useSelector } from "../../../../context";
+import Avatar from "../../../Avatar";
+import BtnLink from "../../../button/BtnLink";
+import CommentList from "../../../CommentList";
+import Loader from "../../../Loader";
+import Meta from "../../../Meta";
 // import Subject from "../../components/Subject";
-import { timeForToday } from "../../lib/date";
-import Viewer from "../../components/Viewer";
-import Query from "../../components/Query";
+import { timeForToday } from "../../../../lib/date";
+import Viewer from "../../../Viewer";
+import Query from "../../../Query";
 import PostLike from "../../components/PostLike";
-import { graphqlError } from "../../lib/error";
+import { graphqlError } from "../../../../lib/error";
 
 /**
  * 게시물 상세 화면 컴포넌트
+ *
+ * @deprecated
  *
  */
 const Post = ({

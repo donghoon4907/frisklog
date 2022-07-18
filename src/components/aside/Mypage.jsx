@@ -8,7 +8,7 @@ import { useSelector } from "../../context";
 import MypageOrderItem from "./MypageOrderItem";
 import mypageOptions from "../../json/mypage_options.json";
 import AsideMypageHeader from "./MypageHeader";
-import UpdateUserBtn from "../button/UpdateUser";
+import ModifyUserBtn from "../button/ModifyUser";
 
 /**
  * 사용자정보 컴포넌트
@@ -51,7 +51,7 @@ const AsideMypage = ({
 
                                 {isMe && (
                                     <div className={`${displayName}__helper`}>
-                                        <UpdateUserBtn />
+                                        <ModifyUserBtn />
                                         <LogoutBtn />
                                     </div>
                                 )}

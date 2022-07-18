@@ -1,38 +1,30 @@
 import React, { useRef, useState, memo, useCallback } from "react";
 import { Link } from "react-router-dom";
-import { useMutation } from "@apollo/client";
+import { marked } from "marked";
+
 import Avatar from "./Avatar";
 import { timeForToday } from "../lib/date";
-import PostLike from "./PostLike";
-import { marked } from "marked";
+import LikePostBtn from "./button/LikePost";
+import ModifyPostBtn from "./button/ModifyPost";
+import RemovePostBtn from "./button/RemovePost";
 import Spinner from "react-loader-spinner";
-import { useDispatch, useSelector } from "../context";
-import { Dropdown, DropdownItem } from "./Dropdown";
-import { More, Comment } from "../assets/icon";
+import { useSelector } from "../context";
+import { Comment } from "../assets/icon";
 import CommentList from "./CommentList";
-import { SHOW_POST_MODAL } from "../context/action";
-import { DELETE_POST } from "../graphql/mutation/post";
 import { useResizeImage } from "../hooks";
-import { graphqlError } from "../lib/error";
 
 /**
  * 게시물 컴포넌트
  *
  * @param {string}   props.id           게시물 ID
- * @param {string}   props.title        게시물 제목
- * @param {string}   props.description  게시물 설명
+ * @param {string}   props.content      게시물 내용
  * @param {object}   props.User         게시물 작성자
  * @param {string}   props.createdAt    게시물 작성일
- * @param {number}   props.viewCount    게시물 조회수
  * @param {object[]} props.Categories   게시물 카테고리
- * @param {string}   props.thumbnail    게시물 썸네일
  * @param {string}   props.Likers       게시물 좋아요 목록
- * @param {string}   props.PostComments 게시물 댓글
  */
-const PostItem = ({ id, User, createdAt, Categories, content, Likers }) => {
+const PostItem = ({ id, createdAt, User, Categories, content, Likers }) => {
     const displayName = "fr-post";
-
-    const dispatch = useDispatch();
 
     const { id: userId } = useSelector();
 
@@ -47,71 +39,45 @@ const PostItem = ({ id, User, createdAt, Categories, content, Likers }) => {
         setActiveComment(!activeComment);
     }, [activeComment]);
 
-    // 수정 핸들러
-    const handleUpdate = useCallback(() => {
-        // 게시물 수정 모달 열기
-        dispatch({
-            type: SHOW_POST_MODAL,
-            id,
-            content,
-            categories: Categories.map(({ content }) => content)
-        });
-    }, [id, content, Categories]);
+    const isInternal =
+        User.Platform.id == process.env.RAZZLE_FRISKLOG_PLATFORM_ID;
 
-    const [del, { loading }] = useMutation(DELETE_POST);
-    // 삭제 핸들러
-    const handleDelete = useCallback(async () => {
-        if (loading) {
-            return alert("요청 중입니다");
-        }
-
-        const tf = confirm("게시물을 삭제하시겠어요?");
-
-        if (tf) {
-            try {
-                const {
-                    data: { deletePost }
-                } = await del({
-                    variables: {
-                        id
-                    }
-                });
-                if (deletePost) {
-                    alert("삭제되었습니다.");
-
-                    window.location.reload();
-                }
-            } catch (error) {
-                graphqlError({ error, dispatch });
-            }
-        }
-    }, [loading]);
+    const isMe = userId == User.id;
 
     return (
         <div className={`${displayName}__wrapper`}>
             <article className={displayName}>
                 <header className={`${displayName}__header`}>
-                    <div
-                        className={`${displayName}__avatar`}
-                        aria-label="avatar"
-                    >
-                        <Avatar src={User.avatar} size={38} userId={User.id} />
+                    <div className={`${displayName}__avatar`} title="Avatar">
+                        <Avatar
+                            ariaLabel="Avatar"
+                            domainUrl={User.Platform.domainUrl}
+                            path={User.link}
+                            storageUrl={User.Platform.storageUrl}
+                            src={User.avatar}
+                            isInternal={isInternal}
+                            size={38}
+                        />
                     </div>
                     <div className={`${displayName}__user`}>
                         <span className={`${displayName}__username`}>
                             {User.nickname}
                         </span>
                     </div>
-                    {userId == User.id && (
-                        <Dropdown id={id} icon={<More />}>
-                            <DropdownItem eventKey="1" onClick={handleUpdate}>
-                                수정
-                            </DropdownItem>
-                            <DropdownItem eventKey="2" onClick={handleDelete}>
-                                삭제
-                            </DropdownItem>
-                        </Dropdown>
-                    )}
+                    <div
+                        className={`${displayName}__platform`}
+                        title="Platform"
+                    >
+                        <Avatar
+                            ariaLabel="Platform"
+                            path=""
+                            domainUrl={User.Platform.domainUrl}
+                            storageUrl={process.env.RAZZLE_BACKEND_ROOT}
+                            src={User.Platform.logoUrl}
+                            size={38}
+                            isInternal={isInternal}
+                        />
+                    </div>
                 </header>
                 <div
                     className={`${displayName}__body ${displayName}__body--expended`}
@@ -147,6 +113,7 @@ const PostItem = ({ id, User, createdAt, Categories, content, Likers }) => {
                             <Link
                                 key={`post${id}Category${index}`}
                                 to={`/category/${content}`}
+                                aria-label="Post category"
                             >
                                 #{content}
                             </Link>
@@ -155,16 +122,32 @@ const PostItem = ({ id, User, createdAt, Categories, content, Likers }) => {
 
                     <div className={`${displayName}__more`}>
                         <div>
-                            <PostLike
-                                id={id}
+                            <LikePostBtn
+                                postId={id}
                                 likers={Likers}
                                 isShowCount={true}
                             />
                         </div>
-                        <div onClick={handleShowComment} role="button">
-                            <Comment />
-                            <span className="a11y-hidden">댓글 보기</span>
+
+                        <div title="Show comment">
+                            <button
+                                onClick={handleShowComment}
+                                aria-label="Show comment"
+                            >
+                                <Comment />
+                            </button>
                         </div>
+                        {isMe && (
+                            <>
+                                <ModifyPostBtn
+                                    postId={id}
+                                    content={content}
+                                    categories={Categories}
+                                />
+                                <RemovePostBtn postId={id} />
+                            </>
+                        )}
+
                         <div className={`${displayName}__date`}>
                             {timeForToday(createdAt)}
                         </div>

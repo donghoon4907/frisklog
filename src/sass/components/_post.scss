@@ -22,10 +22,6 @@
         padding: 12px;
     }
 
-    &__avatar {
-        padding-right: 10px;
-    }
-
     &__user {
         display: flex;
         justify-content: flex-start;
@@ -39,6 +35,7 @@
     }
 
     &__username {
+        margin-left: 10px;
         margin-right: 5px;
         line-height: 1.5;
 

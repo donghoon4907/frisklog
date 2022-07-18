@@ -95,7 +95,12 @@ const UploadImage = ({ src, isActiveUpload }) => {
     }, [src]);
 
     return (
-        <div className={displayName} onClick={handleClick} role="button">
+        <div
+            className={displayName}
+            onClick={handleClick}
+            role="button"
+            aria-label="Upload"
+        >
             {loading && <Loader />}
             {preview && (
                 <img
@@ -104,7 +109,6 @@ const UploadImage = ({ src, isActiveUpload }) => {
                     }`}
                     src={preview}
                     alt="avatar"
-                    title="변경하려면 클릭하세요."
                 />
             )}
             {isActiveUpload && (
@@ -119,9 +123,6 @@ const UploadImage = ({ src, isActiveUpload }) => {
                 hidden
                 accept="image/jpg, image/jpeg, image/png, .gif"
             />
-            <span className="a11y-hidden">
-                {preview ? "재업로드" : "업로드"}
-            </span>
         </div>
     );
 };

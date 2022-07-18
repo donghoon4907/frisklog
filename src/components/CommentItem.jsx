@@ -125,8 +125,19 @@ const CommentItem = ({ id, content, createdAt, User }) => {
         <li className={`${displayName}__wrapper`}>
             {(updateLoading || deleteLoading) && <Loader />}
             <div className={displayName}>
-                <div className={`${displayName}__avatar`}>
-                    <Avatar src={User.avatar} size={36} userId={User.id} />
+                <div className={`${displayName}__avatar`} title="Avatar">
+                    <Avatar
+                        ariaLabel="Avatar"
+                        path={User.link}
+                        domainUrl={User.Platform.domainUrl}
+                        storageUrl={User.Platform.storageUrl}
+                        src={User.avatar}
+                        size={36}
+                        isInternal={
+                            User.Platform.id ==
+                            process.env.RAZZLE_FRISKLOG_PLATFORM_ID
+                        }
+                    />
                 </div>
                 <div className={`${displayName}__box`}>
                     <div className={`${displayName}__name`}>
