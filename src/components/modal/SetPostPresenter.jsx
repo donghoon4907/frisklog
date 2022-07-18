@@ -4,8 +4,7 @@ import { Modal, Button } from "react-bootstrap";
 import { FormInput } from "../Form";
 import Loader from "../Loader";
 import Editor from "../Editor";
-import Category from "../Category";
-import { Close } from "../../assets/icon";
+import CategoryWithClose from "../CategoryWithClose";
 
 /**
  * 게시물 설정 모달 컨테이너 컴포넌트
@@ -52,25 +51,11 @@ const SetPostPresenter = ({
                 >
                     <ul className="fr-category__container">
                         {categories.map((category, index) => (
-                            <Category
+                            <CategoryWithClose
                                 key={`setPostCategory${index}`}
                                 content={category}
-                            >
-                                <button
-                                    type="button"
-                                    aria-label="Remove category"
-                                    onClick={() => onRemoveCategory(category)}
-                                >
-                                    <Close
-                                        style={{
-                                            marginLeft: 10,
-                                            fill: "white",
-                                            width: 20,
-                                            height: 20
-                                        }}
-                                    />
-                                </button>
-                            </Category>
+                                onClick={onRemoveCategory}
+                            />
                         ))}
                     </ul>
                 </FormInput>

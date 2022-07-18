@@ -5,11 +5,10 @@ import { gql } from "@apollo/client";
  *
  * @param $postId  게시물 ID
  * @param $content 내용
- * @param $isDev   개발중 여부
  */
 export const CREATE_COMMENT = gql`
-    mutation addComment($postId: String!, $content: String!, $isDev: Boolean) {
-        addComment(postId: $postId, content: $content, isDev: $isDev) {
+    mutation addComment($postId: String!, $content: String!) {
+        addComment(postId: $postId, content: $content) {
             id
             content
             createdAt
@@ -23,11 +22,10 @@ export const CREATE_COMMENT = gql`
  *
  * @param $id      댓글 ID
  * @param $content 내용
- * @param $isDev   개발중 여부
  */
 export const UPDATE_COMMENT = gql`
-    mutation updateComment($id: String!, $content: String!, $isDev: Boolean) {
-        updateComment(id: $id, content: $content, isDev: $isDev)
+    mutation updateComment($id: String!, $content: String!) {
+        updateComment(id: $id, content: $content)
     }
 `;
 

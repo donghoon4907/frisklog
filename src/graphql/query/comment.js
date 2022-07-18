@@ -30,6 +30,12 @@ export const GET_COMMENTS = gql`
                     id
                     nickname
                     avatar
+                    link
+                    Platform {
+                        id
+                        domainUrl
+                        storageUrl
+                    }
                 }
             }
             count

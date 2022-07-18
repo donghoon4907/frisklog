@@ -1,5 +1,6 @@
 import React, { memo, useState, useCallback } from "react";
 import { useMutation } from "@apollo/client";
+
 import { GET_COMMENTS } from "../graphql/query/comment";
 import { CREATE_COMMENT } from "../graphql/mutation/comment";
 import { useInput } from "../hooks";
@@ -27,7 +28,7 @@ const CommentList = ({ postId }) => {
     const comment = useInput("");
     // 생성한 댓글 목록
     const [comments, setComments] = useState([]);
-
+    // 댓글 추가
     const [create, { loading }] = useMutation(CREATE_COMMENT);
 
     // 댓글 추가 핸들러
@@ -73,7 +74,13 @@ const CommentList = ({ postId }) => {
                             User: {
                                 id,
                                 nickname,
-                                avatar
+                                avatar,
+                                link: `/user/${id}`,
+                                Platform: {
+                                    id: process.env.RAZZLE_FRISKLOG_PLATFORM_ID,
+                                    domainUrl: "/",
+                                    storageUrl: process.env.RAZZLE_BACKEND_ROOT
+                                }
                             },
                             ...addComment
                         },
