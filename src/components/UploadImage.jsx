@@ -3,14 +3,13 @@ import React, { useState, useCallback, useEffect, useRef, memo } from "react";
 // import { Thumbnail } from "../assets/icon";
 import { useLazyAxios } from "../hooks";
 import { SET_UPLOADED_URL } from "../context/action";
-import { useDispatch, useSelector } from "../context";
+import { useDispatch } from "../context";
 import Loader from "./Loader";
 import Image from "./Image";
 
 /**
  * 이미지 업로드 컴포넌트
  *
- * @param {string?}  props.src            이미지 자원
  */
 const UploadImage = ({ src }) => {
     const displayName = "fr-upload";
@@ -19,11 +18,9 @@ const UploadImage = ({ src }) => {
 
     const dispatch = useDispatch();
 
-    const { avatar } = useSelector();
-
     const { loading, call } = useLazyAxios();
     // 프로필사진 미리보기
-    const [preview, setPreview] = useState(src);
+    const [preview, setPreview] = useState(src || "");
     // 파일 클릭 핸들러
     const handleClick = useCallback(() => {
         const node = $file.current;

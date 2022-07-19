@@ -89,7 +89,7 @@ const AsideMypageHeader = ({ isMe, avatar, displayName }) => {
 
             {isMe && uploadedUrl && (
                 <form className={`${displayName}__upt`}>
-                    <Button onClick={handleCancelUptAvatar}>취소</Button>
+                    {/* <Button onClick={handleCancelUptAvatar}>취소</Button> */}
                     <Button type="submit" onClick={handleUptAvatar}>
                         사진 변경
                     </Button>
