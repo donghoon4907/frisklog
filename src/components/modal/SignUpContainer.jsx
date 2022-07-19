@@ -34,6 +34,16 @@ const SignUpContainer = ({ setAction }) => {
                 return alert("별명은 10자 미만으로 입력 해주세요.");
             }
 
+            const variables = {
+                email: email.value,
+                password: password.value,
+                nickname: nickname.value
+            };
+
+            if (uploadedUrl) {
+                variables.avatar = uploadedUrl;
+            }
+
             const tf = confirm("입력한 내용으로 회원가입 하시겠어요?");
 
             if (tf) {
@@ -41,12 +51,7 @@ const SignUpContainer = ({ setAction }) => {
                     const {
                         data: { addUser }
                     } = await signUp({
-                        variables: {
-                            email: email.value,
-                            password: password.value,
-                            nickname: nickname.value,
-                            avatar: uploadedUrl
-                        }
+                        variables
                     });
                     if (addUser) {
                         alert("회원가입이 정상처리되었습니다.");
@@ -59,7 +64,7 @@ const SignUpContainer = ({ setAction }) => {
                 }
             }
         },
-        [email.value, nickname.value, loading, uploadedUrl]
+        [email.value, password.value, nickname.value, loading, uploadedUrl]
     );
 
     return (

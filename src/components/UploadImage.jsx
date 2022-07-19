@@ -81,7 +81,7 @@ const UploadImage = ({ src }) => {
     useEffect(() => {
         dispatch({
             type: SET_UPLOADED_URL,
-            uploadedUrl: ""
+            uploadedUrl: null
         });
     }, []);
 

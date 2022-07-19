@@ -44,7 +44,7 @@ const initialState = {
     // isCollapseNav: "contract",
     // isMobile: false, deprecated
     breakpoint: "wd",
-    uploadedUrl: "",
+    uploadedUrl: null,
     slidesToShow: 1,
     activePost: {
         id: "",

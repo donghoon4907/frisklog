@@ -28,7 +28,7 @@ const AsideMypageHeader = ({ isMe, avatar, displayName }) => {
     const handleCancelUptAvatar = useCallback(() => {
         dispatch({
             type: SET_UPLOADED_URL,
-            uploadedUrl: ""
+            uploadedUrl: null
         });
     }, []);
     // 프로필 사진 변경 핸들러
