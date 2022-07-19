@@ -18,6 +18,7 @@ import PostLike from "../PostLike";
  * @param {string} props.thumbnail    게시물 썸네일
  * @param {string} props.Likers       게시물 좋아요 목록
  * @param {string} props.PostComments 게시물 댓글
+ * @deprecated
  */
 const PostCardTypeItem = ({
     id,

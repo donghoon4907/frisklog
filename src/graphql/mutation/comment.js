@@ -33,10 +33,9 @@ export const UPDATE_COMMENT = gql`
  * 댓글 삭제
  *
  * @param $id    댓글 ID
- * @param $isDev 개발중 여부
  */
 export const DELETE_COMMENT = gql`
-    mutation deleteComment($id: String!, $isDev: Boolean) {
-        deleteComment(id: $id, isDev: $isDev)
+    mutation deleteComment($id: String!) {
+        deleteComment(id: $id)
     }
 `;

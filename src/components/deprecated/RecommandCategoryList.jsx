@@ -6,8 +6,7 @@ import RecommandCategoryItem from "./RecommandCategoryItem";
 /**
  * 추천 카테고리 목록 컴포넌트
  *
- * @Component
- * @author frisk
+ * @deprecated
  */
 const RecommandCategoryList = () => (
     <ul>

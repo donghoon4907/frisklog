@@ -1,9 +1,10 @@
 import React, { useState, useCallback, memo } from "react";
 import { useMutation } from "@apollo/client";
+
 import { UPDATE_COMMENT, DELETE_COMMENT } from "../graphql/mutation/comment";
 import { useInput } from "../hooks";
 import { FormTextArea } from "./Form";
-import Avatar from "./Avatar";
+import LinkImage from "./LinkImage";
 import Button from "./button";
 import { TOKEN_KEY, getStorage } from "../lib/cookie";
 import { useDispatch, useSelector } from "../context";
@@ -126,13 +127,12 @@ const CommentItem = ({ id, content, createdAt, User }) => {
             {(updateLoading || deleteLoading) && <Loader />}
             <div className={displayName}>
                 <div className={`${displayName}__avatar`} title="Avatar">
-                    <Avatar
+                    <LinkImage
                         ariaLabel="Avatar"
-                        path={User.link}
                         domainUrl={User.Platform.domainUrl}
-                        storageUrl={User.Platform.storageUrl}
-                        src={User.avatar}
-                        size={36}
+                        path={User.link}
+                        src={User.Platform.storageUrl + User.avatar}
+                        alt="Avatar"
                         isInternal={
                             User.Platform.id ==
                             process.env.RAZZLE_FRISKLOG_PLATFORM_ID

@@ -9,6 +9,7 @@ import { Link } from "react-router-dom";
  * @param {string} props.userId  사용자 ID
  * @param {number} props.size    프로필 사진 크기
  * @param {string?} props.src     이미지 자원
+ * @deprecated
  */
 const PopoverAvatar = ({ userId, nickname, size, src }) => (
     <OverlayTrigger

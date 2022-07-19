@@ -2,7 +2,7 @@ import React, { useRef, useState, memo, useCallback } from "react";
 import { Link } from "react-router-dom";
 import { marked } from "marked";
 
-import Avatar from "./Avatar";
+import LinkImage from "./LinkImage";
 import { timeForToday } from "../lib/date";
 import LikePostBtn from "./button/LikePost";
 import ModifyPostBtn from "./button/ModifyPost";
@@ -49,14 +49,13 @@ const PostItem = ({ id, createdAt, User, Categories, content, Likers }) => {
             <article className={displayName}>
                 <header className={`${displayName}__header`}>
                     <div className={`${displayName}__avatar`} title="Avatar">
-                        <Avatar
+                        <LinkImage
                             ariaLabel="Avatar"
                             domainUrl={User.Platform.domainUrl}
                             path={User.link}
-                            storageUrl={User.Platform.storageUrl}
-                            src={User.avatar}
+                            src={User.Platform.storageUrl + User.avatar}
+                            alt="Avatar"
                             isInternal={isInternal}
-                            size={38}
                         />
                     </div>
                     <div className={`${displayName}__user`}>
@@ -68,13 +67,15 @@ const PostItem = ({ id, createdAt, User, Categories, content, Likers }) => {
                         className={`${displayName}__platform`}
                         title="Platform"
                     >
-                        <Avatar
+                        <LinkImage
                             ariaLabel="Platform"
-                            path=""
                             domainUrl={User.Platform.domainUrl}
-                            storageUrl={process.env.RAZZLE_BACKEND_ROOT}
-                            src={User.Platform.logoUrl}
-                            size={38}
+                            path=""
+                            src={
+                                process.env.RAZZLE_BACKEND_ROOT +
+                                User.Platform.logoUrl
+                            }
+                            alt="Platform"
                             isInternal={isInternal}
                         />
                     </div>

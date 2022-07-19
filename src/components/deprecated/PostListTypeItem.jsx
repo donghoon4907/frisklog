@@ -20,6 +20,7 @@ import { timeForToday } from "../../lib/date";
  * @param {string} props.category     게시물 카테고리
  * @param {number} props.commentCount 게시물 댓글 수
  * @param {string?} props.renderType   렌더링 타입
+ * @deprecated
  */
 const PostListTypeItem = ({
     id,

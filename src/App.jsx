@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { Route, Switch } from "react-router-dom";
 import loadable from "@loadable/component";
 
-import Header from "./components/Header";
+import Header from "./components/header";
 import AuthModal from "./components/modal/Auth";
 import PostModal from "./components/modal/SetPostContainer";
 import UserModal from "./components/modal/SetUserContainer";

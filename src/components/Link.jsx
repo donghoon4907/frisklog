@@ -6,7 +6,7 @@ import { Link as ReactRouterLink } from "react-router-dom";
  *
  * @param {string} props.domainUrl   도메인 경로
  * @param {string} props.path        저장소 경로
- * @param {string} props.isExternal  인사이트 여부
+ * @param {string} props.isInternal  인사이트 여부
  */
 const Link = ({ children, domainUrl, path, isInternal, ...props }) => {
     if (isInternal) {

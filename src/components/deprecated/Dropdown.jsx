@@ -7,6 +7,7 @@ const displayName = "fr-dropdown";
 /**
  * 드롭다운 컴포넌트
  *
+ * @deprecated
  */
 export const DropdownBtn = () => {
     const [show, setShow] = useState(false);

@@ -22,6 +22,12 @@
         padding: 12px;
     }
 
+    &__avatar,
+    &__platform {
+        width: 38px;
+        height: 38px;
+    }
+
     &__user {
         display: flex;
         justify-content: flex-start;
@@ -49,14 +55,6 @@
 
         &--expended {
             height: auto;
-        }
-
-        .markdown-body *:not(.fr-thumbnail, .fr-thumbnail__image, a, code) {
-            margin: 12px !important;
-        }
-
-        ul {
-            list-style: disc;
         }
     }
 

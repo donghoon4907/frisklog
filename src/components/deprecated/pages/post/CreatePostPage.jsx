@@ -15,6 +15,7 @@ import { graphqlError } from "../../../../lib/error";
 /**
  * 게시물 등록 화면 컴포넌트
  *
+ * @deprecated
  */
 const CreatePostPage = () => {
     const displayName = "fr-create-post";

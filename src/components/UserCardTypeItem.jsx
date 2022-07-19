@@ -1,5 +1,5 @@
 import React from "react";
-import Avatar from "./Avatar";
+import LinkImage from "./LinkImage";
 
 /**
  * 사용자 카드형 컴포넌트
@@ -26,13 +26,11 @@ const UserCardTypeItem = ({
                 <span>{postCount} Posts</span>
             </div>
             <div className={`${displayName}__body`} title="Avatar">
-                <Avatar
+                <LinkImage
                     ariaLabel="Avatar"
                     path={link}
-                    size={120}
-                    domainUrl={""}
-                    storageUrl={storageUrl}
-                    src={avatar}
+                    src={storageUrl + avatar}
+                    alt="Avatar"
                     isInternal={true}
                 />
             </div>

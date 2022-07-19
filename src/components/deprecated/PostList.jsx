@@ -16,6 +16,7 @@ import { useSelector } from "../../context";
  * @param {string?}  searchKeyword 검색어
  * @param {string?}  category      카테고리
  * @param {string?}  userId        사용자 ID
+ * @deprecated
  */
 const PostList = ({
     renderType,

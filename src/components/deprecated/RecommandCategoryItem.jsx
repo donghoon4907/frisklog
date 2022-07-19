@@ -6,9 +6,8 @@ import BtnLink from "../button/BtnLink";
 /**
  * * 추천 카테고리 랜더링 컴포넌트
  *
- * @Component
- * @author frisk
  * @param props.content 카테고리명
+ * @deprecated
  *
  */
 const RecommandCategoryItem = ({ content }) => {

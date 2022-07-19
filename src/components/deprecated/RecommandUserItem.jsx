@@ -10,6 +10,7 @@ import Avatar from "../Avatar";
  * @param props.avatar    사용자 프로필 사진
  * @param props.nickname  사용자 별칭
  * @param props.Posts     사용자 포스트 목록
+ * @deprecated
  *
  */
 const RecommandUserItem = ({ id, avatar, nickname, Posts }) => {

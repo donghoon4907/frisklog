@@ -1,12 +1,12 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { useSelector } from "../context";
-import ProfileBtn from "./button/Profile";
-import SearchBtn from "./button/Search";
-import HeaderSearchBar from "./HeaderSearchBar";
-import CreatePostBtn from "./button/CreatePost";
-// import HeaderNotice from "./HeaderNotice";
-import { Home } from "../assets/icon";
+import { useSelector } from "../../context";
+import ProfileBtn from "../button/Profile";
+import SearchBtn from "../button/Search";
+import HeaderSearchBar from "./SearchBar";
+import CreatePostBtn from "../button/CreatePost";
+// import HeaderNotice from "./Notice";
+import { Home } from "../../assets/icon";
 
 /**
  * 공통 헤더 컴포넌트

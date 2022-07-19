@@ -15,8 +15,7 @@ import { timeForToday } from "../../lib/date";
 /**
  * 댓글 렌더링 컴포넌트
  *
- * @Component
- * @author frisk
+ * @deprecated
  */
 const CommentItem = ({ id, content, user, createdAt }) => {
     const displayName = "fr-comment";

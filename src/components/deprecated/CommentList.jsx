@@ -15,8 +15,7 @@ import Loader from "../Loader";
 /**
  * * 댓글 목록 렌더링 컴포넌트
  *
- * @Component
- * @author frisk
+ * @deprecated
  */
 const CommentList = () => {
     /**

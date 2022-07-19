@@ -6,8 +6,7 @@ import Query from "../Query";
 /**
  * 추천 사용자 목록 컴포넌트
  *
- * @Component
- * @author frisk
+ * @deprecated
  */
 const RecommandUserList = () => (
     <ul>

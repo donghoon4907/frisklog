@@ -3,6 +3,7 @@ import { useMutation } from "@apollo/client";
 
 import { useSelector, useDispatch } from "../../context";
 import UploadImage from "../UploadImage";
+import Image from "../Image";
 import Button from "../button";
 import { SET_UPLOADED_URL, SET_ME } from "../../context/action";
 import { UPDATE_USER } from "../../graphql/mutation/user";
@@ -74,14 +75,16 @@ const AsideMypageHeader = ({ isMe, avatar, displayName }) => {
     return (
         <>
             <div className={`${displayName}__header`}>
-                <UploadImage
-                    src={
-                        process.env.RAZZLE_BACKEND_ROOT +
-                        ((isMe ? myAvatar : avatar) ||
-                            process.env.RAZZLE_DEFAULT_AVATAR)
-                    }
-                    isActiveUpload={isMe}
-                />
+                {isMe ? (
+                    <UploadImage
+                        src={process.env.RAZZLE_BACKEND_ROOT + myAvatar}
+                    />
+                ) : (
+                    <Image
+                        src={process.env.RAZZLE_BACKEND_ROOT + avatar}
+                        alt="Avatar"
+                    />
+                )}
             </div>
 
             {isMe && uploadedUrl && (

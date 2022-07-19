@@ -3,7 +3,7 @@ import { Profile } from "../../assets/icon";
 import { useDispatch, useSelector } from "../../context";
 import { SHOW_LOGIN_MODAL } from "../../context/action";
 import { TOKEN_KEY, getStorage } from "../../lib/cookie";
-import Avatar from "../Avatar";
+import LinkImage from "../LinkImage";
 
 /**
  * 내 정보 아이콘 컴포넌트
@@ -26,14 +26,12 @@ const ProfileBtn = () => {
     }, []);
 
     return id ? (
-        <div className="d-flex justify-content-start" title="Go mypage">
-            <Avatar
-                ariaLabel="Go mypage"
-                domainUrl="/"
+        <div className="fr-header__avatar" title="Mypage">
+            <LinkImage
+                ariaLabel="Mypage"
                 path={`/user/${id}`}
-                storageUrl={process.env.RAZZLE_BACKEND_ROOT}
-                src={avatar}
-                size={30}
+                src={process.env.RAZZLE_BACKEND_ROOT + avatar}
+                alt="Avatar"
                 isInternal={true}
             />
         </div>

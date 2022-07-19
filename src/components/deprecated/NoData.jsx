@@ -3,8 +3,7 @@ import React from "react";
 /**
  * Common no result component
  *
- * @Component
- * @author frisk
+ * @deprecated
  */
 const NoData = () => (
     <div className="fr-search__no">

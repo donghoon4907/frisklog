@@ -93,7 +93,7 @@ const CommentList = ({ postId }) => {
                 }
             }
         },
-        [comment.value, loading, comments]
+        [comment.value, loading, comments, id, nickname, avatar]
     );
 
     return (

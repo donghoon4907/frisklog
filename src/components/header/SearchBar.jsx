@@ -1,9 +1,9 @@
 import React, { useState, useEffect, useCallback, useRef } from "react";
 import { useHistory } from "react-router-dom";
 
-import { useDispatch } from "../context";
-import { HIDE_SEARCH_BAR } from "../context/action";
-import { Label } from "./Form";
+import { useDispatch } from "../../context";
+import { HIDE_SEARCH_BAR } from "../../context/action";
+import { Label } from "../Form";
 
 /**
  * 검색 바 컴포넌트

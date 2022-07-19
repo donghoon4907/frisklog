@@ -15,8 +15,7 @@ import { FormInput } from "../../components/Form";
 /**
  * 게시물 수정 화면 컴포넌트
  *
- * @Nextpage
- * @author frist
+ * @deprecated
  */
 const UpdatePostPage = ({ match }) => {
     /**

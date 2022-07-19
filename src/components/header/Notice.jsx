@@ -1,15 +1,16 @@
 import React, { useCallback } from "react";
-import { useDispatch } from "../context";
-import { SHOW_NOTICE_MODAL } from "../context/action";
-import { GET_NOTICES } from "../graphql/query/notice";
-import { Notice } from "../assets/icon";
-import Query from "./Query";
+import { useDispatch } from "../../context";
+import { SHOW_NOTICE_MODAL } from "../../context/action";
+import { GET_NOTICES } from "../../graphql/query/notice";
+import { Notice } from "../../assets/icon";
+import Query from "../Query";
 
 /**
  * 공지사항 컴포넌트
  *
  * @Component
  * @author frisk
+ * @deprecated
  */
 const HeaderNotice = () => {
     /**

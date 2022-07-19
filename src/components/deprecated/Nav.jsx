@@ -9,6 +9,7 @@ import RecommandUserList from "../RecommandUserList";
 /**
  * 공통 네비게이션 컴포넌트
  *
+ * @deprecated
  */
 const Nav = () => {
     const displayName = "fr-nav";
