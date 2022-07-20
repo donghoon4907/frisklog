@@ -44,14 +44,19 @@ const PostItem = ({ id, createdAt, User, Categories, content, Likers }) => {
 
     const isMe = userId == User.id;
 
+    const platform = User.Platform;
+
     return (
         <div className={`${displayName}__wrapper`}>
             <article className={displayName}>
                 <header className={`${displayName}__header`}>
-                    <div className={`${displayName}__avatar`} title="Avatar">
+                    <div
+                        className={`${displayName}__avatar`}
+                        title="사용자 링크"
+                    >
                         <LinkImage
-                            ariaLabel="Avatar"
-                            domainUrl={User.Platform.domainUrl}
+                            ariaLabel="사용자 페이지"
+                            domainUrl={platform.domainUrl}
                             path={User.link}
                             src={User.Platform.storageUrl + User.avatar}
                             alt="Avatar"
@@ -65,15 +70,15 @@ const PostItem = ({ id, createdAt, User, Categories, content, Likers }) => {
                     </div>
                     <div
                         className={`${displayName}__platform`}
-                        title="Platform"
+                        title="플랫폼 링크"
                     >
                         <LinkImage
-                            ariaLabel="Platform"
-                            domainUrl={User.Platform.domainUrl}
+                            ariaLabel={platform.platformName}
+                            domainUrl={platform.domainUrl}
                             path=""
                             src={
                                 process.env.RAZZLE_BACKEND_ROOT +
-                                User.Platform.logoUrl
+                                platform.logoUrl
                             }
                             alt="Platform"
                             isInternal={isInternal}
@@ -114,7 +119,7 @@ const PostItem = ({ id, createdAt, User, Categories, content, Likers }) => {
                             <Link
                                 key={`post${id}Category${index}`}
                                 to={`/category/${content}`}
-                                aria-label="Post category"
+                                aria-label={`'${content}' 카테고리 검색`}
                             >
                                 #{content}
                             </Link>
@@ -130,10 +135,11 @@ const PostItem = ({ id, createdAt, User, Categories, content, Likers }) => {
                             />
                         </div>
 
-                        <div title="Show comment">
+                        <div title="댓글 버튼">
                             <button
+                                type="button"
                                 onClick={handleShowComment}
-                                aria-label="Show comment"
+                                aria-label="댓글 보기"
                             >
                                 <Comment />
                             </button>

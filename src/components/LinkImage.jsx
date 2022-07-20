@@ -13,14 +13,10 @@ import Image from "./Image";
  * @param {string}  props.src        이미지 자원
  * @param {string}  props.alt        이미지 대체자
  * @param {boolean} props.isInternal 외부 사이트 여부
+ * @param {boolean} props.tabIndex   tab-index
  */
-const LinkImage = ({ ariaLabel, domainUrl, path, src, alt, isInternal }) => (
-    <Link
-        path={path}
-        domainUrl={domainUrl}
-        isInternal={isInternal}
-        aria-label={ariaLabel}
-    >
+const LinkImage = ({ path, src, alt, domainUrl, ...props }) => (
+    <Link path={path} domainUrl={domainUrl} {...props}>
         <Image src={src} alt={alt} />
     </Link>
 );

@@ -4,9 +4,9 @@ import React, { forwardRef } from "react";
  * 공통 input 컴포넌트
  *
  */
-const Input = forwardRef(({ setValue, isAlone, ...props }, ref) => (
+const Input = forwardRef(({ setValue, isExpand, ...props }, ref) => (
     <input
-        className={`fr-input ${isAlone ? "fr-input--alone" : ""}`}
+        className={`fr-input ${isExpand ? "fr-input--expand" : ""}`}
         ref={ref}
         {...props}
     />

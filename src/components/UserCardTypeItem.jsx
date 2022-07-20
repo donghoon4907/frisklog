@@ -25,13 +25,14 @@ const UserCardTypeItem = ({
                 <span className="fr-avatar__name">{nickname}</span>
                 <span>{postCount} Posts</span>
             </div>
-            <div className={`${displayName}__body`} title="Avatar">
+            <div className={`${displayName}__body`} title="사용자 링크">
                 <LinkImage
-                    ariaLabel="Avatar"
+                    ariaLabel="사용자 페이지"
                     path={link}
                     src={storageUrl + avatar}
                     alt="Avatar"
                     isInternal={true}
+                    tabIndex="-1"
                 />
             </div>
         </div>

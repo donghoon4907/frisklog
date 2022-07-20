@@ -12,7 +12,7 @@ const CategoryWithClose = ({ content, onClick }) => (
     <Category content={content}>
         <button
             type="button"
-            aria-label="Remove category"
+            aria-label="카테고리 삭제"
             onClick={() => onClick(content)}
         >
             <Close

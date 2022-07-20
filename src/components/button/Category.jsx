@@ -1,5 +1,5 @@
 import React, { memo } from "react";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 /**
  * 카테고리 버튼 랜더링 컴포넌트
@@ -13,15 +13,15 @@ const CategoryBtn = ({ content, count, isGap }) => {
 
     return (
         <li className={`${displayName}__wrapper`}>
-            <Link
+            <NavLink
                 className={`${displayName} ${
                     isGap ? `${displayName}--multiple` : `${displayName}--alone`
                 }`}
                 to={`/category/${content}`}
-                aria-label="Category button"
+                aria-label={`'${content}' 카테고리 검색`}
             >
-                <span>{`${content}${count ? `(${count})` : ""}`}</span>
-            </Link>
+                {`${content}${count ? `(${count})` : ""}`}
+            </NavLink>
         </li>
     );
 };

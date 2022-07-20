@@ -71,10 +71,11 @@ const LikePostBtn = ({ postId, likers, isShowCount }) => {
     }, [id]);
 
     return (
-        <div className="fr-like" title={isLike ? "Unlike post" : "Like post"}>
+        <div className="fr-like" title="좋아요 버튼">
             <button
+                type="button"
                 onClick={handleClick}
-                aria-label={isLike ? "Unlike post" : "Like post"}
+                aria-label={isLike ? "좋아요 취소" : "좋아요"}
             >
                 {isLike ? <HeartFull /> : <HeartEmpty />}
             </button>

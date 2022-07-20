@@ -44,8 +44,12 @@ const RemovePostBtn = ({ postId }) => {
     }, [postId, loading]);
 
     return (
-        <div className="fr-remove" title="Remove post">
-            <button onClick={handleClick} aria-label="Remove post">
+        <div className="fr-remove" title="포스트 삭제 버튼">
+            <button
+                type="button"
+                onClick={handleClick}
+                aria-label="포스트 삭제"
+            >
                 <Remove />
             </button>
         </div>

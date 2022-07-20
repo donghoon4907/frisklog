@@ -21,6 +21,7 @@ const Image = ({ src, alt, isUpload }) => {
                     }`}
                     src={src}
                     alt={alt}
+                    aria-hidden="true"
                 />
             )}
 

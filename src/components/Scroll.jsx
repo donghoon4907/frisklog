@@ -12,6 +12,17 @@ class Scroll extends Component {
         const $main = document.querySelector("#main");
 
         const { scrollHeight, clientHeight, scrollTop } = $main;
+        // 스크롤 위치 저장
+        const { state = {} } = window.history;
+
+        window.history.replaceState(
+            {
+                ...state,
+                scrollTop
+            },
+            "",
+            window.location.pathname
+        );
 
         if (scrollTop + clientHeight > scrollHeight - 600) {
             this.disabledEvent();
@@ -33,6 +44,24 @@ class Scroll extends Component {
     };
 
     componentDidMount() {
+        const { state } = window.history;
+
+        // 스크롤 위치 불러오기
+        if (state && state.scrollTop) {
+            const $main = document.querySelector("#main");
+
+            $main.scrollTo(0, state.scrollTop);
+
+            window.history.replaceState(
+                {
+                    ...state,
+                    scrollTop: 0
+                },
+                "",
+                window.location.pathname
+            );
+        }
+
         this.activeEvent();
     }
 

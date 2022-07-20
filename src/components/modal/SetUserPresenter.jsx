@@ -59,7 +59,7 @@ const SetUserPresenter = ({
                             id="password"
                             autoComplete="off"
                             required
-                            isAlone={true}
+                            isExpand={true}
                             {...newPassword}
                             label="암호"
                         />
@@ -69,7 +69,7 @@ const SetUserPresenter = ({
                             id="confirmPwd"
                             autoComplete="off"
                             required
-                            isAlone={true}
+                            isExpand={true}
                             {...confirmNewPassword}
                             label="암호 확인"
                         />
@@ -81,7 +81,7 @@ const SetUserPresenter = ({
                     placeholder="닉네임을 입력하세요"
                     required
                     id="nickname"
-                    isAlone={true}
+                    isExpand={true}
                     {...newNickname}
                     autoComplete="off"
                     label="닉네임"

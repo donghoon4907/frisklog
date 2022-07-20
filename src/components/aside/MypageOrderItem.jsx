@@ -32,10 +32,10 @@ const MypageOrderItem = ({ id, isLike, text }) => {
             className={`${displayName} ${
                 searchPostOption.activeId === id ? `${displayName}--active` : ""
             }`}
-            role="button"
-            onClick={handleClick}
         >
-            <span>{text}</span>
+            <button type="button" onClick={handleClick}>
+                {text}
+            </button>
         </li>
     );
 };

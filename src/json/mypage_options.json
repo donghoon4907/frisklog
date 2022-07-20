@@ -2,13 +2,13 @@
     {
         "id": 1,
         "isLike": false,
-        "text": "모든 포스트",
+        "text": "모든 포스트 보기",
         "enable": true
     },
     {
         "id": 2,
         "isLike": true,
-        "text": "내가 좋아요한 포스트",
+        "text": "좋아요 포스트 보기",
         "enable": true
     }
 ]

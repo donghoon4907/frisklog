@@ -32,8 +32,8 @@ const User = loadable(() => import("./pages/user"));
 const NoMatch = loadable(() => import("./pages/404"));
 // aside
 const AsideMypage = loadable(() => import("./components/aside/Mypage"));
-const AsideRecommandCategory = loadable(() =>
-    import("./components/aside/RecommandCategory")
+const AsideRecommendCategory = loadable(() =>
+    import("./components/aside/RecommendCategory")
 );
 
 const App = () => {
@@ -56,6 +56,22 @@ const App = () => {
         });
     }, [breakpoint]);
 
+    useEffect(() => {
+        const c = () => {
+            console.log("popstate");
+            const { state } = window.history;
+            // 스크롤 위치 불러오기
+            if (state.scrollTop) {
+                const $main = document.querySelector("#main");
+
+                $main.scrollTo(0, state.scrollTop);
+            }
+        };
+        window.addEventListener("popstate", c);
+
+        return window.removeEventListener("popstate", c);
+    }, []);
+
     return (
         <div className={`${displayName}__wrapper`}>
             <Header />
@@ -64,22 +80,7 @@ const App = () => {
                     <div className="fr-main__wrapper">
                         <main className="fr-main">
                             <Switch>
-                                <Route exact path="/" component={Feed} />
-                                {/* <Route
-                                    exact
-                                    path="/create_post"
-                                    component={CreatePostPage}
-                                />
-                                <Route
-                                    exact
-                                    path="/update_post/:id"
-                                    component={UpdatePostPage}
-                                />
-                                <Route
-                                    exact
-                                    path="/post/:id"
-                                    component={Post}
-                                /> */}
+                                <Route exact path="/" render={() => <Feed />} />
                                 <Route
                                     exact
                                     path="/user/:id"
@@ -107,7 +108,7 @@ const App = () => {
                                     path="/user/:id"
                                     component={AsideMypage}
                                 />
-                                <Route component={AsideRecommandCategory} />
+                                <Route component={AsideRecommendCategory} />
                             </Switch>
                         </aside>
                     </div>

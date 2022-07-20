@@ -24,8 +24,12 @@ const ModifyPostBtn = ({ postId, content, categories }) => {
     }, [postId, content, categories]);
 
     return (
-        <div className="fr-modify" title="Modify post">
-            <button onClick={handleClick} aria-label="Modify post">
+        <div className="fr-modify" title="포스트 수정 버튼">
+            <button
+                type="button"
+                onClick={handleClick}
+                aria-label="포스트 수정"
+            >
                 <Modify />
             </button>
         </div>

@@ -1,7 +1,22 @@
 .fr-search {
-    &__no {
-        width: 100%;
-        text-align: center;
-        padding: 3rem;
+    border: none;
+    background: white;
+    position: absolute;
+    top: calc(3rem - 3px);
+    left: 0;
+    width: 100%;
+    height: auto;
+    padding: 0.6rem;
+    box-shadow: $fr-header-shadow;
+
+    &__form {
+        position: relative;
+        margin: 0 auto;
+        width: 33rem;
+    }
+
+    &__button {
+        width: 50px;
+        margin-left: 10px;
     }
 }

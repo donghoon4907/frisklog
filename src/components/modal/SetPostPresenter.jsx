@@ -48,6 +48,7 @@ const SetPostPresenter = ({
                     autoComplete="off"
                     {...category}
                     label="카테고리"
+                    isExpand={false}
                 >
                     <ul className="fr-category__container">
                         {categories.map((category, index) => (

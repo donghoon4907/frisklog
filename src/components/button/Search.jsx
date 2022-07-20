@@ -20,8 +20,12 @@ const SearchBtn = () => {
     }, [isShowSearchBar]);
 
     return (
-        <div title="Search">
-            <button onClick={handleClick} aria-label="Search">
+        <div title="검색 버튼">
+            <button
+                type="button"
+                onClick={handleClick}
+                aria-label={isShowSearchBar ? "검색바 닫기" : "검색바 열기"}
+            >
                 <Search />
             </button>
         </div>

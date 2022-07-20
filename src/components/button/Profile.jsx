@@ -26,9 +26,9 @@ const ProfileBtn = () => {
     }, []);
 
     return id ? (
-        <div className="fr-header__avatar" title="Mypage">
+        <div className="fr-header__avatar" title="마이페이지 링크">
             <LinkImage
-                ariaLabel="Mypage"
+                ariaLabel="마이페이지"
                 path={`/user/${id}`}
                 src={process.env.RAZZLE_BACKEND_ROOT + avatar}
                 alt="Avatar"
@@ -36,8 +36,8 @@ const ProfileBtn = () => {
             />
         </div>
     ) : (
-        <div title="Login">
-            <button onClick={handleClick} aria-label="Login">
+        <div title="로그인 버튼">
+            <button type="button" onClick={handleClick} aria-label="로그인">
                 <Profile />
             </button>
         </div>

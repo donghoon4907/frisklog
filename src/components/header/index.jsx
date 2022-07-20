@@ -20,8 +20,8 @@ const Header = () => {
     return (
         <div className={`${displayName}__wrapper`}>
             <header className={`${displayName}`}>
-                <div className={`${displayName}__column`} title="Home">
-                    <Link to="/" aria-label="Home">
+                <div className={`${displayName}__column`} title="홈 링크">
+                    <Link to="/" aria-label="홈으로 이동">
                         <Home />
                     </Link>
                     {/* <HeaderNotice /> */}
@@ -32,11 +32,7 @@ const Header = () => {
                     <ProfileBtn />
                 </div>
             </header>
-            {isShowSearchBar && (
-                <div className={`${displayName}__search-wrapper`}>
-                    <HeaderSearchBar />
-                </div>
-            )}
+            {isShowSearchBar && <HeaderSearchBar />}
         </div>
     );
 };

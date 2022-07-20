@@ -31,8 +31,12 @@ const CreatePostBtn = () => {
     }, []);
 
     return (
-        <div className="fr-header__post" title="Create post">
-            <button aria-label="Create post" onClick={handleClick}>
+        <div className="fr-header__post" title="포스트 작성 버튼">
+            <button
+                type="button"
+                aria-label="포스트 작성"
+                onClick={handleClick}
+            >
                 <Add />
             </button>
         </div>

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { forwardRef } from "react";
 import Input from "./Input";
 
 const displayName = "fr-form";
@@ -26,18 +26,20 @@ export const Select = ({ children, setValue, ...props }) => (
     </select>
 );
 
-export const FormInput = ({ children, isAlone, ...props }) => (
+export const FormInput = forwardRef(({ children, isExpand, ...props }, ref) => (
     <div className={`${displayName}__input`}>
         <div
-            className={`fr-input__wrapper ${isAlone ? "fr-input--alone" : ""}`}
+            className={`fr-input__wrapper ${
+                isExpand ? "fr-input--expand" : ""
+            }`}
         >
             <Label {...props} />
-            <Input {...props} isAlone={isAlone} />
+            <Input {...props} isExpand={isExpand} ref={ref} />
         </div>
 
         {children}
     </div>
-);
+));
 
 export const FormTextArea = ({ children, ...props }) => (
     <div className={`${displayName}__input`}>

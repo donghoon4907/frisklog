@@ -5,7 +5,12 @@ import { Arrow } from "../assets/icon";
 
 const PrevArrow = ({ onClick }) => {
     return (
-        <button className="fr-carousel__prev" onClick={onClick}>
+        <button
+            type="button"
+            className="fr-carousel__prev"
+            onClick={onClick}
+            aria-label="이전 컨텐츠 보기"
+        >
             <Arrow />
         </button>
     );
@@ -13,7 +18,12 @@ const PrevArrow = ({ onClick }) => {
 
 const NextArrow = ({ onClick }) => {
     return (
-        <button className="fr-carousel__next" onClick={onClick}>
+        <button
+            type="button"
+            className="fr-carousel__next"
+            onClick={onClick}
+            aria-label="다음 컨텐츠 보기"
+        >
             <Arrow />
         </button>
     );

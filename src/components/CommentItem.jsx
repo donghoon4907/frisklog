@@ -126,9 +126,9 @@ const CommentItem = ({ id, content, createdAt, User }) => {
         <li className={`${displayName}__wrapper`}>
             {(updateLoading || deleteLoading) && <Loader />}
             <div className={displayName}>
-                <div className={`${displayName}__avatar`} title="Avatar">
+                <div className={`${displayName}__avatar`} title="사용자 링크">
                     <LinkImage
-                        ariaLabel="Avatar"
+                        ariaLabel="사용자 페이지"
                         domainUrl={User.Platform.domainUrl}
                         path={User.link}
                         src={User.Platform.storageUrl + User.avatar}
@@ -183,7 +183,9 @@ const CommentItem = ({ id, content, createdAt, User }) => {
                         {...comment}
                     />
                     <div className={`${displayName}__submit`}>
-                        <Button onClick={handleHideUpdate}>취소</Button>
+                        <Button type="button" onClick={handleHideUpdate}>
+                            취소
+                        </Button>
                         <Button type="submit">댓글 수정</Button>
                     </div>
                 </form>

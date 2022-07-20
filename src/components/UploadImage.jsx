@@ -90,11 +90,11 @@ const UploadImage = ({ src }) => {
     }, [src]);
 
     return (
-        <div
+        <button
+            type="button"
             className={displayName}
             onClick={handleClick}
-            role="button"
-            aria-label="Upload"
+            aria-label="프로필사진 업로드"
         >
             {loading && <Loader />}
             <Image src={preview} alt="Avatar" isUpload={true} />
@@ -106,7 +106,7 @@ const UploadImage = ({ src }) => {
                 hidden
                 accept="image/jpg, image/jpeg, image/png, .gif"
             />
-        </div>
+        </button>
     );
 };
 

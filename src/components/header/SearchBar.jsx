@@ -3,13 +3,16 @@ import { useHistory } from "react-router-dom";
 
 import { useDispatch } from "../../context";
 import { HIDE_SEARCH_BAR } from "../../context/action";
-import { Label } from "../Form";
+import { FormInput } from "../Form";
+import Button from "../button";
 
 /**
  * 검색 바 컴포넌트
  *
  */
 const HeaderSearchBar = () => {
+    const displayName = "fr-search";
+
     const history = useHistory();
 
     const dispatch = useDispatch();
@@ -44,24 +47,25 @@ const HeaderSearchBar = () => {
     }, []);
 
     return (
-        <form className="fr-header__search__form" onSubmit={handleSubmit}>
-            <Label
-                id="search"
-                value={searchKeyword}
-                label="검색어를 입력하세요."
-            />
-            <div className="fr-header__search__input-wrapper">
-                <input
-                    className="fr-input fr-input--alone fr-header__search__input"
-                    placeholder="검색어를 입력하세요."
+        <div className={displayName}>
+            <form className={`${displayName}__form`} onSubmit={handleSubmit}>
+                <FormInput
+                    placeholder="검색어를 입력하세요"
                     id="search"
-                    value={searchKeyword}
-                    onChange={handleChange}
                     autoComplete="off"
+                    required
+                    isExpand={true}
+                    label="검색어"
                     ref={$search}
-                />
-            </div>
-        </form>
+                    onChange={handleChange}
+                    value={searchKeyword}
+                >
+                    <div className={`${displayName}__button`}>
+                        <Button type="submit">검색</Button>
+                    </div>
+                </FormInput>
+            </form>
+        </div>
     );
 };
 

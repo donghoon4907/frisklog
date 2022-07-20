@@ -29,7 +29,7 @@ const Feed = () => (
                 return (
                     <>
                         <div className="fr-main__title">
-                            <span>추천인</span>
+                            <h2>추천인</h2>
                         </div>
                         <Carousel>
                             {recommenders.map((user) => (
@@ -46,7 +46,7 @@ const Feed = () => (
         </Query>
 
         <div className="fr-main__title activeEscape">
-            <span>최근 게시물</span>
+            <h2>최근 게시물</h2>
         </div>
         <List
             type="posts"

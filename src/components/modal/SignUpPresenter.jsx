@@ -26,7 +26,7 @@ const SignUpPresenter = ({ loading, nickname, email, password, onSubmit }) => {
                     id="email"
                     autoComplete="off"
                     required
-                    isAlone={true}
+                    isExpand={true}
                     {...email}
                     label="이메일"
                 />
@@ -36,7 +36,7 @@ const SignUpPresenter = ({ loading, nickname, email, password, onSubmit }) => {
                     id="password"
                     autoComplete="off"
                     required
-                    isAlone={true}
+                    isExpand={true}
                     {...password}
                     label="암호"
                 />
@@ -44,7 +44,7 @@ const SignUpPresenter = ({ loading, nickname, email, password, onSubmit }) => {
                     placeholder="닉네임을 입력하세요"
                     required
                     id="nickname"
-                    isAlone={true}
+                    isExpand={true}
                     {...nickname}
                     autoComplete="off"
                     label="닉네임"
