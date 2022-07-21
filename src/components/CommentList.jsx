@@ -11,7 +11,7 @@ import { useDispatch, useSelector } from "../context";
 import { SHOW_LOGIN_MODAL } from "../context/action";
 import CommentItem from "./CommentItem";
 import Loader from "./Loader";
-import List from "./List";
+import ScrollList from "./ScrollList";
 import { graphqlError } from "../lib/error";
 
 /**
@@ -118,7 +118,7 @@ const CommentList = ({ postId }) => {
                         {...comment}
                     />
                 ))}
-                <List
+                <ScrollList
                     type="comments"
                     query={GET_COMMENTS}
                     variables={{
@@ -126,7 +126,6 @@ const CommentList = ({ postId }) => {
                         postId,
                         order: "createdAt_DESC"
                     }}
-                    fetchMoreType="scroll"
                     Item={CommentItem}
                 />
             </ul>

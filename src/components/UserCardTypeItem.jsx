@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 import LinkImage from "./LinkImage";
 
 /**
@@ -39,4 +39,4 @@ const UserCardTypeItem = ({
     );
 };
 
-export default UserCardTypeItem;
+export default memo(UserCardTypeItem);

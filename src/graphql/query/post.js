@@ -3,59 +3,51 @@ import { gql } from "@apollo/client";
 /**
  * 게시물 검색
  *
- * @param $offset         건너뛸 목록의 수
+ * @param $cursor         커서
  * @param $limit          요청 목록의 수
  * @param $order          정렬
  * @param $searchKeyword  검색어
- * @param $category       카테고리
  * @param $userId         사용자 ID
  * @param $isLike         내가 좋아요한 포스트 여부(마이페이지에서 사용, userId 필요)
  */
 export const GET_POSTS = gql`
     query GetPosts(
-        $offset: Int
+        $cursor: String
         $limit: Int!
-        $order: String
         $searchKeyword: String
-        $category: String
         $userId: String
         $isLike: Boolean
     ) {
         posts(
-            offset: $offset
+            cursor: $cursor
             limit: $limit
-            order: $order
             searchKeyword: $searchKeyword
-            category: $category
             userId: $userId
             isLike: $isLike
         ) {
-            rows {
+            id
+            content
+            User {
                 id
-                content
-                User {
+                nickname
+                avatar
+                link
+                Platform {
                     id
-                    nickname
-                    avatar
-                    link
-                    Platform {
-                        id
-                        platformName
-                        logoUrl
-                        domainUrl
-                        storageUrl
-                    }
+                    platformName
+                    logoUrl
+                    domainUrl
+                    storageUrl
                 }
-                Categories {
-                    content
-                }
-                Likers {
-                    id
-                }
-                createdAt
-                updatedAt
             }
-            count
+            Likers {
+                id
+            }
+            Categories {
+                content
+            }
+            createdAt
+            updatedAt
         }
     }
 `;
@@ -82,6 +74,43 @@ export const GET_POST = gql`
             }
             Likers {
                 id
+            }
+            createdAt
+            updatedAt
+        }
+    }
+`;
+
+/**
+ * 카테고리별 게시물 검색
+ *
+ * @param $content 카테고리명
+ * @param $cursor  포스트 커서
+ * @param $limit   포스트 요청 목록의 수
+ */
+export const GET_CATEGORY_POSTS = gql`
+    query GetPostsByCategory($content: String!, $cursor: String, $limit: Int!) {
+        postsByCategory(content: $content, cursor: $cursor, limit: $limit) {
+            id
+            content
+            User {
+                id
+                nickname
+                avatar
+                link
+                Platform {
+                    id
+                    platformName
+                    logoUrl
+                    domainUrl
+                    storageUrl
+                }
+            }
+            Likers {
+                id
+            }
+            Categories {
+                content
             }
             createdAt
             updatedAt

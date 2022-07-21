@@ -2,7 +2,7 @@ import React, { useState, useCallback } from "react";
 import { GET_POSTS } from "../../graphql/query/post";
 import { Select } from "../../components/Form";
 import searchOptions from "../../json/search_options.json";
-import List from "../../components/List";
+import ScrollList from "../../components/ScrollList";
 import PostItem from "../../components/PostItem";
 import { useSelector } from "../../context";
 
@@ -43,16 +43,16 @@ const User = ({
                     </Select>
                 </div>
             </div>
-            <List
+            <ScrollList
                 type="posts"
                 query={GET_POSTS}
+                fetchPolicy="no-cache"
                 variables={{
                     limit: 12,
                     order,
                     userId: id,
                     isLike: searchPostOption.isLike
                 }}
-                fetchMoreType="scroll"
                 Item={PostItem}
             />
         </>

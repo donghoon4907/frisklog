@@ -1,4 +1,4 @@
-import React, { useRef, useState, memo, useCallback } from "react";
+import React, { useRef, useState, useCallback, memo } from "react";
 import { Link } from "react-router-dom";
 import { marked } from "marked";
 
@@ -7,7 +7,6 @@ import { timeForToday } from "../lib/date";
 import LikePostBtn from "./button/LikePost";
 import ModifyPostBtn from "./button/ModifyPost";
 import RemovePostBtn from "./button/RemovePost";
-import Spinner from "react-loader-spinner";
 import { useSelector } from "../context";
 import { Comment } from "../assets/icon";
 import CommentList from "./CommentList";
@@ -30,7 +29,7 @@ const PostItem = ({ id, createdAt, User, Categories, content, Likers }) => {
 
     const mdBodyEl = useRef(null);
     // ori 작업 완료 여부
-    const [ready] = useResizeImage(mdBodyEl);
+    useResizeImage(mdBodyEl);
     // 댓글 보기 여부
     const [activeComment, setActiveComment] = useState(false);
 
@@ -88,18 +87,6 @@ const PostItem = ({ id, createdAt, User, Categories, content, Likers }) => {
                 <div
                     className={`${displayName}__body ${displayName}__body--expended`}
                 >
-                    {ready && (
-                        <div className={`${displayName}__skeleton`}>
-                            <Spinner
-                                type="ThreeDots"
-                                color="#4142DD"
-                                height={80}
-                                width={80}
-                                visible={true}
-                            />
-                        </div>
-                    )}
-
                     <div
                         ref={mdBodyEl}
                         className="markdown-body"
@@ -107,11 +94,6 @@ const PostItem = ({ id, createdAt, User, Categories, content, Likers }) => {
                             __html: content ? marked(content) : ""
                         }}
                     />
-                    {/* {!expension && (
-                        <div className={`${displayName}__expansion`}>
-                            <button onClick={handleClick}>더보기</button>
-                        </div>
-                    )} */}
                 </div>
                 <footer className={`${displayName}__footer`}>
                     <div className={`${displayName}__tag`}>

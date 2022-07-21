@@ -5,8 +5,7 @@ import ProfileBtn from "../button/Profile";
 import SearchBtn from "../button/Search";
 import HeaderSearchBar from "./SearchBar";
 import CreatePostBtn from "../button/CreatePost";
-// import HeaderNotice from "./Notice";
-import { Home } from "../../assets/icon";
+import HomeBtn from "../button/Home";
 
 /**
  * 공통 헤더 컴포넌트
@@ -20,11 +19,8 @@ const Header = () => {
     return (
         <div className={`${displayName}__wrapper`}>
             <header className={`${displayName}`}>
-                <div className={`${displayName}__column`} title="홈 링크">
-                    <Link to="/" aria-label="홈으로 이동">
-                        <Home />
-                    </Link>
-                    {/* <HeaderNotice /> */}
+                <div className={`${displayName}__column`}>
+                    <HomeBtn />
                 </div>
                 <div className={`${displayName}__column`}>
                     <SearchBtn />

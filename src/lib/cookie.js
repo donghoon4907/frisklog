@@ -1,9 +1,13 @@
 import Cookies from "js-cookie";
 
 // 토큰 키
-export const TOKEN_KEY = "token__frisklog";
+export const TOKEN_KEY = "TOKEN_FRISKLOG";
 // 네비게이션 확장 여부 키
-export const COLLAPSE_KEY = "collapse__frisklog";
+export const COLLAPSE_KEY = "COLLAPSE_FRISKLOG";
+// Scroll restoration 키
+// export const SCROLLTOP_KEY = "SCROLLTOP_FRISKLOG";
+
+// export const HOME_SCROLLTOP_KEY = "/_SCROLLTOP_FRISKLOG";
 
 /**
  * Cookie getter

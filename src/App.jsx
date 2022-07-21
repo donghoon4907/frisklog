@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { Route, Switch } from "react-router-dom";
 import loadable from "@loadable/component";
 
@@ -6,9 +6,9 @@ import Header from "./components/header";
 import AuthModal from "./components/modal/Auth";
 import PostModal from "./components/modal/SetPostContainer";
 import UserModal from "./components/modal/SetUserContainer";
-import { useDispatch, useSelector } from "./context";
-import { SET_BREAKPOINT } from "./context/action";
-import { useResize } from "./hooks";
+import { useSelector } from "./context";
+// import { SET_BREAKPOINT } from "./context/action";
+// import { useResize } from "./hooks";
 
 import "./sass/main.scss";
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
@@ -25,9 +25,6 @@ const SearchPostPage = loadable(() => import("./pages/search/SearchPostPage"));
 const SearchCategoryPage = loadable(() =>
     import("./pages/search/SearchCategoryPage")
 );
-// const Post = loadable(() => import("./pages/post"));
-// const CreatePostPage = loadable(() => import("./pages/post/CreatePostPage"));
-// const UpdatePostPage = loadable(() => import("./pages/post/UpdatePostPage"));
 const User = loadable(() => import("./pages/user"));
 const NoMatch = loadable(() => import("./pages/404"));
 // aside
@@ -39,7 +36,7 @@ const AsideRecommendCategory = loadable(() =>
 const App = () => {
     const displayName = "fr-app";
 
-    const dispatch = useDispatch();
+    // const dispatch = useDispatch();
 
     const {
         isShowLoginModal,
@@ -47,40 +44,24 @@ const App = () => {
         isShowUserModal
     } = useSelector();
 
-    const [breakpoint] = useResize();
+    // const [breakpoint] = useResize();
 
-    useEffect(() => {
-        dispatch({
-            type: SET_BREAKPOINT,
-            breakpoint
-        });
-    }, [breakpoint]);
-
-    useEffect(() => {
-        const c = () => {
-            console.log("popstate");
-            const { state } = window.history;
-            // 스크롤 위치 불러오기
-            if (state.scrollTop) {
-                const $main = document.querySelector("#main");
-
-                $main.scrollTo(0, state.scrollTop);
-            }
-        };
-        window.addEventListener("popstate", c);
-
-        return window.removeEventListener("popstate", c);
-    }, []);
+    // useEffect(() => {
+    //     dispatch({
+    //         type: SET_BREAKPOINT,
+    //         breakpoint
+    //     });
+    // }, [breakpoint]);
 
     return (
         <div className={`${displayName}__wrapper`}>
             <Header />
-            <section className={`${displayName}`} id="main">
+            <div className={`${displayName}`} id="main">
                 <div className={`${displayName}__body`}>
                     <div className="fr-main__wrapper">
                         <main className="fr-main">
                             <Switch>
-                                <Route exact path="/" render={() => <Feed />} />
+                                <Route exact path="/" component={Feed} />
                                 <Route
                                     exact
                                     path="/user/:id"
@@ -113,7 +94,7 @@ const App = () => {
                         </aside>
                     </div>
                 </div>
-            </section>
+            </div>
             {isShowLoginModal && <AuthModal />}
             {isShowPostModal && <PostModal />}
             {isShowUserModal && <UserModal />}

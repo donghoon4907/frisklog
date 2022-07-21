@@ -1,9 +1,9 @@
-import React, { useState, useCallback } from "react";
+import React from "react";
 import Meta from "../../components/Meta";
-import { Select } from "../../components/Form";
-import searchOptions from "../../json/search_options.json";
-import List from "../../components/List";
-import { GET_POSTS } from "../../graphql/query/post";
+// import { Select } from "../../components/Form";
+// import searchOptions from "../../json/search_options.json";
+import ScrollList from "../../components/ScrollList";
+import { GET_CATEGORY_POSTS } from "../../graphql/query/post";
 import PostItem from "../../components/PostItem";
 
 /**
@@ -16,11 +16,11 @@ const SearchCategoryPage = ({
     }
 }) => {
     // 정렬
-    const [order, setOrder] = useState("createdAt_DESC");
+    // const [order, setOrder] = useState("createdAt_DESC");
     // 정렬 변경 핸들러
-    const handleChangeOrder = useCallback((e) => {
-        setOrder(e.target.value);
-    }, []);
+    // const handleChangeOrder = useCallback((e) => {
+    //     setOrder(e.target.value);
+    // }, []);
 
     return (
         <>
@@ -28,7 +28,7 @@ const SearchCategoryPage = ({
             <div className="fr-main__title">
                 <span>#{content} 검색결과</span>
                 <div>
-                    <Select
+                    {/* <Select
                         value={order}
                         onChange={handleChangeOrder}
                         title="정렬"
@@ -40,18 +40,17 @@ const SearchCategoryPage = ({
                                     {text}
                                 </option>
                             ))}
-                    </Select>
+                    </Select> */}
                 </div>
             </div>
-            <List
-                type="posts"
-                query={GET_POSTS}
+            <ScrollList
+                type="postsByCategory"
+                query={GET_CATEGORY_POSTS}
+                fetchPolicy="cache-first"
                 variables={{
                     limit: 12,
-                    order,
-                    category: content
+                    content
                 }}
-                fetchMoreType="scroll"
                 Item={PostItem}
             />
         </>
