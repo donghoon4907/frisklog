@@ -1,12 +1,13 @@
-import React, { useCallback } from "react";
+import React, { useState, useCallback } from "react";
 import { useMutation } from "@apollo/client";
+
 import { useInput } from "../../hooks";
-import { SIGN_IN } from "../../graphql/mutation/user";
+import { SIGN_IN, VERIFY_TOKEN } from "../../graphql/mutation/user";
 import SignInPresenter from "./SignInPresenter";
-import { TOKEN_KEY, setStorage } from "../../lib/cookie";
-import { useDispatch } from "../../context";
-import { SET_ME, HIDE_LOGIN_MODAL } from "../../context/action";
 import { graphqlError } from "../../lib/error";
+import { TOKEN_KEY, setStorage } from "../../lib/cookie";
+import { SET_ME, HIDE_LOGIN_MODAL } from "../../context/action";
+import { useDispatch } from "../../context";
 
 /**
  * 로그인 컨테이너 컴포넌트
@@ -14,18 +15,22 @@ import { graphqlError } from "../../lib/error";
  */
 const SignInContainer = () => {
     const dispatch = useDispatch();
-
-    const [login, { loading }] = useMutation(SIGN_IN);
+    // 모드
+    const [mode, setMode] = useState("로그인");
+    // 로그인
+    const [login, { loading: loginLoading }] = useMutation(SIGN_IN);
+    // 이메일 인증
+    const [verify, { loading: verifyLoading }] = useMutation(VERIFY_TOKEN);
     // 이메일
     const email = useInput("");
-    // 암호
-    const password = useInput("");
+    // 인증코드
+    const token = useInput("");
     // 로그인 요청 핸들러
-    const handleSubmit = useCallback(
+    const handleLogin = useCallback(
         async (e) => {
             e.preventDefault();
-            // 요청 중인 경우
-            if (loading) {
+
+            if (loginLoading) {
                 return alert("요청 중입니다. 잠시만 기다려주세요.");
             }
 
@@ -34,12 +39,41 @@ const SignInContainer = () => {
                     data: { logIn }
                 } = await login({
                     variables: {
-                        email: email.value,
-                        password: password.value
+                        email: email.value
                     }
                 });
                 if (logIn) {
-                    const { token, ...user } = logIn;
+                    alert("인증코드를 메일로 전송했습니다.");
+
+                    setMode("인증");
+                }
+            } catch (error) {
+                graphqlError({ error });
+            }
+        },
+        [email.value, loginLoading]
+    );
+    // 인증 요청 핸들러
+    const handleVerify = useCallback(
+        async (e) => {
+            e.preventDefault();
+
+            if (verifyLoading) {
+                return alert("요청 중입니다. 잠시만 기다려주세요.");
+            }
+
+            try {
+                const {
+                    data: { verifyToken }
+                } = await verify({
+                    variables: {
+                        email: email.value,
+                        token: token.value
+                    }
+                });
+                if (verifyToken) {
+                    const { token, ...user } = verifyToken;
+
                     // 토큰 설정
                     setStorage(TOKEN_KEY, token);
                     // 로컬 상태에 내 정보 저장
@@ -56,15 +90,17 @@ const SignInContainer = () => {
                 graphqlError({ error });
             }
         },
-        [email.value, password.value, loading]
+        [email.value, token.value, verifyLoading]
     );
 
     return (
         <SignInPresenter
-            loading={loading}
+            mode={mode}
+            loading={loginLoading || verifyLoading}
             email={email}
-            password={password}
-            onSubmit={handleSubmit}
+            token={token}
+            onLogin={handleLogin}
+            onVerify={handleVerify}
         />
     );
 };

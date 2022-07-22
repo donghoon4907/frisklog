@@ -4,17 +4,27 @@ import { gql } from "@apollo/client";
  * 로그인
  *
  * @param $email    이메일
- * @param $password 암호
  */
 export const SIGN_IN = gql`
-    mutation logIn($email: String!, $password: String!) {
-        logIn(email: $email, password: $password) {
-            token
+    mutation logIn($email: String!) {
+        logIn(email: $email)
+    }
+`;
+
+/**
+ * 인증
+ *
+ * @param $token 인증코드
+ */
+export const VERIFY_TOKEN = gql`
+    mutation verifyToken($email: String!, $token: String!) {
+        verifyToken(email: $email, token: $token) {
             id
             nickname
             email
             avatar
             isMaster
+            token
         }
     }
 `;
@@ -41,23 +51,12 @@ export const SIGN_IN_GOOGLE = gql`
  * 회원가입
  *
  * @param $email    이메일
- * @param $password 암호
  * @param $nickname 별칭
  * @param $avatar   프로필 사진
  */
 export const SIGN_UP = gql`
-    mutation addUser(
-        $email: String!
-        $password: String!
-        $nickname: String!
-        $avatar: String
-    ) {
-        addUser(
-            email: $email
-            password: $password
-            nickname: $nickname
-            avatar: $avatar
-        )
+    mutation addUser($email: String!, $nickname: String!, $avatar: String) {
+        addUser(email: $email, nickname: $nickname, avatar: $avatar)
     }
 `;
 

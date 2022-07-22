@@ -9,16 +9,14 @@ import { useSelector } from "../../context";
 /**
  * 회원가입 컨테이너 컴포넌트
  *
- * @param props.setAction 인증 화면 전환 모드 (로그인, 회원가입)
+ * @param props.setMode 인증 화면 전환 모드 (로그인, 회원가입)
  */
-const SignUpContainer = ({ setAction }) => {
+const SignUpContainer = ({ setMode }) => {
     const { uploadedUrl } = useSelector();
     // 별명
     const nickname = useInput("");
     // 이메일
     const email = useInput("");
-    // 암호
-    const password = useInput("");
     // 사용자 추가
     const [signUp, { loading }] = useMutation(SIGN_UP);
     // 회원가입 요청 핸들러
@@ -36,7 +34,6 @@ const SignUpContainer = ({ setAction }) => {
 
             const variables = {
                 email: email.value,
-                password: password.value,
                 nickname: nickname.value
             };
 
@@ -56,15 +53,14 @@ const SignUpContainer = ({ setAction }) => {
                     if (addUser) {
                         alert("회원가입이 정상처리되었습니다.");
 
-                        // 로그인 화면 전환
-                        setAction("login");
+                        setMode("로그인");
                     }
                 } catch (error) {
                     graphqlError({ error });
                 }
             }
         },
-        [email.value, password.value, nickname.value, loading, uploadedUrl]
+        [email.value, nickname.value, loading, uploadedUrl]
     );
 
     return (
@@ -72,7 +68,6 @@ const SignUpContainer = ({ setAction }) => {
             loading={loading}
             nickname={nickname}
             email={email}
-            password={password}
             onSubmit={handleSubmit}
         />
     );

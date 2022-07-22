@@ -1,7 +1,7 @@
-import React, { useState, useCallback } from "react";
+import React from "react";
 import { GET_POSTS } from "../../graphql/query/post";
-import { Select } from "../../components/Form";
-import searchOptions from "../../json/search_options.json";
+// import { Select } from "../../components/Form";
+// import searchOptions from "../../json/search_options.json";
 import ScrollList from "../../components/ScrollList";
 import PostItem from "../../components/PostItem";
 import { useSelector } from "../../context";
@@ -17,17 +17,17 @@ const User = ({
 }) => {
     const { searchPostOption } = useSelector();
     // 정렬
-    const [order, setOrder] = useState("createdAt_DESC");
-    // 정렬 변경 핸들러
-    const handleChangeOrder = useCallback((e) => {
-        setOrder(e.target.value);
-    }, []);
+    // const [order, setOrder] = useState("createdAt_DESC");
+    // // 정렬 변경 핸들러
+    // const handleChangeOrder = useCallback((e) => {
+    //     setOrder(e.target.value);
+    // }, []);
 
     return (
         <>
             <div className="fr-main__title">
                 <span>내 포스트</span>
-                <div>
+                {/* <div>
                     <Select
                         value={order}
                         onChange={handleChangeOrder}
@@ -41,15 +41,14 @@ const User = ({
                                 </option>
                             ))}
                     </Select>
-                </div>
+                </div> */}
             </div>
             <ScrollList
                 type="posts"
                 query={GET_POSTS}
-                fetchPolicy="no-cache"
+                fetchPolicy="cache-first"
                 variables={{
                     limit: 12,
-                    order,
                     userId: id,
                     isLike: searchPostOption.isLike
                 }}

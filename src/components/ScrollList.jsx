@@ -20,6 +20,10 @@ const List = ({ type, Item, variables, ...props }) => (
 
             const rowsLen = rows.length;
 
+            if (rowsLen === 0) {
+                return null;
+            }
+
             const cursor = rows[rowsLen - 1].id;
 
             return (

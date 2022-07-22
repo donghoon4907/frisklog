@@ -29,9 +29,7 @@ const User = loadable(() => import("./pages/user"));
 const NoMatch = loadable(() => import("./pages/404"));
 // aside
 const AsideMypage = loadable(() => import("./components/aside/Mypage"));
-const AsideRecommendCategory = loadable(() =>
-    import("./components/aside/RecommendCategory")
-);
+const AsideRecommend = loadable(() => import("./components/aside/Recommend"));
 
 const App = () => {
     const displayName = "fr-app";
@@ -89,7 +87,7 @@ const App = () => {
                                     path="/user/:id"
                                     component={AsideMypage}
                                 />
-                                <Route component={AsideRecommendCategory} />
+                                <Route component={AsideRecommend} />
                             </Switch>
                         </aside>
                     </div>

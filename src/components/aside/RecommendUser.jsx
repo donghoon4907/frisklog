@@ -1,9 +1,9 @@
 import React from "react";
 
-import Query from "./Query";
-import { GET_RECOMMENDERS } from "../graphql/query/user";
-import UserCardTypeItem from "./UserCardTypeItem";
-import Carousel from "./Carousel";
+import Query from "../Query";
+import { GET_RECOMMENDERS } from "../../graphql/query/user";
+import UserCardTypeItem from "../UserCardTypeItem";
+import Carousel from "../Carousel";
 
 /**
  * 추천 사용자 컴포넌트
@@ -13,7 +13,7 @@ const RecommendUser = () => (
     <Query
         query={GET_RECOMMENDERS}
         variables={{
-            limit: 10
+            limit: 5
         }}
     >
         {({ data: { recommenders } }) => {

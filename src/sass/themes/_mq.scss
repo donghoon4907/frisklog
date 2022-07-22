@@ -106,12 +106,6 @@
 }
 
 @include mq(xs) {
-    // carousel hide
-    .fr-main__title:not(.activeEscape),
-    .fr-carousel {
-        display: none !important;
-    }
-
     .fr-header__notice {
         display: none !important;
     }

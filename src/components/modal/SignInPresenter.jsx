@@ -2,42 +2,40 @@ import React from "react";
 import { FormInput } from "../Form";
 import Button from "../button";
 import Loader from "../Loader";
-// import GoogleLoginButton from "../button/GoogleLogin";
 
 /**
  * 로그인 프레젠터 컴포넌트
  *
  * @param {boolean}  props.loading  로그인 요청 여부
  * @param {object}   props.email    이메일
- * @param {object}   props.password 암호
  * @param {function} props.onSubmit 요청 핸들러
  */
-const SignInPresenter = ({ loading, email, password, onSubmit }) => (
+const SignInPresenter = ({
+    mode,
+    loading,
+    email,
+    token,
+    onLogin,
+    onVerify
+}) => (
     <>
         {loading && <Loader />}
-        <form onSubmit={onSubmit}>
+        <form onSubmit={mode === "로그인" ? onLogin : onVerify}>
             <FormInput
-                type="email"
-                placeholder="이메일을 입력하세요"
+                type={mode === "로그인" ? "email" : "password"}
+                placeholder={`${
+                    mode === "로그인" ? "이메일을" : "인증코드를"
+                } 입력하세요`}
                 id="email"
                 autoComplete="off"
                 required
-                label="이메일"
+                label={mode === "로그인" ? "이메일" : "인증코드"}
                 isExpand={true}
-                {...email}
+                value={mode === "로그인" ? email.value : token.value}
+                onChange={mode === "로그인" ? email.onChange : token.onChange}
             />
-            <FormInput
-                type="password"
-                placeholder="암호를 입력하세요"
-                id="password"
-                autoComplete="off"
-                label="암호"
-                isExpand={true}
-                {...password}
-            />
-            <Button type="submit">로그인</Button>
+            <Button type="submit">{mode}</Button>
         </form>
-        {/* <GoogleLoginButton /> */}
     </>
 );
 

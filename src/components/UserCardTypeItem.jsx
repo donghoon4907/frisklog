@@ -1,4 +1,5 @@
 import React, { memo } from "react";
+import Button from "./button";
 import LinkImage from "./LinkImage";
 
 /**
@@ -26,14 +27,19 @@ const UserCardTypeItem = ({
                 <span>{postCount} Posts</span>
             </div>
             <div className={`${displayName}__body`} title="사용자 링크">
-                <LinkImage
-                    ariaLabel="사용자 페이지"
-                    path={link}
-                    src={storageUrl + avatar}
-                    alt="Avatar"
-                    isInternal={true}
-                    tabIndex="-1"
-                />
+                <div className={`${displayName}__avatar`}>
+                    <LinkImage
+                        ariaLabel="사용자 페이지"
+                        path={link}
+                        src={storageUrl + avatar}
+                        alt="Avatar"
+                        isInternal={true}
+                        tabIndex="-1"
+                    />
+                </div>
+                <div className={`${displayName}__button`}>
+                    <Button>팔로우</Button>
+                </div>
             </div>
         </div>
     );

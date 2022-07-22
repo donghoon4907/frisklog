@@ -12,7 +12,7 @@ import UploadImage from "../UploadImage";
  * @param {object}   props.email    이메일
  * @param {function} props.onSubmit 회원가입 요청 핸들러
  */
-const SignUpPresenter = ({ loading, nickname, email, password, onSubmit }) => {
+const SignUpPresenter = ({ loading, nickname, email, onSubmit }) => {
     return (
         <>
             {loading && <Loader />}
@@ -29,16 +29,6 @@ const SignUpPresenter = ({ loading, nickname, email, password, onSubmit }) => {
                     isExpand={true}
                     {...email}
                     label="이메일"
-                />
-                <FormInput
-                    type="password"
-                    placeholder="암호를 입력하세요"
-                    id="password"
-                    autoComplete="off"
-                    required
-                    isExpand={true}
-                    {...password}
-                    label="암호"
                 />
                 <FormInput
                     placeholder="닉네임을 입력하세요"

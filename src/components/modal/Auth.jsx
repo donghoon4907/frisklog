@@ -1,30 +1,21 @@
 import React, { useState, useCallback } from "react";
 import { Modal } from "react-bootstrap";
+
 import SignIn from "./SignInContainer";
 import SignUp from "./SignUpContainer";
 import { useDispatch } from "../../context";
 import { HIDE_LOGIN_MODAL } from "../../context/action";
 
 /**
- * * 인증 팝업 컴포넌트
+ * 인증 팝업 컴포넌트
  *
- * @Component
- * @Modal
- * @author frisk
  */
 const Auth = () => {
-    /**
-     * 로컬 상태 변경 모듈 활성화
-     */
     const dispatch = useDispatch();
-    /**
-     * 화면 전환 상태 모듈 활성화
-     */
-    const [action, setAction] = useState("login");
-    /**
-     * 팝업 숨기기 핸들러
-     */
-    const handleClose = useCallback(() => {
+    // 화면 관리
+    const [mode, setMode] = useState("로그인");
+    // 팝업 닫기 핸들러
+    const handleHide = useCallback(() => {
         dispatch({
             type: HIDE_LOGIN_MODAL
         });
@@ -32,40 +23,35 @@ const Auth = () => {
 
     return (
         <Modal
-            onHide={handleClose}
+            onHide={handleHide}
             show
             animation={false}
             contentClassName="fr-modal--middle"
         >
             <Modal.Header closeButton>
-                <Modal.Title>
-                    {action === "login" ? "로그인" : "회원가입"}
-                </Modal.Title>
+                <Modal.Title>{mode}</Modal.Title>
             </Modal.Header>
             <Modal.Body>
-                {action === "signup" ? (
-                    <SignUp setAction={setAction} />
-                ) : (
-                    <SignIn />
-                )}
+                {mode === "로그인" && <SignIn />}
+                {mode === "회원가입" && <SignUp setMode={setMode} />}
                 <div className="fr-form__changer">
-                    {action === "login" && (
+                    {mode === "로그인" && (
                         <div>
                             계정이 없다면&nbsp;
                             <span
                                 className="fr-form__link"
-                                onClick={() => setAction("signup")}
+                                onClick={() => setMode("회원가입")}
                             >
                                 회원가입
                             </span>
                         </div>
                     )}
-                    {action === "signup" && (
+                    {mode === "회원가입" && (
                         <div>
                             계정이 있다면&nbsp;
                             <span
                                 className="fr-form__link"
-                                onClick={() => setAction("login")}
+                                onClick={() => setMode("로그인")}
                             >
                                 로그인
                             </span>

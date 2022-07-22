@@ -11,7 +11,6 @@
         height: 3rem;
         background: white;
         border-bottom: $fr-box-border;
-        box-shadow: $fr-header-shadow;
         flex-shrink: 0;
         z-index: 1000;
 
@@ -49,42 +48,6 @@
         & u {
             margin-left: 0.3rem;
             cursor: pointer;
-        }
-    }
-
-    &__search {
-        &-wrapper {
-            border: none;
-            background: white;
-            position: absolute;
-            top: calc(3rem - 3px);
-            left: 0;
-            width: 100%;
-            height: auto;
-            padding: 0.6rem;
-            box-shadow: $fr-header-shadow;
-        }
-
-        &__form {
-            position: relative;
-            margin: 0 auto;
-            width: 33rem;
-        }
-
-        &__input {
-            padding: 0.3rem !important;
-            font-size: 1rem !important;
-            text-align: center;
-            position: relative;
-
-            &::placeholder {
-                opacity: 0.8;
-                font-weight: 200;
-            }
-
-            &-wrapper {
-                position: relative;
-            }
         }
     }
 }
