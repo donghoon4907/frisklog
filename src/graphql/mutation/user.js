@@ -79,3 +79,25 @@ export const UPDATE_USER = gql`
         }
     }
 `;
+
+/**
+ * 팔로우
+ *
+ * @param $id 사용자 ID
+ */
+export const FOLLOW_USER = gql`
+    mutation follow($id: String!) {
+        follow(id: $id)
+    }
+`;
+
+/**
+ * 언팔로우
+ *
+ * @param $id 사용자 ID
+ */
+export const UNFOLLOW_USER = gql`
+    mutation unfollow($id: String!) {
+        unfollow(id: $id)
+    }
+`;

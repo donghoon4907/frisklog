@@ -19,15 +19,18 @@ const LikePostBtn = ({ postId, likers, isShowCount }) => {
 
     const { id } = useSelector();
     // 좋아요 mutation
-    const [like] = useMutation(LIKE_POST);
+    const [like, { loading: likeLoading }] = useMutation(LIKE_POST);
     // 좋아요 취소 mutation
-    const [unlike] = useMutation(UNLIKE_POST);
+    const [unlike, { loading: unlikeLoading }] = useMutation(UNLIKE_POST);
     // 좋아요 여부 상태
     const [isLike, setIsLike] = useState(false);
     // 좋아요 수 상태, -1: 비활성화
     const [likeCount, setLikeCount] = useState(likers.length);
     // 클릭 핸들러
     const handleClick = useCallback(async () => {
+        if (likeLoading || unlikeLoading) {
+            return alert("요청 중입니다");
+        }
         // 로그인 체크
         const token = getStorage(TOKEN_KEY);
 
@@ -64,7 +67,7 @@ const LikePostBtn = ({ postId, likers, isShowCount }) => {
         } catch (error) {
             graphqlError({ error, dispatch });
         }
-    }, [postId, isLike, likeCount]);
+    }, [postId, isLike, likeCount, likeLoading, unlikeLoading]);
 
     useEffect(() => {
         setIsLike(likers.some((liker) => liker.id == id));

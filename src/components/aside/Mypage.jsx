@@ -9,6 +9,7 @@ import MypageOrderItem from "./MypageOrderItem";
 import mypageOptions from "../../json/mypage_options.json";
 import AsideMypageHeader from "./MypageHeader";
 import ModifyUserBtn from "../button/ModifyUser";
+import FollowBtn from "../button/Follow";
 
 /**
  * 사용자정보 컴포넌트
@@ -45,8 +46,20 @@ const AsideMypage = ({
                             />
 
                             <div className={`${displayName}__body`}>
-                                <div className="fr-avatar__name">
-                                    {isMe ? nickname : user.nickname}
+                                <div className={`${displayName}__user`}>
+                                    <div className="fr-avatar__name">
+                                        {isMe ? nickname : user.nickname}
+                                    </div>
+                                    {!isMe && (
+                                        <div
+                                            className={`${displayName}__follow`}
+                                        >
+                                            <FollowBtn
+                                                userId={id}
+                                                followers={user.Followers}
+                                            />
+                                        </div>
+                                    )}
                                 </div>
 
                                 {isMe && (
