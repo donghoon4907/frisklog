@@ -53,7 +53,7 @@ const initialState = {
     },
     searchPostOption: {
         activeId: 1,
-        title: "모든 포스트",
+        title: "나의 포스트",
         isLike: false,
         isFollowing: false
     },

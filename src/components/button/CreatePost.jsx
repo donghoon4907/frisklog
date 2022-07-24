@@ -6,7 +6,7 @@ import { SHOW_LOGIN_MODAL, SHOW_POST_MODAL } from "../../context/action";
 import { TOKEN_KEY, getStorage } from "../../lib/cookie";
 
 /**
- * 헤더 게시물 추가 컴포넌트
+ * 포스트 작성 버튼 컴포넌트
  *
  */
 const CreatePostBtn = () => {

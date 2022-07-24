@@ -13,7 +13,7 @@ const Feed = () => (
     <>
         <Meta />
         <div className="fr-main__title">
-            <h2>최근 게시물</h2>
+            <h2>최신 포스트</h2>
         </div>
         <ScrollList
             type="posts"

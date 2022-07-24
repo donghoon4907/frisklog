@@ -3,21 +3,21 @@
         "id": 1,
         "isLike": false,
         "isFollowing": false,
-        "title": "모든 포스트",
+        "title": "나의 포스트",
         "enable": true
     },
     {
         "id": 2,
         "isLike": true,
         "isFollowing": false,
-        "title": "좋아요 포스트",
+        "title": "좋아요한 포스트",
         "enable": true
     },
     {
         "id": 3,
         "isLike": false,
         "isFollowing": true,
-        "title": "팔로잉 포스트",
+        "title": "팔로잉의 포스트",
         "enable": true
     }
 ]

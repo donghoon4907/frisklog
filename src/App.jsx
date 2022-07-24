@@ -26,10 +26,12 @@ const SearchCategoryPage = loadable(() =>
     import("./pages/search/SearchCategoryPage")
 );
 const User = loadable(() => import("./pages/user"));
+const Follow = loadable(() => import("./pages/follow"));
 const NoMatch = loadable(() => import("./pages/404"));
 // aside
 const AsideMypage = loadable(() => import("./components/aside/Mypage"));
 const AsideRecommend = loadable(() => import("./components/aside/Recommend"));
+const AsideFollow = loadable(() => import("./components/aside/Follow"));
 
 const App = () => {
     const displayName = "fr-app";
@@ -62,6 +64,11 @@ const App = () => {
                                 <Route exact path="/" component={Feed} />
                                 <Route
                                     exact
+                                    path="/follow"
+                                    component={Follow}
+                                />
+                                <Route
+                                    exact
                                     path="/user/:id"
                                     component={User}
                                 />
@@ -82,6 +89,11 @@ const App = () => {
                     <div className="fr-aside__wrapper">
                         <aside className="fr-aside">
                             <Switch>
+                                <Route
+                                    exact
+                                    path="/follow"
+                                    component={AsideFollow}
+                                />
                                 <Route
                                     exact
                                     path="/user/:id"

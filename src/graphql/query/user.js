@@ -82,3 +82,29 @@ export const GET_USER = gql`
         }
     }
 `;
+
+/**
+ * 팔로잉 검색
+ *
+ * @param $cursor 커서
+ * @param $limit  요청 목록의 수
+ * @param $userId 사용자 ID
+ */
+export const GET_FOLLOWINGS = gql`
+    query GetFollowings($cursor: String, $limit: Int!, $userId: String!) {
+        followings(cursor: $cursor, limit: $limit, userId: $userId) {
+            id
+            nickname
+            avatar
+            link
+            isMaster
+            createdAt
+            updatedAt
+
+            Platform {
+                id
+                storageUrl
+            }
+        }
+    }
+`;

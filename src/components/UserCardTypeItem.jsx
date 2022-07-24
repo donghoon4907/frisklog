@@ -2,6 +2,7 @@ import React, { memo } from "react";
 
 import FollowBtn from "./button/Follow";
 import LinkImage from "./LinkImage";
+import { useSelector } from "../context";
 
 /**
  * 사용자 카드형 컴포넌트
@@ -24,14 +25,27 @@ const UserCardTypeItem = ({
 }) => {
     const displayName = "fr-usercard";
 
+    const { id: userId } = useSelector();
+
+    const isMe = id == userId;
+
     return (
         <div className={displayName}>
             <div className={`${displayName}__header`}>
                 <span className="fr-avatar__name">{nickname}</span>
-                <span>{postCount} Posts</span>
+                {postCount > 0 && <span>{postCount} Posts</span>}
             </div>
-            <div className={`${displayName}__body`} title="사용자 링크">
-                <div className={`${displayName}__avatar`}>
+            <div
+                className={`${displayName}__body ${
+                    isMe && `${displayName}__body--expand`
+                }`}
+                title="사용자 링크"
+            >
+                <div
+                    className={`${displayName}__avatar ${
+                        isMe && `${displayName}__avatar--expand`
+                    }`}
+                >
                     <LinkImage
                         ariaLabel="사용자 페이지"
                         path={link}
@@ -41,9 +55,12 @@ const UserCardTypeItem = ({
                         tabIndex="-1"
                     />
                 </div>
-                <div className={`${displayName}__button`}>
-                    <FollowBtn userId={id} followers={Followers} />
-                </div>
+
+                {!isMe && (
+                    <div className={`${displayName}__button`}>
+                        <FollowBtn userId={id} followers={Followers || null} />
+                    </div>
+                )}
             </div>
         </div>
     );

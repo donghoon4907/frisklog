@@ -11,8 +11,8 @@ import Button from ".";
 /**
  * 팔로우 버튼 컴포넌트
  *
- * @param {string}   props.userId    사용자 ID
- * @param {object[]} props.followers 팔로워 목록
+ * @param {string}   props.userId       사용자 ID
+ * @param {object[]} props.followers    팔로워 목록
  */
 const FollowBtn = ({ userId, followers }) => {
     const dispatch = useDispatch();
@@ -23,7 +23,7 @@ const FollowBtn = ({ userId, followers }) => {
     // 언팔로우
     const [unfollow, { loading: unfollowLoading }] = useMutation(UNFOLLOW_USER);
     // 팔로잉 여부
-    const [isFollow, setIsFollow] = useState(false);
+    const [isFollow, setIsFollow] = useState(!followers);
     // 클릭 핸들러
     const handleClick = useCallback(async () => {
         if (followLoading || unfollowLoading) {
@@ -60,8 +60,10 @@ const FollowBtn = ({ userId, followers }) => {
     }, [userId, isFollow, followLoading, unfollowLoading]);
 
     useEffect(() => {
-        setIsFollow(followers.some((follower) => follower.id == id));
-    }, [id]);
+        if (followers !== null) {
+            setIsFollow(followers.some((follower) => follower.id == id));
+        }
+    }, [id, followers]);
 
     return (
         <div title="팔로우 버튼">

@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from "react";
+import React, { useCallback } from "react";
 import { useMutation } from "@apollo/client";
 
 import { useInput } from "../../hooks";
@@ -17,14 +17,8 @@ const SetUserContainer = () => {
     const dispatch = useDispatch();
 
     const { nickname } = useSelector();
-    // 암호 변경 여부
-    const [isShowPassword, setIsShowPassword] = useState(false);
     // 별명
     const newNickname = useInput(nickname);
-    // 새로운 암호
-    const newPassword = useInput("");
-    // 새로운 암호 확인
-    const confirmNewPassword = useInput("");
     // 사용자 추가
     const [upt, { loading }] = useMutation(UPDATE_USER);
     // 팝업 닫기 핸들러
@@ -33,10 +27,6 @@ const SetUserContainer = () => {
         dispatch({
             type: HIDE_USER_MODAL
         });
-    }, []);
-    // 스위치 변경 핸들러
-    const handleChangeSwitch = useCallback(() => {
-        setIsShowPassword((prev) => !prev);
     }, []);
     // 내 정보 수정 핸들러
     const handleSubmit = useCallback(
@@ -48,14 +38,6 @@ const SetUserContainer = () => {
             }
 
             const variables = {};
-
-            if (isShowPassword) {
-                if (newPassword.value !== confirmNewPassword.value) {
-                    return alert("암호가 일치하지 않습니다.");
-                }
-
-                variables.password = newPassword.value;
-            }
 
             if (newNickname.value.length > 9) {
                 return alert("별명은 10자 미만으로 입력 해주세요.");
@@ -93,25 +75,15 @@ const SetUserContainer = () => {
                 }
             }
         },
-        [
-            newNickname.value,
-            newPassword.value,
-            confirmNewPassword.value,
-            loading,
-            isShowPassword
-        ]
+        [newNickname.value, loading]
     );
 
     return (
         <SetUserPresenter
             loading={loading}
-            isShowPassword={isShowPassword}
             newNickname={newNickname}
-            newPassword={newPassword}
-            confirmNewPassword={confirmNewPassword}
             onSubmit={handleSubmit}
             onClose={handleClose}
-            onChangeSwitch={handleChangeSwitch}
         />
     );
 };
