@@ -8,7 +8,8 @@ import { gql } from "@apollo/client";
  * @param $order          정렬
  * @param $searchKeyword  검색어
  * @param $userId         사용자 ID
- * @param $isLike         내가 좋아요한 포스트 여부(마이페이지에서 사용, userId 필요)
+ * @param $isLike         내가 좋아요한 포스트 여부(userId 필요)
+ * @param $isFollowing    내가 팔로잉한 포스트 여부(userId 필요)
  */
 export const GET_POSTS = gql`
     query GetPosts(
@@ -17,6 +18,7 @@ export const GET_POSTS = gql`
         $searchKeyword: String
         $userId: String
         $isLike: Boolean
+        $isFollowing: Boolean
     ) {
         posts(
             cursor: $cursor
@@ -24,6 +26,7 @@ export const GET_POSTS = gql`
             searchKeyword: $searchKeyword
             userId: $userId
             isLike: $isLike
+            isFollowing: $isFollowing
         ) {
             id
             content

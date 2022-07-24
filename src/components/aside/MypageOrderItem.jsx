@@ -1,4 +1,4 @@
-import React, { useCallback } from "react";
+import React, { useCallback, memo } from "react";
 
 import { useSelector, useDispatch } from "../../context";
 import { SEARCH_POST } from "../../context/action";
@@ -8,11 +8,12 @@ import { SEARCH_POST } from "../../context/action";
  *
  * @param {number}  props.id
  * @param {boolean} props.isLike
+ * @param {boolean} props.isFollowing
  * @param {string}  props.text
  * @param {boolean} props.enable
  *
  */
-const MypageOrderItem = ({ id, isLike, text }) => {
+const MypageOrderItem = ({ id, isLike, isFollowing, title }) => {
     const displayName = "fr-mypage__item";
 
     const dispatch = useDispatch();
@@ -23,9 +24,11 @@ const MypageOrderItem = ({ id, isLike, text }) => {
         dispatch({
             type: SEARCH_POST,
             activeId: id,
-            isLike
+            title,
+            isLike,
+            isFollowing
         });
-    }, [id, isLike]);
+    }, [id, title, isLike, isFollowing]);
 
     return (
         <li
@@ -34,10 +37,10 @@ const MypageOrderItem = ({ id, isLike, text }) => {
             }`}
         >
             <button type="button" onClick={handleClick}>
-                {text}
+                {title} 보기
             </button>
         </li>
     );
 };
 
-export default MypageOrderItem;
+export default memo(MypageOrderItem);

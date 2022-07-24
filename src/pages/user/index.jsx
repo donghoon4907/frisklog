@@ -15,7 +15,7 @@ const User = ({
         params: { id }
     }
 }) => {
-    const { searchPostOption } = useSelector();
+    const { searchPostOption, id: userId } = useSelector();
     // 정렬
     // const [order, setOrder] = useState("createdAt_DESC");
     // // 정렬 변경 핸들러
@@ -23,10 +23,12 @@ const User = ({
     //     setOrder(e.target.value);
     // }, []);
 
+    const isMe = id == userId;
+
     return (
         <>
             <div className="fr-main__title">
-                <span>내 포스트</span>
+                <span>{isMe ? searchPostOption.title : "모든 포스트"}</span>
                 {/* <div>
                     <Select
                         value={order}
@@ -50,7 +52,8 @@ const User = ({
                 variables={{
                     limit: 12,
                     userId: id,
-                    isLike: searchPostOption.isLike
+                    isLike: isMe ? searchPostOption.isLike : false,
+                    isFollowing: isMe ? searchPostOption.isFollowing : false
                 }}
                 Item={PostItem}
             />

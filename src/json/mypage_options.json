@@ -2,13 +2,22 @@
     {
         "id": 1,
         "isLike": false,
-        "text": "모든 포스트 보기",
+        "isFollowing": false,
+        "title": "모든 포스트",
         "enable": true
     },
     {
         "id": 2,
         "isLike": true,
-        "text": "좋아요 포스트 보기",
+        "isFollowing": false,
+        "title": "좋아요 포스트",
+        "enable": true
+    },
+    {
+        "id": 3,
+        "isLike": false,
+        "isFollowing": true,
+        "title": "팔로잉 포스트",
         "enable": true
     }
 ]

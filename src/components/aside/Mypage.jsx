@@ -78,7 +78,7 @@ const AsideMypage = ({
                                         .filter((option) => option.enable)
                                         .map((option) => (
                                             <MypageOrderItem
-                                                key={`order_item${option.id}`}
+                                                key={`orderItem${option.id}`}
                                                 {...option}
                                             />
                                         ))}

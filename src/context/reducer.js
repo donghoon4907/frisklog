@@ -15,8 +15,8 @@ import {
     // EXPAND_NAVIGATION,
     // CONTRACT_NAVIGATION,
     // SET_IS_MOBILE,
-    SET_BREAKPOINT,
-    SET_UPLOADED_URL,
+    // SET_BREAKPOINT,
+    // SET_UPLOADED_URL,
     SHOW_USER_MODAL,
     HIDE_USER_MODAL
 } from "./action";
@@ -134,27 +134,11 @@ export default function reducer(state, action) {
                 ...state,
                 searchPostOption: {
                     activeId: action.activeId,
-                    isLike: action.isLike
+                    title: action.title,
+                    isLike: action.isLike,
+                    isFollowing: action.isFollowing
                 }
             };
-        // case SEARCH_POST:
-        //     return {
-        //         ...state,
-        //         searchPostOption: {
-        //             orderBy:
-        //                 "orderBy" in action
-        //                     ? action.orderBy
-        //                     : state.searchPostOption.orderBy,
-        //             query:
-        //                 "query" in action
-        //                     ? action.query
-        //                     : state.searchPostOption.query,
-        //             filter:
-        //                 "filter" in action
-        //                     ? action.filter
-        //                     : state.searchPostOption.filter
-        //         }
-        //     };
         // case EXPAND_NAVIGATION:
         //     return {
         //         ...state,
@@ -170,18 +154,18 @@ export default function reducer(state, action) {
         //         ...state,
         //         isMobile: action.payload
         //     };
-        case SET_BREAKPOINT:
-            return {
-                ...state,
-                breakpoint: action.breakpoint
-                // slidesToShow: action.slidesToShow
-            };
-        case SET_UPLOADED_URL:
-            return {
-                ...state,
-                uploadedUrl: action.uploadedUrl
-                // slidesToShow: action.slidesToShow
-            };
+        // case SET_BREAKPOINT:
+        //     return {
+        //         ...state,
+        //         breakpoint: action.breakpoint
+        //         // slidesToShow: action.slidesToShow
+        //     };
+        // case SET_UPLOADED_URL:
+        //     return {
+        //         ...state,
+        //         uploadedUrl: action.uploadedUrl
+        //         // slidesToShow: action.slidesToShow
+        //     };
         case SHOW_USER_MODAL:
             return {
                 ...state,

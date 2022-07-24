@@ -53,7 +53,9 @@ const initialState = {
     },
     searchPostOption: {
         activeId: 1,
-        isLike: false
+        title: "모든 포스트",
+        isLike: false,
+        isFollowing: false
     },
     isShowUserModal: false
     // activeDropdown: {
