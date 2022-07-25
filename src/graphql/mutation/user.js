@@ -1,5 +1,7 @@
 import { gql } from "@apollo/client";
 
+import { AUTH_USER_FIELDS } from "../fragment/user";
+
 /**
  * 로그인
  *
@@ -17,14 +19,10 @@ export const SIGN_IN = gql`
  * @param $token 인증코드
  */
 export const VERIFY_TOKEN = gql`
+    ${AUTH_USER_FIELDS}
     mutation verifyToken($email: String!, $token: String!) {
         verifyToken(email: $email, token: $token) {
-            id
-            nickname
-            email
-            avatar
-            isMaster
-            token
+            ...AuthUserFields
         }
     }
 `;
@@ -36,13 +34,9 @@ export const VERIFY_TOKEN = gql`
  */
 export const SIGN_IN_GOOGLE = gql`
     mutation logInWithGoogle($email: String!, $nickname: String!) {
+        ${AUTH_USER_FIELDS}
         logInWithGoogle(email: $email, nickname: $nickname) {
-            token
-            id
-            nickname
-            email
-            avatar
-            isMaster
+            ...AuthUserFields
         }
     }
 `;
@@ -67,14 +61,10 @@ export const SIGN_UP = gql`
  * @param $avatar   프로필 사진
  */
 export const UPDATE_USER = gql`
+    ${AUTH_USER_FIELDS}
     mutation updateUser($nickname: String, $avatar: String) {
         updateUser(nickname: $nickname, avatar: $avatar) {
-            id
-            nickname
-            email
-            avatar
-            isMaster
-            token
+            ...AuthUserFields
         }
     }
 `;

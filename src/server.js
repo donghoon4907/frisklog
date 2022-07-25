@@ -37,14 +37,14 @@ server
 
         if (token) {
             try {
-                const { id, email, nickname, avatar, isMaster } = jwt.verify(
+                const { id, nickname, avatar, isMaster } = jwt.verify(
                     JSON.parse(token),
                     process.env.RAZZLE_JWT_SECRET
                 );
 
                 context.id = id;
 
-                context.email = email;
+                // context.email = email;
 
                 context.nickname = nickname;
 
