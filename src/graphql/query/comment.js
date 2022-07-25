@@ -1,5 +1,7 @@
 import { gql } from "@apollo/client";
 
+import { CORE_COMMENT_FIELDS } from "../fragment/comment";
+
 /**
  * 댓글 검색
  *
@@ -8,18 +10,17 @@ import { gql } from "@apollo/client";
  * @param $postId 게시물 ID
  */
 export const GET_COMMENTS = gql`
+    ${CORE_COMMENT_FIELDS}
     query GetComments($cursor: String, $limit: Int!, $postId: String!) {
         comments(cursor: $cursor, limit: $limit, postId: $postId) {
-            id
-            content
-            createdAt
-            updatedAt
+            ...CoreCommentFields
 
             User {
                 id
                 nickname
                 avatar
                 link
+
                 Platform {
                     id
                     domainUrl

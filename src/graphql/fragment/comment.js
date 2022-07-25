@@ -1,11 +1,10 @@
 import { gql } from "@apollo/client";
 
-export const CORE_PLATFORM_FIELDS = gql`
-    fragment CorePlatformFields on Platform {
+export const CORE_COMMENT_FIELDS = gql`
+    fragment CoreCommentFields on Comment {
         id
-        platformName
-        logoUrl
-        domainUrl
-        storageUrl
+        content
+        createdAt
+        updatedAt
     }
 `;
