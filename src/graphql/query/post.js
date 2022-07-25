@@ -1,5 +1,8 @@
 import { gql } from "@apollo/client";
 
+import { CORE_POST_FIELDS } from "../fragment/post";
+import { CORE_PLATFORM_FIELDS } from "../fragment/platform";
+
 /**
  * 게시물 검색
  *
@@ -12,6 +15,8 @@ import { gql } from "@apollo/client";
  * @param $isFollowing    내가 팔로잉한 포스트 여부(userId 필요)
  */
 export const GET_POSTS = gql`
+    ${CORE_POST_FIELDS}
+    ${CORE_PLATFORM_FIELDS}
     query GetPosts(
         $cursor: String
         $limit: Int!
@@ -28,58 +33,25 @@ export const GET_POSTS = gql`
             isLike: $isLike
             isFollowing: $isFollowing
         ) {
-            id
-            content
+            ...CorePostFields
+
             User {
                 id
                 nickname
                 avatar
                 link
+
                 Platform {
-                    id
-                    platformName
-                    logoUrl
-                    domainUrl
-                    storageUrl
+                    ...CorePlatformFields
                 }
             }
             Likers {
                 id
             }
+
             Categories {
                 content
             }
-            createdAt
-            updatedAt
-        }
-    }
-`;
-
-/**
- * 게시물 상세 로드
- *
- * @param $id 건너뛸 목록의 수
- */
-export const GET_POST = gql`
-    query GetPost($id: String!) {
-        post(id: $id) {
-            id
-            # title
-            # description
-            content
-            # viewCount
-            category
-            # thumbnail
-            User {
-                id
-                nickname
-                avatar
-            }
-            Likers {
-                id
-            }
-            createdAt
-            updatedAt
         }
     }
 `;
@@ -92,31 +64,29 @@ export const GET_POST = gql`
  * @param $limit   포스트 요청 목록의 수
  */
 export const GET_CATEGORY_POSTS = gql`
+    ${CORE_POST_FIELDS}
+    ${CORE_PLATFORM_FIELDS}
     query GetPostsByCategory($content: String!, $cursor: String, $limit: Int!) {
         postsByCategory(content: $content, cursor: $cursor, limit: $limit) {
-            id
-            content
+            ...CorePostFields
+
             User {
                 id
                 nickname
                 avatar
                 link
+
                 Platform {
-                    id
-                    platformName
-                    logoUrl
-                    domainUrl
-                    storageUrl
+                    ...CorePlatformFields
                 }
             }
             Likers {
                 id
             }
+
             Categories {
                 content
             }
-            createdAt
-            updatedAt
         }
     }
 `;

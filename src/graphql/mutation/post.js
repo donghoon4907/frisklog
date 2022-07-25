@@ -20,7 +20,11 @@ export const CREATE_POST = gql`
  * @param $categories  카테고리
  */
 export const UPDATE_POST = gql`
-    mutation updatePost($id: String!, $content: String, $categories: [String]) {
+    mutation updatePost(
+        $id: String!
+        $content: String
+        $categories: [String!]!
+    ) {
         updatePost(id: $id, content: $content, categories: $categories)
     }
 `;
