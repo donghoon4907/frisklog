@@ -44,7 +44,7 @@ const Auth = () => {
 
                 <div className="fr-login__changer">
                     <div>
-                        계정이{mode === "로그인" ? "없다면" : "있다면"}&nbsp;
+                        계정이 {mode === "로그인" ? "없다면" : "있다면"}&nbsp;
                         <span
                             className="fr-login__link"
                             onClick={() =>

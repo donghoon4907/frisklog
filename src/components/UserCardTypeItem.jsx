@@ -35,17 +35,8 @@ const UserCardTypeItem = ({
                 <span className="fr-avatar__name">{nickname}</span>
                 {postCount > 0 && <span>{postCount} Posts</span>}
             </div>
-            <div
-                className={`${displayName}__body ${
-                    isMe && `${displayName}__body--expand`
-                }`}
-                title="사용자 링크"
-            >
-                <div
-                    className={`${displayName}__avatar ${
-                        isMe && `${displayName}__avatar--expand`
-                    }`}
-                >
+            <div className={`${displayName}__body`} title="사용자 링크">
+                <div className={`${displayName}__avatar`}>
                     <LinkImage
                         ariaLabel="사용자 페이지"
                         path={link}

@@ -12,6 +12,7 @@ import Carousel from "../Carousel";
 const RecommendUser = () => (
     <Query
         query={GET_RECOMMENDERS}
+        fetchPolicy="cache-and-network"
         variables={{
             limit: 5
         }}

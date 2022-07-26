@@ -1,7 +1,7 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { Route, Switch } from "react-router-dom";
 import loadable from "@loadable/component";
-import { useMutation } from "@apollo/client";
+// import { useMutation } from "@apollo/client";
 
 import Header from "./components/header";
 import AuthModal from "./components/modal/Auth";
