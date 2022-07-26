@@ -1,7 +1,9 @@
 import React from "react";
+
 import { FormInput } from "../Form";
 import Button from "../button";
 import Loader from "../Loader";
+import { Github } from "../../assets/icon";
 
 /**
  * 로그인 프레젠터 컴포넌트

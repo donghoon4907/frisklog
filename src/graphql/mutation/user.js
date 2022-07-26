@@ -33,9 +33,23 @@ export const VERIFY_TOKEN = gql`
  * @param $email   이메일
  */
 export const SIGN_IN_GOOGLE = gql`
+    ${AUTH_USER_FIELDS}
     mutation logInWithGoogle($email: String!, $nickname: String!) {
-        ${AUTH_USER_FIELDS}
         logInWithGoogle(email: $email, nickname: $nickname) {
+            ...AuthUserFields
+        }
+    }
+`;
+
+/**
+ * Github 로그인
+ *
+ * @param $code   이메일
+ */
+export const SIGN_IN_GITHUB = gql`
+    ${AUTH_USER_FIELDS}
+    mutation logInWithGithub($code: String!) {
+        logInWithGithub(code: $code) {
             ...AuthUserFields
         }
     }

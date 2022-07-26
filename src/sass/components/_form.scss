@@ -7,16 +7,6 @@
         @include wb;
     }
 
-    &__changer {
-        text-align: center;
-        padding: 1.3rem 0px;
-    }
-
-    &__link {
-        color: $fr-btn-color;
-        cursor: pointer;
-    }
-
     &__label {
         position: absolute;
         line-height: 12px;

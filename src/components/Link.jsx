@@ -1,5 +1,5 @@
 import React from "react";
-import { Link as ReactRouterLink } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 /**
  * 공통 링크 컴포넌트
@@ -19,13 +19,9 @@ const Link = ({
 }) => {
     if (isInternal) {
         return (
-            <ReactRouterLink
-                to={path}
-                aria-label={`${ariaLabel}로 이동`}
-                {...props}
-            >
+            <NavLink to={path} aria-label={`${ariaLabel}로 이동`} {...props}>
                 {children}
-            </ReactRouterLink>
+            </NavLink>
         );
     }
 

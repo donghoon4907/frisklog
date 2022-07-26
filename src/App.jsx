@@ -1,12 +1,14 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Route, Switch } from "react-router-dom";
 import loadable from "@loadable/component";
+import { useMutation } from "@apollo/client";
 
 import Header from "./components/header";
 import AuthModal from "./components/modal/Auth";
 import PostModal from "./components/modal/SetPostContainer";
 import UserModal from "./components/modal/SetUserContainer";
 import { useSelector } from "./context";
+// import { SIGN_IN_GITHUB } from "./graphql/mutation/user";
 // import { SET_BREAKPOINT } from "./context/action";
 // import { useResize } from "./hooks";
 
@@ -36,7 +38,7 @@ const AsideFollow = loadable(() => import("./components/aside/Follow"));
 const App = () => {
     const displayName = "fr-app";
 
-    // const dispatch = useDispatch();
+    // const [githubLogin] = useMutation(SIGN_IN_GITHUB);
 
     const {
         isShowLoginModal,
@@ -52,6 +54,22 @@ const App = () => {
     //         breakpoint
     //     });
     // }, [breakpoint]);
+
+    // useEffect(async () => {
+    //     const url = new URL(window.location.href);
+
+    //     const code = url.searchParams.get("code");
+
+    //     if (code) {
+    //         const { data } = await githubLogin({
+    //             variables: {
+    //                 code
+    //             }
+    //         });
+
+    //         console.log(data);
+    //     }
+    // }, []);
 
     return (
         <div className={`${displayName}__wrapper`}>

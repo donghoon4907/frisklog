@@ -71,13 +71,13 @@ const GoogleLogin = () => {
             handleSuccess
         );
 
-        // sdkRef.current.renderButton(btnEl.current, {
-        //     theme: "filled_white",
-        //     size: "large",
-        //     text: "Google 계정으로 로그인",
-        //     width: "470",
-        //     type: "standard"
-        // });
+        sdkRef.current.renderButton(btnEl.current, {
+            theme: "filled_white",
+            size: "large",
+            text: "Google 계정으로 로그인",
+            width: "470",
+            type: "icon"
+        });
     }, []);
 
     return <div className="fr-google" ref={btnEl} />;

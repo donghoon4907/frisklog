@@ -1,0 +1,23 @@
+.fr-login {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+    &__with {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: row;
+    }
+
+    &__changer {
+        text-align: center;
+        padding: 1.3rem 0px;
+    }
+
+    &__link {
+        color: $fr-btn-color;
+        cursor: pointer;
+    }
+}
