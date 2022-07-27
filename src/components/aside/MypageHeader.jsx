@@ -76,14 +76,9 @@ const AsideMypageHeader = ({ isMe, avatar, displayName }) => {
         <>
             <div className={`${displayName}__header`}>
                 {isMe ? (
-                    <UploadImage
-                        src={process.env.RAZZLE_BACKEND_ROOT + myAvatar}
-                    />
+                    <UploadImage src={myAvatar} />
                 ) : (
-                    <Image
-                        src={process.env.RAZZLE_BACKEND_ROOT + avatar}
-                        alt="Avatar"
-                    />
+                    <Image src={avatar} alt="Avatar" />
                 )}
             </div>
 

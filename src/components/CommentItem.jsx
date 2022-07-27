@@ -132,9 +132,9 @@ const CommentItem = ({ id, content, createdAt, User }) => {
                         ariaLabel="사용자 페이지"
                         domainUrl={User.Platform.domainUrl}
                         path={User.link}
-                        src={User.Platform.storageUrl + User.avatar}
+                        src={User.avatar}
                         alt="Avatar"
-                        isInternal={User.Platform.id == HOME_PLATFORM_ID}
+                        isInternal={true}
                     />
                 </div>
                 <div className={`${displayName}__box`}>

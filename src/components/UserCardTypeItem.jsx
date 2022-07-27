@@ -40,7 +40,7 @@ const UserCardTypeItem = ({
                     <LinkImage
                         ariaLabel="사용자 페이지"
                         path={link}
-                        src={Platform.storageUrl + avatar}
+                        src={avatar}
                         alt="Avatar"
                         isInternal={true}
                         tabIndex="-1"

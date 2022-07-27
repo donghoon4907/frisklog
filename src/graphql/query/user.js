@@ -45,7 +45,6 @@ export const GET_RECOMMENDERS = gql`
 
             Platform {
                 id
-                storageUrl
             }
 
             Followers {
@@ -92,7 +91,6 @@ export const GET_FOLLOWINGS = gql`
 
             Platform {
                 id
-                storageUrl
             }
         }
     }

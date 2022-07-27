@@ -39,8 +39,6 @@ const PostItem = ({ id, createdAt, User, Categories, content, Likers }) => {
         setActiveComment(!activeComment);
     }, [activeComment]);
 
-    const isInternal = User.Platform.id == HOME_PLATFORM_ID;
-
     const isMe = userId == User.id;
 
     const platform = User.Platform;
@@ -57,9 +55,9 @@ const PostItem = ({ id, createdAt, User, Categories, content, Likers }) => {
                             ariaLabel="사용자 페이지"
                             domainUrl={platform.domainUrl}
                             path={User.link}
-                            src={User.Platform.storageUrl + User.avatar}
+                            src={User.avatar}
                             alt="Avatar"
-                            isInternal={isInternal}
+                            isInternal={true}
                         />
                     </div>
                     <div className={`${displayName}__user`}>
@@ -75,12 +73,9 @@ const PostItem = ({ id, createdAt, User, Categories, content, Likers }) => {
                             ariaLabel={platform.platformName}
                             domainUrl={platform.domainUrl}
                             path=""
-                            src={
-                                process.env.RAZZLE_BACKEND_ROOT +
-                                platform.logoUrl
-                            }
+                            src={platform.logoUrl}
                             alt="Platform"
-                            isInternal={isInternal}
+                            isInternal={true}
                         />
                     </div>
                 </header>

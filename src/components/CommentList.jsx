@@ -79,8 +79,7 @@ const CommentList = ({ postId }) => {
                                 link: `/user/${id}`,
                                 Platform: {
                                     id: HOME_PLATFORM_ID,
-                                    domainUrl: "/",
-                                    storageUrl: process.env.RAZZLE_BACKEND_ROOT
+                                    domainUrl: "/"
                                 }
                             },
                             ...addComment

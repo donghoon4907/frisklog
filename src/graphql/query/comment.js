@@ -24,7 +24,6 @@ export const GET_COMMENTS = gql`
                 Platform {
                     id
                     domainUrl
-                    storageUrl
                 }
             }
         }

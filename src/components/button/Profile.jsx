@@ -30,7 +30,7 @@ const ProfileBtn = () => {
             <LinkImage
                 ariaLabel="마이페이지"
                 path={`/user/${id}`}
-                src={process.env.RAZZLE_BACKEND_ROOT + avatar}
+                src={avatar}
                 alt="Avatar"
                 isInternal={true}
             />

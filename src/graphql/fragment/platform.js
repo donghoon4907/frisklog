@@ -6,6 +6,5 @@ export const CORE_PLATFORM_FIELDS = gql`
         platformName
         logoUrl
         domainUrl
-        storageUrl
     }
 `;
