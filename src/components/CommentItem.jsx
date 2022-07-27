@@ -14,6 +14,7 @@ import { timeForToday } from "../lib/date";
 import { graphqlError } from "../lib/error";
 import { Dropdown, DropdownItem } from "./Dropdown";
 import { More } from "../assets/icon";
+import { HOME_PLATFORM_ID } from "../lib/constants";
 
 /**
  * 댓글 렌더링 컴포넌트
@@ -133,10 +134,7 @@ const CommentItem = ({ id, content, createdAt, User }) => {
                         path={User.link}
                         src={User.Platform.storageUrl + User.avatar}
                         alt="Avatar"
-                        isInternal={
-                            User.Platform.id ==
-                            process.env.RAZZLE_FRISKLOG_PLATFORM_ID
-                        }
+                        isInternal={User.Platform.id == HOME_PLATFORM_ID}
                     />
                 </div>
                 <div className={`${displayName}__box`}>

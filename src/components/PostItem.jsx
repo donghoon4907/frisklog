@@ -11,6 +11,7 @@ import { useSelector } from "../context";
 import { Comment } from "../assets/icon";
 import CommentList from "./CommentList";
 import { useResizeImage } from "../hooks";
+import { HOME_PLATFORM_ID } from "../lib/constants";
 
 /**
  * 게시물 컴포넌트
@@ -38,8 +39,7 @@ const PostItem = ({ id, createdAt, User, Categories, content, Likers }) => {
         setActiveComment(!activeComment);
     }, [activeComment]);
 
-    const isInternal =
-        User.Platform.id == process.env.RAZZLE_FRISKLOG_PLATFORM_ID;
+    const isInternal = User.Platform.id == HOME_PLATFORM_ID;
 
     const isMe = userId == User.id;
 

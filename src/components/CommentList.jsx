@@ -13,6 +13,7 @@ import CommentItem from "./CommentItem";
 import Loader from "./Loader";
 import ScrollList from "./ScrollList";
 import { graphqlError } from "../lib/error";
+import { HOME_PLATFORM_ID } from "../lib/constants";
 
 /**
  * 댓글 목록 컴포넌트
@@ -77,7 +78,7 @@ const CommentList = ({ postId }) => {
                                 avatar,
                                 link: `/user/${id}`,
                                 Platform: {
-                                    id: process.env.RAZZLE_FRISKLOG_PLATFORM_ID,
+                                    id: HOME_PLATFORM_ID,
                                     domainUrl: "/",
                                     storageUrl: process.env.RAZZLE_BACKEND_ROOT
                                 }
