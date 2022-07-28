@@ -11,6 +11,7 @@ import { Close } from "../assets/icon";
 const CategoryWithClose = ({ content, onClick }) => (
     <Category content={content}>
         <button
+            className="fr-category--close"
             type="button"
             aria-label="카테고리 삭제"
             onClick={() => onClick(content)}
