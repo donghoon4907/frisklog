@@ -14,7 +14,7 @@ import Button from ".";
  * @param {string}   props.userId       사용자 ID
  * @param {object[]} props.followers    팔로워 목록
  */
-const FollowBtn = ({ userId, followers }) => {
+const FollowBtn = ({ userId, followers, ...props }) => {
     const dispatch = useDispatch();
 
     const { id } = useSelector();
@@ -68,6 +68,7 @@ const FollowBtn = ({ userId, followers }) => {
     return (
         <div title="팔로우 버튼">
             <Button
+                {...props}
                 type="button"
                 onClick={handleClick}
                 className={`fr-btn--${isFollow ? "unfollow" : "follow"}`}

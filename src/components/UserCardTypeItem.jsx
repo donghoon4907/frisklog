@@ -49,7 +49,11 @@ const UserCardTypeItem = ({
 
                 {!isMe && (
                     <div className={`${displayName}__button`}>
-                        <FollowBtn userId={id} followers={Followers || null} />
+                        <FollowBtn
+                            userId={id}
+                            followers={Followers || null}
+                            tabindex="-1"
+                        />
                     </div>
                 )}
             </div>
