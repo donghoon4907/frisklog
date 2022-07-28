@@ -52,7 +52,7 @@ const UserCardTypeItem = ({
                         <FollowBtn
                             userId={id}
                             followers={Followers || null}
-                            tabindex="-1"
+                            tabIndex="-1"
                         />
                     </div>
                 )}
