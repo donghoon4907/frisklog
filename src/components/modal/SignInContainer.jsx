@@ -25,6 +25,12 @@ const SignInContainer = () => {
     const email = useInput("");
     // 인증코드
     const token = useInput("");
+    // 로그인 유지 여부
+    const [keep, setKeep] = useState(true);
+    // 로그인 유지 변경 핸들러
+    const handleChangeKeep = useCallback((e) => {
+        setKeep(e.target.checked);
+    }, []);
     // 로그인 요청 핸들러
     const handleLogin = useCallback(
         async (e) => {
@@ -68,7 +74,8 @@ const SignInContainer = () => {
                 } = await verify({
                     variables: {
                         email: email.value,
-                        token: token.value
+                        token: token.value,
+                        keep
                     }
                 });
                 if (verifyToken) {
@@ -90,7 +97,7 @@ const SignInContainer = () => {
                 graphqlError({ error });
             }
         },
-        [email.value, token.value, verifyLoading]
+        [email.value, token.value, keep, verifyLoading]
     );
 
     return (
@@ -99,6 +106,8 @@ const SignInContainer = () => {
             loading={loginLoading || verifyLoading}
             email={email}
             token={token}
+            keep={keep}
+            onChangeKeep={handleChangeKeep}
             onLogin={handleLogin}
             onVerify={handleVerify}
         />

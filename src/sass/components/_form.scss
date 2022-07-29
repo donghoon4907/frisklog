@@ -62,4 +62,11 @@
 
         @include wb;
     }
+
+    &__checkbox {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        line-height: 1.5;
+    }
 }

@@ -16,12 +16,14 @@ export const SIGN_IN = gql`
 /**
  * 인증
  *
+ * @param $email
  * @param $token 인증코드
+ * @param $keep  로그인 유지 여부
  */
 export const VERIFY_TOKEN = gql`
     ${AUTH_USER_FIELDS}
-    mutation verifyToken($email: String!, $token: String!) {
-        verifyToken(email: $email, token: $token) {
+    mutation verifyToken($email: String!, $token: String!, $keep: Boolean!) {
+        verifyToken(email: $email, token: $token, keep: $keep) {
             ...AuthUserFields
         }
     }

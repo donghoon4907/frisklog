@@ -3,11 +3,11 @@ import React from "react";
 import { FormInput } from "../Form";
 import Button from "../button";
 import Loader from "../Loader";
-import { Github } from "../../assets/icon";
 
 /**
  * 로그인 프레젠터 컴포넌트
  *
+ * @param {boolean}  props.mode    화면 모드(로그인 | 인증)
  * @param {boolean}  props.loading  로그인 요청 여부
  * @param {object}   props.email    이메일
  * @param {function} props.onSubmit 요청 핸들러
@@ -17,6 +17,8 @@ const SignInPresenter = ({
     loading,
     email,
     token,
+    keep,
+    onChangeKeep,
     onLogin,
     onVerify
 }) => (
@@ -36,6 +38,18 @@ const SignInPresenter = ({
                 value={mode === "로그인" ? email.value : token.value}
                 onChange={mode === "로그인" ? email.onChange : token.onChange}
             />
+            {mode === "로그인" && (
+                <div className="fr-form__checkbox">
+                    <input
+                        type="checkbox"
+                        id="keep"
+                        checked={keep}
+                        onChange={onChangeKeep}
+                    />
+                    <label htmlFor="keep">로그인 유지</label>
+                </div>
+            )}
+
             <Button type="submit">{mode}</Button>
         </form>
     </>
