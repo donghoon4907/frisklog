@@ -53,8 +53,8 @@
         resize: none;
         font-size: 0.8rem;
         overflow: auto;
-        background: $fr-bg-color;
         padding: 1rem;
+        color: inherit;
 
         &:focus {
             outline: none;

@@ -13,7 +13,7 @@ import jwt from "jsonwebtoken";
 import { ContextProvider } from "./context";
 import { initializeApollo } from "./lib/apollo";
 import App from "./App";
-import { TOKEN_KEY } from "./lib/cookie";
+import { TOKEN_KEY, THEME_KEY } from "./lib/cookie";
 
 // const assets = require(process.env.RAZZLE_ASSETS_MANIFEST);
 /** init express */
@@ -28,6 +28,10 @@ server
         const location = req.url;
 
         const context = {};
+
+        const theme = req.cookies[THEME_KEY];
+
+        context.theme = theme ? JSON.parse(theme) : "light";
 
         // const collapse = req.cookies[COLLAPSE_KEY];
 
@@ -93,7 +97,7 @@ server
 
         res.status(200).send(`
                 <!DOCTYPE html>
-                <html lang="en" ${helmet.htmlAttributes.toString()}>
+                <html ${helmet.htmlAttributes.toString()}>
                     <head>
                         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
                         <meta charset="utf-8" />

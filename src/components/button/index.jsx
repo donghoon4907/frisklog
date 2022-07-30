@@ -5,7 +5,7 @@ import React from "react";
  *
  */
 const Button = ({ children, className = "", ...props }) => (
-    <button className={`fr-btn fr-link ${className}`} {...props}>
+    <button className={`fr-btn ${className}`} {...props}>
         {children}
     </button>
 );

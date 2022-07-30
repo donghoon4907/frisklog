@@ -4,39 +4,59 @@
     line-height: 30px;
     border: 0;
     border-radius: $fr-border-radius;
-    color: white !important;
     font-weight: 600;
-    background: $fr-btn-color;
     text-align: center;
     font-size: 1rem;
-    border: 1px solid $fr-btn-color;
+
+    border-width: 1px;
+    border-style: solid;
+
+    &--primary {
+        background-color: var(--frisklog-primary-color) !important;
+        border-color: var(--frisklog-primary-color) !important;
+        color: var(--frisklog-primary-text-color) !important;
+    }
+
+    &--secondary {
+        background-color: var(--frisklog-secondary-color) !important;
+        border-color: var(--frisklog-secondary-color) !important;
+    }
 
     &--info {
-        background-color: $fr-info-color !important;
-        border: 1px solid $fr-info-color;
+        background-color: var(--frisklog-info-color) !important;
+        border-color: var(--frisklog-info-color) !important;
+    }
+
+    &--cancel {
+        background-color: var(--frisklog-warning-color) !important;
+        border-color: var(--frisklog-warning-color) !important;
     }
 
     &--follow {
-        background-color: $fr-follow-color !important;
-        border: 1px solid $fr-follow-color;
+        background-color: var(--frisklog-info-color) !important;
+        border-color: var(--frisklog-info-color) !important;
     }
 
     &--unfollow {
-        background-color: $fr-unfollow-color !important;
-        border: 1px solid $fr-unfollow-color;
+        background-color: var(--frisklog-danger-color) !important;
+        border-color: var(--frisklog-danger-color) !important;
     }
 
     &--github {
-        background-color: black !important;
-        border: 1px solid black;
-        color: white;
+        background-color: var(--frisklog-github-bg-color);
+        border: 1px solid var(--frisklog-github-bg-color);
+        color: var(--frisklog-github-text-color);
         display: flex;
         justify-content: center;
         align-items: center;
         gap: 5px;
+
+        & > svg {
+            fill: var(--frisklog-github-text-color);
+        }
     }
 
     &:hover {
-        opacity: 0.9;
+        opacity: 0.8;
     }
 }

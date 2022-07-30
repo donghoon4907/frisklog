@@ -1,10 +1,12 @@
 import React from "react";
-import { Modal, Button } from "react-bootstrap";
+import { Modal } from "react-bootstrap";
 
 import { FormInput } from "../Form";
 import Loader from "../Loader";
 import Editor from "../Editor";
+import Button from "../button";
 import CategoryWithClose from "../CategoryWithClose";
+import { ModalHeader } from "../Modal";
 
 /**
  * 게시물 설정 모달 컨테이너 컴포넌트
@@ -31,9 +33,9 @@ const SetPostPresenter = ({
 }) => (
     <Modal onHide={onClose} show animation={false}>
         {loading && <Loader />}
-        <Modal.Header closeButton>
+        <ModalHeader>
             <Modal.Title>게시물 {id ? "수정" : "등록"}</Modal.Title>
-        </Modal.Header>
+        </ModalHeader>
 
         <Modal.Body>
             <Editor
@@ -63,10 +65,14 @@ const SetPostPresenter = ({
             </form>
         </Modal.Body>
         <Modal.Footer>
-            <Button variant="secondary" onClick={onClose}>
+            <Button type="button" className="fr-btn--cancel" onClick={onClose}>
                 취소
             </Button>
-            <Button variant="primary" onClick={onSubmit}>
+            <Button
+                type="submit"
+                className="fr-btn--primary"
+                onClick={onSubmit}
+            >
                 {id ? "수정" : "등록"}
             </Button>
         </Modal.Footer>

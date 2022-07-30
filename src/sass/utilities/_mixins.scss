@@ -14,9 +14,9 @@
 }
 /* white box */
 @mixin wb {
-    border: $fr-box-border !important;
-    border-radius: $fr-border-radius !important;
-    background: white !important;
+    border: 1px solid var(--frisklog-border-color);
+    border-radius: $fr-border-radius;
+    background-color: var(--frisklog-box-color);
     overflow: hidden;
 }
 /* button and text in one line */
@@ -49,10 +49,16 @@
     background-position: 50%;
 }
 /* icon position center */
-@mixin alignIconCenter {
+@mixin alignIconCenter($withTransform: 0) {
+    $transform: translate3d(0, -50%, 0);
+
+    @if $withTransform != 0 {
+        $transform: $transform $withTransform;
+    }
+
     position: absolute;
     top: 50%;
-    transform: translateY(-50%);
+    transform: $transform;
 }
 /* cancel and submit btn */
 @mixin cancelAndSubmit($gap) {
@@ -65,7 +71,7 @@
     }
 
     & > button:nth-child(1) {
-        background: $fr-info-color;
-        border: 1px solid $fr-info-color;
+        background: var(--frisklog-info-color);
+        border: 1px solid var(--frisklog-info-color);
     }
 }

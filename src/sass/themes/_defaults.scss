@@ -1,16 +1,3 @@
-body {
-    background: $fr-bg-color;
-}
-
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-    margin-bottom: 0;
-}
-
 #root,
 body,
 html {
@@ -27,9 +14,70 @@ html {
     -o-tab-size: 4;
 }
 
+html[data-theme="dark"] {
+    --frisklog-bg-color: #{$dark-theme-background-color};
+    --frisklog-header-color: #{$dark-theme-header-color};
+    --frisklog-box-color: #{$dark-theme-box-color};
+    --frisklog-border-color: #{$dark-theme-border-color};
+    --frisklog-input-color: #{$dark-theme-input-color};
+    --frisklog-text-color: #{$dark-theme-text-color};
+    --frisklog-icon-color: #{$dark-theme-icon-color};
+    --frisklog-hover-color: #{$dark-theme-hover-color};
+    --frisklog-divider-color: #{$dark-theme-divider-color};
+    --frisklog-disabled-color: #{$dark-theme-disabled-color};
+    --frisklog-primary-color: #{$dark-theme-primary-color};
+    --frisklog-primary-text-color: #{$dark-theme-primary-text-color};
+    --frisklog-secondary-color: #{$dark-theme-secondary-color};
+    --frisklog-success-color: #{$dark-theme-success-color};
+    --frisklog-danger-color: #{$dark-theme-danger-color};
+    --frisklog-warning-color: #{$dark-theme-warning-color};
+    --frisklog-info-color: #{$dark-theme-info-color};
+    --frisklog-modal-color: #{$dark-theme-modal-color};
+    --frisklog-github-bg-color: #{$dark-github-background-color};
+    --frisklog-github-text-color: #{$dark-github-text-color};
+}
+
+html[data-theme="light"] {
+    --frisklog-bg-color: #{$light-theme-background-color};
+    --frisklog-header-color: #{$light-theme-header-color};
+    --frisklog-box-color: #{$light-theme-box-color};
+    --frisklog-border-color: #{$light-theme-border-color};
+    --frisklog-input-color: #{$light-theme-input-color};
+    --frisklog-text-color: #{$light-theme-text-color};
+    --frisklog-icon-color: #{$light-theme-icon-color};
+    --frisklog-hover-color: #{$light-theme-hover-color};
+    --frisklog-divider-color: #{$light-theme-divider-color};
+    --frisklog-disabled-color: #{$light-theme-disabled-color};
+    --frisklog-primary-color: #{$light-theme-primary-color};
+    --frisklog-primary-text-color: #{$light-theme-primary-text-color};
+    --frisklog-secondary-color: #{$light-theme-secondary-color};
+    --frisklog-success-color: #{$light-theme-success-color};
+    --frisklog-danger-color: #{$light-theme-danger-color};
+    --frisklog-warning-color: #{$light-theme-warning-color};
+    --frisklog-info-color: #{$light-theme-info-color};
+    --frisklog-modal-color: #{$light-theme-modal-color};
+    --frisklog-github-bg-color: #{$light-github-background-color};
+    --frisklog-github-text-color: #{$light-github-text-color};
+}
+
+body {
+    background: var(--frisklog-bg-color);
+    color: var(--frisklog-text-color);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    margin-bottom: 0;
+}
+
 hr {
     width: 100%;
-    background-color: gray;
+    background-color: var(--frisklog-divider-color);
+    opacity: 1 !important;
 }
 
 button {
@@ -41,9 +89,17 @@ button {
     background: transparent;
 }
 
-// button:focus {
-//     outline: 0 !important;
-// }
+// SETTING - 스크롤
+#main::-webkit-scrollbar {
+    width: 8px;
+}
+
+#main::-webkit-scrollbar-thumb {
+    height: 30%;
+    background: var(--frisklog-icon-color);
+
+    border-radius: 10px;
+}
 
 .a11y-hidden {
     position: absolute;
@@ -53,7 +109,7 @@ button {
     overflow: hidden;
     clip-path: polygon(0 0, 0 0, 0 0);
 }
-// modal custom style
+// SETTING - 부트스트랩
 .modal {
     display: flex !important;
 }
@@ -69,14 +125,86 @@ button {
 
 .modal-content {
     margin: 0 20px;
+    background-color: var(--frisklog-modal-color) !important;
 }
 
+.modal-header,
+.modal-footer {
+    border-color: var(--frisklog-border-color) !important;
+}
+
+.btn-close {
+    color: var(--frisklog-icon-color) !important;
+    opacity: 1 !important;
+}
+
+.popover-header {
+    padding: 0;
+}
+
+.dropdown-item {
+    padding: 0 !important;
+}
+// SETTING - 에디터
 .te-mode-switch-section {
     display: none !important;
 }
+.te-toolbar-section {
+    border-color: var(--frisklog-border-color) !important;
+}
+
+.tui-editor-defaultUI {
+    border-radius: $fr-border-radius;
+    border-color: var(--frisklog-border-color) !important;
+    background-color: var(--frisklog-input-color) !important;
+}
+
+.tui-editor-defaultUI-toolbar {
+    background-color: inherit !important;
+}
+
+.tui-editor-defaultUI-toolbar button {
+    border: none !important;
+    background-color: inherit !important;
+
+    &:hover {
+        background-color: var(--frisklog-hover-color) !important;
+    }
+}
+.tui-md-code {
+    background: none !important;
+}
+
+.tui-md-code-block.CodeMirror-linebackground {
+    background: none !important;
+}
+
+.tui-editor-contents *:not(code) {
+    color: var(--frisklog-text-color) !important;
+}
+
+.CodeMirror {
+    background: inherit !important;
+    color: var(--frisklog-text-color) !important;
+}
+
+.CodeMirror-cursor {
+    border-color: var(--frisklog-text-color) !important;
+}
+
+.tui-editor .te-md-splitter {
+    border-color: var(--frisklog-border-color) !important;
+}
+
+.tui-toolbar-divider {
+    background-color: var(--frisklog-border-color) !important;
+}
 
 .tui-editor-contents pre {
-    @include wb;
+    border: 1px solid var(--frisklog-border-color) !important;
+    border-radius: $fr-border-radius !important;
+    background-color: var(--frisklog-box-color) !important;
+    overflow: hidden !important;
 }
 
 .tui-editor-contents pre[class*="lang"] {
@@ -87,23 +215,22 @@ button {
 .tui-editor-contents img {
     width: 100%;
 }
-// bootstrap popover header
-.popover-header {
-    padding: 0;
-}
-// bootstrap dropdown
-.dropdown-item {
-    padding: 0 !important;
-}
-/** svg 공통 설정
-.activeEscape 공통 스타일 비활성화
-*/
+// SETTING - 아이콘
+// .activeEscape 공통 스타일 비활성화
 svg:not(.activeEscape) {
-    fill: $fr-btn-color;
+    fill: var(--frisklog-icon-color);
 
     &:hover {
-        fill: $fr-hover-color;
+        fill: var(--frisklog-hover-color);
     }
+}
+// SETTING - 마크다운
+.markdown-body {
+    color: var(--frisklog-text-color) !important;
+}
+
+.markdown-body img {
+    background-color: inherit !important;
 }
 
 .markdown-body *:not(.fr-thumbnail, .fr-thumbnail__image, a, code, strong, li) {

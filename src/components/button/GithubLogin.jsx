@@ -16,7 +16,7 @@ const GithubLoginBtn = () => {
 
     return (
         <Button type="button" onClick={handleClick} className="fr-btn--github">
-            <Github style={{ fill: "white", width: 20, height: 20 }} />
+            <Github style={{ width: 20, height: 20 }} />
             <span>Github 로그인</span>
         </Button>
     );

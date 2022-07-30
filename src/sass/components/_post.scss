@@ -106,14 +106,14 @@
 
     &__tag {
         position: relative;
-        font-weight: 400;
+        font-weight: 700;
         word-break: break-word;
         line-height: 1.5;
         font-size: 1rem;
 
         & a {
             padding: 2px 6px;
-            color: rgba(0, 0, 0, 0.65);
+            color: var(--frisklog-text-color);
             display: inline-block;
         }
     }

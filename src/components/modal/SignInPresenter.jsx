@@ -50,7 +50,9 @@ const SignInPresenter = ({
                 </div>
             )}
 
-            <Button type="submit">{mode}</Button>
+            <Button type="submit" className="fr-btn--primary">
+                {mode}
+            </Button>
         </form>
     </>
 );

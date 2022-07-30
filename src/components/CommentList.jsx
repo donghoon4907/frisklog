@@ -109,7 +109,9 @@ const CommentList = ({ postId }) => {
                     required
                     label="댓글"
                 />
-                <Button type="submit">댓글 작성</Button>
+                <Button type="submit" className="fr-btn--primary">
+                    댓글 작성
+                </Button>
             </form>
             <ul>
                 {comments.map((comment) => (

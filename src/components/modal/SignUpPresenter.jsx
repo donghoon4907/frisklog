@@ -39,7 +39,9 @@ const SignUpPresenter = ({ loading, nickname, email, onSubmit }) => {
                     autoComplete="off"
                     label="닉네임"
                 />
-                <Button type="submit">회원가입</Button>
+                <Button type="submit" className="fr-btn--primary">
+                    회원가입
+                </Button>
             </form>
         </>
     );

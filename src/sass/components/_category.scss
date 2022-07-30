@@ -1,13 +1,14 @@
 .fr-category {
-    background: $fr-btn-color;
     border-radius: $fr-border-radius;
-    color: white;
+    color: var(--frisklog-primary-text-color);
+    background-color: var(--frisklog-primary-color);
     padding: 3px 15px 3px 15px;
     position: relative;
     transition: color 0.2s;
     text-decoration: none;
     font-size: 1.2rem;
     line-height: 30px;
+    font-weight: 700;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -20,34 +21,6 @@
         display: flex;
         justify-content: center;
         align-items: center;
-    }
-
-    // &:before {
-    //     background: #eee;
-    //     border-radius: 10px;
-    //     box-shadow: inset 0 1px rgba(0, 0, 0, 0.25);
-    //     content: "";
-    //     position: absolute;
-    //     left: 10px;
-    //     width: 6px;
-    //     height: 6px;
-    //     top: 11px;
-    // }
-
-    // &:after {
-    //     background: $fr-bg-color;
-    //     border-bottom: 13px solid transparent;
-    //     border-left: 10px solid #eee;
-    //     border-top: 13px solid transparent;
-    //     content: "";
-    //     position: absolute;
-    //     right: 0;
-    //     top: 0;
-    // }
-
-    &:hover {
-        background-color: $fr-hover-color;
-        color: gray;
     }
 
     // &:hover::after {

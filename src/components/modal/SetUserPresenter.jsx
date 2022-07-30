@@ -5,6 +5,7 @@ import Button from "react-bootstrap/Button";
 
 import { FormInput } from "../Form";
 import Loader from "../Loader";
+import { ModalHeader } from "../Modal";
 
 /**
  * 내 정보 수정 모달 프레젠터 컴포넌트
@@ -22,9 +23,9 @@ const SetUserPresenter = ({ loading, newNickname, onClose, onSubmit }) => (
         contentClassName="fr-modal--middle"
     >
         {loading && <Loader />}
-        <Modal.Header closeButton>
+        <ModalHeader>
             <Modal.Title>내 정보 수정</Modal.Title>
-        </Modal.Header>
+        </ModalHeader>
         <form onSubmit={onSubmit}>
             <Modal.Body>
                 {/* <div className="fr-modal__switch">

@@ -9,14 +9,10 @@
 
     &__wrapper {
         height: 3rem;
-        background: white;
-        border-bottom: $fr-box-border;
+        background: var(--frisklog-header-color);
+        border-bottom: 1px solid var(--frisklog-border-color);
         flex-shrink: 0;
         z-index: 1000;
-
-        & svg {
-            fill: $fr-btn-color;
-        }
     }
 
     &__column {

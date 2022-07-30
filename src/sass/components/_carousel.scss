@@ -7,11 +7,10 @@
     }
 
     &__prev {
-        position: absolute;
-        top: 50%;
         left: 37px;
         z-index: 1000;
-        transform: translate3d(0, -50%, 0) rotate(180deg);
+
+        @include alignIconCenter(rotate(180deg));
     }
 
     &__next {

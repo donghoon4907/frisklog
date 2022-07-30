@@ -7,7 +7,7 @@ const PrevArrow = ({ onClick }) => {
     return (
         <button
             type="button"
-            className="fr-carousel__prev"
+            className="fr-carousel__prev fr-carousel--rotate"
             onClick={onClick}
             aria-label="이전 컨텐츠 보기"
         >

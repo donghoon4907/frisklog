@@ -1,13 +1,11 @@
 .fr-search {
     border: none;
-    background: white;
+    background: inherit;
     position: absolute;
     top: calc(3rem - 3px);
     left: 0;
     width: 100%;
-    height: auto;
     padding: 0.6rem;
-    box-shadow: $fr-header-shadow;
 
     &__form {
         position: relative;

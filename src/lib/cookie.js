@@ -2,8 +2,10 @@ import Cookies from "js-cookie";
 
 // 토큰 키
 export const TOKEN_KEY = "TOKEN_FRISKLOG";
+// 테마 키
+export const THEME_KEY = "THEME_FRISKLOG";
 // 네비게이션 확장 여부 키
-export const COLLAPSE_KEY = "COLLAPSE_FRISKLOG";
+// export const COLLAPSE_KEY = "COLLAPSE_FRISKLOG";
 // Scroll restoration 키
 // export const SCROLLTOP_KEY = "SCROLLTOP_FRISKLOG";
 

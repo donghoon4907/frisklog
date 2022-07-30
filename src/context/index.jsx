@@ -35,6 +35,7 @@ const initialState = {
     email: null,
     avatar: null,
     isMaster: false,
+    theme: "light",
     // isShowNoticeModal: false,
     isShowPostModal: false,
     isShowSearchBar: false,

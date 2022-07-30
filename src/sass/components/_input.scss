@@ -1,11 +1,13 @@
 .fr-input {
     border: 0;
-    border: $fr-box-border;
+    border: 1px solid var(--frisklog-border-color);
     border-radius: $fr-border-radius;
-    background: $fr-bg-color;
+    background: var(--frisklog-input-color);
+    color: inherit;
     height: 2.3rem;
     padding: 0px 1rem;
     font-size: 0.8rem;
+    line-height: 1.5;
 
     &--expand {
         width: 100%;

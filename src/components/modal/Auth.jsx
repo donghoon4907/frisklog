@@ -6,6 +6,7 @@ import SignUp from "./SignUpContainer";
 import { useDispatch } from "../../context";
 import { HIDE_LOGIN_MODAL } from "../../context/action";
 import GithubLoginBtn from "../button/GithubLogin";
+import { ModalHeader } from "../Modal";
 
 /**
  * 인증 팝업 컴포넌트
@@ -29,15 +30,16 @@ const Auth = () => {
             animation={false}
             contentClassName="fr-modal--middle"
         >
-            <Modal.Header closeButton>
+            <ModalHeader>
                 <Modal.Title>{mode}</Modal.Title>
-            </Modal.Header>
+            </ModalHeader>
             <Modal.Body>
                 {mode === "로그인" && <SignIn />}
                 {mode === "회원가입" && <SignUp setMode={setMode} />}
-                <hr />
+
                 {mode === "로그인" && (
                     <div className="fr-login">
+                        <hr />
                         <GithubLoginBtn />
                     </div>
                 )}
