@@ -18,7 +18,8 @@ import {
     // SET_BREAKPOINT,
     SET_UPLOADED_URL,
     SHOW_USER_MODAL,
-    HIDE_USER_MODAL
+    HIDE_USER_MODAL,
+    SET_THEME
 } from "./action";
 
 /**
@@ -175,6 +176,11 @@ export default function reducer(state, action) {
             return {
                 ...state,
                 isShowUserModal: false
+            };
+        case SET_THEME:
+            return {
+                ...state,
+                theme: action.theme
             };
         // case SHOW_POST_DROPDOWN:
         //     return {

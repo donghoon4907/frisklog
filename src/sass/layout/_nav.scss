@@ -5,7 +5,7 @@
     height: 100%;
     padding: 8px;
     z-index: 10;
-    border-right: $fr-box-border;
+    // border-right: $fr-box-border;
     flex-shrink: 0;
 
     &--state {
@@ -35,7 +35,7 @@
         display: flex;
         align-items: center;
         & svg {
-            fill: $fr-btn-color;
+            fill: #2e6bd8;
         }
     }
 }

@@ -19,7 +19,6 @@ const CategoryWithClose = ({ content, onClick }) => (
             <Close
                 style={{
                     marginLeft: 10,
-                    fill: "white",
                     width: 20,
                     height: 20
                 }}

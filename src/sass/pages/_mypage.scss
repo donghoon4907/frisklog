@@ -96,12 +96,12 @@
 
         &:hover,
         &--active {
-            background-color: $fr-hover-color;
+            background-color: var(--frisklog-hover-color);
             color: #000;
         }
 
-        & + & {
-            border-top: 1px solid var(--frisklog-divider-color);
-        }
+        // & + & {
+        //     border-top: 1px solid var(--frisklog-divider-color);
+        // }
     }
 }

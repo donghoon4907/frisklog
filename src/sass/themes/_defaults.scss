@@ -107,7 +107,7 @@ button {
 }
 
 #main::-webkit-scrollbar-thumb {
-    height: 10%;
+    // height: 10%;
     background: var(--frisklog-icon-color);
 
     border-radius: 10px;
@@ -191,13 +191,13 @@ button {
     background: none !important;
 }
 
+.te-editor *:not(code),
 .tui-editor-contents *:not(code) {
     color: var(--frisklog-text-color) !important;
 }
 
 .CodeMirror {
     background: inherit !important;
-    color: var(--frisklog-text-color) !important;
 }
 
 .CodeMirror-cursor {
@@ -227,6 +227,14 @@ button {
 .tui-editor-contents img {
     width: 100%;
 }
+
+.te-preview::-webkit-scrollbar {
+    display: none;
+}
+
+.CodeMirror-vscrollbar {
+    display: none;
+}
 // SETTING - 아이콘
 // .activeEscape 공통 스타일 비활성화
 svg:not(.activeEscape) {
@@ -237,8 +245,15 @@ svg:not(.activeEscape) {
     }
 }
 // SETTING - 마크다운
-.markdown-body {
+.markdown-body * {
     color: var(--frisklog-text-color) !important;
+}
+
+.markdown-body .highlight pre,
+.markdown-body pre,
+.markdown-body code {
+    background-color: var(--frisklog-bg-color) !important;
+    //background-color light: #f6f8fa
 }
 
 .markdown-body img {
@@ -280,7 +295,9 @@ svg:not(.activeEscape) {
 }
 
 .markdown-body h1,
-.markdown-body h2 {
+.markdown-body h2,
+.tui-editor-contents h1,
+.tui-editor-contents h2 {
     border-bottom: none !important;
 }
 

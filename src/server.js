@@ -95,9 +95,11 @@ server
 
         const helmet = Helmet.renderStatic();
 
+        // const html = helmet.htmlAttributes.toString();
+
         res.status(200).send(`
                 <!DOCTYPE html>
-                <html ${helmet.htmlAttributes.toString()}>
+                <html data-theme="${context.theme}">
                     <head>
                         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
                         <meta charset="utf-8" />

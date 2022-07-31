@@ -37,11 +37,13 @@
     &--follow {
         background-color: var(--frisklog-info-color) !important;
         border-color: var(--frisklog-info-color) !important;
+        color: #fff;
     }
 
     &--unfollow {
         background-color: var(--frisklog-danger-color) !important;
         border-color: var(--frisklog-danger-color) !important;
+        color: #fff;
     }
 
     &--github {

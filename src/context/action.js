@@ -42,3 +42,5 @@ export const SET_UPLOADED_URL = "SET_UPLOADED_URL";
 export const SHOW_USER_MODAL = "SHOW_USER_MODAL";
 // 내 정보 수정 팝업 숨기기
 export const HIDE_USER_MODAL = "HIDE_USER_MODAL";
+// 테마 설정
+export const SET_THEME = "SET_THEME";

@@ -1,41 +1,55 @@
-import React, { useState, useCallback } from "react";
-import Form from "react-bootstrap/Form";
+import React, { useCallback } from "react";
 
-import { useSelector } from "../../context";
+import { useSelector, useDispatch } from "../../context";
+import { SET_THEME } from "../../context/action";
 import { THEME_KEY, setStorage } from "../../lib/cookie";
+import { Light, Dark } from "../../assets/icon";
 
 /**
  * 모드 스위치 컴포넌트
  *
  */
-const ModeBtn = ({ ...props }) => {
+const ModeBtn = () => {
+    const dispatch = useDispatch();
+
     const { theme } = useSelector();
 
-    const [checked, setChecked] = useState(theme === "dark");
-
-    const handleChange = useCallback((e) => {
-        setChecked(e.target.checked);
-
-        if (e.target.checked) {
+    const handleClick = useCallback(() => {
+        if (theme === "light") {
             document.documentElement.setAttribute("data-theme", "dark");
+
+            dispatch({
+                type: SET_THEME,
+                theme: "dark"
+            });
 
             setStorage(THEME_KEY, "dark");
         } else {
             document.documentElement.setAttribute("data-theme", "light");
 
+            dispatch({
+                type: SET_THEME,
+                theme: "light"
+            });
+
             setStorage(THEME_KEY, "light");
         }
-    }, []);
+    }, [theme]);
 
     return (
-        <Form.Check
-            type="switch"
-            reverse="false"
-            label={checked ? "다크모드 활성화" : "다크모드 비활성화"}
-            {...props}
-            checked={checked}
-            onChange={handleChange}
-        />
+        <div title="모드 버튼">
+            <button
+                type="button"
+                onClick={handleClick}
+                aria-label={
+                    theme === "light"
+                        ? "어두운 화면으로 변경"
+                        : "밝은 화면으로 변경"
+                }
+            >
+                {theme === "light" ? <Light /> : <Dark />}
+            </button>
+        </div>
     );
 };
 

@@ -7,6 +7,7 @@ import HeaderSearchBar from "./SearchBar";
 import CreatePostBtn from "../button/CreatePost";
 import HomeBtn from "../button/Home";
 import FavoriteBtn from "../button/Favorite";
+import ModeBtn from "../button/Mode";
 
 /**
  * 공통 헤더 컴포넌트
@@ -24,6 +25,7 @@ const Header = () => {
                     <HomeBtn />
                 </div>
                 <div className={`${displayName}__column`}>
+                    <ModeBtn />
                     <SearchBtn />
                     <FavoriteBtn />
                     <CreatePostBtn />
