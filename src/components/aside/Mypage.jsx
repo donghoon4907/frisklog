@@ -10,6 +10,7 @@ import mypageOptions from "../../json/mypage_options.json";
 import AsideMypageHeader from "./MypageHeader";
 import ModifyUserBtn from "../button/ModifyUser";
 import FollowBtn from "../button/Follow";
+import ModeBtn from "../button/Mode";
 
 /**
  * 사용자정보 컴포넌트
@@ -61,11 +62,11 @@ const AsideMypage = ({
                                         </div>
                                     )}
                                 </div>
-                                {/* <div className={`${displayName}__mode`}>
-                                    <div>보기모드</div>
-                                    <div className="fr-modal__switch">
+                                {isMe && (
+                                    <div className={`${displayName}__mode`}>
+                                        <ModeBtn id="mode" />
                                     </div>
-                                </div> */}
+                                )}
 
                                 {isMe && (
                                     <div className={`${displayName}__helper`}>

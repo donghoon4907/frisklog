@@ -55,6 +55,13 @@
         }
     }
 
+    &__mode {
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        margin-top: 15px;
+    }
+
     &__follow {
         width: 100px;
     }
