@@ -37,7 +37,11 @@ const LogoutBtn = () => {
 
     return (
         <div style={{ flex: 1 }} title="Logout">
-            <Button onClick={handleClick}>
+            <Button
+                type="button"
+                className="fr-btn--primary"
+                onClick={handleClick}
+            >
                 <span>로그아웃</span>
             </Button>
         </div>

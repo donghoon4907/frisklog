@@ -3,7 +3,7 @@
     padding: 12px 23px 10px 0;
 
     &__wrapper {
-        border-top: $fr-box-border;
+        border-top: 1px solid var(--frisklog-divider-color);
     }
 
     &__avatar {
@@ -49,6 +49,8 @@
     }
 
     &__submit {
+        margin-bottom: 10px;
+
         @include cancelAndSubmit(10px);
     }
 }

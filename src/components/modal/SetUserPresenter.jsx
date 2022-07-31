@@ -1,10 +1,9 @@
 import React from "react";
 import Modal from "react-bootstrap/Modal";
-// import Form from "react-bootstrap/Form";
-import Button from "react-bootstrap/Button";
 
 import { FormInput } from "../Form";
 import Loader from "../Loader";
+import Button from "../button";
 import { ModalHeader } from "../Modal";
 
 /**
@@ -51,12 +50,20 @@ const SetUserPresenter = ({ loading, newNickname, onClose, onSubmit }) => (
                 />
             </Modal.Body>
             <Modal.Footer>
-                <Button variant="secondary" onClick={onClose}>
-                    취소
-                </Button>
-                <Button variant="primary" type="submit">
-                    수정
-                </Button>
+                <div style={{ width: 100 }}>
+                    <Button
+                        type="button"
+                        className="fr-btn--cancel"
+                        onClick={onClose}
+                    >
+                        취소
+                    </Button>
+                </div>
+                <div style={{ width: 100 }}>
+                    <Button type="submit" className="fr-btn--primary">
+                        수정
+                    </Button>
+                </div>
             </Modal.Footer>
         </form>
     </Modal>

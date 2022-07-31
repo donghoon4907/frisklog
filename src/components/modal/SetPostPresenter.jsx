@@ -65,16 +65,24 @@ const SetPostPresenter = ({
             </form>
         </Modal.Body>
         <Modal.Footer>
-            <Button type="button" className="fr-btn--cancel" onClick={onClose}>
-                취소
-            </Button>
-            <Button
-                type="submit"
-                className="fr-btn--primary"
-                onClick={onSubmit}
-            >
-                {id ? "수정" : "등록"}
-            </Button>
+            <div style={{ width: 100 }}>
+                <Button
+                    type="button"
+                    className="fr-btn--cancel"
+                    onClick={onClose}
+                >
+                    취소
+                </Button>
+            </div>
+            <div style={{ width: 100 }}>
+                <Button
+                    type="submit"
+                    className="fr-btn--primary"
+                    onClick={onSubmit}
+                >
+                    {id ? "수정" : "등록"}
+                </Button>
+            </div>
         </Modal.Footer>
     </Modal>
 );

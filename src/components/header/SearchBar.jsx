@@ -61,7 +61,9 @@ const HeaderSearchBar = () => {
                     value={searchKeyword}
                 >
                     <div className={`${displayName}__button`}>
-                        <Button type="submit">검색</Button>
+                        <Button type="submit" className="fr-btn--primary">
+                            검색
+                        </Button>
                     </div>
                 </FormInput>
             </form>

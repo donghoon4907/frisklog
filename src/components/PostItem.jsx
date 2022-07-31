@@ -11,7 +11,6 @@ import { useSelector } from "../context";
 import { Comment } from "../assets/icon";
 import CommentList from "./CommentList";
 import { useResizeImage } from "../hooks";
-import { HOME_PLATFORM_ID } from "../lib/constants";
 
 /**
  * 게시물 컴포넌트
@@ -65,7 +64,7 @@ const PostItem = ({ id, createdAt, User, Categories, content, Likers }) => {
                             {User.nickname}
                         </span>
                     </div>
-                    <div
+                    {/* <div
                         className={`${displayName}__platform`}
                         title="플랫폼 링크"
                     >
@@ -77,7 +76,7 @@ const PostItem = ({ id, createdAt, User, Categories, content, Likers }) => {
                             alt="Platform"
                             isInternal={true}
                         />
-                    </div>
+                    </div> */}
                 </header>
                 <div
                     className={`${displayName}__body ${displayName}__body--expended`}

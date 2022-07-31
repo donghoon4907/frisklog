@@ -61,6 +61,11 @@ const AsideMypage = ({
                                         </div>
                                     )}
                                 </div>
+                                {/* <div className={`${displayName}__mode`}>
+                                    <div>보기모드</div>
+                                    <div className="fr-modal__switch">
+                                    </div>
+                                </div> */}
 
                                 {isMe && (
                                     <div className={`${displayName}__helper`}>

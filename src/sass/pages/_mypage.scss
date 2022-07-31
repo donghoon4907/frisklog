@@ -81,22 +81,20 @@
     }
 
     &__item {
-        &--active {
-            background-color: $fr-active-color;
-        }
-
         & > button {
             padding: 5px 10px;
             width: 100%;
             height: 100%;
         }
 
-        &:hover {
+        &:hover,
+        &--active {
             background-color: $fr-hover-color;
+            color: #000;
         }
 
         & + & {
-            border-top: $fr-box-border;
+            border-top: 1px solid var(--frisklog-divider-color);
         }
     }
 }

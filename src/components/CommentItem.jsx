@@ -181,10 +181,16 @@ const CommentItem = ({ id, content, createdAt, User }) => {
                         {...comment}
                     />
                     <div className={`${displayName}__submit`}>
-                        <Button type="button" onClick={handleHideUpdate}>
+                        <Button
+                            type="button"
+                            className="fr-btn--cancel"
+                            onClick={handleHideUpdate}
+                        >
                             취소
                         </Button>
-                        <Button type="submit">댓글 수정</Button>
+                        <Button type="submit" className="fr-btn--primary">
+                            댓글 수정
+                        </Button>
                     </div>
                 </form>
             ) : (

@@ -31,7 +31,7 @@ server
 
         const theme = req.cookies[THEME_KEY];
 
-        context.theme = theme ? JSON.parse(theme) : "light";
+        context.theme = theme ? JSON.parse(theme) : "dark";
 
         // const collapse = req.cookies[COLLAPSE_KEY];
 
