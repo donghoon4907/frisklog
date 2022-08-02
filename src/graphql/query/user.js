@@ -37,8 +37,8 @@ export const GET_USERS = gql`
  */
 export const GET_RECOMMENDERS = gql`
     ${CORE_USER_FIELDS}
-    query GetRecommenders($cursor: String, $limit: Int!) {
-        recommenders(cursor: $cursor, limit: $limit) {
+    query GetRecommenders($limit: Int!) {
+        recommenders(limit: $limit) {
             ...CoreUserFields
 
             postCount
@@ -85,8 +85,8 @@ export const GET_USER = gql`
  */
 export const GET_FOLLOWINGS = gql`
     ${CORE_USER_FIELDS}
-    query GetFollowings($cursor: String, $limit: Int!, $userId: String!) {
-        followings(cursor: $cursor, limit: $limit, userId: $userId) {
+    query GetFollowings($offset: Int, $limit: Int!, $userId: String!) {
+        followings(offset: $offset, limit: $limit, userId: $userId) {
             ...CoreUserFields
 
             Platform {
