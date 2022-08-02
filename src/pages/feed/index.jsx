@@ -59,7 +59,7 @@ const Feed = () => {
 
     return (
         <>
-            <Meta />
+            <Meta title="frisklog" />
             <div className="fr-main__title">
                 <h2>최신 포스트</h2>
             </div>

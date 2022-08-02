@@ -256,6 +256,10 @@ svg:not(.activeEscape) {
     //background-color light: #f6f8fa
 }
 
+.markdown-body pre code {
+    white-space: pre-wrap;
+}
+
 .markdown-body img {
     background-color: inherit !important;
 }
