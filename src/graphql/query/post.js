@@ -6,19 +6,20 @@ import { CORE_PLATFORM_FIELDS } from "../fragment/platform";
 /**
  * 게시물 검색
  *
- * @param $cursor         커서
- * @param $limit          요청 목록의 수
- * @param $order          정렬
- * @param $searchKeyword  검색어
- * @param $userId         사용자 ID
- * @param $isLike         내가 좋아요한 포스트 여부(userId 필요)
- * @param $isFollowing    내가 팔로잉한 포스트 여부(userId 필요)
+ * @param $cursor        커서
+ * @param $limit         요청 목록의 수
+ * @param $order         정렬
+ * @param $searchKeyword 검색어
+ * @param $userId        사용자 ID
+ * @param $isLike        내가 좋아요한 포스트 여부(userId 필요)
+ * @param $isFollowing   내가 팔로잉한 포스트 여부(userId 필요)
  */
 export const GET_POSTS = gql`
     ${CORE_POST_FIELDS}
     ${CORE_PLATFORM_FIELDS}
     query GetPosts(
         $cursor: String
+        $order: [[String]]
         $limit: Int!
         $searchKeyword: String
         $userId: String
@@ -26,31 +27,41 @@ export const GET_POSTS = gql`
         $isFollowing: Boolean
     ) {
         posts(
-            cursor: $cursor
+            after: $cursor
+            order: $order
             limit: $limit
             searchKeyword: $searchKeyword
             userId: $userId
             isLike: $isLike
             isFollowing: $isFollowing
         ) {
-            ...CorePostFields
+            totalCount
+            pageInfo {
+                endCursor
+                hasNextPage
+            }
+            edges {
+                node {
+                    ...CorePostFields
 
-            User {
-                id
-                nickname
-                avatar
-                link
+                    User {
+                        id
+                        nickname
+                        avatar
+                        link
 
-                Platform {
-                    ...CorePlatformFields
+                        Platform {
+                            ...CorePlatformFields
+                        }
+                    }
+                    Likers {
+                        id
+                    }
+
+                    Categories {
+                        content
+                    }
                 }
-            }
-            Likers {
-                id
-            }
-
-            Categories {
-                content
             }
         }
     }
@@ -67,25 +78,34 @@ export const GET_CATEGORY_POSTS = gql`
     ${CORE_POST_FIELDS}
     ${CORE_PLATFORM_FIELDS}
     query GetPostsByCategory($content: String!, $cursor: String, $limit: Int!) {
-        postsByCategory(content: $content, cursor: $cursor, limit: $limit) {
-            ...CorePostFields
+        postsByCategory(content: $content, after: $cursor, limit: $limit) {
+            totalCount
+            pageInfo {
+                endCursor
+                hasNextPage
+            }
+            edges {
+                node {
+                    ...CorePostFields
 
-            User {
-                id
-                nickname
-                avatar
-                link
+                    User {
+                        id
+                        nickname
+                        avatar
+                        link
 
-                Platform {
-                    ...CorePlatformFields
+                        Platform {
+                            ...CorePlatformFields
+                        }
+                    }
+                    Likers {
+                        id
+                    }
+
+                    Categories {
+                        content
+                    }
                 }
-            }
-            Likers {
-                id
-            }
-
-            Categories {
-                content
             }
         }
     }

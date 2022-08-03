@@ -7,6 +7,8 @@ import {
 import { setContext } from "@apollo/client/link/context";
 import { onError } from "@apollo/client/link/error";
 import fetch from "isomorphic-unfetch";
+import { relayStylePagination } from "@apollo/client/utilities";
+
 import { TOKEN_KEY, getStorage, deleteStorage } from "./cookie";
 
 /**
@@ -70,13 +72,24 @@ function createApolloClient() {
         };
     });
 
+    const typePolicies = {
+        Query: {
+            fields: {
+                posts: relayStylePagination(),
+                postsByCategory: relayStylePagination()
+            }
+        }
+    };
+
     return new ApolloClient({
         connectToDevTools: process.browser,
         ssrMode: !process.browser,
         link: ApolloLink.from([errorLink, authLink, httpLink]),
         cache: process.browser
-            ? new InMemoryCache().restore(window.__APOLLO_STATE__)
-            : new InMemoryCache()
+            ? new InMemoryCache({ typePolicies }).restore(
+                  window.__APOLLO_STATE__
+              )
+            : new InMemoryCache({ typePolicies })
     });
 }
 

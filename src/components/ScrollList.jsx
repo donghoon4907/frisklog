@@ -16,29 +16,28 @@ import { handleFetchMore } from "../lib/fetch";
 const List = ({ type, Item, variables, ...props }) => (
     <Query variables={variables} {...props}>
         {({ data, fetchMore }) => {
-            const rows = data[type];
+            const query = data[type];
 
-            const rowsLen = rows.length;
+            const { totalCount, edges, pageInfo } = query;
 
-            if (rowsLen === 0) {
+            if (totalCount === 0) {
                 return null;
             }
 
-            const cursor = rows[rowsLen - 1].id;
+            const nodes = edges.map((edge) => edge.node);
 
             return (
                 <>
-                    {rows.map((row) => (
-                        <Item key={type + row.id} {...row} />
+                    {nodes.map((node) => (
+                        <Item key={type + node.id} {...node} />
                     ))}
 
-                    {rowsLen % variables.limit === 0 && (
+                    {pageInfo.hasNextPage && (
                         <Scroll
-                            onBottom={handleFetchMore({
-                                fetchMore,
+                            onBottom={handleFetchMore(fetchMore, {
                                 variables: {
                                     ...variables,
-                                    cursor
+                                    cursor: pageInfo.endCursor
                                 },
                                 type
                             })}

@@ -68,7 +68,7 @@ const Feed = () => {
                 fetchPolicy="cache-first"
                 query={GET_POSTS}
                 variables={{
-                    limit: 12
+                    limit: 10
                 }}
                 Item={PostItem}
             />
