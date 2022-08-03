@@ -23,17 +23,21 @@ $fr-warning-color: #ffc107;
 
 $fr-info-color: #17a2b8;
 
+$fr-blue-color: #2e6bd8;
+
+$fr-disabled-color: #646464;
+
 $light-theme-background-color: #f7f7f8;
 $light-theme-header-color: #fff;
 $light-theme-box-color: #fff;
 $light-theme-border-color: #e6e6e6;
 $light-theme-input-color: #fff;
-$light-theme-icon-color: #2e6bd8;
+$light-theme-icon-color: $fr-blue-color;
 $light-theme-hover-color: #eee;
-$light-theme-disabled-color: #646464;
+$light-theme-disabled-color: $fr-disabled-color;
 $light-theme-text-color: #000;
 $light-theme-divider-color: #eaecef;
-$light-theme-primary-color: #2e6bd8;
+$light-theme-primary-color: $fr-blue-color;
 $light-theme-primary-text-color: #fff;
 $light-theme-secondary-color: #6c757d;
 $light-theme-success-color: $fr-success-color;
@@ -43,6 +47,9 @@ $light-theme-info-color: $fr-info-color;
 $light-theme-modal-color: #fff;
 $light-github-background-color: #000;
 $light-github-text-color: #fff;
+$light-category-background-color: $fr-blue-color;
+$light-category-text-color: #fff;
+$light-category-closeicon-color: #fff;
 
 $dark-theme-background-color: $fr-black-color;
 $dark-theme-header-color: $fr-black-color;
@@ -51,7 +58,7 @@ $dark-theme-border-color: $fr-lightblack-color;
 $dark-theme-input-color: $fr-lightblack-color;
 $dark-theme-icon-color: #909090;
 $dark-theme-hover-color: #f8f9fa;
-$dark-theme-disabled-color: #646464;
+$dark-theme-disabled-color: $fr-disabled-color;
 $dark-theme-text-color: #fff;
 $dark-theme-divider-color: $fr-lightblack-color;
 $dark-theme-primary-color: #f8f9fa;
@@ -64,3 +71,6 @@ $dark-theme-info-color: $fr-info-color;
 $dark-theme-modal-color: #000;
 $dark-github-background-color: #fff;
 $dark-github-text-color: #000;
+$dark-category-background-color: #fff;
+$dark-category-text-color: #000;
+$dark-category-closeicon-color: #000;

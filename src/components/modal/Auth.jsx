@@ -1,38 +1,21 @@
-import React, { useState, useCallback } from "react";
-import { Modal } from "react-bootstrap";
+import React, { useState } from "react";
+import Modal from "react-bootstrap/Modal";
 
 import SignIn from "./SignInContainer";
 import SignUp from "./SignUpContainer";
-import { useDispatch } from "../../context";
-import { HIDE_LOGIN_MODAL } from "../../context/action";
 import GithubLoginBtn from "../button/GithubLogin";
-import { ModalHeader } from "../Modal";
+import ModalContainer from ".";
 
 /**
  * 인증 팝업 컴포넌트
  *
  */
 const Auth = () => {
-    const dispatch = useDispatch();
     // 화면 관리
     const [mode, setMode] = useState("로그인");
-    // 팝업 닫기 핸들러
-    const handleHide = useCallback(() => {
-        dispatch({
-            type: HIDE_LOGIN_MODAL
-        });
-    }, []);
 
     return (
-        <Modal
-            onHide={handleHide}
-            show
-            animation={false}
-            contentClassName="fr-modal--middle"
-        >
-            <ModalHeader>
-                <Modal.Title>{mode}</Modal.Title>
-            </ModalHeader>
+        <ModalContainer title={mode} contentClassName="fr-modal--middle">
             <Modal.Body>
                 {mode === "로그인" && <SignIn />}
                 {mode === "회원가입" && <SignUp setMode={setMode} />}
@@ -60,7 +43,7 @@ const Auth = () => {
                     </div>
                 </div>
             </Modal.Body>
-        </Modal>
+        </ModalContainer>
     );
 };
 

@@ -1,7 +1,7 @@
 .fr-category {
     border-radius: $fr-border-radius;
-    color: var(--frisklog-primary-text-color);
-    background-color: var(--frisklog-primary-color);
+    color: var(--frisklog-category-text-color);
+    background-color: var(--frisklog-category-bg-color);
     padding: 3px 15px 3px 15px;
     position: relative;
     transition: color 0.2s;
@@ -14,7 +14,7 @@
     align-items: center;
 
     &:hover {
-        color: var(--frisklog-primary-text-color);
+        color: var(--frisklog-category-text-color);
     }
 
     &--multiple {
@@ -26,9 +26,9 @@
         justify-content: center;
         align-items: center;
 
-        // & svg {
-        //     fill: var(--frisklog-primary-text-color);
-        // }
+        & svg {
+            fill: var(--frisklog-category-closeicon-color) !important;
+        }
     }
 
     // &:hover::after {

@@ -1,5 +1,6 @@
 import React, { useCallback, useState } from "react";
 import { useMutation } from "@apollo/client";
+
 import { CREATE_POST, UPDATE_POST } from "../../graphql/mutation/post";
 import SetPostPresenter from "./SetPostPresenter";
 import { useInput } from "../../hooks";

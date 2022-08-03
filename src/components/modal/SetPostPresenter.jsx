@@ -1,12 +1,12 @@
 import React from "react";
-import { Modal } from "react-bootstrap";
+import Modal from "react-bootstrap/Modal";
 
 import { FormInput } from "../Form";
 import Loader from "../Loader";
 import Editor from "../Editor";
 import Button from "../button";
 import CategoryWithClose from "../CategoryWithClose";
-import { ModalHeader } from "../Modal";
+import ModalContainer from ".";
 
 /**
  * 게시물 설정 모달 컨테이너 컴포넌트
@@ -31,11 +31,8 @@ const SetPostPresenter = ({
     onRemoveCategory,
     onSubmit
 }) => (
-    <Modal onHide={onClose} show animation={false}>
+    <ModalContainer title={`게시물 ${id ? "수정" : "등록"}`}>
         {loading && <Loader />}
-        <ModalHeader>
-            <Modal.Title>게시물 {id ? "수정" : "등록"}</Modal.Title>
-        </ModalHeader>
 
         <Modal.Body>
             <Editor
@@ -84,7 +81,7 @@ const SetPostPresenter = ({
                 </Button>
             </div>
         </Modal.Footer>
-    </Modal>
+    </ModalContainer>
 );
 
 export default SetPostPresenter;
