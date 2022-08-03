@@ -97,6 +97,13 @@ dl {
     margin: 0;
 }
 
+pre,
+code,
+kbd,
+samp {
+    unicode-bidi: normal !important;
+}
+
 button {
     border: none;
     margin: 0;
@@ -218,17 +225,10 @@ button {
     background-color: var(--frisklog-border-color) !important;
 }
 
-.tui-editor-contents pre {
-    border: 1px solid var(--frisklog-border-color) !important;
-    border-radius: $fr-border-radius !important;
-    background-color: var(--frisklog-box-color) !important;
-    overflow: hidden !important;
-}
-
-.tui-editor-contents pre[class*="lang"] {
-    background: #202020 !important;
-    color: white !important;
-}
+// .tui-editor-contents pre[class*="lang"] {
+//     background: #202020 !important;
+//     color: white !important;
+// }
 
 .tui-editor-contents img {
     width: 100%;
@@ -257,9 +257,12 @@ svg:not(.activeEscape) {
 
 .markdown-body .highlight pre,
 .markdown-body pre,
-.markdown-body code {
+.markdown-body code,
+.tui-editor-contents pre {
+    border: 1px solid var(--frisklog-bg-color) !important;
+    border-radius: $fr-border-radius !important;
     background-color: var(--frisklog-bg-color) !important;
-    //background-color light: #f6f8fa
+    overflow: hidden !important;
 }
 
 .markdown-body pre code {
