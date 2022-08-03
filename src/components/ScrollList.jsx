@@ -2,7 +2,7 @@ import React from "react";
 
 import Query from "./Query";
 import Scroll from "./Scroll";
-import { handleFetchMore } from "../lib/fetch";
+import { fetchThen } from "../lib/fetch";
 
 /**
  * 공통 리스트 렌더링 컴포넌트
@@ -34,7 +34,7 @@ const List = ({ type, Item, variables, ...props }) => (
 
                     {pageInfo.hasNextPage && (
                         <Scroll
-                            onBottom={handleFetchMore(fetchMore, {
+                            onBottom={fetchThen(fetchMore, {
                                 variables: {
                                     ...variables,
                                     cursor: pageInfo.endCursor
