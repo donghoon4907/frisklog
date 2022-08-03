@@ -239,7 +239,7 @@ button {
 }
 
 .CodeMirror-vscrollbar {
-    display: none;
+    display: none !important;
 }
 // SETTING - 아이콘
 // .activeEscape 공통 스타일 비활성화
