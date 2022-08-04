@@ -106,7 +106,7 @@ const SetPostContainer = () => {
                         throw new Exception("check SetPostContainer");
                     }
 
-                    window.location.reload();
+                    // window.location.reload();
                 } catch (error) {
                     graphqlError({ error, dispatch });
                 }

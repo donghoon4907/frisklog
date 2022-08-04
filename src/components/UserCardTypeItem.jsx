@@ -7,12 +7,12 @@ import { useSelector } from "../context";
 /**
  * 사용자 카드형 컴포넌트
  *
- * @param {string}   props.nickname            사용자 별명
- * @param {number}   props.avatar              프로필 사진 파일명
- * @param {string}   props.link                링크 주소
- * @param {number}   props.postCount           작성한 포스트 수
- * @param {string}   props.Platform.storageUrl 저장소 경로
- * @param {object[]} props.Followers           팔로워 목록
+ * @param {string}   props.nickname  사용자 별명
+ * @param {number}   props.avatar    프로필 사진 파일명
+ * @param {string}   props.link      링크 주소
+ * @param {number}   props.postCount 작성한 포스트 수
+ * @param {string}   props.Platform  플랫폼
+ * @param {object[]} props.Followers 팔로워 목록
  */
 const UserCardTypeItem = ({
     id,
@@ -38,7 +38,7 @@ const UserCardTypeItem = ({
             <div className={`${displayName}__body`} title="사용자 링크">
                 <div className={`${displayName}__avatar`}>
                     <LinkImage
-                        ariaLabel="사용자 페이지"
+                        ariaLabel="사용자 페이지로 이동"
                         path={link}
                         src={avatar}
                         alt="Avatar"

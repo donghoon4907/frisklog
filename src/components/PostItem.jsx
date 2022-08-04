@@ -51,7 +51,7 @@ const PostItem = ({ id, createdAt, User, Categories, content, Likers }) => {
                         title="사용자 링크"
                     >
                         <LinkImage
-                            ariaLabel="사용자 페이지"
+                            ariaLabel="사용자 페이지로 이동"
                             domainUrl={platform.domainUrl}
                             path={User.link}
                             src={User.avatar}

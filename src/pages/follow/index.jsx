@@ -11,7 +11,7 @@ import { Error } from "../../assets/icon";
  * 팔로우 화면 컴포넌트
  *
  */
-const Follow = () => {
+const Follow = ({ location: { search } }) => {
     const { id } = useSelector();
 
     if (id === null) {
@@ -23,6 +23,12 @@ const Follow = () => {
         );
     }
 
+    const isFollowing = !search;
+
+    const splitSearch = search.split("=");
+
+    const userId = String(isFollowing ? id : splitSearch[1]);
+
     return (
         <>
             <Meta title="following" />
@@ -31,12 +37,13 @@ const Follow = () => {
             </div>
             <ScrollList
                 type="posts"
-                fetchPolicy="cache-and-network"
+                fetchPolicy="network-only"
                 query={GET_POSTS}
                 variables={{
                     limit: 12,
-                    userId: `${id}`,
-                    isFollowing: true
+                    userId,
+                    isFollowing,
+                    order: [["createdAt", "DESC"]]
                 }}
                 Item={PostItem}
             />

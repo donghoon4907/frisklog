@@ -92,6 +92,14 @@ export const GET_FOLLOWINGS = gql`
             Platform {
                 id
             }
+
+            Posts {
+                id
+            }
+
+            Followers {
+                id
+            }
         }
     }
 `;

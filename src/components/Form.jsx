@@ -48,3 +48,10 @@ export const FormTextArea = ({ children, ...props }) => (
         {children}
     </div>
 );
+
+export const FormCheckbox = ({ label, id, ...props }) => (
+    <div className={`${displayName}__checkbox`}>
+        <input type="checkbox" id={id} {...props} />
+        <label htmlFor={id}>{label}</label>
+    </div>
+);

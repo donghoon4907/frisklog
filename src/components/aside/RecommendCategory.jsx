@@ -12,6 +12,7 @@ const RecommandCategory = () => (
     <ul className="fr-recommend">
         <Query
             query={GET_RECOMMEND_CATEGORIES}
+            fetchPolicy="cache-and-network"
             variables={{
                 limit: 5
             }}

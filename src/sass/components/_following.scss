@@ -1,0 +1,101 @@
+.fr-following {
+    display: flex;
+    flex-direction: column;
+    height: auto;
+    max-height: 230px;
+    padding: 5px;
+    background-color: var(--frisklog-bg-color) !important;
+
+    &__wrapper {
+        @include wb;
+    }
+
+    &__header {
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+
+        border-bottom: 1px solid var(--frisklog-border-color);
+        padding: 5px;
+        gap: 5px;
+    }
+
+    &__footer {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        border-top: 1px solid var(--frisklog-border-color);
+        padding: 5px;
+    }
+}
+
+.fr-userlist {
+    display: flex;
+    justify-content: space-between;
+
+    & > a {
+        display: flex;
+        flex: 1;
+    }
+
+    &--active {
+        background-color: var(--frisklog-bg-color) !important;
+    }
+
+    & + & {
+        margin-top: 5px;
+    }
+
+    @include wb;
+
+    &__body {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        padding: 10px;
+    }
+
+    &__meta {
+        display: flex;
+        justify-content: space-between;
+        flex-direction: column;
+        margin-left: 10px;
+    }
+
+    &__adjust {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 30px;
+        background-color: var(--frisklog-bg-color);
+        padding-left: 5px;
+        border-left: 1px solid var(--frisklog-border-color);
+    }
+
+    &__avatar {
+        width: 50px;
+        height: 50px;
+    }
+
+    &__name {
+        font-size: 1.2rem;
+        margin-bottom: 5px;
+        line-height: 1.5;
+        font-weight: 700;
+
+        @include ellipsisText;
+    }
+
+    &__description {
+        font-size: 12px;
+        line-height: 1.5;
+        font-weight: 400;
+    }
+}
+
+.fr-paginate {
+    &__item {
+        display: inline-block;
+    }
+}

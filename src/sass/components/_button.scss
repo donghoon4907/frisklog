@@ -28,6 +28,12 @@
         color: #fff;
     }
 
+    &--danger {
+        background-color: var(--frisklog-danger-color) !important;
+        border-color: var(--frisklog-danger-color) !important;
+        color: #fff;
+    }
+
     &--cancel {
         background-color: var(--frisklog-warning-color) !important;
         border-color: var(--frisklog-warning-color) !important;

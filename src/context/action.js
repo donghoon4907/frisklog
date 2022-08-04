@@ -44,3 +44,7 @@ export const SHOW_USER_MODAL = "SHOW_USER_MODAL";
 export const HIDE_USER_MODAL = "HIDE_USER_MODAL";
 // 테마 설정
 export const SET_THEME = "SET_THEME";
+// 팔로잉 설정 활성화
+export const ENABLE_FOLLOWING_SETTING = "ENABLE_FOLLOWING_SETTING";
+// 팔로잉 설정 비활성화
+export const UNABLE_FOLLOWING_SETTING = "UNABLE_FOLLOWING_SETTING";

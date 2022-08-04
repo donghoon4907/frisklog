@@ -1,21 +1,13 @@
 import {
     SET_ME,
     LOGOUT_USER,
-    // SHOW_NOTICE_MODAL,
-    // HIDE_NOTICE_MODAL,
     SHOW_POST_MODAL,
     HIDE_POST_MODAL,
     SHOW_LOGIN_MODAL,
     HIDE_LOGIN_MODAL,
     SHOW_SEARCH_BAR,
     HIDE_SEARCH_BAR,
-    // SHOW_FILTER_BAR,
-    // HIDE_FILTER_BAR,
     SEARCH_POST,
-    // EXPAND_NAVIGATION,
-    // CONTRACT_NAVIGATION,
-    // SET_IS_MOBILE,
-    // SET_BREAKPOINT,
     SET_UPLOADED_URL,
     SHOW_USER_MODAL,
     HIDE_USER_MODAL,
@@ -55,31 +47,6 @@ export default function reducer(state, action) {
                 avatar: null,
                 isMaster: false
             };
-        // case SHOW_NOTICE_MODAL:
-        //     return {
-        //         ...state,
-        //         isShowNoticeModal: true,
-        //         activeNotice: {
-        //             id: action.id,
-        //             action: action.action,
-        //             actionText: action.actionText,
-        //             title: action.title,
-        //             description: action.description
-        //         }
-        //     };
-        // case HIDE_NOTICE_MODAL:
-        //     return {
-        //         ...state,
-        //         isShowNoticeModal: false,
-        //         activeNotice: {
-        //             id: "",
-        //             action: "wait",
-        //             actionText: "비활성화",
-        //             title: "",
-        //             description: ""
-        //         }
-        //     };
-
         case SHOW_SEARCH_BAR:
             return {
                 ...state,
@@ -90,16 +57,6 @@ export default function reducer(state, action) {
                 ...state,
                 isShowSearchBar: false
             };
-        // case SHOW_FILTER_BAR:
-        //     return {
-        //         ...state,
-        //         isShowFilterBar: true
-        //     };
-        // case HIDE_FILTER_BAR:
-        //     return {
-        //         ...state,
-        //         isShowFilterBar: false
-        //     };
         case SHOW_LOGIN_MODAL:
             return {
                 ...state,
@@ -140,32 +97,10 @@ export default function reducer(state, action) {
                     isFollowing: action.isFollowing
                 }
             };
-        // case EXPAND_NAVIGATION:
-        //     return {
-        //         ...state,
-        //         isCollapseNav: "expand"
-        //     };
-        // case CONTRACT_NAVIGATION:
-        //     return {
-        //         ...state,
-        //         isCollapseNav: "contract"
-        //     };
-        // case SET_IS_MOBILE:
-        //     return {
-        //         ...state,
-        //         isMobile: action.payload
-        //     };
-        // case SET_BREAKPOINT:
-        //     return {
-        //         ...state,
-        //         breakpoint: action.breakpoint
-        //         // slidesToShow: action.slidesToShow
-        //     };
         case SET_UPLOADED_URL:
             return {
                 ...state,
                 uploadedUrl: action.uploadedUrl
-                // slidesToShow: action.slidesToShow
             };
         case SHOW_USER_MODAL:
             return {
@@ -182,24 +117,6 @@ export default function reducer(state, action) {
                 ...state,
                 theme: action.theme
             };
-        // case SHOW_POST_DROPDOWN:
-        //     return {
-        //         ...state,
-        //         isShowPostDropdown: true,
-        //         activeDropdown: {
-        //             offsetX: action.offsetX,
-        //             offsetY: action.offsetY
-        //         }
-        //     };
-        // case HIDE_POST_DROPDOWN:
-        //     return {
-        //         ...state,
-        //         isShowPostDropdown: false,
-        //         activeDropdown: {
-        //             offsetX: -1,
-        //             offsetY: -1
-        //         }
-        //     };
         default:
             return { ...state };
     }

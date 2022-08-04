@@ -19,7 +19,7 @@ const Link = ({
 }) => {
     if (isInternal) {
         return (
-            <NavLink to={path} aria-label={`${ariaLabel}로 이동`} {...props}>
+            <NavLink to={path} aria-label={ariaLabel} {...props}>
                 {children}
             </NavLink>
         );

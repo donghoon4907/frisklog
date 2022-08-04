@@ -1,6 +1,6 @@
 import React from "react";
 
-import { FormInput } from "../Form";
+import { FormInput, FormCheckbox } from "../Form";
 import Button from "../button";
 import Loader from "../Loader";
 
@@ -39,15 +39,12 @@ const SignInPresenter = ({
                 onChange={mode === "로그인" ? email.onChange : token.onChange}
             />
             {mode === "로그인" && (
-                <div className="fr-form__checkbox">
-                    <input
-                        type="checkbox"
-                        id="keep"
-                        checked={keep}
-                        onChange={onChangeKeep}
-                    />
-                    <label htmlFor="keep">로그인 유지</label>
-                </div>
+                <FormCheckbox
+                    label="로그인 유지"
+                    id="keep"
+                    checked={keep}
+                    onChange={onChangeKeep}
+                />
             )}
 
             <Button type="submit" className="fr-btn--primary">

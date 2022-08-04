@@ -1,7 +1,7 @@
-import React from "react";
+import React, { useState, useCallback } from "react";
 import { GET_POSTS } from "../../graphql/query/post";
-// import { Select } from "../../components/Form";
-// import searchOptions from "../../json/search_options.json";
+import { Select } from "../../components/Form";
+import searchOptions from "../../json/search_options.json";
 import ScrollList from "../../components/ScrollList";
 import PostItem from "../../components/PostItem";
 import { useSelector } from "../../context";
@@ -17,11 +17,11 @@ const User = ({
 }) => {
     const { searchPostOption, id: userId } = useSelector();
     // 정렬
-    // const [order, setOrder] = useState("createdAt_DESC");
-    // // 정렬 변경 핸들러
-    // const handleChangeOrder = useCallback((e) => {
-    //     setOrder(e.target.value);
-    // }, []);
+    const [order, setOrder] = useState("createdAt_DESC");
+    // 정렬 변경 핸들러
+    const handleChangeOrder = useCallback((e) => {
+        setOrder(e.target.value);
+    }, []);
 
     const isMe = id == userId;
 
@@ -29,7 +29,7 @@ const User = ({
         <>
             <div className="fr-main__title">
                 <span>{isMe ? searchPostOption.title : "모든 포스트"}</span>
-                {/* <div>
+                <div>
                     <Select
                         value={order}
                         onChange={handleChangeOrder}
@@ -43,17 +43,18 @@ const User = ({
                                 </option>
                             ))}
                     </Select>
-                </div> */}
+                </div>
             </div>
             <ScrollList
                 type="posts"
                 query={GET_POSTS}
-                fetchPolicy="cache-first"
+                fetchPolicy="network-only"
                 variables={{
                     limit: 12,
                     userId: id,
                     isLike: isMe ? searchPostOption.isLike : false,
-                    isFollowing: isMe ? searchPostOption.isFollowing : false
+                    isFollowing: isMe ? searchPostOption.isFollowing : false,
+                    order: [order.split("_")]
                 }}
                 Item={PostItem}
             />

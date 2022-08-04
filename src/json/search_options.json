@@ -1,14 +1,14 @@
 {
     "sort": [
         {
-            "id": "idDesc",
-            "value": "id_DESC",
+            "id": "createdAtDesc",
+            "value": "createdAt_DESC",
             "text": "등록일 순",
             "enable": true
         },
         {
-            "id": "idAsc",
-            "value": "id_ASC",
+            "id": "createdAtAsc",
+            "value": "createdAt_ASC",
             "text": "등록일 역순",
             "enable": true
         },

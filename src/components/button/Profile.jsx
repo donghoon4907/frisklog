@@ -28,7 +28,7 @@ const ProfileBtn = () => {
     return id ? (
         <div className="fr-header__avatar" title="마이페이지 링크">
             <LinkImage
-                ariaLabel="마이페이지"
+                ariaLabel="마이페이지로 이동"
                 path={`/user/${id}`}
                 src={avatar}
                 alt="Avatar"
