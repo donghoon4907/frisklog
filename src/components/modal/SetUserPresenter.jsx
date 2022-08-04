@@ -4,7 +4,7 @@ import Modal from "react-bootstrap/Modal";
 import { FormInput } from "../Form";
 import Loader from "../Loader";
 import Button from "../button";
-import ModalContainer from ".";
+import { ModalHeader } from ".";
 
 /**
  * 내 정보 수정 모달 프레젠터 컴포넌트
@@ -15,8 +15,14 @@ import ModalContainer from ".";
  * @param {function} props.onSubmit
  */
 const SetUserPresenter = ({ loading, newNickname, onClose, onSubmit }) => (
-    <ModalContainer title="내 정보 수정" contentClassName="fr-modal--middle">
+    <Modal
+        onHide={onClose}
+        show
+        animation={false}
+        contentClassName="fr-modal--middle"
+    >
         {loading && <Loader />}
+        <ModalHeader>내 정보 수정</ModalHeader>
         <form onSubmit={onSubmit}>
             <Modal.Body>
                 {/* <div className="fr-modal__switch">
@@ -45,7 +51,7 @@ const SetUserPresenter = ({ loading, newNickname, onClose, onSubmit }) => (
                 <div style={{ width: 100 }}>
                     <Button
                         type="button"
-                        className="fr-btn--cancel"
+                        className="fr-btn--warning"
                         onClick={onClose}
                     >
                         취소
@@ -58,7 +64,7 @@ const SetUserPresenter = ({ loading, newNickname, onClose, onSubmit }) => (
                 </div>
             </Modal.Footer>
         </form>
-    </ModalContainer>
+    </Modal>
 );
 
 export default SetUserPresenter;

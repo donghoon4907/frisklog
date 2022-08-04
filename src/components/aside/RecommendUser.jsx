@@ -14,7 +14,7 @@ const RecommendUser = () => (
         query={GET_RECOMMENDERS}
         fetchPolicy="cache-and-network"
         variables={{
-            limit: 5
+            limit: 10
         }}
     >
         {({ data: { recommenders } }) => {

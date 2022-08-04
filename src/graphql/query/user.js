@@ -85,20 +85,38 @@ export const GET_USER = gql`
  */
 export const GET_FOLLOWINGS = gql`
     ${CORE_USER_FIELDS}
-    query GetFollowings($offset: Int, $limit: Int!, $userId: String!) {
-        followings(offset: $offset, limit: $limit, userId: $userId) {
-            ...CoreUserFields
-
-            Platform {
-                id
+    query GetFollowings(
+        $before: String
+        $after: String
+        $limit: Int!
+        $order: [[String]]
+        $nickname: String
+    ) {
+        followings(
+            before: $before
+            after: $after
+            limit: $limit
+            order: $order
+            nickname: $nickname
+        ) {
+            totalCount
+            pageInfo {
+                startCursor
+                endCursor
+                hasNextPage
+                hasPreviousPage
             }
+            edges {
+                node {
+                    ...CoreUserFields
+                    Posts {
+                        id
+                    }
 
-            Posts {
-                id
-            }
-
-            Followers {
-                id
+                    Followers {
+                        id
+                    }
+                }
             }
         }
     }

@@ -76,7 +76,8 @@ function createApolloClient() {
         Query: {
             fields: {
                 posts: relayStylePagination(),
-                postsByCategory: relayStylePagination()
+                postsByCategory: relayStylePagination(),
+                followings: relayStylePagination()
             }
         }
     };

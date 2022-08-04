@@ -71,7 +71,7 @@ const FollowBtn = ({ userId, followers, ...props }) => {
                 {...props}
                 type="button"
                 onClick={handleClick}
-                className={`fr-btn--${isFollow ? "unfollow" : "follow"}`}
+                className={`fr-btn--${isFollow ? "danger" : "info"}`}
                 aria-label={isFollow ? "언팔로우" : "팔로우"}
             >
                 {isFollow ? "언팔로우" : "팔로우"}

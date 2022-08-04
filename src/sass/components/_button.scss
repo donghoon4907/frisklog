@@ -11,6 +11,10 @@
     border-width: 1px;
     border-style: solid;
 
+    &--disabled {
+        opacity: 0.35;
+    }
+
     &--primary {
         background-color: var(--frisklog-primary-color) !important;
         border-color: var(--frisklog-primary-color) !important;
@@ -34,22 +38,10 @@
         color: #fff;
     }
 
-    &--cancel {
+    &--warning {
         background-color: var(--frisklog-warning-color) !important;
         border-color: var(--frisklog-warning-color) !important;
         color: #000;
-    }
-
-    &--follow {
-        background-color: var(--frisklog-info-color) !important;
-        border-color: var(--frisklog-info-color) !important;
-        color: #fff;
-    }
-
-    &--unfollow {
-        background-color: var(--frisklog-danger-color) !important;
-        border-color: var(--frisklog-danger-color) !important;
-        color: #fff;
     }
 
     &--github {
@@ -64,9 +56,5 @@
         & > svg {
             fill: var(--frisklog-github-text-color);
         }
-    }
-
-    &:hover {
-        opacity: 0.8;
     }
 }

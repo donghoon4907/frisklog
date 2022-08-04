@@ -6,7 +6,7 @@ import Loader from "../Loader";
 import Editor from "../Editor";
 import Button from "../button";
 import CategoryWithClose from "../CategoryWithClose";
-import ModalContainer from ".";
+import { ModalHeader } from ".";
 
 /**
  * 게시물 설정 모달 컨테이너 컴포넌트
@@ -31,9 +31,9 @@ const SetPostPresenter = ({
     onRemoveCategory,
     onSubmit
 }) => (
-    <ModalContainer title={`게시물 ${id ? "수정" : "등록"}`}>
+    <Modal onHide={onClose} show animation={false}>
         {loading && <Loader />}
-
+        <ModalHeader>{`게시물 ${id ? "수정" : "등록"}`}</ModalHeader>
         <Modal.Body>
             <Editor
                 height="50vh"
@@ -65,7 +65,7 @@ const SetPostPresenter = ({
             <div style={{ width: 100 }}>
                 <Button
                     type="button"
-                    className="fr-btn--cancel"
+                    className="fr-btn--warning"
                     onClick={onClose}
                 >
                     취소
@@ -81,7 +81,7 @@ const SetPostPresenter = ({
                 </Button>
             </div>
         </Modal.Footer>
-    </ModalContainer>
+    </Modal>
 );
 
 export default SetPostPresenter;

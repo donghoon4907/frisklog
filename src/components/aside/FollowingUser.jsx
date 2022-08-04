@@ -9,26 +9,53 @@ import Button from "../button";
  * 팔로잉 사용자 컴포넌트
  *
  */
-const FollowingUser = ({ userId }) => {
+const FollowingUser = () => {
+    const [before, setBefore] = useState("");
+
+    const [after, setAfter] = useState("");
+
     const [enableSetting, setEnableSetting] = useState(false);
 
     const handleClickSetting = useCallback(() => {
         setEnableSetting(!enableSetting);
     }, [enableSetting]);
 
+    const handlePrevious = useCallback((cursor) => {
+        setBefore(cursor);
+
+        setAfter("");
+    }, []);
+
+    const handleNext = useCallback((cursor) => {
+        setAfter(cursor);
+
+        setBefore("");
+    }, []);
+
     return (
         <Query
             query={GET_FOLLOWINGS}
-            fetchPolicy="cache-and-network"
+            fetchPolicy="no-cache"
             variables={{
-                limit: 5,
-                userId
+                limit: 3,
+                before,
+                after
             }}
         >
             {({ data: { followings } }) => {
-                if (followings.length === 0) {
+                const { totalCount, edges, pageInfo } = followings;
+
+                if (totalCount === 0) {
                     return null;
                 }
+                const nodes = edges.map((edge) => edge.node);
+
+                const {
+                    hasPreviousPage,
+                    hasNextPage,
+                    startCursor,
+                    endCursor
+                } = pageInfo;
 
                 return (
                     <div className="fr-following__wrapper">
@@ -37,10 +64,14 @@ const FollowingUser = ({ userId }) => {
                                 <div style={{ width: 50 }}>
                                     <Button
                                         type="button"
-                                        className="fr-btn--primary"
+                                        className={
+                                            enableSetting
+                                                ? "fr-btn--warning"
+                                                : "fr-btn--info"
+                                        }
                                         onClick={handleClickSetting}
                                     >
-                                        관리
+                                        {enableSetting ? "취소" : "관리"}
                                     </Button>
                                 </div>
                             </div>
@@ -58,7 +89,7 @@ const FollowingUser = ({ userId }) => {
                             )}
                         </header>
                         <ul className="fr-following">
-                            {followings.map((user, idx) => (
+                            {nodes.map((user, idx) => (
                                 <UserListTypeItem
                                     key={`followItem${idx}`}
                                     isShowCheckbox={enableSetting}
@@ -67,13 +98,32 @@ const FollowingUser = ({ userId }) => {
                             ))}
                         </ul>
                         <footer className="fr-following__footer">
-                            <ul className="fr-paginate">
-                                <li className="fr-paginate__item">1</li>
-                                <li className="fr-paginate__item">2</li>
-                                <li className="fr-paginate__item">3</li>
-                                <li className="fr-paginate__item">4</li>
-                                <li className="fr-paginate__item">5</li>
-                            </ul>
+                            <div className="fr-following__column">
+                                <div style={{ width: 50 }}>
+                                    <Button
+                                        type="button"
+                                        className="fr-btn--primary"
+                                        disabled={!hasPreviousPage}
+                                        onClick={() =>
+                                            handlePrevious(startCursor)
+                                        }
+                                    >
+                                        이전
+                                    </Button>
+                                </div>
+                            </div>
+                            <div className="fr-following__column">
+                                <div style={{ width: 50 }}>
+                                    <Button
+                                        type="button"
+                                        className="fr-btn--primary"
+                                        disabled={!hasNextPage}
+                                        onClick={() => handleNext(endCursor)}
+                                    >
+                                        다음
+                                    </Button>
+                                </div>
+                            </div>
                         </footer>
                     </div>
                 );

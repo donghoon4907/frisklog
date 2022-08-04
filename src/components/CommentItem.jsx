@@ -183,7 +183,7 @@ const CommentItem = ({ id, content, createdAt, User }) => {
                     <div className={`${displayName}__submit`}>
                         <Button
                             type="button"
-                            className="fr-btn--cancel"
+                            className="fr-btn--warning"
                             onClick={handleHideUpdate}
                         >
                             취소
