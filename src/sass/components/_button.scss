@@ -11,6 +11,10 @@
     border-width: 1px;
     border-style: solid;
 
+    &__wrapper {
+        width: 100%;
+    }
+
     &--disabled {
         opacity: 0.35;
     }

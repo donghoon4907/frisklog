@@ -11,7 +11,6 @@ import { useSelector } from "../context";
  * @param {number}   props.avatar    프로필 사진 파일명
  * @param {string}   props.link      링크 주소
  * @param {number}   props.postCount 작성한 포스트 수
- * @param {string}   props.Platform  플랫폼
  * @param {object[]} props.Followers 팔로워 목록
  */
 const UserCardTypeItem = ({
@@ -20,7 +19,6 @@ const UserCardTypeItem = ({
     avatar,
     link,
     postCount,
-    Platform,
     Followers
 }) => {
     const displayName = "fr-usercard";

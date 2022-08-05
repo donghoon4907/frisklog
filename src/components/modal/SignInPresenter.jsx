@@ -25,19 +25,24 @@ const SignInPresenter = ({
     <>
         {loading && <Loader />}
         <form onSubmit={mode === "로그인" ? onLogin : onVerify}>
-            <FormInput
-                type={mode === "로그인" ? "email" : "password"}
-                placeholder={`${
-                    mode === "로그인" ? "이메일을" : "인증코드를"
-                } 입력하세요`}
-                id="email"
-                autoComplete="off"
-                required
-                label={mode === "로그인" ? "이메일" : "인증코드"}
-                isExpand={true}
-                value={mode === "로그인" ? email.value : token.value}
-                onChange={mode === "로그인" ? email.onChange : token.onChange}
-            />
+            <div className="fr-form__column">
+                <FormInput
+                    type={mode === "로그인" ? "email" : "password"}
+                    placeholder={`${
+                        mode === "로그인" ? "이메일을" : "인증코드를"
+                    } 입력하세요`}
+                    id="email"
+                    autoComplete="off"
+                    required
+                    label={mode === "로그인" ? "이메일" : "인증코드"}
+                    isExpand={true}
+                    value={mode === "로그인" ? email.value : token.value}
+                    onChange={
+                        mode === "로그인" ? email.onChange : token.onChange
+                    }
+                />
+            </div>
+
             {mode === "로그인" && (
                 <FormCheckbox
                     label="로그인 유지"

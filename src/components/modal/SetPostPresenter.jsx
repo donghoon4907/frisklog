@@ -41,24 +41,26 @@ const SetPostPresenter = ({
                 initialValue={content}
             />
             <form onSubmit={onAddCategory}>
-                <FormInput
-                    placeholder="카테고리를 입력하세요"
-                    id="category"
-                    autoComplete="off"
-                    {...category}
-                    label="카테고리"
-                    isExpand={false}
-                >
-                    <ul className="fr-category__container">
-                        {categories.map((category, index) => (
-                            <CategoryWithClose
-                                key={`setPostCategory${index}`}
-                                content={category}
-                                onClick={onRemoveCategory}
-                            />
-                        ))}
-                    </ul>
-                </FormInput>
+                <div className="fr-form__column">
+                    <FormInput
+                        placeholder="카테고리를 입력하세요"
+                        id="category"
+                        autoComplete="off"
+                        {...category}
+                        label="카테고리"
+                        isExpand={false}
+                    >
+                        <ul className="fr-category__container">
+                            {categories.map((category, index) => (
+                                <CategoryWithClose
+                                    key={`setPostCategory${index}`}
+                                    content={category}
+                                    onClick={onRemoveCategory}
+                                />
+                            ))}
+                        </ul>
+                    </FormInput>
+                </div>
             </form>
         </Modal.Body>
         <Modal.Footer>

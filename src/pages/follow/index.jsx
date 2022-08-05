@@ -23,11 +23,11 @@ const Follow = ({ location: { search } }) => {
         );
     }
 
-    const isFollowing = !search;
+    const searchParams = new URLSearchParams(search);
 
-    const splitSearch = search.split("=");
+    const isFollowing = !searchParams.has("userId");
 
-    const userId = String(isFollowing ? id : splitSearch[1]);
+    const userId = isFollowing ? `${id}` : searchParams.get("userId");
 
     return (
         <>

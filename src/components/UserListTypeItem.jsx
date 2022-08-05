@@ -1,39 +1,25 @@
-import React, { useState, useCallback, memo, useRef } from "react";
+import React, { useCallback, memo, useRef } from "react";
 import { useHistory, NavLink } from "react-router-dom";
 
 import Image from "./Image";
-import { FormCheckbox } from "./Form";
+import FollowBtn from "./button/Follow";
 
 /**
  * 사용자 카드형 컴포넌트
  *
+ * @param {number}   props.id      사용자 별명
  * @param {string}   props.nickname      사용자 별명
  * @param {number}   props.avatar        프로필 사진 파일명
  * @param {string}   props.link          링크 주소
  * @param {number}   props.Posts         작성한 포스트 수
- * @param {string}   props.Platform      저장소 경로
  * @param {object[]} props.Followers     팔로워 목록
- * @param {boolean}  props.isShowCheckbox  체크박스 보이기 여부
  */
-const UserListTypeItem = ({
-    id,
-    nickname,
-    avatar,
-    Posts,
-    Followers,
-    isShowCheckbox
-}) => {
+const UserListTypeItem = ({ id, nickname, avatar, Posts, Followers }) => {
     const displayName = "fr-userlist";
 
     const history = useHistory();
 
     const $link = useRef(null);
-
-    const [checked, setChecked] = useState(false);
-
-    const handleChange = useCallback((e) => {
-        setChecked(e.target.checked);
-    }, []);
 
     const handleClick = useCallback(
         (e) => {
@@ -43,11 +29,15 @@ const UserListTypeItem = ({
                 `${displayName}--active`
             );
 
+            const searchParams = new URLSearchParams(history.location.search);
+
             if (isActive) {
-                history.push("/follow");
+                searchParams.delete("userId");
             } else {
-                history.push(`/follow?userId=${id}`);
+                searchParams.set("userId", id);
             }
+
+            history.push(`/follow?${searchParams.toString()}`);
         },
         [id]
     );
@@ -62,11 +52,11 @@ const UserListTypeItem = ({
                 ref={$link}
                 isActive={(_, { search }) => {
                     if (search) {
-                        const splitSearch = search.split("=");
+                        const searchParams = new URLSearchParams(search);
 
-                        const userId = splitSearch[1];
+                        const userId = searchParams.get("userId");
 
-                        return id === userId;
+                        return id == userId;
                     }
                 }}
             >
@@ -86,16 +76,9 @@ const UserListTypeItem = ({
                     </div>
                 </div>
             </NavLink>
-            {isShowCheckbox && (
-                <div className={`${displayName}__adjust`}>
-                    <FormCheckbox
-                        label=""
-                        id={`checkbox${id}`}
-                        checked={checked}
-                        onChange={handleChange}
-                    />
-                </div>
-            )}
+            <div className={`${displayName}__adjust`}>
+                <FollowBtn userId={id} followers={Followers} />
+            </div>
         </li>
     );
 };

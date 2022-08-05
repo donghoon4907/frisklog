@@ -1,24 +1,52 @@
 import React, { useState, useCallback, memo } from "react";
+import { useHistory } from "react-router-dom";
 
 import Query from "../Query";
 import { GET_FOLLOWINGS } from "../../graphql/query/user";
 import UserListTypeItem from "../UserListTypeItem";
 import Button from "../button";
+import { FormInput } from "../Form";
+import { useInput } from "../../hooks";
 
 /**
  * 팔로잉 사용자 컴포넌트
  *
  */
 const FollowingUser = () => {
+    const displayName = "fr-following";
+
+    const history = useHistory();
+
+    const searchParams = new URLSearchParams(history.location.search);
+
+    const searchKeyword = searchParams.get("search") || "";
+
     const [before, setBefore] = useState("");
 
     const [after, setAfter] = useState("");
 
-    const [enableSetting, setEnableSetting] = useState(false);
+    const search = useInput(searchKeyword);
 
-    const handleClickSetting = useCallback(() => {
-        setEnableSetting(!enableSetting);
-    }, [enableSetting]);
+    const [nickname, setNickname] = useState(searchKeyword);
+
+    const handleSubmit = useCallback(
+        (e) => {
+            e.preventDefault();
+
+            const searchParams = new URLSearchParams(history.location.search);
+
+            if (searchParams.has("userId")) {
+                searchParams.delete("userId");
+            }
+
+            searchParams.set("search", search.value);
+
+            history.push(`/follow?${searchParams.toString()}`);
+
+            setNickname(search.value);
+        },
+        [search.value]
+    );
 
     const handlePrevious = useCallback((cursor) => {
         setBefore(cursor);
@@ -39,7 +67,8 @@ const FollowingUser = () => {
             variables={{
                 limit: 3,
                 before,
-                after
+                after,
+                nickname
             }}
         >
             {({ data: { followings } }) => {
@@ -58,51 +87,48 @@ const FollowingUser = () => {
                 } = pageInfo;
 
                 return (
-                    <div className="fr-following__wrapper">
-                        <header className="fr-following__header">
-                            <div className="fr-following__column">
-                                <div style={{ width: 50 }}>
-                                    <Button
-                                        type="button"
-                                        className={
-                                            enableSetting
-                                                ? "fr-btn--warning"
-                                                : "fr-btn--info"
-                                        }
-                                        onClick={handleClickSetting}
-                                    >
-                                        {enableSetting ? "취소" : "관리"}
-                                    </Button>
-                                </div>
-                            </div>
-                            {enableSetting && (
-                                <div className="fr-following__column">
-                                    <div style={{ width: 50 }}>
-                                        <Button
-                                            type="button"
-                                            className="fr-btn--danger"
+                    <div className={`${displayName}__wrapper`}>
+                        <header className={`${displayName}__header`}>
+                            <div className={`${displayName}__column`}>
+                                <form onSubmit={handleSubmit}>
+                                    <div className={`${displayName}__input`}>
+                                        <FormInput
+                                            placeholder="검색어를 입력하세요"
+                                            id="followingSearch"
+                                            autoComplete="off"
+                                            required
+                                            label="검색어"
+                                            {...search}
                                         >
-                                            삭제
-                                        </Button>
+                                            <div
+                                                className={`${displayName}__button`}
+                                            >
+                                                <Button
+                                                    type="submit"
+                                                    className="fr-btn--primary"
+                                                >
+                                                    검색
+                                                </Button>
+                                            </div>
+                                        </FormInput>
                                     </div>
-                                </div>
-                            )}
+                                </form>
+                            </div>
                         </header>
                         <ul className="fr-following">
                             {nodes.map((user, idx) => (
                                 <UserListTypeItem
                                     key={`followItem${idx}`}
-                                    isShowCheckbox={enableSetting}
                                     {...user}
                                 />
                             ))}
                         </ul>
-                        <footer className="fr-following__footer">
-                            <div className="fr-following__column">
-                                <div style={{ width: 50 }}>
+                        <footer className={`${displayName}__footer`}>
+                            <div className={`${displayName}__column`}>
+                                <div className={`${displayName}__button`}>
                                     <Button
                                         type="button"
-                                        className="fr-btn--primary"
+                                        className="fr-btn--info"
                                         disabled={!hasPreviousPage}
                                         onClick={() =>
                                             handlePrevious(startCursor)
@@ -112,11 +138,11 @@ const FollowingUser = () => {
                                     </Button>
                                 </div>
                             </div>
-                            <div className="fr-following__column">
-                                <div style={{ width: 50 }}>
+                            <div className={`${displayName}__column`}>
+                                <div className={`${displayName}__button`}>
                                     <Button
                                         type="button"
-                                        className="fr-btn--primary"
+                                        className="fr-btn--info"
                                         disabled={!hasNextPage}
                                         onClick={() => handleNext(endCursor)}
                                     >

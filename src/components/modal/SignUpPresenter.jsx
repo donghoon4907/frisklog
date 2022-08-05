@@ -20,25 +20,30 @@ const SignUpPresenter = ({ loading, nickname, email, onSubmit }) => {
                 <div className="fr-modal__upload">
                     <UploadImage />
                 </div>
-                <FormInput
-                    type="email"
-                    placeholder="이메일을 입력하세요"
-                    id="email"
-                    autoComplete="off"
-                    required
-                    isExpand={true}
-                    {...email}
-                    label="이메일"
-                />
-                <FormInput
-                    placeholder="닉네임을 입력하세요"
-                    required
-                    id="nickname"
-                    isExpand={true}
-                    {...nickname}
-                    autoComplete="off"
-                    label="닉네임"
-                />
+                <div className="fr-form__column">
+                    <FormInput
+                        type="email"
+                        placeholder="이메일을 입력하세요"
+                        id="email"
+                        autoComplete="off"
+                        required
+                        isExpand={true}
+                        {...email}
+                        label="이메일"
+                    />
+                </div>
+                <div className="fr-form__column">
+                    <FormInput
+                        placeholder="닉네임을 입력하세요"
+                        required
+                        id="nickname"
+                        isExpand={true}
+                        {...nickname}
+                        autoComplete="off"
+                        label="닉네임"
+                    />
+                </div>
+
                 <Button type="submit" className="fr-btn--primary">
                     회원가입
                 </Button>

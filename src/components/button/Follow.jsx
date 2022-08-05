@@ -66,7 +66,7 @@ const FollowBtn = ({ userId, followers, ...props }) => {
     }, [id, followers]);
 
     return (
-        <div title="팔로우 버튼">
+        <div className="fr-btn__wrapper" title="팔로우 버튼">
             <Button
                 {...props}
                 type="button"
