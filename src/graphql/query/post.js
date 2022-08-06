@@ -41,6 +41,7 @@ export const GET_POSTS = gql`
                 hasNextPage
             }
             edges {
+                cursor
                 node {
                     ...CorePostFields
 
@@ -85,6 +86,7 @@ export const GET_CATEGORY_POSTS = gql`
                 hasNextPage
             }
             edges {
+                cursor
                 node {
                     ...CorePostFields
 

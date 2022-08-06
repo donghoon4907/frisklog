@@ -11,9 +11,9 @@ import { useDispatch, useSelector } from "../context";
 import { SHOW_LOGIN_MODAL } from "../context/action";
 import CommentItem from "./CommentItem";
 import Loader from "./Loader";
-import ScrollList from "./ScrollList";
 import { graphqlError } from "../lib/error";
 import { HOME_PLATFORM_ID } from "../lib/constants";
+import Query from "./Query";
 
 /**
  * 댓글 목록 컴포넌트
@@ -100,15 +100,18 @@ const CommentList = ({ postId }) => {
         <div>
             <form className="d-flex flex-column" onSubmit={handleSubmit}>
                 {loading && <Loader />}
-                <FormTextArea
-                    placeholder="댓글을 입력하세요."
-                    id="comment"
-                    autoComplete="off"
-                    height={100}
-                    {...comment}
-                    required
-                    label="댓글"
-                />
+                <div className="fr-form__column">
+                    <FormTextArea
+                        placeholder="댓글을 입력하세요."
+                        id="comment"
+                        autoComplete="off"
+                        height={100}
+                        {...comment}
+                        required
+                        label="댓글"
+                    />
+                </div>
+
                 <Button type="submit" className="fr-btn--primary">
                     댓글 작성
                 </Button>
@@ -120,16 +123,55 @@ const CommentList = ({ postId }) => {
                         {...comment}
                     />
                 ))}
-                <ScrollList
-                    type="comments"
+                <Query
                     query={GET_COMMENTS}
                     variables={{
-                        limit: 10,
+                        limit: 5,
                         postId,
-                        order: "createdAt_DESC"
+                        order: [["createdAt", "DESC"]]
                     }}
-                    Item={CommentItem}
-                />
+                >
+                    {({ data, fetchMore }) => {
+                        const { totalCount, edges, pageInfo } = data.comments;
+
+                        if (totalCount === 0) {
+                            return null;
+                        }
+
+                        const nodes = edges.map((edge) => edge.node);
+
+                        return (
+                            <>
+                                {nodes.map((node) => (
+                                    <CommentItem
+                                        key={`comment${node.id}`}
+                                        {...node}
+                                    />
+                                ))}
+                                {pageInfo.hasNextPage && (
+                                    <Button
+                                        type="button"
+                                        className="fr-btn--primary"
+                                        onClick={async () =>
+                                            fetchMore({
+                                                variables: {
+                                                    cursor: pageInfo.endCursor,
+                                                    limit: 5,
+                                                    postId,
+                                                    order: [
+                                                        ["createdAt", "DESC"]
+                                                    ]
+                                                }
+                                            })
+                                        }
+                                    >
+                                        더보기
+                                    </Button>
+                                )}
+                            </>
+                        );
+                    }}
+                </Query>
             </ul>
         </div>
     );

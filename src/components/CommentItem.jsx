@@ -14,7 +14,6 @@ import { timeForToday } from "../lib/date";
 import { graphqlError } from "../lib/error";
 import { Dropdown, DropdownItem } from "./Dropdown";
 import { More } from "../assets/icon";
-import { HOME_PLATFORM_ID } from "../lib/constants";
 
 /**
  * 댓글 렌더링 컴포넌트
@@ -170,16 +169,19 @@ const CommentItem = ({ id, content, createdAt, User }) => {
                 )}
             </div>
 
-            {activeUpdate ? (
+            {activeUpdate && (
                 <form onSubmit={handleSubmit}>
-                    <FormTextArea
-                        placeholder="댓글을 입력하세요."
-                        id={`update_comment${id}`}
-                        autoComplete="off"
-                        height={100}
-                        label="댓글"
-                        {...comment}
-                    />
+                    <div className="fr-form__column">
+                        <FormTextArea
+                            placeholder="댓글을 입력하세요."
+                            id={`update_comment${id}`}
+                            autoComplete="off"
+                            height={100}
+                            label="댓글"
+                            {...comment}
+                        />
+                    </div>
+
                     <div className={`${displayName}__submit`}>
                         <Button
                             type="button"
@@ -193,11 +195,8 @@ const CommentItem = ({ id, content, createdAt, User }) => {
                         </Button>
                     </div>
                 </form>
-            ) : (
-                <pre>
-                    {disabled ? <em>삭제된 댓글입니다.</em> : changeComment}
-                </pre>
             )}
+            {disabled && <em>삭제된 댓글입니다.</em>}
         </li>
     );
 };
