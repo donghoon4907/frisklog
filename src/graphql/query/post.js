@@ -1,7 +1,6 @@
 import { gql } from "@apollo/client";
 
 import { CORE_POST_FIELDS } from "../fragment/post";
-import { CORE_PLATFORM_FIELDS } from "../fragment/platform";
 
 /**
  * 게시물 검색
@@ -16,7 +15,6 @@ import { CORE_PLATFORM_FIELDS } from "../fragment/platform";
  */
 export const GET_POSTS = gql`
     ${CORE_POST_FIELDS}
-    ${CORE_PLATFORM_FIELDS}
     query GetPosts(
         $cursor: String
         $order: [[String]]
@@ -50,10 +48,6 @@ export const GET_POSTS = gql`
                         nickname
                         avatar
                         link
-
-                        Platform {
-                            ...CorePlatformFields
-                        }
                     }
                     Likers {
                         id
@@ -77,7 +71,6 @@ export const GET_POSTS = gql`
  */
 export const GET_CATEGORY_POSTS = gql`
     ${CORE_POST_FIELDS}
-    ${CORE_PLATFORM_FIELDS}
     query GetPostsByCategory($content: String!, $cursor: String, $limit: Int!) {
         postsByCategory(content: $content, after: $cursor, limit: $limit) {
             totalCount
@@ -95,10 +88,6 @@ export const GET_CATEGORY_POSTS = gql`
                         nickname
                         avatar
                         link
-
-                        Platform {
-                            ...CorePlatformFields
-                        }
                     }
                     Likers {
                         id

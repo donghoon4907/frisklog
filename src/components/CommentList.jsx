@@ -12,7 +12,6 @@ import { SHOW_LOGIN_MODAL } from "../context/action";
 import CommentItem from "./CommentItem";
 import Loader from "./Loader";
 import { graphqlError } from "../lib/error";
-import { HOME_PLATFORM_ID } from "../lib/constants";
 import Query from "./Query";
 
 /**
@@ -58,7 +57,9 @@ const CommentList = ({ postId }) => {
 
             if (tf) {
                 try {
-                    const { data } = await create({
+                    const {
+                        data: { addComment }
+                    } = await create({
                         variables: {
                             postId,
                             content: comment.value
@@ -67,8 +68,6 @@ const CommentList = ({ postId }) => {
 
                     // 입력창 초기화
                     comment.setValue("");
-
-                    const { addComment } = data;
                     // 상태 댓글 목록에 추가
                     setComments([
                         {
@@ -76,11 +75,7 @@ const CommentList = ({ postId }) => {
                                 id,
                                 nickname,
                                 avatar,
-                                link: `/user/${id}`,
-                                Platform: {
-                                    id: HOME_PLATFORM_ID,
-                                    domainUrl: "/"
-                                }
+                                link: `/user/${id}`
                             },
                             ...addComment
                         },
@@ -95,6 +90,12 @@ const CommentList = ({ postId }) => {
         },
         [comment.value, loading, comments, id, nickname, avatar]
     );
+
+    const variables = {
+        limit: 5,
+        postId,
+        order: [["createdAt", "DESC"]]
+    };
 
     return (
         <div>
@@ -123,14 +124,7 @@ const CommentList = ({ postId }) => {
                         {...comment}
                     />
                 ))}
-                <Query
-                    query={GET_COMMENTS}
-                    variables={{
-                        limit: 5,
-                        postId,
-                        order: [["createdAt", "DESC"]]
-                    }}
-                >
+                <Query query={GET_COMMENTS} variables={variables}>
                     {({ data, fetchMore }) => {
                         const { totalCount, edges, pageInfo } = data.comments;
 
@@ -155,12 +149,8 @@ const CommentList = ({ postId }) => {
                                         onClick={async () =>
                                             fetchMore({
                                                 variables: {
-                                                    cursor: pageInfo.endCursor,
-                                                    limit: 5,
-                                                    postId,
-                                                    order: [
-                                                        ["createdAt", "DESC"]
-                                                    ]
+                                                    ...variables,
+                                                    cursor: pageInfo.endCursor
                                                 }
                                             })
                                         }

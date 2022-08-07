@@ -41,10 +41,6 @@ export const GET_COMMENTS = gql`
                         nickname
                         avatar
                         link
-
-                        Platform {
-                            ...CorePlatformFields
-                        }
                     }
                 }
             }

@@ -36,4 +36,11 @@
     &__input {
         width: 231px;
     }
+
+    &__empty {
+        height: 70px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
 }

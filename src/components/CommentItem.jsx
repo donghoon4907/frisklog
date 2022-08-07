@@ -129,7 +129,6 @@ const CommentItem = ({ id, content, createdAt, User }) => {
                 <div className={`${displayName}__avatar`} title="사용자 링크">
                     <LinkImage
                         ariaLabel="사용자 페이지로 이동"
-                        domainUrl={User.Platform.domainUrl}
                         path={User.link}
                         src={User.avatar}
                         alt="Avatar"

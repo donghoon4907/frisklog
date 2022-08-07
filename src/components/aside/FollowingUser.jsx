@@ -74,9 +74,6 @@ const FollowingUser = () => {
             {({ data: { followings } }) => {
                 const { totalCount, edges, pageInfo } = followings;
 
-                if (totalCount === 0) {
-                    return null;
-                }
                 const nodes = edges.map((edge) => edge.node);
 
                 const {
@@ -116,6 +113,11 @@ const FollowingUser = () => {
                             </div>
                         </header>
                         <ul className="fr-following">
+                            {totalCount === 0 && (
+                                <li className={`${displayName}__empty`}>
+                                    검색 결과가 없습니다.
+                                </li>
+                            )}
                             {nodes.map((user, idx) => (
                                 <UserListTypeItem
                                     key={`followItem${idx}`}

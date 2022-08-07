@@ -40,8 +40,6 @@ const PostItem = ({ id, createdAt, User, Categories, content, Likers }) => {
 
     const isMe = userId == User.id;
 
-    const platform = User.Platform;
-
     return (
         <div className={`${displayName}__wrapper`}>
             <article className={displayName}>
@@ -52,7 +50,6 @@ const PostItem = ({ id, createdAt, User, Categories, content, Likers }) => {
                     >
                         <LinkImage
                             ariaLabel="사용자 페이지로 이동"
-                            domainUrl={platform.domainUrl}
                             path={User.link}
                             src={User.avatar}
                             alt="Avatar"
@@ -64,19 +61,6 @@ const PostItem = ({ id, createdAt, User, Categories, content, Likers }) => {
                             {User.nickname}
                         </span>
                     </div>
-                    {/* <div
-                        className={`${displayName}__platform`}
-                        title="플랫폼 링크"
-                    >
-                        <LinkImage
-                            ariaLabel={platform.platformName}
-                            domainUrl={platform.domainUrl}
-                            path=""
-                            src={platform.logoUrl}
-                            alt="Platform"
-                            isInternal={true}
-                        />
-                    </div> */}
                 </header>
                 <div
                     className={`${displayName}__body ${displayName}__body--expended`}
