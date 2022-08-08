@@ -21,7 +21,7 @@ const server = express();
 /** init cookie parser */
 server.use(cookieParser());
 // 접근 허용 폴더 설정
-server.use("/", express.static("src/sitemaps"));
+server.use("/", express.static("src/public"));
 
 server
     .disable("x-powered-by")
