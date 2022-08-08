@@ -98,11 +98,13 @@ server
         // const html = helmet.htmlAttributes.toString();
 
         res.status(200).send(`
-                <!DOCTYPE html>
+                <!DOCTYPE html lang="ko-KR">
                 <html data-theme="${context.theme}">
                     <head>
-                        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
                         <meta charset="utf-8" />
+                        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+                        <meta http-equiv="cache-control" content="no-store" />
+                        
                         ${helmet.title.toString()}
                         <meta
                             name="viewport"

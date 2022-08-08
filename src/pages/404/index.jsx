@@ -13,8 +13,8 @@ const ErrorPage = () => {
     return (
         <div className={displayName}>
             <Meta
-                title="페이지를 찾을 수 없습니다."
-                description="page is not found in frisklog"
+                title="Frisklog - 404"
+                description="페이지를 찾을 수 없습니다."
             />
             <div className={`${displayName}__body`}>
                 <h1>페이지를 찾을 수 없습니다.</h1>

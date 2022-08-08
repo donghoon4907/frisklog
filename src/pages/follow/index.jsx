@@ -31,7 +31,10 @@ const Follow = ({ location: { search } }) => {
 
     return (
         <>
-            <Meta title="following" />
+            <Meta
+                title="Frisklog - following"
+                description="팔로잉 페이지입니다."
+            />
             <div className="fr-main__title">
                 <h2>팔로잉 최신 포스트</h2>
             </div>
