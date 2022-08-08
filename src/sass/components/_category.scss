@@ -1,6 +1,6 @@
 .fr-category {
     border-radius: $fr-border-radius;
-    color: var(--frisklog-category-text-color);
+    color: var(--frisklog-category-text-color) !important;
     background-color: var(--frisklog-category-bg-color);
     padding: 3px 15px 3px 15px;
     position: relative;

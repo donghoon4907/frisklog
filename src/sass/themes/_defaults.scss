@@ -100,7 +100,8 @@ dl {
 a,
 a:hover,
 a:focus,
-a:active {
+a:active,
+a:visited {
     text-decoration: none;
     color: inherit;
 }
