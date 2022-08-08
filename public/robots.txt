@@ -1,2 +1,3 @@
 User-agent: *
+Sitemap: http://frisklog.site/sitemap.xml
 

@@ -104,12 +104,12 @@ server
                         <meta charset="utf-8" />
                         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
                         <meta http-equiv="cache-control" content="no-store" />
-                        
-                        ${helmet.title.toString()}
                         <meta
                             name="viewport"
                             content="width=device-width,initial-scale=1"
                         />
+                        <meta name="google-site-verification" content="aoZxIt3H-7OsxSv1vl4eS_NrxGE2_3y6S9XzTGoLg2o" />
+                        ${helmet.title.toString()}
                         ${helmet.meta.toString()} ${helmet.link.toString()}
                         ${extractor.getLinkTags()}
                         ${extractor.getStyleTags()}
