@@ -65,7 +65,7 @@ const Feed = () => {
             </div>
             <ScrollList
                 type="posts"
-                fetchPolicy="cache-first"
+                fetchPolicy="network-only"
                 query={GET_POSTS}
                 variables={{
                     limit: 10,
