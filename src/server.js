@@ -20,6 +20,8 @@ import { TOKEN_KEY, THEME_KEY } from "./lib/cookie";
 const server = express();
 /** init cookie parser */
 server.use(cookieParser());
+// 접근 허용 폴더 설정
+server.use("/", express.static("src/sitemaps"));
 
 server
     .disable("x-powered-by")
