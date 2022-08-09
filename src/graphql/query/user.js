@@ -42,14 +42,6 @@ export const GET_RECOMMENDERS = gql`
             ...CoreUserFields
 
             postCount
-
-            Platform {
-                id
-            }
-
-            Followers {
-                id
-            }
         }
     }
 `;

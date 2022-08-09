@@ -12,7 +12,6 @@ import Carousel from "../Carousel";
 const RecommendUser = () => (
     <Query
         query={GET_RECOMMENDERS}
-        fetchPolicy="cache-and-network"
         variables={{
             limit: 10
         }}
@@ -25,7 +24,10 @@ const RecommendUser = () => (
             return (
                 <Carousel>
                     {recommenders.map((user) => (
-                        <UserCardTypeItem key={`user${user.id}`} {...user} />
+                        <UserCardTypeItem
+                            key={`recommendUser${user.id}`}
+                            {...user}
+                        />
                     ))}
                 </Carousel>
             );
