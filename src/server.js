@@ -111,6 +111,10 @@ server
                             content="width=device-width,initial-scale=1"
                         />
                         <meta name="google-site-verification" content="aoZxIt3H-7OsxSv1vl4eS_NrxGE2_3y6S9XzTGoLg2o" />
+                        <meta property="og:type" content="website" />
+                        <meta property="og:site_name" content="Frisklog" />
+                        <meta property="og:image" content="http://frisklog.site:4000/thumbnail.png" />
+                        <meta property="og:locale" content="ko_KR" />
                         ${helmet.title.toString()}
                         ${helmet.meta.toString()} ${helmet.link.toString()}
                         ${extractor.getLinkTags()}

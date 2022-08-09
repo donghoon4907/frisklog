@@ -27,7 +27,8 @@ const SearchPostPage = ({
         <>
             <Meta
                 title={`Frisklog - ${query}`}
-                description={`${query} 검색 결과입니다.`}
+                description={`Frisklog ${query} 검색결과입니다.`}
+                url={`/search/${content}`}
             />
             <div className="fr-main__title">
                 <span>&quot;{query}&quot; 검색결과</span>

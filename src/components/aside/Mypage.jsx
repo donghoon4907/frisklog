@@ -36,7 +36,11 @@ const AsideMypage = ({
         >
             {({ data: { user } }) => (
                 <>
-                    <Meta title={`Frisklog - ${user.nickname}`} />
+                    <Meta
+                        title={`Frisklog - ${user.nickname}`}
+                        description={`Frisklog ${user.nickname} 사용자 페이지입니다.`}
+                        url={`/user/${id}`}
+                    />
                     <div className={`${displayName}__wrapper`}>
                         <div className={displayName}>
                             <AsideMypageHeader

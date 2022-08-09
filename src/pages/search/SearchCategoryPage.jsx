@@ -27,7 +27,8 @@ const SearchCategoryPage = ({
         <>
             <Meta
                 title={`Frisklog - #${content}`}
-                description={`카테고리 ${content} 검색 결과입니다.`}
+                description={`Frisklog ${content} 카테고리 검색결과입니다.`}
+                url={`/category/${content}`}
             />
             <div className="fr-main__title">
                 <span>#{content} 검색결과</span>
