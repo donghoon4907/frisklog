@@ -1,6 +1,9 @@
 import React, { useCallback } from "react";
+import { useMutation } from "@apollo/client";
+
 import { useDispatch } from "../../context";
 import { SHOW_LOGIN_MODAL, LOGOUT_USER } from "../../context/action";
+import { UPDATE_USER } from "../../graphql/mutation/user";
 import { TOKEN_KEY, getStorage, deleteStorage } from "../../lib/cookie";
 import Button from ".";
 
@@ -9,34 +12,44 @@ import Button from ".";
  *
  */
 const LogoutBtn = () => {
-    // Dispatch hooks
     const dispatch = useDispatch();
+
+    const [uptStatus, { loading }] = useMutation(UPDATE_USER);
     // 클릭 핸들러
-    const handleClick = useCallback(() => {
+    const handleClick = useCallback(async () => {
+        if (loading) {
+            return alert("요청 중입니다");
+        }
         // 토큰 가져오기
         const token = getStorage(TOKEN_KEY);
 
-        if (token) {
-            const tf = window.confirm("로그아웃 하시겠어요?");
+        if (token === null) {
+            return dispatch({
+                type: SHOW_LOGIN_MODAL
+            });
+        }
 
-            if (tf) {
+        const tf = window.confirm("로그아웃 하시겠어요?");
+
+        if (tf) {
+            try {
+                await uptStatus({
+                    variables: { status: "offline" }
+                });
                 // 토큰 삭제
                 deleteStorage(TOKEN_KEY);
                 // 로컬 상태 갱신
                 dispatch({
                     type: LOGOUT_USER
                 });
+            } catch (error) {
+                graphqlError({ error, dispatch });
             }
-        } else {
-            // 로그인 모달 보이기
-            dispatch({
-                type: SHOW_LOGIN_MODAL
-            });
         }
-    }, []);
+    }, [loading]);
 
     return (
-        <div style={{ flex: 1 }} title="Logout">
+        <div title="Logout">
             <Button
                 type="button"
                 className="fr-btn--primary"

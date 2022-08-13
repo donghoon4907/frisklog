@@ -5,26 +5,24 @@ import { CORE_USER_FIELDS } from "../fragment/user";
 /**
  * 사용자 검색
  *
- * @param $offset 건너뛸 목록의 수
- * @param $limit  요청 목록의 수
- * @param $order  정렬
- * @deprecated
+ * @param $offset    건너뛸 목록의 수
+ * @param $limit     요청 목록의 수
+ * @param $nickname  별명
  */
 export const GET_USERS = gql`
-    query GetUsers($offset: Int, $limit: Int!, $order: String) {
-        users(offset: $offset, limit: $limit, order: $order) {
-            rows {
-                id
-                nickname
-                avatar
-                isMaster
-                Posts {
-                    id
-                }
-                createdAt
-                updatedAt
+    ${CORE_USER_FIELDS}
+    query GetUsers($offset: Int, $limit: Int!, $nickname: String) {
+        users(offset: $offset, limit: $limit, nickname: $nickname) {
+            nodes {
+                ...CoreUserFields
             }
-            count
+
+            pageInfo {
+                currentPage
+                lastPage
+                nodeCount
+                totalCount
+            }
         }
     }
 `;

@@ -1,0 +1,17 @@
+.fr-chat {
+    width: 200px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    &__wrapper {
+        padding: 5px;
+        box-shadow: rgba(0, 0, 0, 0.08) 0px 4px 12px;
+
+        @include wb;
+    }
+
+    &__search {
+        width: 500px;
+    }
+}

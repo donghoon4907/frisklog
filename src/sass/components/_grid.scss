@@ -1,113 +1,35 @@
 .fr-grid {
-    height: auto;
-    display: flex;
     width: 100%;
-    justify-content: flex-start;
+    color: var(--frisklog-text-color);
 
-    &:hover {
-        background: rgba(0, 0, 0, 0.1);
+    &__wrapper {
+        width: 100%;
+
+        @include wb;
     }
 
-    &-wrapper {
+    & th,
+    & td {
+        padding: 5px 0;
+        text-align: center;
+    }
+
+    & th {
+        border-bottom: 1px solid var(--frisklog-border-color);
+        font-weight: bold;
+    }
+
+    &__message {
+        width: 200px;
+
+        @include ellipsisText;
+    }
+
+    &__footer {
         display: flex;
-        flex-wrap: wrap;
-        flex-direction: row;
-    }
-
-    &__timeline {
-        position: relative;
-        border: 1px solid lightgray;
-
-        &-wrapper {
-            width: 13.5rem;
-            display: flex;
-            justify-content: flex-end;
-            padding-right: 3.3rem;
-        }
-
-        &__timestamp {
-            position: absolute;
-            display: flex;
-            flex-direction: column;
-            top: 5px;
-            text-align: right;
-            left: -10rem;
-            width: 130px;
-        }
-
-        &__stamp {
-            position: absolute;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            top: 8px;
-            left: -7px;
-            width: 1rem;
-            height: 1rem;
-            border-radius: 50%;
-            background-color: inherit;
-            z-index: 1;
-
-            &__dot {
-                background: #2e6bd8;
-                width: 10px;
-                height: 10px;
-                border-radius: 50%;
-                position: relative;
-            }
-
-            &-wrapper {
-                position: absolute;
-                display: flex;
-                flex-direction: column;
-                top: 5px;
-                text-align: right;
-                left: -10rem;
-                width: 8.5rem;
-            }
-        }
-    }
-
-    &__meta {
-        flex: 1;
-        padding: 0.3rem;
-
-        &__header {
-            display: flex;
-            justify-content: flex-start;
-            align-items: center;
-
-            &__category {
-                width: auto;
-                margin-right: 0.6rem;
-            }
-        }
-
-        &__body {
-            font-size: 0.875rem;
-            line-height: 1.5;
-            height: 3.9375rem;
-            display: -webkit-box;
-            -webkit-line-clamp: 3;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            color: rgb(73, 80, 87);
-        }
-
-        &__footer {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-
-            &__column {
-                display: flex;
-                justify-content: flex-start;
-                align-items: center;
-
-                & span {
-                    margin-right: 5px;
-                }
-            }
-        }
+        justify-content: center;
+        align-items: center;
+        padding: 5px;
+        border-top: 1px solid var(--frisklog-border-color);
     }
 }

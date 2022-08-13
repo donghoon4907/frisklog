@@ -9,7 +9,7 @@ import { onError } from "@apollo/client/link/error";
 import fetch from "isomorphic-unfetch";
 import { relayStylePagination } from "@apollo/client/utilities";
 
-import { TOKEN_KEY, getStorage, deleteStorage } from "./cookie";
+import { TOKEN_KEY, deleteStorage } from "./cookie";
 
 /**
  * 아폴로 클라이언트 객체
@@ -28,7 +28,7 @@ if (!process.browser) {
  * 아폴로 클라이언트 객체 생성 함수
  * @author frisk
  */
-function createApolloClient() {
+function createApolloClient(token) {
     /**
      * http 연결을 통해 GraphQL 요청 및 응답 처리 활성화
      */
@@ -41,7 +41,7 @@ function createApolloClient() {
      */
     const errorLink = onError(({ graphQLErrors, networkError }) => {
         if (graphQLErrors) {
-            graphQLErrors.map(({ message, path, extensions, ...props }) => {
+            graphQLErrors.map(({ message, path, extensions }) => {
                 console.log(`[GraphQL error] Query: ${path}, ${message}`);
 
                 if (extensions) {
@@ -61,16 +61,12 @@ function createApolloClient() {
     /**
      * 요청 컨텍스트를 설정
      */
-    const authLink = setContext((_, { headers }) => {
-        const token = getStorage(TOKEN_KEY);
-
-        return {
-            headers: {
-                ...headers,
-                Authorization: `Bearer ${token}`
-            }
-        };
-    });
+    const authLink = setContext((_, { headers }) => ({
+        headers: {
+            ...headers,
+            Authorization: `Bearer ${token}`
+        }
+    }));
 
     const typePolicies = {
         Query: {
@@ -95,8 +91,8 @@ function createApolloClient() {
     });
 }
 
-export function initializeApollo(initialState = null) {
-    const _apolloClient = apolloClient || createApolloClient();
+export function initializeApollo(initialState = null, token) {
+    const _apolloClient = apolloClient || createApolloClient(token);
 
     // If your page has Next.js data fetching methods that use Apollo Client, the initial state
     // gets hydrated here

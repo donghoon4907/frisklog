@@ -6,6 +6,8 @@ export const CORE_USER_FIELDS = gql`
         nickname
         avatar
         link
+        status
+        statusText
         isMaster
         createdAt
         updatedAt

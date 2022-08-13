@@ -9,4 +9,15 @@
         width: 380px;
         height: 500px;
     }
+
+    &__body {
+        margin-bottom: 16px;
+    }
+
+    &__title {
+        font-size: 1.5rem;
+        font-weight: 700;
+        line-height: 1.5;
+        margin-bottom: 5px;
+    }
 }

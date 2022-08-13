@@ -39,12 +39,14 @@ server
 
         // context.isCollapseNav = collapse ? JSON.parse(collapse) : "contract";
 
-        const token = req.cookies[TOKEN_KEY];
+        let token = req.cookies[TOKEN_KEY];
 
         if (token) {
+            token = JSON.parse(token);
+
             try {
                 const { id, nickname, avatar, isMaster } = jwt.verify(
-                    JSON.parse(token),
+                    token,
                     process.env.RAZZLE_JWT_SECRET
                 );
 
@@ -67,7 +69,7 @@ server
             entrypoints: ["client"]
         });
         /** Init apollo client */
-        const client = initializeApollo();
+        const client = initializeApollo(null, token);
 
         const Root = () => (
             <ChunkExtractorManager extractor={extractor}>

@@ -38,8 +38,8 @@
     &__wrapper {
         position: relative;
         overflow: hidden;
-        float: left;
         list-style: none;
+        display: inline-block;
     }
 
     &__container {

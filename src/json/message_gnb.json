@@ -1,0 +1,18 @@
+[
+    {
+        "id": 1,
+        "page": "receive",
+        "userType": "from",
+        "title": "받은 메세지",
+        "ariaLabel": "받은 메세지 보기",
+        "enable": true
+    },
+    {
+        "id": 2,
+        "page": "sent",
+        "userType": "to",
+        "title": "보낸 메세지",
+        "ariaLabel": "보낸 메세지 보기",
+        "enable": true
+    }
+]

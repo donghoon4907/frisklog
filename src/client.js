@@ -4,12 +4,17 @@ import { BrowserRouter } from "react-router-dom";
 import { ApolloProvider } from "@apollo/client";
 import { loadableReady } from "@loadable/component";
 import SSRProvider from "react-bootstrap/SSRProvider";
+
 import { ContextProvider } from "./context";
 import App from "./App";
 import { initializeApollo } from "./lib/apollo";
+import { TOKEN_KEY, getStorage } from "./lib/cookie";
+
+const token = getStorage(TOKEN_KEY);
 
 const apolloClient = initializeApollo(
-    window !== "undefined" ? window.__APOLLO_STATE__ : null
+    window ? window.__APOLLO_STATE__ : null,
+    token
 );
 
 const container = document.getElementById("root");
@@ -20,9 +25,7 @@ const container = document.getElementById("root");
 loadableReady(() => {
     hydrate(
         <ApolloProvider client={apolloClient}>
-            <ContextProvider
-                context={window !== "undefined" ? window.__CONTEXT_STATE__ : {}}
-            >
+            <ContextProvider context={window ? window.__CONTEXT_STATE__ : {}}>
                 <BrowserRouter>
                     <SSRProvider>
                         <App />

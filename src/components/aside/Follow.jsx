@@ -8,8 +8,6 @@ import { useSelector } from "../../context";
  *
  */
 const AsideFollow = () => {
-    const displayName = "fr-recommend";
-
     const { id } = useSelector();
 
     if (id === null) {
@@ -17,12 +15,12 @@ const AsideFollow = () => {
     }
 
     return (
-        <div className={`${displayName}__wrapper`}>
-            <div className={`${displayName}__title`}>
+        <>
+            <div className="fr-aside__title">
                 <h2>팔로잉 목록</h2>
             </div>
             <FollowingUser userId={id.toString()} />
-        </div>
+        </>
     );
 };
 

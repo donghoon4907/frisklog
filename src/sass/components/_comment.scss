@@ -22,7 +22,6 @@
         margin-bottom: 4px;
         line-height: 1.5;
         font-weight: 700;
-        height: 100%;
         overflow: hidden;
     }
 
@@ -52,5 +51,20 @@
         margin-bottom: 10px;
 
         @include cancelAndSubmit(10px);
+    }
+
+    &__form {
+        display: flex;
+        flex-direction: column;
+    }
+
+    &__paginate {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    &__button {
+        width: 70px;
     }
 }

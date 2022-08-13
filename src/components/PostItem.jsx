@@ -119,7 +119,9 @@ const PostItem = ({ id, createdAt, User, Categories, content, Likers }) => {
                             {timeForToday(createdAt)}
                         </div>
                     </div>
-                    <div>{activeComment && <CommentList postId={id} />}</div>
+                    <div className={`${displayName}__comment`}>
+                        {activeComment && <CommentList postId={id} />}
+                    </div>
                 </footer>
             </article>
         </div>

@@ -1,7 +1,5 @@
 import { gql } from "@apollo/client";
 
-import { CORE_COMMENT_FIELDS } from "../fragment/comment";
-
 /**
  * 댓글 추가
  *
@@ -9,11 +7,8 @@ import { CORE_COMMENT_FIELDS } from "../fragment/comment";
  * @param $content 내용
  */
 export const CREATE_COMMENT = gql`
-    ${CORE_COMMENT_FIELDS}
     mutation addComment($postId: String!, $content: String!) {
-        addComment(postId: $postId, content: $content) {
-            ...CoreCommentFields
-        }
+        addComment(postId: $postId, content: $content)
     }
 `;
 

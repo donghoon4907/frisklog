@@ -10,11 +10,12 @@ import mypageOptions from "../../json/mypage_options.json";
 import AsideMypageHeader from "./MypageHeader";
 import ModifyUserBtn from "../button/ModifyUser";
 import FollowBtn from "../button/Follow";
+import CreateRoomBtn from "../button/CreateRoom";
+import { Badge, Text } from "../Status";
 
 /**
  * 사용자정보 컴포넌트
  *
- * @param {object} props.match
  */
 const AsideMypage = ({
     match: {
@@ -72,6 +73,15 @@ const AsideMypage = ({
                                         <LogoutBtn />
                                     </div>
                                 )}
+                            </div>
+                            <div className={`${displayName}__footer`}>
+                                <div className={`${displayName}__status`}>
+                                    <Badge status={user.status} />
+                                    <Text>{user.statusText}</Text>
+                                </div>
+                                <div className={`${displayName}__message`}>
+                                    {!isMe && <CreateRoomBtn userId={id} />}
+                                </div>
                             </div>
                         </div>
 

@@ -1,0 +1,26 @@
+.fr-status {
+    display: inline-block;
+    border-radius: 50%;
+    width: 10px;
+    height: 10px;
+
+    &__text {
+        line-height: 1;
+    }
+
+    &--online {
+        background: var(--frisklog-success-color);
+    }
+
+    &--offline {
+        background: var(--frisklog-danger-color);
+    }
+
+    &--away {
+        background: var(--frisklog-disabled-color);
+    }
+
+    &--busy {
+        background: var(--frisklog-warning-color);
+    }
+}

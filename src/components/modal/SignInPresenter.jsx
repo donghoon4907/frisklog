@@ -44,12 +44,14 @@ const SignInPresenter = ({
             </div>
 
             {mode === "로그인" && (
-                <FormCheckbox
-                    label="로그인 유지"
-                    id="keep"
-                    checked={keep}
-                    onChange={onChangeKeep}
-                />
+                <div className="fr-login__keep">
+                    <FormCheckbox
+                        label="로그인 유지"
+                        id="keep"
+                        checked={keep}
+                        onChange={onChangeKeep}
+                    />
+                </div>
             )}
 
             <Button type="submit" className="fr-btn--primary">

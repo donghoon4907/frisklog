@@ -1,0 +1,28 @@
+.fr-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 auto;
+    padding: 0 0.6rem;
+    flex: 1;
+
+    &__wrapper {
+        height: 3rem;
+        background: var(--frisklog-header-color);
+        border-top: 1px solid var(--frisklog-border-color);
+        flex-shrink: 0;
+        z-index: 1000;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    &__column {
+        display: flex;
+        gap: 10px;
+    }
+}

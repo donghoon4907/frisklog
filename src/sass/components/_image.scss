@@ -28,4 +28,10 @@
         align-items: center;
         background-color: var(--frisklog-input-color);
     }
+
+    &__status {
+        position: absolute;
+        bottom: 0;
+        right: 0;
+    }
 }

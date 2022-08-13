@@ -10,7 +10,7 @@ import Loader from "./Loader";
 const CommonQuery = ({ children, ...props }) => {
     return (
         <Query {...props}>
-            {({ loading, error, data, fetchMore, client }) => {
+            {({ error, data, ...others }) => {
                 if (error) {
                     return `Error!: ${error}`;
                 }
@@ -20,10 +20,8 @@ const CommonQuery = ({ children, ...props }) => {
                 }
 
                 return children({
-                    data,
-                    loading,
-                    fetchMore,
-                    client
+                    ...others,
+                    data
                 });
             }}
         </Query>

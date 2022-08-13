@@ -45,6 +45,15 @@
         width: 100%;
     }
 
+    &__footer {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-top: 1px solid var(--frisklog-border-color);
+        padding: 10px 16px;
+        height: 53px;
+    }
+
     &__user {
         display: flex;
         justify-content: space-between;
@@ -62,8 +71,16 @@
         margin-top: 15px;
     }
 
-    &__follow {
+    &__follow,
+    &__message {
         width: 100px;
+    }
+
+    &__status {
+        display: flex;
+        justify-content: flex-start;
+        gap: 5px;
+        align-items: center;
     }
 
     &__helper {
@@ -72,7 +89,7 @@
         width: 100%;
         margin-top: 16px;
 
-        & > button {
+        & > div {
             flex: 1;
         }
     }

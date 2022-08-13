@@ -179,6 +179,19 @@ button {
 .dropdown-item {
     padding: 0 !important;
 }
+.page-item.active {
+    font-weight: bold;
+}
+.page-link {
+    color: var(--frisklog-text-color) !important;
+    background-color: var(--frisklog-box-color) !important;
+    border: none !important;
+
+    &:hover {
+        background-color: var(--frisklog-hover-color) !important;
+        color: $fr-black-color !important;
+    }
+}
 // SETTING - 에디터
 .te-mode-switch-section {
     display: none !important;

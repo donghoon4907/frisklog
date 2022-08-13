@@ -1,7 +1,6 @@
 import { gql } from "@apollo/client";
 
 import { CORE_COMMENT_FIELDS } from "../fragment/comment";
-import { CORE_PLATFORM_FIELDS } from "../fragment/platform";
 
 /**
  * 댓글 검색
@@ -13,23 +12,26 @@ import { CORE_PLATFORM_FIELDS } from "../fragment/platform";
  */
 export const GET_COMMENTS = gql`
     ${CORE_COMMENT_FIELDS}
-    ${CORE_PLATFORM_FIELDS}
     query GetComments(
-        $cursor: String
+        $before: String
+        $after: String
         $limit: Int!
         $order: [[String]]
         $postId: String!
     ) {
         comments(
-            after: $cursor
+            before: $before
+            after: $after
             limit: $limit
             order: $order
             postId: $postId
         ) {
             totalCount
             pageInfo {
+                startCursor
                 endCursor
                 hasNextPage
+                hasPreviousPage
             }
             edges {
                 cursor

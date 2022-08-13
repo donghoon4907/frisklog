@@ -3,7 +3,7 @@ import { useHistory } from "react-router-dom";
 
 import Query from "../Query";
 import { GET_FOLLOWINGS } from "../../graphql/query/user";
-import UserListTypeItem from "../UserListTypeItem";
+import FollowUserItem from "../FollowUserItem";
 import Button from "../button";
 import { FormInput } from "../Form";
 import { useInput } from "../../hooks";
@@ -119,7 +119,7 @@ const FollowingUser = () => {
                                 </li>
                             )}
                             {nodes.map((user, idx) => (
-                                <UserListTypeItem
+                                <FollowUserItem
                                     key={`followItem${idx}`}
                                     {...user}
                                 />

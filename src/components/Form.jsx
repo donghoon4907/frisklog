@@ -26,31 +26,43 @@ export const Select = ({ children, setValue, ...props }) => (
     </select>
 );
 
-export const FormInput = forwardRef(({ children, isExpand, ...props }, ref) => (
-    <div className={`${displayName}__input`}>
-        <div
-            className={`fr-input__wrapper ${
-                isExpand ? "fr-input--expand" : ""
-            }`}
-        >
-            <Label {...props} />
-            <Input {...props} isExpand={isExpand} ref={ref} />
+export const FormInput = forwardRef(
+    ({ children, isExpand, id, label, value, ...props }, ref) => (
+        <div className={`${displayName}__input`}>
+            <div
+                className={`fr-input__wrapper ${
+                    isExpand ? "fr-input--expand" : ""
+                }`}
+            >
+                <Label label={label} id={id} value={value} />
+                <Input
+                    {...props}
+                    id={id}
+                    value={value}
+                    isExpand={isExpand}
+                    ref={ref}
+                />
+            </div>
+
+            {children}
         </div>
+    )
+);
 
-        {children}
-    </div>
-));
-
-export const FormTextArea = ({ children, ...props }) => (
+export const FormTextArea = ({ children, id, label, value, ...props }) => (
     <div className={`${displayName}__input`}>
-        <Label {...props} />
-        <TextArea {...props} />
+        <Label label={label} id={id} value={value} />
+        <TextArea id={id} value={value} {...props} />
         {children}
     </div>
 );
 
 export const FormCheckbox = ({ label, id, ...props }) => (
-    <div className={`${displayName}__checkbox`}>
+    <div
+        className={`${displayName}__checkbox ${
+            label ? `${displayName}__checkbox--with` : ""
+        }`}
+    >
         <input type="checkbox" id={id} {...props} />
         <label htmlFor={id}>{label}</label>
     </div>

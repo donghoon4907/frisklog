@@ -9,7 +9,7 @@ import CategoryBtn from "../button/Category";
  *
  */
 const RecommandCategory = () => (
-    <ul className="fr-recommend">
+    <ul>
         <Query
             query={GET_RECOMMEND_CATEGORIES}
             variables={{

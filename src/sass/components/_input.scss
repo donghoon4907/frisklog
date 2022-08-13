@@ -20,4 +20,18 @@
     &__wrapper {
         position: relative;
     }
+
+    &__search {
+        position: absolute;
+        top: 2.3rem;
+        left: 0;
+        width: 100%;
+        z-index: 1000;
+
+        @include wb;
+
+        & li {
+            padding: 5px;
+        }
+    }
 }

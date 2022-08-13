@@ -29,7 +29,7 @@ const UpdateUserBtn = () => {
     }, []);
 
     return (
-        <div style={{ flex: 1 }} title="내 정보 수정 버튼">
+        <div title="내 정보 수정 버튼">
             <Button
                 type="button"
                 onClick={handleClick}

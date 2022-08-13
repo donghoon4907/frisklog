@@ -70,8 +70,12 @@
 
     &__checkbox {
         display: flex;
+        justify-content: center;
         align-items: center;
-        gap: 5px;
         line-height: 1.5;
+
+        &--with {
+            gap: 5px;
+        }
     }
 }

@@ -28,10 +28,6 @@ const HeaderSearchBar = () => {
     const handleSubmit = useCallback(
         (e) => {
             e.preventDefault();
-
-            if (!searchKeyword) {
-                return alert("검색어를 입력하세요");
-            }
             // 페이지 이동
             history.push(`/search/${searchKeyword}`);
             // 검색바 숨기기

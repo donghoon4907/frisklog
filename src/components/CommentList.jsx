@@ -7,7 +7,7 @@ import { useInput } from "../hooks";
 import { FormTextArea } from "./Form";
 import Button from "./button";
 import { TOKEN_KEY, getStorage } from "../lib/cookie";
-import { useDispatch, useSelector } from "../context";
+import { useDispatch } from "../context";
 import { SHOW_LOGIN_MODAL } from "../context/action";
 import CommentItem from "./CommentItem";
 import Loader from "./Loader";
@@ -21,15 +21,33 @@ import Query from "./Query";
  *
  */
 const CommentList = ({ postId }) => {
-    const dispatch = useDispatch();
+    const displayName = "fr-comment";
 
-    const { id, nickname, avatar } = useSelector();
+    const dispatch = useDispatch();
     // 댓글
     const comment = useInput("");
     // 생성한 댓글 목록
-    const [comments, setComments] = useState([]);
+    const [cursor, setCursor] = useState({
+        before: "",
+        after: ""
+    });
+
     // 댓글 추가
     const [create, { loading }] = useMutation(CREATE_COMMENT);
+
+    const handlePrevious = useCallback((cursor) => {
+        setCursor({
+            before: cursor,
+            after: ""
+        });
+    }, []);
+
+    const handleNext = useCallback((cursor) => {
+        setCursor({
+            after: cursor,
+            before: ""
+        });
+    }, []);
 
     // 댓글 추가 핸들러
     const handleSubmit = useCallback(
@@ -57,9 +75,7 @@ const CommentList = ({ postId }) => {
 
             if (tf) {
                 try {
-                    const {
-                        data: { addComment }
-                    } = await create({
+                    await create({
                         variables: {
                             postId,
                             content: comment.value
@@ -68,19 +84,11 @@ const CommentList = ({ postId }) => {
 
                     // 입력창 초기화
                     comment.setValue("");
-                    // 상태 댓글 목록에 추가
-                    setComments([
-                        {
-                            User: {
-                                id,
-                                nickname,
-                                avatar,
-                                link: `/user/${id}`
-                            },
-                            ...addComment
-                        },
-                        ...comments
-                    ]);
+
+                    setCursor(({ before, after }) => ({
+                        before: before === "" ? null : "",
+                        after: after === "" ? null : ""
+                    }));
 
                     alert("댓글이 등록되었습니다.");
                 } catch (error) {
@@ -88,18 +96,20 @@ const CommentList = ({ postId }) => {
                 }
             }
         },
-        [comment.value, loading, comments, id, nickname, avatar]
+        [comment.value, loading, postId]
     );
 
     const variables = {
-        limit: 5,
+        limit: 3,
+        before: cursor.before,
+        after: cursor.after,
         postId,
         order: [["createdAt", "DESC"]]
     };
 
     return (
-        <div>
-            <form className="d-flex flex-column" onSubmit={handleSubmit}>
+        <>
+            <form className={`${displayName}__form`} onSubmit={handleSubmit}>
                 {loading && <Loader />}
                 <div className="fr-form__column">
                     <FormTextArea
@@ -117,53 +127,67 @@ const CommentList = ({ postId }) => {
                     댓글 작성
                 </Button>
             </form>
-            <ul>
-                {comments.map((comment) => (
-                    <CommentItem
-                        key={`comment_${id}_${comment.id}`}
-                        {...comment}
-                    />
-                ))}
-                <Query query={GET_COMMENTS} variables={variables}>
-                    {({ data, fetchMore }) => {
-                        const { totalCount, edges, pageInfo } = data.comments;
 
-                        if (totalCount === 0) {
-                            return null;
-                        }
+            <Query
+                query={GET_COMMENTS}
+                fetchPolicy="no-cache"
+                variables={variables}
+            >
+                {({ data }) => {
+                    const { totalCount, edges, pageInfo } = data.comments;
 
-                        const nodes = edges.map((edge) => edge.node);
+                    const nodes = edges.map((edge) => edge.node);
 
-                        return (
-                            <>
+                    const {
+                        hasPreviousPage,
+                        hasNextPage,
+                        startCursor,
+                        endCursor
+                    } = pageInfo;
+
+                    return (
+                        <>
+                            <ul>
                                 {nodes.map((node) => (
                                     <CommentItem
                                         key={`comment${node.id}`}
                                         {...node}
                                     />
                                 ))}
-                                {pageInfo.hasNextPage && (
-                                    <Button
-                                        type="button"
-                                        className="fr-btn--primary"
-                                        onClick={async () =>
-                                            fetchMore({
-                                                variables: {
-                                                    ...variables,
-                                                    cursor: pageInfo.endCursor
-                                                }
-                                            })
-                                        }
-                                    >
-                                        더보기
-                                    </Button>
-                                )}
-                            </>
-                        );
-                    }}
-                </Query>
-            </ul>
-        </div>
+                            </ul>
+                            {totalCount > 0 && (
+                                <div className={`${displayName}__paginate`}>
+                                    <div className={`${displayName}__button`}>
+                                        <Button
+                                            type="button"
+                                            className="fr-btn--info"
+                                            disabled={!hasPreviousPage}
+                                            onClick={() =>
+                                                handlePrevious(startCursor)
+                                            }
+                                        >
+                                            이전
+                                        </Button>
+                                    </div>
+                                    <div className={`${displayName}__button`}>
+                                        <Button
+                                            type="button"
+                                            className="fr-btn--info"
+                                            disabled={!hasNextPage}
+                                            onClick={() =>
+                                                handleNext(endCursor)
+                                            }
+                                        >
+                                            다음
+                                        </Button>
+                                    </div>
+                                </div>
+                            )}
+                        </>
+                    );
+                }}
+            </Query>
+        </>
     );
 };
 
