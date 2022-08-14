@@ -90,7 +90,7 @@ const App = () => {
                     </div>
                 </div>
             </div>
-            <Footer />
+            {/* <Footer /> */}
             {isShowLoginModal && <AuthModal />}
             {isShowPostModal && <PostModal />}
             {isShowUserModal && <UserModal />}

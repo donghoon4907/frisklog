@@ -21,7 +21,7 @@ const BootstrapPagination = ({
 }) => {
     const pageCount = Math.ceil(totalCount / pageSize);
 
-    const handleChange = (pageNo) => {
+    const setPage = (pageNo) => {
         if (currentPage === pageNo) {
             return;
         }
@@ -43,7 +43,7 @@ const BootstrapPagination = ({
             return (
                 <Pagination.Item
                     key={`pageItem${pageNo}`}
-                    onClick={() => handleChange(pageNo)}
+                    onClick={() => setPage(pageNo)}
                     active={pageNo === currentPage}
                 >
                     {pageNo}
@@ -64,23 +64,23 @@ const BootstrapPagination = ({
         <Pagination>
             {isShowFirst && (
                 <Pagination.First
-                    onClick={() => handleChange(1)}
+                    onClick={() => setPage(1)}
                     disabled={currentPage === 1}
                 />
             )}
 
             <Pagination.Prev
-                onClick={() => handleChange(currentPage - 1)}
+                onClick={() => setPage(currentPage - 1)}
                 disabled={currentPage === 1}
             />
             {pages}
             <Pagination.Next
-                onClick={() => handleChange(currentPage + 1)}
+                onClick={() => setPage(currentPage + 1)}
                 disabled={currentPage === pageCount}
             />
             {isShowLast && (
                 <Pagination.Last
-                    onClick={() => handleChange(lastPage)}
+                    onClick={() => setPage(pageCount)}
                     disabled={currentPage === pageCount}
                 />
             )}

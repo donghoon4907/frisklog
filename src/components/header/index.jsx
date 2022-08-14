@@ -8,6 +8,7 @@ import CreatePostBtn from "../button/CreatePost";
 import HomeBtn from "../button/Home";
 import FavoriteBtn from "../button/Favorite";
 import ModeBtn from "../button/Mode";
+import MessageBtn from "../button/Message";
 
 /**
  * 공통 헤더 컴포넌트
@@ -26,6 +27,7 @@ const Header = () => {
                 </div>
                 <div className={`${displayName}__column`}>
                     <ModeBtn />
+                    <MessageBtn />
                     <SearchBtn />
                     <FavoriteBtn />
                     <CreatePostBtn />

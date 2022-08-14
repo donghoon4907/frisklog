@@ -6,7 +6,6 @@ import { useDispatch } from "../../context";
 import { getStorage, TOKEN_KEY } from "../../lib/cookie";
 import { FormInput } from "../Form";
 import { useInput } from "../../hooks";
-import { SEND_MESSAGE } from "../../graphql/mutation/message";
 
 /**
  * 검색 바 컴포넌트
@@ -20,8 +19,6 @@ const ChatBar = () => {
     const dispatch = useDispatch();
 
     const message = useInput("");
-
-    const [send, { loading }] = useMutation(SEND_MESSAGE);
 
     // 검색 핸들러
     const handleSubmit = useCallback(
@@ -38,18 +35,6 @@ const ChatBar = () => {
                 return dispatch({
                     type: SHOW_LOGIN_MODAL
                 });
-            }
-
-            try {
-                await send({
-                    variables: { content: message.value, to: "2" }
-                });
-
-                // message.setValue("");
-
-                alert("성공");
-            } catch (error) {
-                graphqlError({ error, dispatch });
             }
         },
         [loading, message.value]
