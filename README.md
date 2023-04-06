@@ -1,10 +1,11 @@
-# Frisklog
+![image](https://user-images.githubusercontent.com/37163118/230509233-3f16f49e-8e80-4fbc-b272-201556bac3cd.png)
 
+# Frisklog
 학습한 내용 및 문제를 해결했던 경험을 상기시키며 정리하는 용도로 만들게 된 블로그입니다.
 
 ## Table of Contents
-
 -   [Features](#features)
+-   [ERD](#erd)
 -   [Install](#install)
 -   [Task Manage](#task-manage)
 -   [File Structure](#file-structure)
@@ -19,6 +20,11 @@
 -   전역상태를 관리하기 위해 `Context API`를 사용하였습니다.
 -   데이터 패칭을 위해 `Apollo-Client` 및 `GraphQL`을 사용하였습니다.
 -   `Scss` 와 `Bootstrap`를 활용하여 스타일시트를 작성하였습니다.
+-   `AWS EC2`에 프로젝트를 배포했습니다.
+
+## ERD
+
+![image (1)](https://user-images.githubusercontent.com/37163118/230509732-10a4de33-e5a6-424c-8b43-416bf13c3e88.png)
 
 ## Install
 
@@ -43,12 +49,9 @@ $ yarn install
 
 `.env` 파일을 구성하여 환경 변수를 설정하세요. `.env.example`를 통해 예시를 확인할 수 있습니다.
 
--   `.env.development` 개발 시 필요한 설정
--   `.env.production` 배포 시 필요한 설정
-
 4. GraphQL 서버 설치 가이드
 
--   [Frisklog-Server](https://github.com/donghoon4907/frisklog-server)
+-   [서버 설치 링크](https://github.com/donghoon4907/frisklog-nest-server)
 
 ## Task Manage
 
@@ -71,8 +74,8 @@ $ yarn install
 
 ## Related projects
 
--   [Backend(서비스)](https://github.com/donghoon4907/frisklog-server)
--   [Next+Typescript(구버전, deprecated)](https://github.com/donghoon4907/frisklog-with-next)
+-   [Backend - Nest.js](https://github.com/donghoon4907/frisklog-nest-server)
+-   [Frontend - Next.js](https://github.com/donghoon4907/frisklog-next)
 
 ## License
 
